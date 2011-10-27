@@ -11,6 +11,8 @@
   </head>  
   <body>
   <metal:main fill-slot="prefs_configlet_content">
+  	
+	<a tal:attributes="href string:${portal_url}/vindula_themeconfig/edit">Configura&ccedil;&otilde;es do Tema</a>
                            
 
   </metal:main>

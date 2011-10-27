@@ -1,0 +1,8 @@
+<div metal:define-macro="vindula_logotop"
+	 tal:define="portal python: context.portal_url.getPortalObject();
+	 			 config_obj python: portal/vindula_themeconfig | nothing;">
+	
+		
+	<h1 tal:content="config_obj/title"></h1>
+	
+</div>

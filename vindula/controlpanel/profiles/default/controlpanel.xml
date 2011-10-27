@@ -10,6 +10,7 @@
             category="Products" 
             condition_expr=""
             url_expr="string:${portal_url}/vindula-control-panel"
+		 	icon_expr="string:${portal_url}/++resource++vindula.controlpanel/vindula.png"
             visible="True" 
             i18n:attributes="title">
  
