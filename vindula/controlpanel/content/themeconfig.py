@@ -6,7 +6,7 @@ from plone.app.textfield import RichText
 from z3c.relationfield.schema import RelationChoice
 from vindula.controlpanel import MessageFactory as _
 
-# Interface
+# Interface and schema
 
 class IThemeConfig(Interface):
     """ Theme Settings interface """

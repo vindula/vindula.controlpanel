@@ -12,4 +12,9 @@ vindula.controlpanel.egg-info/paster_plugins.txt
 vindula.controlpanel.egg-info/requires.txt
 vindula.controlpanel.egg-info/top_level.txt
 vindula/controlpanel/__init__.py
-vindula/controlpanel/tests.py
+vindula/controlpanel/setuphandlers.py
+vindula/controlpanel/browser/__init__.py
+vindula/controlpanel/browser/views.py
+vindula/controlpanel/content/__init__.py
+vindula/controlpanel/content/categories.py
+vindula/controlpanel/content/themeconfig.py

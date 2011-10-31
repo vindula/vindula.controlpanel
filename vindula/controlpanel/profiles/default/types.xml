@@ -2,5 +2,6 @@
 <object name="portal_types" meta_type="Plone Types Tool">
 	
   <object name="vindula.controlpanel.content.themeconfig" meta_type="Dexterity FTI" />
+  <object name="vindula.controlpanel.content.categories" meta_type="Dexterity FTI" />
   
 </object>
