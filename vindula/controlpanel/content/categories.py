@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from plone.directives import form
 from zope import schema
+from plone.directives import form
 from vindula.controlpanel import MessageFactory as _
 
 # Interface and schema
@@ -8,7 +8,8 @@ from vindula.controlpanel import MessageFactory as _
 class ICategories(form.Schema):
     """ Categories """
     
-    title = schema.Text(
+    orgstructure = schema.Text(
         title=_(u"Categorias de Estruturas Organizacionais"),
         description=_(u"Adicione uma categoria por linha."),
+        required=False,
         )

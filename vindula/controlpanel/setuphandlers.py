@@ -4,24 +4,29 @@ from Products.CMFCore.utils import getToolByName
 def installControlPanel(context):    
     portal = context.getSite()
     portal_workflow = getToolByName(portal, 'portal_workflow')
-    type_theme = 'vindula.controlpanel.content.themeconfig'
-    type_categories = 'vindula.controlpanel.content.categories'
+
+    # Creating Control Panel Folder
+    if not 'control-panel-objects' in portal.objectIds():
+        portal.invokeFactory('Folder', 
+                              id='control-panel-objects', 
+                              title='Control Panel Objects',
+                              description='Pasta que guarda os objetos de configuração do Vindula.',
+                              excludeFromNav = True)
+        
+    folder = portal['control-panel-objects']
     
-    if portal.portal_types.get(type_theme):
-        if not 'vindula_themeconfig' in portal.objectIds():
-            portal.portal_types.get(type_theme).global_allow = True              
-            portal.invokeFactory(type_theme, 
-                                 id='vindula_themeconfig', 
-                                 excludeFromNav = True)
-            print 'Create vindula_themeconfig object.'
-            portal.portal_types.get(type_theme).global_allow = False
+
+    # Creating Control Panel Objects
     
-    
-    if portal.portal_types.get(type_categories):
-        if not 'vindula_categories' in portal.objectIds():
-            portal.portal_types.get(type_categories).global_allow = True              
-            portal.invokeFactory(type_categories, 
-                                 id='vindula_categories', 
-                                 excludeFromNav = True)
-            print 'Create vindula_categories object.'
-            portal.portal_types.get(type_categories).global_allow = False
+    types = ['vindula.controlpanel.content.categories', 
+             'vindula.controlpanel.content.themeconfig']
+        
+    for type in types:
+        if portal.portal_types.get(type):
+            id = 'vindula_' + type.split('.')[3]
+            if not id in folder.objectIds():
+                folder.setConstrainTypesMode(0)
+                portal.portal_types.get(type).global_allow = True        
+                folder.invokeFactory(type, id=id, excludeFromNav=True)
+                print 'Create %s object.' % id          
+                portal.portal_types.get(type).global_allow = False
