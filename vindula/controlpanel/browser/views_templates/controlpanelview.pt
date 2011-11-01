@@ -11,10 +11,35 @@
   </head>  
   <body>
   <metal:main fill-slot="prefs_configlet_content">
-  	
-	<a tal:attributes="href string:${portal_url}/vindula_themeconfig/edit">Configura&ccedil;&otilde;es do Tema</a>
-                           
-
+  	<div class="controlpanel-links" id="content">
+  		
+		<div class="titulo_info">
+			<h2>Vindula Control Panel</h2>
+		</div>
+		
+		<!-- Control Panel Objects -->
+		<div>
+			<img src="/++theme++vindula.themedefault/images/controlpanel_theme.png" />
+			<a tal:attributes="href string:${portal_url}/control-panel-objects/vindula_themeconfig/edit">Configura&ccedil;&otilde;es do Tema</a>
+		</div>
+		
+		<div>
+			<img src="/++theme++vindula.themedefault/images/controlpanel_categories.png" />
+			<a tal:attributes="href string:${portal_url}/control-panel-objects/vindula_categories/edit">Cadastro de Categorias</a>
+		</div>
+		
+		<div>
+			<img src="/++theme++vindula.themedefault/images/controlpanel_foods.png" />
+			<a tal:attributes="href string:${portal_url}/control-panel-objects/vindula_foods/edit">Configura&ccedil;&otilde;es do Vindula Food</a>
+		</div>
+	                           
+		<!-- Views -->
+		<div>
+			<img src="/++theme++vindula.themedefault/images/controlpanel_myvindulafields.png" />
+			<a tal:attributes="href string:${portal_url}/myvindulaconfgs">Habilitar / Desabilitar campos do My Vindula</a>
+		</div>
+		
+	</div>
   </metal:main>
   
   </body>
