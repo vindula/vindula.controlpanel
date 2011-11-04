@@ -6,7 +6,7 @@
  
  <!-- Basic metadata -->
  <property name="title" i18n:translate="">Vindula Categories</property>
- <property name="description" i18n:translate="">Cadastro de categorias.</property>
+ <property name="description" i18n:translate="">Objeto de cadastro de categorias.</property>
  <property name="content_icon">++resource++vindula.controlpanel/vindula.png</property>
  <property name="allow_discussion">True</property>
  <property name="global_allow">False</property>
