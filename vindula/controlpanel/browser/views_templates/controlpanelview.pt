@@ -39,6 +39,15 @@
 			<a tal:attributes="href string:${portal_url}/myvindulaconfgs">Habilitar / Desabilitar campos do My Vindula</a>
 		</div>
 		
+		<div>
+			<img src="/++theme++vindula.themedefault/images/controlpanel_myvindulafields.png" />
+			<a tal:attributes="href string:${portal_url}/myvindula-courses">Adciona ou edita cursos no My Vindula</a>
+		</div>
+		<div>
+			<img src="/++theme++vindula.themedefault/images/controlpanel_myvindulafields.png" />
+			<a tal:attributes="href string:${portal_url}/myvindula-languages">Adciona ou edita idiomas no My Vindula</a>
+		</div>
+		
 	</div>
   </metal:main>
   
