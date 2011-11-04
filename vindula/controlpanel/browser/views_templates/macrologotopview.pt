@@ -1,0 +1,16 @@
+<metal:macro metal:define-macro="logotop">
+	<div id="macro_logotop"
+		 tal:define="portal python: context.portal_url.getPortalObject();
+	 				 config_obj python: portal['control-panel-objects']['vindula_themeconfig']"
+		 tal:on-error="nothing">
+
+	<a href="/" title="P&aacute;gina Inicial">
+		<img tal:condition="python: config_obj.logo_top is not None" 
+		     tal:attributes="src python: config_obj.logo_top.to_object.absolute_url()" />
+
+		<img tal:condition="python: config_obj.logo_top is None" 
+		     src="/++theme++vindula.themedefault/images/icons/logo_topo.png" />
+	</a>
+			 
+	</div>
+</metal:macro>

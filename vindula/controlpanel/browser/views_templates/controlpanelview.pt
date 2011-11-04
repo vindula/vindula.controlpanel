@@ -19,23 +19,23 @@
 		
 		<!-- Control Panel Objects -->
 		<div>
-			<img src="/++theme++vindula.themedefault/images/controlpanel_theme.png" />
+			<img src="/++theme++vindula.themedefault/images/icons/controlpanel_theme.png" />
 			<a tal:attributes="href string:${portal_url}/control-panel-objects/vindula_themeconfig/edit">Configura&ccedil;&otilde;es do Tema</a>
 		</div>
 		
 		<div>
-			<img src="/++theme++vindula.themedefault/images/controlpanel_categories.png" />
+			<img src="/++theme++vindula.themedefault/images/icons/controlpanel_categories.png" />
 			<a tal:attributes="href string:${portal_url}/control-panel-objects/vindula_categories/edit">Cadastro de Categorias</a>
 		</div>
 		
 		<div>
-			<img src="/++theme++vindula.themedefault/images/controlpanel_foods.png" />
+			<img src="/++theme++vindula.themedefault/images/icons/controlpanel_foods.png" />
 			<a tal:attributes="href string:${portal_url}/control-panel-objects/vindula_foods/edit">Configura&ccedil;&otilde;es do Vindula Food</a>
 		</div>
 	                           
 		<!-- Views -->
 		<div>
-			<img src="/++theme++vindula.themedefault/images/controlpanel_myvindulafields.png" />
+			<img src="/++theme++vindula.themedefault/images/icons/controlpanel_myvindulafields.png" />
 			<a tal:attributes="href string:${portal_url}/myvindulaconfgs">Habilitar / Desabilitar campos do My Vindula</a>
 		</div>
 		

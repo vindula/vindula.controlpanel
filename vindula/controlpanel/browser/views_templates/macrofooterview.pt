@@ -1,0 +1,26 @@
+<metal:macro metal:define-macro="footer">
+	<div tal:define="portal python: context.portal_url.getPortalObject();
+		 			 config_obj python: portal['control-panel-objects']['vindula_themeconfig']"
+		 tal:on-error="nothing">	
+		 	
+		<!-- Logo -->
+		<div id="macro_logofooter">
+			<a href="/" title="P&aacute;gina Inicial">
+				<img tal:condition="python: config_obj.logo_footer is not None" 
+				     tal:attributes="src python: config_obj.logo_footer.to_object.absolute_url()" />
+		
+				<img tal:condition="python: config_obj.logo_footer is None" 
+				     src="/++theme++vindula.themedefault/images/icons/logo_rodape.png" />
+			</a>	 
+		</div>
+		
+		<!-- Text -->
+		<div id="macro_textfooter">
+			<p tal:condition="python: config_obj.text_footer is not None"
+			   tal:content="structure config_obj/text_footer/output"></p>
+			   
+			<p tal:condition="python: config_obj.text_footer is None">&copy; 2011 Vindula Software. All Rights Reserved.</p>
+		</div>
+		
+	</div>
+</metal:macro>
