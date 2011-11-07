@@ -38,6 +38,10 @@
 			<img src="/++theme++vindula.themedefault/images/icons/controlpanel_myvindulafields.png" />
 			<a tal:attributes="href string:${portal_url}/myvindulaconfgs">Habilitar / Desabilitar campos do My Vindula</a>
 		</div>
+		<div>
+			<img src="/++theme++vindula.themedefault/images/icons/controlpanel_importusers.png" />
+			<a tal:attributes="href string:${portal_url}/myvindulaimportuser">Importa / Atualizar usu&aacute;rios do My Vindula e  do Plone Site</a>
+		</div>
 		
 		<div>
 			<img src="/++theme++vindula.themedefault/images/icons/icon_cursos.jpg" />

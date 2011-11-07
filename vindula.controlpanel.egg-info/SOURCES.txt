@@ -13,6 +13,7 @@ vindula.controlpanel.egg-info/requires.txt
 vindula.controlpanel.egg-info/top_level.txt
 vindula/controlpanel/__init__.py
 vindula/controlpanel/setuphandlers.py
+vindula/controlpanel/vocabularies.py
 vindula/controlpanel/browser/__init__.py
 vindula/controlpanel/browser/views.py
 vindula/controlpanel/content/__init__.py
