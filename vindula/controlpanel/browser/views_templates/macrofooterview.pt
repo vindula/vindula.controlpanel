@@ -12,14 +12,33 @@
 				<img tal:condition="python: config_obj.logo_footer is None" 
 				     src="/++theme++vindula.themedefault/images/icons/logo_rodape.png" />
 			</a>	 
+			
+			<a class="theme-edit"
+			   title="Clique aqui para editar o logo"
+			   tal:define="paper python:context.portal_membership.getAuthenticatedMember().getRoles()"
+			   tal:condition="python:'Manager' in paper"
+			   tal:attributes="href string:${context/portal_url}/control-panel-objects/vindula_themeconfig/edit">
+				<img src="/++resource++vindula.controlpanel/theme_edit.png" />
+			</a>
+
 		</div>
 		
 		<!-- Text -->
 		<div id="macro_textfooter">
+			
 			<p tal:condition="python: config_obj.text_footer is not None"
 			   tal:content="structure config_obj/text_footer/output"></p>
 			   
 			<p tal:condition="python: config_obj.text_footer is None">&copy; 2011 Vindula Software. All Rights Reserved.</p>
+			
+			<a class="theme-edit"
+			   title="Clique aqui para editar o texto"
+			   tal:define="paper python:context.portal_membership.getAuthenticatedMember().getRoles()"
+			   tal:condition="python:'Manager' in paper"
+			   tal:attributes="href string:${context/portal_url}/control-panel-objects/vindula_themeconfig/edit">
+				<img src="/++resource++vindula.controlpanel/theme_edit.png" />
+			</a>
+			
 		</div>
 		
 	</div>
