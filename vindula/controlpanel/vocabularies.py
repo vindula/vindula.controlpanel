@@ -29,7 +29,10 @@ class ControlPanelObjects(object):
             obj = None
         
         if obj:
-            field = obj.__getattribute__(self.type)
+            try:
+                field = obj.__getattribute__(self.type)
+            except:
+                field = None
             if field is not None:
                 items = field.splitlines()
                 n = 0
