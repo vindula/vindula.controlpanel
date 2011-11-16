@@ -19,36 +19,36 @@
 		
 		<!-- Control Panel Objects -->
 		<div>
-			<img src="/++theme++vindula.themedefault/images/icons/controlpanel_theme.png" />
+			<img src="/++resource++vindula.controlpanel/icons/controlpanel_theme.png" />
 			<a tal:attributes="href string:${portal_url}/control-panel-objects/vindula_themeconfig/edit">Configura&ccedil;&otilde;es do Tema</a>
 		</div>
 		
 		<div>
-			<img src="/++theme++vindula.themedefault/images/icons/controlpanel_categories.png" />
+			<img src="/++resource++vindula.controlpanel/icons/controlpanel_categories.png" />
 			<a tal:attributes="href string:${portal_url}/control-panel-objects/vindula_categories/edit">Cadastro de Categorias</a>
 		</div>
 		
 		<div>
-			<img src="/++theme++vindula.themedefault/images/icons/controlpanel_foods.png" />
+			<img src="/++resource++vindula.controlpanel/icons/controlpanel_foods.png" />
 			<a tal:attributes="href string:${portal_url}/control-panel-objects/vindula_foods/edit">Configura&ccedil;&otilde;es do Vindula Food</a>
 		</div>
 	                           
 		<!-- Views -->
 		<div>
-			<img src="/++theme++vindula.themedefault/images/icons/controlpanel_myvindulafields.png" />
+			<img src="/++resource++vindula.controlpanel/icons/controlpanel_myvindulafields.png" />
 			<a tal:attributes="href string:${portal_url}/myvindulaconfgs">Habilitar / Desabilitar campos do My Vindula</a>
 		</div>
 		<div>
-			<img src="/++theme++vindula.themedefault/images/icons/controlpanel_importusers.png" />
+			<img src="/++resource++vindula.controlpanel/icons/controlpanel_importusers.png" />
 			<a tal:attributes="href string:${portal_url}/myvindulaimportuser">Importa / Atualizar usu&aacute;rios do My Vindula e  do Plone Site</a>
 		</div>
 		
 		<div>
-			<img src="/++theme++vindula.themedefault/images/icons/icon_cursos.jpg" />
+			<img src="/++resource++vindula.controlpanel/icons/controlpanel_cursos.png" />
 			<a tal:attributes="href string:${portal_url}/myvindula-courses">Adiciona / Edita cursos no My Vindula</a>
 		</div>
 		<div>
-			<img src="/++theme++vindula.themedefault/images/icons/ico_idioma.png" />
+			<img src="/++resource++vindula.controlpanel/icons/controlpanel_idiomas.png" />
 			<a tal:attributes="href string:${portal_url}/myvindula-languages">Adciona / Edita idiomas no My Vindula</a>
 		</div>
 		

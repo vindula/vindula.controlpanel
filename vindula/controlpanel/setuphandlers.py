@@ -25,14 +25,14 @@ def installControlPanel(context):
     
     # Creating Banco de Imagens Folder
 
-    if not 'bancos-de-imagens' in portal.objectIds():
+    if not 'banco-de-imagens' in portal.objectIds():
         portal.invokeFactory('Folder', 
-                              id='bancos-de-imagens',
+                              id='banco-de-imagens',
                               title='Banco de Imagens',
                               description='Pasta que guarda todas as imagens do portal.',
                               excludeFromNav = True)
         
-        folder_images_data = portal['bancos-de-imagens']
+        folder_images_data = portal['banco-de-imagens']
         folder_images_data.setConstrainTypesMode(1)
         folder_images_data.setLocallyAllowedTypes(('Image', 'Folder'))
         portal_workflow.doActionFor(folder_images_data, 'publish')
