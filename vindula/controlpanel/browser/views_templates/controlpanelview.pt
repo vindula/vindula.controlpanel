@@ -40,7 +40,7 @@
 		</div>
 		<div>
 			<img src="/++theme++vindula.themedefault/images/icons/controlpanel_importusers.png" />
-			<a tal:attributes="href string:${portal_url}/myvindulaimportuser">Importa / Atualizar usu&aacute;rios do My Vindula e  do Plone Site</a>
+			<a tal:attributes="href string:${portal_url}/myvindulaimportuser">Importar / Atualizar usu&aacute;rios do My Vindula e  do Plone Site</a>
 		</div>
 		
 		<div>
