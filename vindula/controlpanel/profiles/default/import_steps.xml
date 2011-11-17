@@ -5,8 +5,8 @@
 					 version="1.0"
 	                 handler="vindula.controlpanel.setuphandlers.installControlPanel"
 	                 title="Create Vindula Control Panel Objects">
-	    	<dependency step="toolset"/>
-			<dependency step="typeinfo"/>
+	    	<dependency step="content"/>
+			<!--dependency step="typeinfo"/-->
 		</import-step>
 		
 	</import-steps>
