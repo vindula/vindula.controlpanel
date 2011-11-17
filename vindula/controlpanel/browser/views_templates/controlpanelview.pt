@@ -36,19 +36,20 @@
 		<!-- Views -->
 		<div>
 			<img src="/++resource++vindula.controlpanel/icons/controlpanel_myvindulafields.png" />
-			<a tal:attributes="href string:${portal_url}/myvindulaconfgs">Habilitar / Desabilitar campos do My Vindula</a>
+			<a tal:attributes="href string:${portal_url}/myvindulaconfgs">Habilitar / Desabilitar Campos do My Vindula</a>
 		</div>
 		<div>
 			<img src="/++resource++vindula.controlpanel/icons/controlpanel_importusers.png" />
-			<a tal:attributes="href string:${portal_url}/myvindulaimportuser">Importa / Atualizar 		</div>
+			<a tal:attributes="href string:${portal_url}/myvindulaimportuser">Importar / Atualizar a Base de Usu&aacute;rios</a>
+		</div>
 		
 		<div>
 			<img src="/++resource++vindula.controlpanel/icons/controlpanel_cursos.png" />
-			<a tal:attributes="href string:${portal_url}/myvindula-courses">Adiciona / Edita cursos no My Vindula</a>
+			<a tal:attributes="href string:${portal_url}/myvindula-courses">Adicionar / Editar Cursos do My Vindula</a>
 		</div>
 		<div>
 			<img src="/++resource++vindula.controlpanel/icons/controlpanel_idiomas.png" />
-			<a tal:attributes="href string:${portal_url}/myvindula-languages">Adciona / Edita idiomas no My Vindula</a>
+			<a tal:attributes="href string:${portal_url}/myvindula-languages">Adicionar / Editar Idiomas do My Vindula</a>
 		</div>
 		
 	</div>
