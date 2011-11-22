@@ -30,7 +30,7 @@
 		
 		<div>
 			<img src="/++resource++vindula.controlpanel/icons/controlpanel_foods.png" />
-			<a tal:attributes="href string:${portal_url}/control-panel-objects/vindula_foods/edit">Configura&ccedil;&otilde;es do Vindula Food</a>
+			<a tal:attributes="href string:${portal_url}/vindula-food">Configura&ccedil;&otilde;es do Vindula Food</a>
 		</div>
 	                           
 		<!-- Views -->
