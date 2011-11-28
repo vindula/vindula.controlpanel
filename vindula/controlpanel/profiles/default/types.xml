@@ -3,5 +3,6 @@
 	
   <object name="vindula.controlpanel.content.themeconfig" meta_type="Dexterity FTI" />
   <object name="vindula.controlpanel.content.categories" meta_type="Dexterity FTI" />
+  <object name="vindula.controlpanel.content.vindulanewsconfig" meta_type="Dexterity FTI" />
   
 </object>
