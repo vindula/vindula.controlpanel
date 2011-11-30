@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
-<object name="vindula.controlpanel.content.vindulanewsconfig" 
+<object name="vindula.controlpanel.content.vindularecadosconfig" 
    		meta_type="Dexterity FTI"
    		i18n:domain="vindula.controlpanel" 
 		xmlns:i18n="http://xml.zope.org/namespaces/i18n">
  
  <!-- Basic metadata -->
- <property name="title" i18n:translate="">Vindula News Config</property>
+ <property name="title" i18n:translate="">Vindula Recados Config</property>
  <property name="description" i18n:translate="">
- 	Permite a configuração de todos os Objetos Vindula News do portal.
+ 	Permite a configuração de todos os recados do Usuários do MyVindula no portal.
  </property>
  <property name="content_icon">++resource++vindula.controlpanel/vindula.png</property>
  <property name="allow_discussion">True</property>
@@ -16,7 +16,7 @@
  <property name="allowed_content_types" />
  
  <!-- schema interface -->
- <property name="schema">vindula.controlpanel.content.vindulanewsconfig.IVindulaNewsConfig</property>  
+ <property name="schema">vindula.controlpanel.content.vindularecadosconfig.IVindulaRecadosConfig</property>  
 
  <!-- add permission -->
  <property name="add_permission">cmf.AddPortalContent</property>
