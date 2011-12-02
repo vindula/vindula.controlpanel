@@ -54,6 +54,10 @@
 			<a tal:attributes="href string:${portal_url}/myvindulaconfgs">Habilitar / Desabilitar Campos do My Vindula</a>
 		</div>
 		<div>
+			<img src="/++resource++vindula.controlpanel/icons/controlpanel_myvindulamanagealluser.png" />
+			<a tal:attributes="href string:${portal_url}/myvindulamanagealluser">Edita o perfil dos usuários do My Vindula</a>
+		</div>
+		<div>
 			<img src="/++resource++vindula.controlpanel/icons/controlpanel_importusers.png" />
 			<a tal:attributes="href string:${portal_url}/myvindulaimportuser">Importar / Atualizar a Base de Usu&aacute;rios</a>
 		</div>
