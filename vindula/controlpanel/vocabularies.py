@@ -6,6 +6,7 @@ from zope.schema.vocabulary import SimpleVocabulary
 from zope.schema.vocabulary import SimpleTerm
 from Products.CMFCore.utils import getToolByName
 from vindula.controlpanel import MessageFactory as _
+from plone.app.vocabularies.types import BAD_TYPES
 
 
 class ControlPanelObjects(object):
@@ -79,3 +80,31 @@ class ControlPanelMacro(object):
                     terms.append(SimpleTerm(id, id, _(u'option_category', default=unicode(name))))
                       
         return SimpleVocabulary(terms)
+      
+class ListPortalType(object):
+    """ Create SimpleVocabulary for portal types """
+    
+    implements(IContextSourceBinder)
+    
+    def __init__(self):
+        # nome do objeto de configuracao do vindula, deve estar na pasta "control-panel-objects"
+        self.object = object 
+
+    def __call__(self, context):
+        terms = []
+        L = []
+
+        obj = getToolByName(context, 'portal_types')
+        pprop = getToolByName(context, 'portal_properties')
+        self.navProps = pprop.navtree_properties
+        
+        if obj:
+            itens  = [t for t in obj.listContentTypes()
+                        if t not in self.navProps.metaTypesNotToList and
+                           t not in BAD_TYPES]
+            
+            if itens is not None:
+                for item in itens:
+                    terms.append(SimpleTerm(item, item, _(u'option_category', default=unicode(item))))
+                      
+        return SimpleVocabulary(terms)  
