@@ -32,7 +32,12 @@
 			<img src="/++resource++vindula.controlpanel/icons/controlpanel_foods.png" />
 			<a tal:attributes="href string:${portal_url}/vindula-food">Configura&ccedil;&otilde;es do Vindula Food</a>
 		</div>
-	                           
+	    
+		<div>
+			<img src="/++resource++vindula.controlpanel/icons/controlpanel_companyinformation.png" />
+			<a tal:attributes="href string:${portal_url}/@@vindula-company-information">Configura&ccedil;&otilde;es das Informa&ccedil;&atilde;o da Empresa</a>
+		</div>
+		                       
 		<!-- Views -->
 		<div>
 			<img src="/++resource++vindula.controlpanel/icons/controlpanel_discussion.png" />

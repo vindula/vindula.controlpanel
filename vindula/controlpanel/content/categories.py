@@ -13,3 +13,11 @@ class ICategories(form.Schema):
         description=_(u"Adicione uma categoria por linha."),
         required=False,
         )
+    
+    list_macros = schema.Text(
+        title=_(u"Lista de macros disponiveis"),
+        description=_(u"Adicione as macro que podem ser utilizadas na tipo de conteudo 'Vindula Content Macro',<br />\
+                        Adicione uma macro por linha, no padrão '[Nome] | [Pagina] | [Macro]'."),
+        required=False,
+        )
+    

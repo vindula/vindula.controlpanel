@@ -15,8 +15,10 @@ vindula/controlpanel/__init__.py
 vindula/controlpanel/setuphandlers.py
 vindula/controlpanel/vocabularies.py
 vindula/controlpanel/browser/__init__.py
+vindula/controlpanel/browser/models.py
 vindula/controlpanel/browser/views.py
 vindula/controlpanel/content/__init__.py
 vindula/controlpanel/content/categories.py
 vindula/controlpanel/content/themeconfig.py
 vindula/controlpanel/content/vindulanewsconfig.py
+vindula/controlpanel/content/vindularecadosconfig.py
