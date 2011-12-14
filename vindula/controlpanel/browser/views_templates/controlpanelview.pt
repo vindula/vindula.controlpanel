@@ -75,6 +75,10 @@
 			<img src="/++resource++vindula.controlpanel/icons/controlpanel_idiomas.png" />
 			<a tal:attributes="href string:${portal_url}/myvindula-languages">Adicionar / Editar Idiomas do My Vindula</a>
 		</div>
+		<div>
+            <img src="/++resource++vindula.controlpanel/icons/controlpanel_myvindulaimport.png" />
+            <a tal:attributes="href string:${portal_url}/myvindula-import-first">Importar arquivo CSV de usu&aacute;rios para a Base do My Vindula</a>
+        </div>
 		
 	</div>
   </metal:main>
