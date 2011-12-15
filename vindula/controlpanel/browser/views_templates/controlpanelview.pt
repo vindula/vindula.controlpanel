@@ -37,7 +37,17 @@
 			<img src="/++resource++vindula.controlpanel/icons/controlpanel_companyinformation.png" />
 			<a tal:attributes="href string:${portal_url}/@@vindula-company-information">Configura&ccedil;&otilde;es das Informa&ccedil;&atilde;o da Empresa</a>
 		</div>
-		                       
+		              
+		<div>
+			<img src="/++resource++vindula.controlpanel/icons/controlpanel_helpdeskconfg.png" />
+			<a tal:attributes="href string:${portal_url}/@@vindula-help-desk-confg">Configura&ccedil;&otilde;es das Informa&ccedil;&atilde;o do HelpDesk</a>
+		</div>
+		
+		<div>
+			<img src="/++resource++vindula.controlpanel/icons/controlpanel_manageform.png" />
+			<a tal:attributes="href string:${portal_url}/@@manage-form">Configura&ccedil;&otilde;es dos formularios do Vindula</a>
+		</div>		  
+					           
 		<!-- Views -->
 		<div>
 			<img src="/++resource++vindula.controlpanel/icons/controlpanel_discussion.png" />
