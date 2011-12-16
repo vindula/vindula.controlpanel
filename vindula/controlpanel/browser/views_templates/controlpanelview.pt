@@ -38,10 +38,10 @@
 			<a tal:attributes="href string:${portal_url}/@@vindula-company-information">Configura&ccedil;&otilde;es das Informa&ccedil;&atilde;o da Empresa</a>
 		</div>
 		              
-		<div>
+		<!--div>
 			<img src="/++resource++vindula.controlpanel/icons/controlpanel_helpdeskconfg.png" />
 			<a tal:attributes="href string:${portal_url}/@@vindula-help-desk-confg">Configura&ccedil;&otilde;es das Informa&ccedil;&atilde;o do HelpDesk</a>
-		</div>
+		</div-->
 		
 		<div>
 			<img src="/++resource++vindula.controlpanel/icons/controlpanel_manageform.png" />
