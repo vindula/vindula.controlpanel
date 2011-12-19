@@ -22,7 +22,7 @@ class ControlPanelObjects(object):
 
     def __call__(self, context):
         terms = []
-        terms.append(SimpleTerm('', '--NOVALUE--', _(u'option_category', default=u'Selecione')))
+        #terms.append(SimpleTerm('', '--NOVALUE--', _(u'option_category', default=u'Selecione')))
 
         try:
             obj = getSite()['control-panel-objects'][self.object]
@@ -57,7 +57,7 @@ class ControlPanelMacro(object):
 
     def __call__(self, context):
         terms = []
-        terms.append(SimpleTerm('', '--NOVALUE--', _(u'option_category', default=u'Selecione')))
+        #terms.append(SimpleTerm('', '--NOVALUE--', _(u'option_category', default=u'Selecione')))
 
         try:obj = getSite()['control-panel-objects'][self.object]
         except:obj = None
@@ -107,4 +107,20 @@ class ListPortalType(object):
                 for item in itens:
                     terms.append(SimpleTerm(item, item, _(u'option_category', default=unicode(item))))
                       
-        return SimpleVocabulary(terms)  
+        return SimpleVocabulary(terms)
+    
+    
+class ListExitForm(object):
+    """ Create SimpleVocabulary for Exit of form """
+    implements(IContextSourceBinder)
+    def __init__(self):
+        # nome do objeto de configuracao do vindula, deve estar na pasta "control-panel-objects"
+        self.object = object 
+    def __call__(self, context):
+        terms = []
+        
+        terms.append(SimpleTerm('email', 'email', _(u'option_category', default=u'Enviar um e-mail com os dados do form')))
+        terms.append(SimpleTerm('savedb', 'savedb', _(u'option_category', default=u'Salvar o formulário no banco de dados para uma futura consulta')))
+                      
+        return SimpleVocabulary(terms)      
+      
