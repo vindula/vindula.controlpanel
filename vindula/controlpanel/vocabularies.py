@@ -137,6 +137,7 @@ class ListDisplayAlerts(object):
     def __call__(self, context):
         terms = []
         terms.append(SimpleTerm('error', 'error', _(u'option_category', default=u'Advertência: Mensagem utilizada para indicar eventos de alta criticidade')))
+        terms.append(SimpleTerm('warning', 'warning', _(u'option_category', default=u'Atenção: Mensagem utilizada para indicar eventos com media criticidade')))
         terms.append(SimpleTerm('info', 'info', _(u'option_category', default=u'Informativo: Mensagem utilizada para indicar eventos com baixa criticidade')))
         
         return SimpleVocabulary(terms)
