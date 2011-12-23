@@ -1,0 +1,36 @@
+dl.portal-Message {
+    background-color: #FFFFE3;
+    border: 1px solid #999966;
+    clear: both;
+    font-size: 80%;
+    margin: 10px 0 0 0;
+}
+
+dl.error dt {
+    background-color: #DD0000 !important;
+}
+dl.error dd {
+    background-color: #FFDDCC;
+}
+
+dl.error {
+    border-color: red !important;
+}
+
+dl.portal-Message dt {
+    background-color: #999966;
+    color: White;
+    float: left;
+    font-weight: bold;
+    line-height: 1.25em;
+    margin: 0 0.5em 0 0;
+    padding: 0.5em 0.75em;
+
+}
+
+
+dl.portal-Message dd {
+    line-height: 1.25em;
+    margin: 0;
+    padding: 0.5em;
+}

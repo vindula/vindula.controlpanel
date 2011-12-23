@@ -43,7 +43,8 @@ def installControlPanel(context):
     types = ['vindula.controlpanel.content.categories', 
              'vindula.controlpanel.content.themeconfig',
              'vindula.controlpanel.content.vindulanewsconfig',
-             'vindula.controlpanel.content.vindularecadosconfig']
+             'vindula.controlpanel.content.vindularecadosconfig',
+             'vindula.controlpanel.content.alertdisplay']
         
     for type in types:
         if portal.portal_types.get(type):

@@ -29,6 +29,11 @@
 		</div>
 		
 		<div>
+			<img src="/++resource++vindula.controlpanel/icons/controlpanel_alertdisplay.png" />
+			<a tal:attributes="href string:${portal_url}/control-panel-objects/vindula_alertdisplay/edit">Edição de uma alerta no portal</a>
+		</div>
+		
+		<div>
 			<img src="/++resource++vindula.controlpanel/icons/controlpanel_foods.png" />
 			<a tal:attributes="href string:${portal_url}/vindula-food">Configura&ccedil;&otilde;es do Vindula Food</a>
 		</div>
@@ -51,7 +56,7 @@
 		<!-- Views -->
 		<div>
 			<img src="/++resource++vindula.controlpanel/icons/controlpanel_discussion.png" />
-			<a tal:attributes="href string:${portal_url}/@@discussion-settings">Configura&ccedil;&otilde;es dos comentarios do portal</a>
+			<a tal:attributes="href string:${portal_url}/@@vindula-comments-configuration">Configura&ccedil;&otilde;es dos comentarios do portal</a>
 		</div>
 		
 		<div>
