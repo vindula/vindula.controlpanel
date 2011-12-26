@@ -1,0 +1,80 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:tal="http://xml.zope.org/namespaces/tal" 
+	  xmlns:metal="http://xml.zope.org/namespaces/metal" 
+	  xmlns:i18n="http://xml.zope.org/namespaces/i18n" 
+	  metal:use-macro="context/prefs_main_template/macros/master">
+	  	
+    <head>
+        <metal:js fill-slot="javascript_head_slot">
+            <script type="text/javascript" tal:attributes="src string:++resource++vindula.controlpanel/mascara.js"></script>
+            <script type="text/javascript" tal:attributes="src string:++resource++vindula.controlpanel/companyinformation.js"></script>
+        </metal:js>
+                
+    </head>
+	
+    <body>		
+        <div metal:fill-slot="prefs_configlet_main">
+        	
+			<script type="text/javascript" tal:attributes="src string:${context/absolute_url}/++resource++vindula.controlpanel/controlpanel_manage_products.js"></script>
+			
+        	<link rel="stylesheet" type="text/css" tal:attributes="href string:++resource++vindula.controlpanel/controlpanel_manage_products.css"/>
+			
+            <h1>Gerenciar Produtos</h1>
+            <a href="" class="link-parent" tal:attributes="href string: $portal_url/plone_control_panel"> 
+                Voltar para as Configurações do Site
+			</a>
+            <div class="documentDescription">
+				Gerencia os Produtos instalados no portal
+            </div>
+            <p class="discreet">
+                Selecione os produtos que poder&atilde;o ser reinstalados, desinstalados e instalados pelo usu&aacute;rio.
+            </p>
+			
+			<form method="post" tal:define="products view/getProducts;">
+				
+				<table id="table_products" width="100%">
+
+                    <tr>
+                        <th>Ativos</th>
+                        <th>Nome do produto</th>
+                        <th>Status</th>
+                    </tr>
+                    
+                    <tr tal:repeat="product products">
+                    	
+                        <tal:define define="pid product/id;
+                                            chkd product/active; 
+											installed product/installed;">
+												
+                            <td>
+                                <input class="noborder" type="checkbox" name="products:list" tal:attributes="value pid;
+                                                                                                             id pid;
+                                                                                                             checked chkd;" />
+                            </td>
+							
+                            <td>
+                                <tal:block replace="structure here/product_icon.gif"/>
+                                <span tal:replace="product/title">Product Name</span>
+                            </td>
+							
+                            <td>
+                            	<span tal:condition="installed">Instalado</span>
+                            	<span tal:condition="not: installed">Não instalado</span>
+							</td>
+							
+                        </tal:define>
+						
+                    </tr>   
+					                 
+                </table>
+				
+				<p><input type="submit" value="Salvar" name="save"/></p>
+				
+			</form>
+			
+            <div class="visualClear" id="clear-space-after-broken">
+                <!-- -->
+            </div>
+        </div>
+    </body>
+</html>

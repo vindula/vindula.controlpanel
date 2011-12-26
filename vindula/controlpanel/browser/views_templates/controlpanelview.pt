@@ -97,6 +97,10 @@
             <a tal:attributes="href string:${portal_url}/myvindula-export-users">Exportar usu&aacute;rios cadastrados na Base do My Vindula para um arquivo CSV</a>
         </div>
 		
+		<div>
+            <img src="/++resource++vindula.controlpanel/icons/controlpanel_manage_products.png" />
+            <a tal:attributes="href string:${portal_url}/vindula-manage-products">Configura&ccedil&otilde;es de acesso aos produtos do Plone Site</a>
+        </div>
 	</div>
   </metal:main>
   

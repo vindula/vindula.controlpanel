@@ -115,3 +115,41 @@ class RegistrationCompanyInformation(BaseFunc):
 #            IStatusMessage(context.request).addStatusMessage(_(u'Error to saving the register.'),"erro")
 #            context.request.response.redirect(access_denied)
     
+class ModelsProducts(Storm, BaseStore):
+    __storm_table__ = 'vin_controlpanel_products'
+    
+    id        = Int(primary=True)
+    name      = Unicode()
+    title     = Unicode()
+    active    = Bool()
+    installed = Bool()
+    
+    def get_ProductsId(self, id):
+        # seeking...
+        data = self.store.find(ModelsProducts, ModelsProducts.name == id)
+        if data:
+            return data
+        else:
+            return None
+        
+    def get_ProductsName(self, name):
+        # seeking...
+        data = self.store.find(ModelsProducts, ModelsProducts.name == unicode(name))
+        if data:
+            return data
+        else:
+            return None
+    
+    def get_AllProducts(self):
+        # seeking...
+        data = self.store.find(ModelsProducts)
+        if data:
+            return data
+        else:
+            return None
+
+    def set_Products(self,**kwargs):
+        # adding...
+        product = ModelsProducts(**kwargs)
+        self.store.add(product)
+        self.store.flush()

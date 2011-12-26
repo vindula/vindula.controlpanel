@@ -1,0 +1,16 @@
+table#table_products tr.cor1{
+    background-color: #D3D3D3;
+}
+
+table#table_products tr{
+    height: 30px;
+}
+
+div.notExist{
+	margin-top: 20px;
+    text-align: center;
+}
+
+div.notExist h2{
+    color: #B22121;
+}
