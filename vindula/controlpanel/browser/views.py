@@ -215,4 +215,5 @@ class AlertDisplayViewlet(grok.Viewlet):
     def text(self):
         conf = getSite()['control-panel-objects']['vindula_alertdisplay']
         if conf:
-            return conf.text_messenger.output
+            if conf.text_messenger:
+                return conf.text_messenger.output
