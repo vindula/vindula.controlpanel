@@ -1,0 +1,45 @@
+<html metal:use-macro="here/main_template/macros/master">
+	<head>
+		<metal:styleslot fill-slot="style_slot">
+    		<link rel="stylesheet" href="" type="text/css" tal:attributes="href string:${view/static}/form_style.css">
+		</metal:styleslot>				
+	</head>
+	<body>
+	    <div metal:fill-slot="content" tal:define="form_data view/load_from | python:{};
+												   form_values form_data/data | python:{}">
+		    <div id="content" >
+				<h1>Habilite os comentarios do portal</h1>	
+				<div id="interna" >    		
+			        <form name="companyinformation" id="companyinformation" enctype="multipart/form-data" class="enableAutoFocus" 
+						  action="vindula-comments-configuration" method="POST">
+			            <fieldset>
+			            	<legend>Configuirações</legend>
+							<div class="field">
+			                    <label for="globally_enabled">Permitir comentários</label>
+								<span class="fieldRequired" title="Obrigatório">(Obrigatório)</span>
+			                    <div  class="formHelp">Se selecionado, os usuários são capazes de postar comentários no site.
+								 					  Porém, você tem que habilitar comentários para tipos específicos de conteúdo, 
+													  pastas ou objetos de conteúdo que os usuários poderão postar comentários.</div>
+								<tal:def define="value request/globally_enabled | form_values/globally_enabled | nothing">
+									<input id="globally_enabled" value="globally_enabled"  name="globally_enabled"
+										   type="checkbox" tal:attributes="checked python:value" > Permitir comentários<br />
+								</tal:def>
+						
+						</fieldset>
+						<!-- Botões de ação -->	
+					   	<fieldset>
+					   		<br/>
+							<div style="float:left; width:100%">
+								<a class="button" href="@@vindula-control-panel" alt="Voltar" title="Voltar">
+									<input style="width:100px" class="button-erp" type="button" value="Voltar" name="form.voltar">
+								</a>
+
+								<input style="width:100px;" class="button-erp" type="submit" value="Salvar" name="form.submited">
+							</div>
+						</fieldset>
+					</form>
+				</div>
+		    </div>
+	    </div>    
+	</body>
+</html>

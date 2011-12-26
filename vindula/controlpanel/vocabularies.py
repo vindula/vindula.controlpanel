@@ -123,4 +123,21 @@ class ListExitForm(object):
         terms.append(SimpleTerm('savedb', 'savedb', _(u'option_category', default=u'Salvar o formulário no banco de dados para uma futura consulta')))
                       
         return SimpleVocabulary(terms)      
+    
       
+class ListDisplayAlerts(object):
+    """ Create SimpleVocabulary for Display of Alerts """
+    
+    implements(IContextSourceBinder)
+    
+    def __init__(self):
+        # nome do objeto de configuracao do vindula, deve estar na pasta "control-panel-objects"
+        self.object = object 
+    
+    def __call__(self, context):
+        terms = []
+        terms.append(SimpleTerm('error', 'error', _(u'option_category', default=u'Advertência: Mensagem utilizada para indicar eventos de alta criticidade')))
+        terms.append(SimpleTerm('warning', 'warning', _(u'option_category', default=u'Atenção: Mensagem utilizada para indicar eventos com media criticidade')))
+        terms.append(SimpleTerm('info', 'info', _(u'option_category', default=u'Informativo: Mensagem utilizada para indicar eventos com baixa criticidade')))
+        
+        return SimpleVocabulary(terms)

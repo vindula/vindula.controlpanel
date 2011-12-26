@@ -1,0 +1,15 @@
+<div id="alert_display">	
+	<tal:condition condition="viewlet/check|nothing">
+		<link rel="stylesheet" href="++resource++vindula.controlpanel/alert_style.css" type="text/css">
+		<script type="text/javascript" tal:attributes="src string:++resource++vindula.controlpanel/alert_display.js"></script>
+			<dl tal:attributes="class  string:portal-Message ${viewlet/type_message|nothing}">
+				<tal:def define="title viewlet/title|nothing">
+					<dt id="title-alert" style="height" tal:condition="title" tal:content="title">Informação</dt>
+					<dt id="title-alert" tal:condition="not: title">Informação</dt>
+				</tal:def>
+				<dd id="text-alert" tal:content="structure viewlet/text|nothing">Bem-vindo! Você foi autenticado corretamente</dd>
+		    </dl>	
+		
+	</tal:condition>
+	
+</div>
