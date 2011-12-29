@@ -18,6 +18,7 @@ vindula/controlpanel/browser/__init__.py
 vindula/controlpanel/browser/models.py
 vindula/controlpanel/browser/views.py
 vindula/controlpanel/content/__init__.py
+vindula/controlpanel/content/alertdisplay.py
 vindula/controlpanel/content/categories.py
 vindula/controlpanel/content/themeconfig.py
 vindula/controlpanel/content/vindulanewsconfig.py

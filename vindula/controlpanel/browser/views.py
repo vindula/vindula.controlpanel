@@ -197,23 +197,34 @@ class AlertDisplayViewlet(grok.Viewlet):
     grok.require('zope2.View')
     grok.viewletmanager(IAboveContent) 
 
+    def getConfigurador(self):
+        if 'control-panel-objects' in  getSite().keys():
+            control = getSite()['control-panel-objects']
+            if 'vindula_alertdisplay' in control.keys():
+                cong_alert = control['vindula_alertdisplay']
+                return cong_alert
+            else:
+                return None
+        else:
+            return None
+
     def check(self):
-        conf = getSite()['control-panel-objects']['vindula_alertdisplay']
+        conf = self.getConfigurador()
         if conf:
             return conf.activ_display
         
     def type_message(self):
-        conf = getSite()['control-panel-objects']['vindula_alertdisplay']
+        conf = self.getConfigurador()
         if conf:
             return conf.type_messenger
     
     def title(self):
-        conf = getSite()['control-panel-objects']['vindula_alertdisplay']
+        conf = self.getConfigurador()
         if conf:
             return conf.title_messenger        
         
     def text(self):
-        conf = getSite()['control-panel-objects']['vindula_alertdisplay']
+        conf = self.getConfigurador()
         if conf:
             if conf.text_messenger:
                 return conf.text_messenger.output
