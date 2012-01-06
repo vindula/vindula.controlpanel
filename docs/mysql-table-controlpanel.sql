@@ -28,6 +28,21 @@ ENGINE = InnoDB
 AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = latin1;
 
+-- -----------------------------------------------------
+-- Table `myvindulaDB`.`vin_controlpanel_products`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `myvindulaDB`.`vin_controlpanel_products` ;
+
+CREATE  TABLE IF NOT EXISTS `myvindulaDB`.`vin_controlpanel_products` (
+  `id` INT NOT NULL  AUTO_INCREMENT ,
+  `name` VARCHAR(45) NULL ,
+  `title` VARCHAR(45) NULL ,
+  `active` TINYINT(1)  NULL ,
+  `installed` TINYINT(1)  NULL ,
+  PRIMARY KEY (`id`) )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

@@ -1,7 +1,8 @@
 <div id="alert_display">	
 	<tal:condition condition="viewlet/check|nothing">
-		<link rel="stylesheet" href="++resource++vindula.controlpanel/alert_style.css" type="text/css">
-		<script type="text/javascript" tal:attributes="src string:++resource++vindula.controlpanel/alert_display.js"></script>
+		<link rel="stylesheet" tal:attributes="href string:${context/portal_url|nothing}/++resource++vindula.controlpanel/alert_style.css" type="text/css">
+		<script type="text/javascript" tal:attributes="src string:${context/portal_url|nothing}/++resource++vindula.controlpanel/alert_display.js"></script>
+		
 			<dl tal:attributes="class  string:portal-Message ${viewlet/type_message|nothing}">
 				<tal:def define="title viewlet/title|nothing">
 					<dt id="title-alert" style="height" tal:condition="title" tal:content="title">Informação</dt>
