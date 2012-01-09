@@ -8,6 +8,8 @@ from Products.CMFCore.utils import getToolByName
 from vindula.controlpanel import MessageFactory as _
 from plone.app.vocabularies.types import BAD_TYPES
 
+from vindula.myvindula.user import ModelsFuncDetails
+
 
 class ControlPanelObjects(object):
     """ Create SimpleVocabulary for any Choice Fields """
@@ -121,19 +123,16 @@ class ListUserPortal(object):
     def __call__(self, context):
         acl_users = getToolByName(context, 'acl_users')
         
-        users = acl_users.getUsers()
+        users = ModelsFuncDetails().get_allFuncDetails() #acl_users.getUsers()
         terms = []
         
         if users is not None:
             for user in users:
-                member_id = user.getUserName()
-                member_name = user.getProperty('fullname') or member_id
+                member_id = user.username
+                member_name = user.name or member_id
                 terms.append(SimpleTerm(member_id, member_id, _(u'option_category', default=unicode(member_name))))
                 
-        return SimpleVocabulary(terms)    
-    
-    
-    
+        return SimpleVocabulary(terms)
     
 class ListExitForm(object):
     """ Create SimpleVocabulary for Exit of form """
