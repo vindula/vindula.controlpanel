@@ -59,11 +59,19 @@
 				</div>
 			</div>
 			<div class="tab_container" id="div-usuarios">
-			
 				<div>
 					<img src="/++resource++vindula.controlpanel/icons/controlpanel_myvindulafields.png" />
 					<a tal:attributes="href string:${portal_url}/myvindulaconfgs">Habilitar / Desabilitar Campos do My Vindula</a>
 				</div>
+				<div>
+					<img src="/++resource++vindula.controlpanel/icons/controlpanel_vindulaholeriteconfig.png" />
+					<a tal:attributes="href string:${portal_url}/control-panel-objects/vindula_vindulaholeriteconfig">Habilitar / Desabilitar holerite dos usu&aacute;rios do My Vindula</a>
+				</div>
+				<div>
+					<img src="/++resource++vindula.controlpanel/icons/controlpanel_myvindulaholerite.png" />
+					<a tal:attributes="href string:${portal_url}/myvindula-import-holerite">Importa o holerites dos usu&aacute;rios do My Vindula, via txt</a>
+				</div>
+				
 				<div>
 					<img src="/++resource++vindula.controlpanel/icons/controlpanel_cursos.png" />
 					<a tal:attributes="href string:${portal_url}/myvindula-courses">Adicionar / Editar Cursos do My Vindula</a>
