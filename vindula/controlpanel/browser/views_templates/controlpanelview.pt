@@ -1,112 +1,127 @@
+
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
          xmlns:tal="http://xml.zope.org/namespaces/tal"
          xmlns:metal="http://xml.zope.org/namespaces/metal"
          xmlns:i18n="http://xml.zope.org/namespaces/i18n"
          lang="en"
-         metal:use-macro="context/prefs_main_template/macros/master"
+         metal:use-macro="context/main_template/macros/master"
          i18n:domain="plone">
    
    <head>
-
-  </head>  
-  <body>
-  <metal:main fill-slot="prefs_configlet_content">
-  	<div class="controlpanel-links" id="content">
-  		
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<metal:js fill-slot="javascript_head_slot">
+			<script type="text/javascript" src="" tal:attributes="src string:${context/portal_url}/++resource++vindula.controlpanel/abas-control-panel.js"></script>
+		</metal:js>
+	</head>
+ <body>
+ 	<metal:block fill-slot="top_slot">
+        <tal:dummy tal:define="dummy python:request.set('disable_border',1)" />
+	</metal:block>
+	
+  <metal:main fill-slot="content">
 		<div class="titulo_info">
 			<h2>Vindula Control Panel</h2>
 		</div>
+ 		<div id="edit-bar">
+            <h5 class="hiddenStructure">Vindula Control Panel</h5>
+
+            <ul id="content-views" class="contentViews">
+            	<li class="selected" id="layout">
+                    <a  style="cursor:pointer;" >Layout</a>
+                </li>
+				<li class="plain" id="usuarios">
+                    <a  style="cursor:pointer;" >Usu&aacute;rios</a>
+                </li>
+				<li class="plain" id="redessociais">
+                    <a id="redessociais"  style="cursor:pointer;" >Redes Sociais</a>
+                </li>
+				<li class="plain" id="outros">
+                    <a   style="cursor:pointer;" >Outros</a>
+                </li>
+            </ul><div class="contentActions">&nbsp;</div>
+    	</div>
+ 
+		<div class="controlpanel-abas controlpanel-links" id="content">
 		
-		<!-- Control Panel Objects -->
-		<div>
-			<img src="/++resource++vindula.controlpanel/icons/controlpanel_theme.png" />
-			<a tal:attributes="href string:${portal_url}/control-panel-objects/vindula_themeconfig/edit">Configura&ccedil;&otilde;es do Tema</a>
-		</div>
+			<div class="tab-content" id="div-layout">
+	           
+				<div>
+					<img src="/++resource++vindula.controlpanel/icons/controlpanel_categories.png" />
+					<a tal:attributes="href string:${portal_url}/control-panel-objects/vindula_categories/edit">Cadastro de Categorias</a>
+				</div>
+				<div>
+					<img src="/++resource++vindula.controlpanel/icons/controlpanel_theme.png" />
+					<a tal:attributes="href string:${portal_url}/control-panel-objects/vindula_themeconfig/edit">Configura&ccedil;&otilde;es do Tema</a>
+				</div>
+				<div>
+					<img src="/++resource++vindula.controlpanel/icons/controlpanel_alertdisplay.png" />
+					<a tal:attributes="href string:${portal_url}/control-panel-objects/vindula_alertdisplay/edit">Edi&ccedil;&atilde;o de uma alerta no portal</a>
+				</div>
+			</div>
+			<div class="tab_container" id="div-usuarios">
+			
+				<div>
+					<img src="/++resource++vindula.controlpanel/icons/controlpanel_myvindulafields.png" />
+					<a tal:attributes="href string:${portal_url}/myvindulaconfgs">Habilitar / Desabilitar Campos do My Vindula</a>
+				</div>
+				<div>
+					<img src="/++resource++vindula.controlpanel/icons/controlpanel_cursos.png" />
+					<a tal:attributes="href string:${portal_url}/myvindula-courses">Adicionar / Editar Cursos do My Vindula</a>
+				</div>
+				<div>
+					<img src="/++resource++vindula.controlpanel/icons/controlpanel_idiomas.png" />
+					<a tal:attributes="href string:${portal_url}/myvindula-languages">Adicionar / Editar Idiomas do My Vindula</a>
+				</div>
+					<div>
+					<img src="/++resource++vindula.controlpanel/icons/controlpanel_vindularecados.png" />
+					<a tal:attributes="href string:${portal_url}/control-panel-objects/vindula_vindularecadosconfig/edit">Configura&ccedil;&otilde;es do Recados dos Usu&aacute;rios no Myvindula</a>
+				</div>
+				<div>
+		            <img src="/++resource++vindula.controlpanel/icons/controlpanel_myvindulaexport.png" />
+		            <a tal:attributes="href string:${portal_url}/myvindula-export-users">Exportar usu&aacute;rios cadastrados na Base do My Vindula para um arquivo CSV</a>
+		        </div>
+				<div>
+					<img src="/++resource++vindula.controlpanel/icons/controlpanel_myvindulamanagealluser.png" />
+					<a tal:attributes="href string:${portal_url}/myvindulamanagealluser">Edita o perfil dos usu&aacute;rios do My Vindula</a>
+				</div>
+					<div>
+					<img src="/++resource++vindula.controlpanel/icons/controlpanel_importusers.png" />
+					<a tal:attributes="href string:${portal_url}/myvindulaimportuser">Importar / Atualizar a Base de Usu&aacute;rios</a>
+				</div>
+				<div>
+		            <img src="/++resource++vindula.controlpanel/icons/controlpanel_myvindulaimport.png" />
+		            <a tal:attributes="href string:${portal_url}/myvindula-import-first">Importar arquivo CSV de usu&aacute;rios para a Base do My Vindula</a>
+		        </div>
 		
-		<div>
-			<img src="/++resource++vindula.controlpanel/icons/controlpanel_categories.png" />
-			<a tal:attributes="href string:${portal_url}/control-panel-objects/vindula_categories/edit">Cadastro de Categorias</a>
+			</div>
+			<div class="tab_container" id="div-redessociais">
+	       
+				
+				<div>
+					<img src="/++resource++vindula.controlpanel/icons/controlpanel_vindulanews.png" />
+					<a tal:attributes="href string:${portal_url}/control-panel-objects/vindula_vindulanewsconfig/edit">Configura&ccedil;&otilde;es do Vindula News</a>
+				</div>
+				<div>
+					<img src="/++resource++vindula.controlpanel/icons/controlpanel_discussion.png" />
+					<a tal:attributes="href string:${portal_url}/@@vindula-comments-configuration">Configura&ccedil;&otilde;es dos comentarios do portal</a>
+				</div>	
+			</div>
+			<div class="tab_container" id="div-outros">
+	          
+				<div>
+	            	<img src="/++resource++vindula.controlpanel/icons/controlpanel_manage_products.png" />
+	            	<a tal:attributes="href string:${portal_url}/vindula-manage-products">Configura&ccedil&otilde;es de acesso aos produtos do Plone Site</a>
+	        	</div>
+				<div>
+					<img src="/++resource++vindula.controlpanel/icons/controlpanel_companyinformation.png" />
+					<a tal:attributes="href string:${portal_url}/@@vindula-company-information">Configura&ccedil;&otilde;es das Informa&ccedil;&atilde;o da Empresa</a>
+				</div>
+				<div>
+					<img src="/++resource++vindula.controlpanel/icons/controlpanel_manageform.png" />
+					<a tal:attributes="href string:${portal_url}/@@manage-form">Configura&ccedil;&otilde;es dos formul&aacute;rios do Vindula</a>
+				</div>
+			</div>	
 		</div>
-		
-		<div>
-			<img src="/++resource++vindula.controlpanel/icons/controlpanel_alertdisplay.png" />
-			<a tal:attributes="href string:${portal_url}/control-panel-objects/vindula_alertdisplay/edit">Edição de uma alerta no portal</a>
-		</div>
-		
-		<div>
-			<img src="/++resource++vindula.controlpanel/icons/controlpanel_foods.png" />
-			<a tal:attributes="href string:${portal_url}/vindula-food">Configura&ccedil;&otilde;es do Vindula Food</a>
-		</div>
-	    
-		<div>
-			<img src="/++resource++vindula.controlpanel/icons/controlpanel_companyinformation.png" />
-			<a tal:attributes="href string:${portal_url}/@@vindula-company-information">Configura&ccedil;&otilde;es das Informa&ccedil;&atilde;o da Empresa</a>
-		</div>
-		              
-		<!--div>
-			<img src="/++resource++vindula.controlpanel/icons/controlpanel_helpdeskconfg.png" />
-			<a tal:attributes="href string:${portal_url}/@@vindula-help-desk-confg">Configura&ccedil;&otilde;es das Informa&ccedil;&atilde;o do HelpDesk</a>
-		</div-->
-		
-		<div>
-			<img src="/++resource++vindula.controlpanel/icons/controlpanel_manageform.png" />
-			<a tal:attributes="href string:${portal_url}/@@manage-form">Configura&ccedil;&otilde;es dos formul&aacute;rios do Vindula</a>
-		</div>		  
-					           
-		<!-- Views -->
-		<div>
-			<img src="/++resource++vindula.controlpanel/icons/controlpanel_discussion.png" />
-			<a tal:attributes="href string:${portal_url}/@@vindula-comments-configuration">Configura&ccedil;&otilde;es dos comentarios do portal</a>
-		</div>
-		
-		<div>
-			<img src="/++resource++vindula.controlpanel/icons/controlpanel_vindulanews.png" />
-			<a tal:attributes="href string:${portal_url}/control-panel-objects/vindula_vindulanewsconfig/edit">Configura&ccedil;&otilde;es do Vindula News</a>
-		</div>
-		
-		<div>
-			<img src="/++resource++vindula.controlpanel/icons/controlpanel_vindularecados.png" />
-			<a tal:attributes="href string:${portal_url}/control-panel-objects/vindula_vindularecadosconfig/edit">Configura&ccedil;&otilde;es do Recados dos Usu&aacute;rios no Myvindula</a>
-		</div>
-		
-		<div>
-			<img src="/++resource++vindula.controlpanel/icons/controlpanel_myvindulafields.png" />
-			<a tal:attributes="href string:${portal_url}/myvindulaconfgs">Habilitar / Desabilitar Campos do My Vindula</a>
-		</div>
-		<div>
-			<img src="/++resource++vindula.controlpanel/icons/controlpanel_myvindulamanagealluser.png" />
-			<a tal:attributes="href string:${portal_url}/myvindulamanagealluser">Edita o perfil dos usuários do My Vindula</a>
-		</div>
-		<div>
-			<img src="/++resource++vindula.controlpanel/icons/controlpanel_importusers.png" />
-			<a tal:attributes="href string:${portal_url}/myvindulaimportuser">Importar / Atualizar a Base de Usu&aacute;rios</a>
-		</div>
-		
-		<div>
-			<img src="/++resource++vindula.controlpanel/icons/controlpanel_cursos.png" />
-			<a tal:attributes="href string:${portal_url}/myvindula-courses">Adicionar / Editar Cursos do My Vindula</a>
-		</div>
-		
-		<div>
-			<img src="/++resource++vindula.controlpanel/icons/controlpanel_idiomas.png" />
-			<a tal:attributes="href string:${portal_url}/myvindula-languages">Adicionar / Editar Idiomas do My Vindula</a>
-		</div>
-		
-		<div>
-            <img src="/++resource++vindula.controlpanel/icons/controlpanel_myvindulaimport.png" />
-            <a tal:attributes="href string:${portal_url}/myvindula-import-first">Importar arquivo CSV de usu&aacute;rios para a Base do My Vindula</a>
-        </div>
-		
-		<div>
-            <img src="/++resource++vindula.controlpanel/icons/controlpanel_myvindulaexport.png" />
-            <a tal:attributes="href string:${portal_url}/myvindula-export-users">Exportar usu&aacute;rios cadastrados na Base do My Vindula para um arquivo CSV</a>
-        </div>
-		
-		<div>
-            <img src="/++resource++vindula.controlpanel/icons/controlpanel_manage_products.png" />
-            <a tal:attributes="href string:${portal_url}/vindula-manage-products">Configura&ccedil&otilde;es de acesso aos produtos do Plone Site</a>
-        </div>
-	</div>
   </metal:main>
   
   </body>

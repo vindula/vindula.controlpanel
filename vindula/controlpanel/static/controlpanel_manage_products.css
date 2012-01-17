@@ -14,3 +14,6 @@ div.notExist{
 div.notExist h2{
     color: #B22121;
 }
+body {
+font: 0.8em arial, helvetica, sans-serif;
+}
