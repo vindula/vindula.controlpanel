@@ -7,9 +7,9 @@
 				
 	</head>
 	<body>
-	    <div metal:fill-slot="content" tal:define="form_data view/load_from | python:{};
-			                              errors form_data/errors | python:{};
-										  form_values form_data/data | python:{};">
+	    <div metal:fill-slot="prefs_configlet_content" tal:define="form_data view/load_from | python:{};
+			                             						   errors form_data/errors | python:{};
+										  						   form_values form_data/data | python:{};">
 		    <div id="content" >
 				<h1>Edite as informações da sua empresa</h1>	
 				<div id="interna" >    		
