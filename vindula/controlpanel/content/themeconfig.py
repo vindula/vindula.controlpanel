@@ -32,6 +32,15 @@ class IThemeConfig(Interface):
         required=False,
         ) 
     
+    favicon = RelationChoice(
+        title=_(u"Favicon do Portal"),
+        description=_(u"Logo que será exibido no topo da aba do navegador."),
+        source=ObjPathSourceBinder(
+            portal_type = 'Image',
+            ),
+        required=False,
+        ) 
+    
     text_footer = RichText(
         title=_(u"Conteúdo do rodapé"),
         description=_(u"Texto que deverá aparecer no rodapé do portal."),
