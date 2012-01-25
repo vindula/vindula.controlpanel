@@ -236,7 +236,6 @@ class StatusDataBaseView(grok.View):
     grok.name('vindula-status-DB')
     
     def load(self):
-        import pdb;pdb.set_trace()
         sql = "show tables;"
         result=[]
         data = BaseStore().store.execute(sql)
@@ -244,9 +243,3 @@ class StatusDataBaseView(grok.View):
             for obj in data.get_all():
                 result.append(obj[0])
         return result
-    
-    
-    
-                
-            
-            
