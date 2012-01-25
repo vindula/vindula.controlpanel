@@ -1,0 +1,5 @@
+<tal:def define="itens view/load|nothing">
+	<tal:rep repeat="item itens">
+			<p tal:content="item" />
+	</tal:rep>
+</tal:def>

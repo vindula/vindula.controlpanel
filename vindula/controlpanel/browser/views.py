@@ -2,9 +2,10 @@
 from five import grok
 from zope.interface import Interface
 from plone.app.layout.navigation.interfaces import INavigationRoot
+from Products.CMFCore.interfaces import ISiteRoot
 from plone.app.layout.viewlets.interfaces import IAboveContent
 from zope.app.component.hooks import getSite
-from vindula.myvindula.user import BaseFunc
+from vindula.myvindula.user import BaseFunc, BaseStore
 
 from plone.registry.interfaces import IRegistry
 from zope.component import queryUtility
@@ -228,3 +229,24 @@ class AlertDisplayViewlet(grok.Viewlet):
         if conf:
             if conf.text_messenger:
                 return conf.text_messenger.output
+            
+class StatusDataBaseView(grok.View):
+    grok.context(ISiteRoot)
+    grok.require('zope2.View')
+    grok.name('vindula-status-DB')
+    
+    def load(self):
+        import pdb;pdb.set_trace()
+        sql = "show tables;"
+        result=[]
+        data = BaseStore().store.execute(sql)
+        if data.rowcount != 0:
+            for obj in data.get_all():
+                result.append(obj[0])
+        return result
+    
+    
+    
+                
+            
+            
