@@ -5,7 +5,7 @@
 		</metal:styleslot>				
 	</head>
 	<body>
-	    <div metal:fill-slot="content" tal:define="form_data view/load_from | python:{};
+	    <div metal:fill-slot="prefs_configlet_content" tal:define="form_data view/load_from | python:{};
 												   form_values form_data/data | python:{}">
 		    <div id="content" >
 				<h1>Habilite os comentarios do portal</h1>	
