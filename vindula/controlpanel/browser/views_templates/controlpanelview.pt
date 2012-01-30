@@ -68,6 +68,14 @@
 					<a tal:attributes="href string:${portal_url}/control-panel-objects/vindula_vindulaholeriteconfig">Habilitar / Desabilitar holerite dos usu&aacute;rios do My Vindula</a>
 				</div>
 				<div>
+					<img src="/++resource++vindula.controlpanel/icons/controlpanel_vindulapensamentosconfig.png" />
+					<a tal:attributes="href string:${portal_url}/control-panel-objects/vindula_vindulapensamentosconfig">Habilitar / Desabilitar a aba pensamentos dos usu&aacute;rios do My Vindula</a>
+				</div>
+				<div>
+					<img src="/++resource++vindula.controlpanel/icons/controlpanel_vindulaeditfuncconfig.png" />
+					<a tal:attributes="href string:${portal_url}/control-panel-objects/vindula_vindulaeditfuncconfig">Habilitar / Desabilitar a op&ccedil;&atilde;o dos usu&aacute;rios editar o pr&oacute;prio perfil do My Vindula</a>
+				</div>
+				<div>
 					<img src="/++resource++vindula.controlpanel/icons/controlpanel_myvindulaholerite.png" />
 					<a tal:attributes="href string:${portal_url}/myvindula-import-holerite">Importa o holerites dos usu&aacute;rios do My Vindula, via txt</a>
 				</div>
