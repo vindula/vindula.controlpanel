@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<object name="vindula.controlpanel.content.vindulapensamentosconfig" 
+   		meta_type="Dexterity FTI"
+   		i18n:domain="vindula.controlpanel" 
+		xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+ 
+ <!-- Basic metadata -->
+ <property name="title" i18n:translate="">Vindula Pensamentos Config</property>
+ <property name="description" i18n:translate="">
+ 	Permite a configuração da aba de Pensamentos dos Usuários do MyVindula no portal.
+ </property>
+ <property name="content_icon">++resource++vindula.controlpanel/vindula.png</property>
+ <property name="allow_discussion">True</property>
+ <property name="global_allow">False</property>
+ <property name="filter_content_types">True</property>
+ <property name="allowed_content_types" />
+ 
+ <!-- schema interface -->
+ <property name="schema">vindula.controlpanel.content.vindulapensamentosconfig.IVindulaPensamentosConfig</property>  
+
+ <!-- add permission -->
+ <property name="add_permission">cmf.AddPortalContent</property>
+ 
+ <!-- enabled behaviors -->
+ <property name="behaviors">
+     <element value="plone.app.content.interfaces.INameFromTitle" />
+	 <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />
+ </property>
+ 
+ <!-- View information -->
+ <property name="immediate_view">@@edit</property>
+ <property name="default_view">@@edit</property>
+ <property name="default_view_fallback">False</property>
+ <property name="view_methods">
+  <element value="view"/>
+ </property>
+ 
+ <!-- Method aliases -->
+ <alias from="(Default)" to="(dynamic view)"/>
+ <alias from="edit" to="@@edit"/>
+ <alias from="sharing" to="@@sharing"/>
+ <alias from="view" to="(selected layout)"/>
+ 
+ <!-- Actions -->
+ <action title="View" action_id="view" category="object" condition_expr=""
+    url_expr="string:${object_url}" visible="False">
+  <permission value="View"/>
+ </action>
+ 
+ <action title="Edit" action_id="edit" category="object" condition_expr=""
+    url_expr="string:${object_url}/edit" visible="True">
+  <permission value="Modify portal content"/>
+ </action>
+</object>

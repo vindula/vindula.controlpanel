@@ -5,7 +5,9 @@
   <object name="vindula.controlpanel.content.categories" meta_type="Dexterity FTI" />
   <object name="vindula.controlpanel.content.vindulanewsconfig" meta_type="Dexterity FTI" />
   <object name="vindula.controlpanel.content.vindulaholeriteconfig" meta_type="Dexterity FTI" />
+  <object name="vindula.controlpanel.content.vindulapensamentosconfig" meta_type="Dexterity FTI" />
   <object name="vindula.controlpanel.content.vindularecadosconfig" meta_type="Dexterity FTI" />
+  <object name="vindula.controlpanel.content.vindulaeditfuncconfig" meta_type="Dexterity FTI" />
   <object name="vindula.controlpanel.content.alertdisplay" meta_type="Dexterity FTI" />
   <object name="vindula.controlpanel.content.vindulauserconfig" meta_type="Dexterity FTI" />
   
