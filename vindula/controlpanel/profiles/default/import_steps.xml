@@ -8,5 +8,14 @@
 	    	<dependency step="content"/>
 			<!--dependency step="typeinfo"/-->
 		</import-step>
+
+		<import-step id="vindula.controlpanel.link_user_folder" 
+					 version="1.0"
+	                 handler="vindula.controlpanel.setuphandlers.link_user_folder"
+	                 title="Create Vindula Control Panel Folder User">
+	    	<dependency step="content"/>
+			<!--dependency step="typeinfo"/-->
+		</import-step>
+		
 		
 	</import-steps>

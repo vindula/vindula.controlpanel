@@ -7,6 +7,10 @@ from plone.app.layout.viewlets.interfaces import IAboveContent
 from zope.app.component.hooks import getSite
 from vindula.myvindula.user import BaseFunc, BaseStore
 
+from Products.CMFCore.Expression import Expression
+from Products.CMFCore.utils import getToolByName
+from vindula.myvindula.validation import to_utf8, valida_form
+
 from plone.registry.interfaces import IRegistry
 from zope.component import queryUtility
 from plone.app.discussion.interfaces import IDiscussionSettings
@@ -15,6 +19,7 @@ from vindula.controlpanel import MessageFactory as _
 
 from vindula.controlpanel.browser.models import RegistrationCompanyInformation, ModelsProducts
 
+from Products.GenericSetup.interfaces import ISetupTool    
 
 class ControlPanelView(grok.View):
     grok.context(INavigationRoot)
@@ -243,3 +248,27 @@ class StatusDataBaseView(grok.View):
             for obj in data.get_all():
                 result.append(obj[0])
         return result
+
+
+class ManageLinksUserViewlet(grok.Viewlet):
+    grok.name('vindula.controlpanel.linkuser') 
+    grok.require('zope2.View')
+    grok.viewletmanager(IAboveContent)     
+    grok.context(Interface)
+       
+    def update(self):
+        portal = getSite()
+        L = []
+        if 'control-panel-objects' in portal.keys():
+            control = portal['control-panel-objects']
+            if 'link-user-folder' in control.keys():
+                folder_links = control['link-user-folder']
+                links = folder_links.objectValues()
+                for link in links:
+                    D ={}
+                    D['url'] = link.getRemoteUrl()
+                    D['title'] = link.Title()
+                    L.append(D)
+        
+        return L
+        

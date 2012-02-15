@@ -3,6 +3,7 @@
 	
 	<order manager="plone.abovecontent" skinname="*">
  		<viewlet name="vindula.alert.display" insert-after="vindula.themedefault.menu"/>
+		<viewlet name="vindula.controlpanel.linkuser" insert-after="vindula.alert.display"/>
 	</order>
 	
 

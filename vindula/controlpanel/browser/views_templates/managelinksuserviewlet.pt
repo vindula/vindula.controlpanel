@@ -1,0 +1,10 @@
+<div>
+	<ul id="links-adcionais" tal:define="links viewlet/update|nothing">
+		<tal:rep repeat="link links">
+			<li>
+				<a tal:attributes="href link/url|nothing"
+				   tal:content="link/title|nothing"></a>
+			</li>
+		</tal:rep>
+	</ul>
+</div>

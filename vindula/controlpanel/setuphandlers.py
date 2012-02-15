@@ -1,6 +1,28 @@
 # -*- coding: utf-8 -*-
 from Products.CMFCore.utils import getToolByName
 
+
+def link_user_folder(context):
+    ctx = context.getSite()
+    portal = context.getSite()
+    portal_workflow = getToolByName(portal, 'portal_workflow')
+    
+    # Creating Migration Users Folder
+    if 'control-panel-objects' in ctx.objectIds():
+        folder_control_panel = ctx['control-panel-objects']
+        if not 'link-user-folder' in folder_control_panel.objectIds():
+            folder_control_panel.invokeFactory('Folder', 
+                                               id='link-user-folder', 
+                                               title='Links Adicionais aos usuários',
+                                               description='Pasta que guardar os links adicionais aos usuários.',
+                                               excludeFromNav = True)
+                            
+            folder_user_data = folder_control_panel['link-user-folder']
+            folder_user_data.setConstrainTypesMode(1)
+            folder_user_data.setLocallyAllowedTypes(('Link',))
+            portal_workflow.doActionFor(folder_user_data, 'publish')
+
+
 def installControlPanel(context):    
     portal = context.getSite()
     portal_workflow = getToolByName(portal, 'portal_workflow')
