@@ -258,6 +258,14 @@ class ManageLinksUserViewlet(grok.Viewlet):
        
     def update(self):
         portal = getSite()
+        workflow = portal['portal_workflow']
+        
+        membership = self.context.portal_membership
+        groups = self.context.portal_groups
+        
+        user_login = membership.getAuthenticatedMember()
+        user_groups = [i.id for i in groups.getGroupsByUserId(user_login.id)]
+        
         L = []
         if 'control-panel-objects' in portal.keys():
             control = portal['control-panel-objects']
@@ -265,10 +273,27 @@ class ManageLinksUserViewlet(grok.Viewlet):
                 folder_links = control['link-user-folder']
                 links = folder_links.objectValues()
                 for link in links:
-                    D ={}
-                    D['url'] = link.getRemoteUrl()
-                    D['title'] = link.Title()
-                    L.append(D)
+                    checa = False
+                    if workflow.getInfoFor(link, 'review_state') == 'published':
+                       checa = True 
+                    else:
+                        if 'Manager' in user_login.getRoles():
+                            checa = True
+                        else:
+                            for roles in link.get_local_roles():
+                                if user_login.id in roles:
+                                    checa = True
+                                else:
+                                    for group in user_groups:
+                                        if group in roles:
+                                            checa = True
+                                            break
+                        
+                    if checa:
+                        D ={}
+                        D['url'] = link.getRemoteUrl()
+                        D['title'] = link.Title()
+                        L.append(D)
         
         return L
         
