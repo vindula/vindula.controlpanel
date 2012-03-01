@@ -264,7 +264,7 @@ class ManageLinksUserViewlet(grok.Viewlet):
         groups = self.context.portal_groups
         
         user_login = membership.getAuthenticatedMember()
-        user_groups = [i.id for i in groups.getGroupsByUserId(user_login.id)]
+        user_groups = [i.id for i in groups.getGroupsByUserId(user_login.id) if i]
         
         L = []
         if 'control-panel-objects' in portal.keys():
