@@ -64,6 +64,14 @@
 					<a tal:attributes="href string:${portal_url}/myvindulaconfgs">Habilitar / Desabilitar Campos do My Vindula</a>
 				</div>
 				<div>
+					<img src="/++resource++vindula.controlpanel/icons/controlpanel_myvindulamanagealluser.png" />
+					<a tal:attributes="href string:${portal_url}/control-panel-objects/vindula_vindulaconfigall/edit">Habilitar / Desabilitar funcionalidades do Myvindula</a>
+				</div>
+				<div>
+					<img src="/++resource++vindula.controlpanel/icons/controlpanel_vindulaeditfuncconfig.png" />
+					<a tal:attributes="href string:${portal_url}/myvindulamanagealluser">Edita o perfil dos usu&aacute;rios do My Vindula</a>
+				</div>
+				<!--div>
 					<img src="/++resource++vindula.controlpanel/icons/controlpanel_vindulaholeriteconfig.png" />
 					<a tal:attributes="href string:${portal_url}/control-panel-objects/vindula_vindulaholeriteconfig">Habilitar / Desabilitar holerite dos usu&aacute;rios do My Vindula</a>
 				</div>
@@ -82,7 +90,17 @@
 				<div>
 					<img src="/++resource++vindula.controlpanel/icons/controlpanel_myvindulamanagealluser.png" />
 					<a tal:attributes="href string:${portal_url}/control-panel-objects/vindula_vindulauserconfig">Configurar Myvindula para muitos usu&aacute;rios</a>
-				</div>
+				</div-->
+				
+				<div>
+		            <img src="/++resource++vindula.controlpanel/icons/controlpanel_links-adicionais.png" />
+		            <a tal:attributes="href string:${portal_url}/control-panel-objects/link-user-folder">Adicionar / Editar os links adicionais aos usu&aacute;rios do My Vindula</a>
+		        </div>
+				
+				<div>
+		            <img src="/++resource++vindula.controlpanel/icons/controlpanel_docs_user.png" />
+		            <a tal:attributes="href string:${portal_url}/control-panel-objects/list-documents-user">Gerencias os documentos Comprobat&oacute;rios dos usu&aacute;rios do My Vindula</a>
+		        </div>
 				
 				<div>
 					<img src="/++resource++vindula.controlpanel/icons/controlpanel_cursos.png" />
@@ -92,19 +110,13 @@
 					<img src="/++resource++vindula.controlpanel/icons/controlpanel_idiomas.png" />
 					<a tal:attributes="href string:${portal_url}/myvindula-languages">Adicionar / Editar Idiomas do My Vindula</a>
 				</div>
+				<!--/div>
 					<div>
 					<img src="/++resource++vindula.controlpanel/icons/controlpanel_vindularecados.png" />
 					<a tal:attributes="href string:${portal_url}/control-panel-objects/vindula_vindularecadosconfig/edit">Configura&ccedil;&otilde;es do Recados dos Usu&aacute;rios no Myvindula</a>
-				</div>
+				</div-->
+
 				<div>
-		            <img src="/++resource++vindula.controlpanel/icons/controlpanel_myvindulaexport.png" />
-		            <a tal:attributes="href string:${portal_url}/myvindula-export-users">Exportar usu&aacute;rios cadastrados na Base do My Vindula para um arquivo CSV</a>
-		        </div>
-				<div>
-					<img src="/++resource++vindula.controlpanel/icons/controlpanel_myvindulamanagealluser.png" />
-					<a tal:attributes="href string:${portal_url}/myvindulamanagealluser">Edita o perfil dos usu&aacute;rios do My Vindula</a>
-				</div>
-					<div>
 					<img src="/++resource++vindula.controlpanel/icons/controlpanel_importusers.png" />
 					<a tal:attributes="href string:${portal_url}/myvindulaimportuser">Importar / Atualizar a Base de Usu&aacute;rios</a>
 				</div>
@@ -112,20 +124,17 @@
 		            <img src="/++resource++vindula.controlpanel/icons/controlpanel_myvindulaimport.png" />
 		            <a tal:attributes="href string:${portal_url}/myvindula-import-first">Importar arquivo CSV de usu&aacute;rios para a Base do My Vindula</a>
 		        </div>
-				
 				<div>
-		            <img src="/++resource++vindula.controlpanel/icons/controlpanel_links-adicionais.png" />
-		            <a tal:attributes="href string:${portal_url}/control-panel-objects/link-user-folder">Adicionar / Editar os links adicionais aos usu&aacute;rios do My Vindula</a>
+		            <img src="/++resource++vindula.controlpanel/icons/controlpanel_myvindulaexport.png" />
+		            <a tal:attributes="href string:${portal_url}/myvindula-export-users">Exportar usu&aacute;rios cadastrados na Base do My Vindula para um arquivo CSV</a>
 		        </div>
 		
 			</div>
 			<div class="tab_container" id="div-redessociais">
-	       
-				
-				<div>
+				<!--div>
 					<img src="/++resource++vindula.controlpanel/icons/controlpanel_vindulanews.png" />
 					<a tal:attributes="href string:${portal_url}/control-panel-objects/vindula_vindulanewsconfig/edit">Configura&ccedil;&otilde;es do Vindula News</a>
-				</div>
+				</div-->
 				<div>
 					<img src="/++resource++vindula.controlpanel/icons/controlpanel_discussion.png" />
 					<a tal:attributes="href string:${portal_url}/@@vindula-comments-configuration">Configura&ccedil;&otilde;es dos comentarios do portal</a>

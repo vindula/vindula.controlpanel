@@ -21,9 +21,4 @@ vindula/controlpanel/content/__init__.py
 vindula/controlpanel/content/alertdisplay.py
 vindula/controlpanel/content/categories.py
 vindula/controlpanel/content/themeconfig.py
-vindula/controlpanel/content/vindulaeditfuncconfig.py
-vindula/controlpanel/content/vindulaholeriteconfig.py
-vindula/controlpanel/content/vindulanewsconfig.py
-vindula/controlpanel/content/vindulapensamentosconfig.py
-vindula/controlpanel/content/vindularecadosconfig.py
-vindula/controlpanel/content/vindulauserconfig.py
+vindula/controlpanel/content/vindulaconfigall.py
