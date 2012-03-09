@@ -33,7 +33,7 @@ class ControlPanelObjects(object):
         
         if obj:
             try:
-                field = obj.__getattribute__(self.type)
+                field = obj.__getattr__(self.type)
             except:
                 field = None
             if field is not None:
