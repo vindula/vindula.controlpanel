@@ -5,7 +5,7 @@ from plone.formwidget.contenttree import ObjPathSourceBinder
 from plone.app.textfield import RichText
 from z3c.relationfield.schema import RelationChoice
 from vindula.controlpanel import MessageFactory as _
-from vindula.controlpanel.vocabularies import ListPortalType
+#from vindula.controlpanel.vocabularies import ListPortalType
 
     
 # Interface and schema
@@ -50,7 +50,7 @@ class IThemeConfig(Interface):
     itens_menu = schema.List(
          title=_(u"Itens do menu"),
          description=_(u"Selecione os tipos de itens que serão apresentados no menu e no sub-menu."),
-         value_type=schema.Choice(source=ListPortalType()),
+         value_type=schema.Choice(vocabulary ='plone.app.vocabularies.ReallyUserFriendlyTypes'),
          required=False,
         )
     
