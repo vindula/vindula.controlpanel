@@ -14,7 +14,7 @@
             visible="True" 
             i18n:attributes="title">
  
- <permission>Manage portal</permission>
+ <permission>Site Administrator</permission>
  </configlet>
   
 

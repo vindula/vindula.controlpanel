@@ -1,16 +1,30 @@
 <metal:macro metal:define-macro="footer">
 	<div tal:define="portal python: context.portal_url.getPortalObject();
-		 			 config_obj python: portal['control-panel-objects']['vindula_themeconfig']"
+		 			 config_obj python: portal['control-panel-objects']['vindula_themeconfig'];
+					 
+					 view_org context/OrgStruct_view;
+					 view python: context.restrictedTraverse('@@vindula-macro-footer');"
+					 
 		 tal:on-error="nothing">	
 		 	
 		<!-- Logo -->
 		<div id="macro_logofooter">
 			<a href="/" title="P&aacute;gina Inicial">
-				<img tal:condition="python: config_obj.logo_footer is not None" 
-				     tal:attributes="src python: config_obj.logo_footer.to_object.absolute_url()" />
-		
-				<img tal:condition="python: config_obj.logo_footer is None" 
-				     src="/++resource++vindula.controlpanel/logo_rodape.png" />
+				<tal:cond condition="python: view_org.portal_type!='OrganizationalStructure'">
+					<img tal:condition="python: config_obj.logo_footer is not None" 
+					     tal:attributes="src python: config_obj.logo_footer.to_object.absolute_url()" />
+			
+					<img tal:condition="python: config_obj.logo_footer is None" 
+					     src="/++resource++vindula.controlpanel/logo_rodape.png" />
+				</tal:cond>
+					 
+				<tal:cond condition="python: view_org.portal_type=='OrganizationalStructure'">
+	
+					<img tal:attributes="src python: view.getOrgStrucContent().get('url','')" />
+					 
+				</tal:cond>					 
+					 
+					 
 			</a>	 
 			
 			<a class="theme-edit"

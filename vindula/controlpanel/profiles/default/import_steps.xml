@@ -5,7 +5,7 @@
 					 version="1.0"
 	                 handler="vindula.controlpanel.setuphandlers.installControlPanel"
 	                 title="Create Vindula Control Panel Objects">
-	    	<dependency step="content"/>
+			<dependency step="content"/>
 			<!--dependency step="typeinfo"/-->
 		</import-step>
 
@@ -17,5 +17,18 @@
 			<!--dependency step="typeinfo"/-->
 		</import-step>
 		
+		<import-step id="vindula.controlpanel.CreateForderImage" 
+					 version="1.0"
+	                 handler="vindula.controlpanel.setuphandlers.CreateForderImage"
+	                 title="Create Vindula Data Base Imagens">
+	    	<dependency step="workflow"/>
+		</import-step>	
+		
+		<import-step id="vindula.controlpanel.installTheme" 
+					 version="1.0"
+	                 handler="vindula.themedefault.setuphandlers.installTheme"
+	                 title="Create Vindula Control Panel Object">
+	    	<dependency step="workflow"/>
+		</import-step>
 		
 	</import-steps>

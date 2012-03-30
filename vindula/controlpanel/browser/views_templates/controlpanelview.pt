@@ -84,14 +84,14 @@
 					<a tal:attributes="href string:${portal_url}/control-panel-objects/vindula_vindulaeditfuncconfig">Habilitar / Desabilitar a op&ccedil;&atilde;o dos usu&aacute;rios editar o pr&oacute;prio perfil do My Vindula</a>
 				</div>
 				<div>
-					<img src="/++resource++vindula.controlpanel/icons/controlpanel_myvindulaholerite.png" />
-					<a tal:attributes="href string:${portal_url}/myvindula-import-holerite">Importa o holerites dos usu&aacute;rios do My Vindula, via txt</a>
-				</div>
-				<div>
 					<img src="/++resource++vindula.controlpanel/icons/controlpanel_myvindulamanagealluser.png" />
 					<a tal:attributes="href string:${portal_url}/control-panel-objects/vindula_vindulauserconfig">Configurar Myvindula para muitos usu&aacute;rios</a>
 				</div-->
-				
+
+				<div>
+					<img src="/++resource++vindula.controlpanel/icons/controlpanel_myvindulaholerite.png" />
+					<a tal:attributes="href string:${portal_url}/myvindula-import-holerite">Importa o holerites dos usu&aacute;rios do My Vindula, via txt</a>
+				</div>
 				<div>
 		            <img src="/++resource++vindula.controlpanel/icons/controlpanel_links-adicionais.png" />
 		            <a tal:attributes="href string:${portal_url}/control-panel-objects/link-user-folder">Adicionar / Editar os links adicionais aos usu&aacute;rios do My Vindula</a>

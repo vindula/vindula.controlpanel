@@ -1,5 +1,6 @@
-<div id="alert_display">	
-	<tal:condition condition="viewlet/check|nothing">
+<div id="alert_display" tal:define="check viewlet/check|nothing;
+									workflow viewlet/checkWorkflow|nothing">	
+	<tal:condition condition="python: check and workflow">
 		<!--link rel="stylesheet" tal:attributes="href string:${context/portal_url|nothing}/++resource++vindula.controlpanel/alert_style.css" type="text/css"-->
 		<script type="text/javascript" tal:attributes="src string:${context/portal_url|nothing}/++resource++vindula.controlpanel/alert_display.js"></script>
 		

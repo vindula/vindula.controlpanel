@@ -10,6 +10,7 @@ from vindula.myvindula.user import BaseFunc, BaseStore
 from Products.CMFCore.Expression import Expression
 from Products.CMFCore.utils import getToolByName
 from vindula.myvindula.validation import to_utf8, valida_form
+from zope.app.component.hooks import getSite
 
 from plone.registry.interfaces import IRegistry
 from zope.component import queryUtility
@@ -33,11 +34,53 @@ class MacroLogoTopView(grok.View):
     grok.name('vindula-macro-logotop')
     
     
+    def getOrgStrucContent(self):
+        ctx = self.context.restrictedTraverse('OrgStruct_view')()
+        portal = self.context.portal_url.getPortalObject();
+        config_obj = portal['control-panel-objects']['vindula_themeconfig'];
+        
+        D = {}
+        if ctx.portal_type != 'Plone Site':
+            if ctx.activ_personalit:
+                D['id'] = ctx.id 
+                        
+                if ctx.getLogoPortal():
+                    D['url'] = ctx.getLogoPortal().absolute_url()
+                else:
+                    if config_obj.logo_top is not None:
+                        D['url']  =  config_obj.logo_top.to_object.absolute_url()
+                    else:
+                        D['url']  = "/++resource++vindula.controlpanel/logo_topo.png"
+        return D
+    
+    
 class MacroFooterView(grok.View):
     grok.context(Interface)
     grok.require('zope2.View')
     grok.name('vindula-macro-footer')
     
+    
+    def getOrgStrucContent(self): 
+        portal = self.context.portal_url.getPortalObject();
+        config_obj = portal['control-panel-objects']['vindula_themeconfig'];
+
+        ctx = self.context.restrictedTraverse('OrgStruct_view')()
+        D = {}
+        if ctx.portal_type != 'Plone Site':
+            if ctx.activ_personalit:
+                D['id'] = ctx.id 
+                    
+                if ctx.getLogoRodape():
+                    D['url'] = ctx.getLogoRodape().absolute_url()
+                else:
+                    if config_obj.logo_top is not None:
+                        D['url']  =  config_obj.logo_top.to_object.absolute_url()
+                    else:
+                        D['url']  = "/++resource++vindula.controlpanel/logo_topo.png"              
+        
+        return D
+            
+            
 class ManageProductsView(grok.View):
     grok.context(Interface)
     grok.require('zope2.View')
@@ -214,11 +257,27 @@ class AlertDisplayViewlet(grok.Viewlet):
         else:
             return None
 
+    def checkWorkflow(self):
+        workflow = getSite().portal_workflow
+        if 'vindula_intranet_workflow' in workflow.getDefaultChain():
+            member = getSite().portal_membership.getAuthenticatedMember()
+            #Caso de intranet restrita ao publico
+            if member.getUserName() != 'Anonymous User':
+                #user Logado
+                return True
+            else:
+                #user Anonimo
+                return False
+        else:
+            #Caso de intranet aberta ao publico
+            True
+
     def check(self):
         conf = self.getConfigurador()
         if conf:
-            return conf.activ_display
-        
+            try: return conf.activ_display
+            except: return None
+            
     def type_message(self):
         conf = self.getConfigurador()
         if conf:

@@ -1,15 +1,27 @@
 <metal:macro metal:define-macro="logotop">
 	<div id="macro_logotop"
 		 tal:define="portal python: context.portal_url.getPortalObject();
-	 				 config_obj python: portal['control-panel-objects']['vindula_themeconfig']"
+	 				 config_obj python: portal['control-panel-objects']['vindula_themeconfig'];
+					 
+					 view_org context/OrgStruct_view;
+					 view python:context.restrictedTraverse('@@vindula-macro-logotop');"
+					 
 		 tal:on-error="nothing">
 
 		<a class="vindula-portal-logo" tal:attributes="href string:${context/portal_url}" title="P&aacute;gina Inicial">
-			<img tal:condition="python: config_obj.logo_top is not None" 
-			     tal:attributes="src python: config_obj.logo_top.to_object.absolute_url()" />
-	
-			<img tal:condition="python: config_obj.logo_top is None" 
-			     src="/++resource++vindula.controlpanel/logo_topo.png" />
+			<tal:cond condition="python: view_org.portal_type!='OrganizationalStructure'">
+				
+				<img tal:condition="python: config_obj.logo_top is not None" 
+				     tal:attributes="src python: config_obj.logo_top.to_object.absolute_url()" />
+		
+				<img tal:condition="python: config_obj.logo_top is None" 
+				     src="/++resource++vindula.controlpanel/logo_topo.png" />
+			</tal:cond>
+			<tal:cond condition="python: view_org.portal_type=='OrganizationalStructure'">
+
+				<img tal:attributes="src python: view.getOrgStrucContent().get('url','')" />
+				 
+			</tal:cond>
 		</a>
 	
 		<a class="theme-edit"
