@@ -76,7 +76,7 @@ class MacroFooterView(grok.View):
                     if config_obj.logo_top is not None:
                         D['url']  =  config_obj.logo_top.to_object.absolute_url()
                     else:
-                        D['url']  = "/++resource++vindula.controlpanel/logo_topo.png"              
+                        D['url']  = "/++resource++vindula.controlpanel/logo_rodape.png"              
         
         return D
             
