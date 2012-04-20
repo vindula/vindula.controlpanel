@@ -7,16 +7,16 @@
  <property name="title" i18n:translate="">Theme Config</property>
  <property name="i18n_domain">vindula.controlpanel</property>
  <property name="description" i18n:translate="">Objeto de configurações do Tema do Portal.</property>
- <property name="content_icon">++resource++vindula.themedefault/images/icons/vindula.png</property>
+ <property name="content_icon">++resource++vindula.controlpanel/vindula.png</property>
  <property name="content_meta_type">ThemeConfig</property>
  <property name="product">vindula.controlpanel</property>
  <property name="factory">addThemeConfig</property>
- <property name="immediate_view">edit</property>
+ <property name="immediate_view">view</property>
  <property name="allow_discussion">False</property>
  <property name="global_allow">True</property>
  <property name="filter_content_types">False</property>
  <property name="allowed_content_types" />   	
- <property name="default_view">edit</property>
+ <property name="default_view">view</property>
  <property name="default_view_fallback">False</property> 
  
  <alias from="edit" to="base_edit"/>
