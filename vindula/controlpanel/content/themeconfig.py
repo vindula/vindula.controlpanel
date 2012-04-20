@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
-
+from five import grok
 from vindula.controlpanel import MessageFactory as _
 from Products.CMFCore.utils import getToolByName
-from zope.app.component.hooks import getSite
 
 from AccessControl import ClassSecurityInfo
 from zope.interface import Interface
@@ -141,5 +140,46 @@ class ThemeConfig(ATDocumentBase):
         types = self.portal_types.listContentTypes()
         return types
 
+class ThemeConfigView(grok.View):
+    grok.context(IThemeConfig)
+    grok.require('zope2.View')
+    grok.name('view')
+    
+    def render(self):
+        pass
+    
+    def update(self):
+        self.context.REQUEST.response.redirect('/vindula-control-panel')
+
 registerType(ThemeConfig, PROJECTNAME)
 
+#class ThemeConfigCssView(grok.View):
+#    grok.context(Interface)
+#    grok.require('zope2.View')
+#    grok.name('personal-layout.css')
+#            
+#    def getConfiguration(self):
+#        ctx = self.context.restrictedTraverse('OrgStruct_view')()
+#        D = {}
+#        if ctx.portal_type != 'Plone Site':
+#            if ctx.activ_personalit:
+#                D['id'] = ctx.id 
+#                D['cor'] = ctx.corPortal
+#                if ctx.getImageBackground():
+#                    D['url'] = ctx.getImageBackground().absolute_url()
+#                else:
+#                    D['url']  = ''
+#                D['colorBG'] = ctx.corBackground
+#        
+#        
+#        
+#        else:
+#            D['id'] = '' 
+#            D['cor'] = '#F58220'
+#            D['url'] = ''
+#            D['colorBG']
+#        
+#        
+#        
+#            
+#        return D
