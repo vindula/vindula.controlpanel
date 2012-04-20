@@ -270,7 +270,7 @@ class AlertDisplayViewlet(grok.Viewlet):
                 return False
         else:
             #Caso de intranet aberta ao publico
-            True
+            return True
 
     def check(self):
         conf = self.getConfigurador()
