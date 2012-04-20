@@ -19,21 +19,28 @@ def installControlPanel(context):
 
     # Creating Control Panel Objects
     types = ['vindula.controlpanel.content.categories', 
-             'vindula.controlpanel.content.themeconfig',
              'vindula.controlpanel.content.alertdisplay',
-             
              'vindula.controlpanel.content.vindulaconfigall',]
         
-    for type in types:
-        if portal.portal_types.get(type):
-            id = 'vindula_' + type.split('.')[3]
-            if not id in folder_control_panel.objectIds():
-                folder_control_panel.setConstrainTypesMode(0)
-                portal.portal_types.get(type).global_allow = True        
-                folder_control_panel.invokeFactory(type, id=id, excludeFromNav=True)
-                print 'Create %s object.' % id          
-                portal.portal_types.get(type).global_allow = False
-
+#    for type in types:
+#        if portal.portal_types.get(type):
+#            id = 'vindula_' + type.split('.')[3]
+#            import pdb;pdb.set_trace()
+#            if not id in folder_control_panel.objectIds():
+#                folder_control_panel.setConstrainTypesMode(0)
+#                portal.portal_types.get(type).global_allow = True        
+#                folder_control_panel.invokeFactory(type, id=id, excludeFromNav=True)
+#                print 'Create %s object.' % id          
+#                portal.portal_types.get(type).global_allow = False
+    
+    #id = 'ThemeConfig'
+    
+#    if not id in folder_control_panel.objectIds():
+#        folder_control_panel.setConstrainTypesMode(0)
+#        portal.portal_types.get(id).global_allow = True        
+#        folder_control_panel.invokeFactory('ThemeConfig', id=id, excludeFromNav=True)
+#        print 'Create %s object.' % id          
+#        portal.portal_types.get(id).global_allow = False
 
 def link_user_folder(context):
     ctx = context.getSite()
