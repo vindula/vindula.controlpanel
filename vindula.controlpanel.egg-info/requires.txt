@@ -1,3 +1,2 @@
 setuptools
 plone.app.dexterity
-collective.z3cform.colorpicker
