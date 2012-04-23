@@ -156,7 +156,8 @@ class ThemeConfigView(grok.View):
         pass
     
     def update(self):
-        self.context.REQUEST.response.redirect('/vindula-control-panel')
+        url = getSite().portal_url() + '/vindula-control-panel'
+        self.context.REQUEST.response.redirect(url)
         
 class ThemeConfigCssView(grok.View):
     grok.context(Interface)
@@ -167,7 +168,10 @@ class ThemeConfigCssView(grok.View):
         obj = getSite()['control-panel-objects']['vindula_themeconfig']
         D = {}
         D['cor'] = obj.corPortal
-        D['url'] = obj.getImageBackground().absolute_url()
+        try:
+            D['url'] = obj.getImageBackground().absolute_url()
+        except:
+            D['url'] = '/++resource++vindula.themedefault/images/bkgs/bk_body.jpg'
         D['colorBG'] = obj.corBackground
         
         return D      
