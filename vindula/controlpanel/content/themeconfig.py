@@ -232,9 +232,9 @@ class ThemeConfigCssView(grok.View):
         css += '/* topo_nav.css */\n'
         css += '    .%s #nav li a:hover {color:%s !important;}\n' %(id,color)
         css += '    .%s .geral_busca .searchButton {background-color: %s !important;}\n' %(id,color)
-        css += '    .%s #portal-globalnav-drop .selected a,#portal-globalnav-drop li:hover a {background-color: #000000,color:%s !important;}\n' %(id,color)
+        css += '    .%s #portal-globalnav-drop .selected a,#portal-globalnav-drop li:hover a {background-color: #000000;color:%s !important;}\n' %(id,color)
         css += '    .%s #portal-globalnav-drop.nivel1 li.selected a:hover {color:%s !important;}\n' %(id,color)
-        css += '    .%s #portal-globalnav-drop li:hover ul li:hover a.hide {background:%s; color:#000000 !important;}\n' %(id,colorBG)
+        css += '    .%s #portal-globalnav-drop li:hover ul li:hover a.hide {background-color: %s; color:#000000 !important;}\n' %(id,color)
         css += '    .%s #portal-globalnav-drop li:hover ul li.selected a.hide {color:%s !important;}\n' %(id,color)
         
         self.response.setHeader('Content-Type', 'text/css; charset=UTF-8')
