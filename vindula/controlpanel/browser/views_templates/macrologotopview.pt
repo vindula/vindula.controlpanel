@@ -11,10 +11,10 @@
 		<a class="vindula-portal-logo" tal:attributes="href string:${context/portal_url}" title="P&aacute;gina Inicial">
 			<tal:cond condition="python: view_org.portal_type!='OrganizationalStructure'">
 				
-				<img tal:condition="python: config_obj.logo_top is not None" 
-				     tal:attributes="src python: config_obj.logo_top.to_object.absolute_url()" />
+				<img tal:condition="python: config_obj.getLogoCabecalho is not None" 
+				     tal:attributes="src python: config_obj.getLogoCabecalho().absolute_url()" />
 		
-				<img tal:condition="python: config_obj.logo_top is None" 
+				<img tal:condition="python: config_obj.getLogoCabecalho is None" 
 				     src="/++resource++vindula.controlpanel/logo_topo.png" />
 			</tal:cond>
 			<tal:cond condition="python: view_org.portal_type=='OrganizationalStructure'">

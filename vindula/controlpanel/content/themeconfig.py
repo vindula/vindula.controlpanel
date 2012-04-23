@@ -2,7 +2,8 @@
 from five import grok
 from vindula.controlpanel import MessageFactory as _
 from Products.CMFCore.utils import getToolByName
-
+from zope.app.component.hooks import getSite
+ 
 from AccessControl import ClassSecurityInfo
 from zope.interface import Interface
 
@@ -39,18 +40,18 @@ ThemeConfig_schema =  ATDocumentSchema.copy() + Schema((
         widget=ReferenceBrowserWidget(
             default_search_index='SearchableText',
             label=_(u"Logo Cabecalho"),
-            description='Será exibido no topo do portal.'),
+            description='A imagem selecionada será exibida no topo do portal.'),
     ),
                                                                    
     ReferenceField('logoRodape',
         multiValued=0,
         allowed_types=('Image'),
-        label=_(u"Logo Rodape "),
+        label=_(u"Logo Rodapé "),
         relationship='logoRodape',
         widget=ReferenceBrowserWidget(
             default_search_index='SearchableText',
-            label=_(u"Logo Rodape"),
-            description='Será exibido no rodape a imagem selecionada.'),
+            label=_(u"Logo Rodapé"),
+            description='A imagem selecionada será exibida no rodapé do portal.'),
     ),
     
     ReferenceField('favicon',
@@ -105,7 +106,7 @@ ThemeConfig_schema =  ATDocumentSchema.copy() + Schema((
         widget=ReferenceBrowserWidget(
             default_search_index='SearchableText',
             label=_(u"WallPaper do portal"),
-            description='Será exibido no backgroup do portal a imagem selecionada. A imagem será mostrada em seu tamanho original, sem repetição.'),
+            description='A imagem selecionada será exibida como plano de fundo do portal. A imagem será mostrada em seu tamanho original, sem repetição.'),
         schemata = 'Layout'
     ),                                                                   
     
@@ -119,12 +120,16 @@ ThemeConfig_schema =  ATDocumentSchema.copy() + Schema((
         ),
         schemata = 'Layout'
     ),
+    
 ))
 
 finalizeATCTSchema(ThemeConfig_schema, folderish=False)
 invisivel = {'view':'invisible','edit':'invisible',}
-ThemeConfig_schema['description'].widget.visible = invisivel
+ThemeConfig_schema['text'].widget.label = 'Texto do Rodapé'
+ThemeConfig_schema['text'].widget.description = 'Texto a ser exibido no rodapé do portal.'
+ThemeConfig_schema.moveField('text', after='logoRodape')
 ThemeConfig_schema['title'].widget.visible = invisivel
+ThemeConfig_schema['description'].widget.visible = invisivel
 
 
 class ThemeConfig(ATDocumentBase):
@@ -139,7 +144,9 @@ class ThemeConfig(ATDocumentBase):
     def voc_itens_menu(self):
         types = self.portal_types.listContentTypes()
         return types
-
+    
+        
+    
 class ThemeConfigView(grok.View):
     grok.context(IThemeConfig)
     grok.require('zope2.View')
@@ -150,36 +157,83 @@ class ThemeConfigView(grok.View):
     
     def update(self):
         self.context.REQUEST.response.redirect('/vindula-control-panel')
+        
+class ThemeConfigCssView(grok.View):
+    grok.context(Interface)
+    grok.require('zope2.View')
+    grok.name('personal-layout.css')
+     
+    def getConfLayout(self):
+        obj = getSite()['control-panel-objects']['vindula_themeconfig']
+        D = {}
+        D['cor'] = obj.corPortal
+        D['url'] = obj.getImageBackground().absolute_url()
+        D['colorBG'] = obj.corBackground
+        
+        return D      
+          
+    def getConfiguration(self):
+        ctx = self.context.restrictedTraverse('OrgStruct_view')()
+        D = {}
+        if ctx.portal_type != 'Plone Site':
+            if ctx.activ_personalit:
+                D['id'] = ctx.id 
+                D['cor'] = ctx.corPortal
+                if ctx.getImageBackground():
+                    D['url'] = ctx.getImageBackground().absolute_url()
+                else:
+                    D['url']  = '/++resource++vindula.controlpanel/logo_topo.png'
+                D['colorBG'] = ctx.corBackground
+        else:
+            D = self.getConfLayout()
+            
+        return D
+    
+    def render(self):
+        config = self.getConfiguration()
+        plone = getSite().id
+        id = config.get('id',plone)
+        color = config.get('cor','#F58220') or '#F58220'
+        url = config.get('url','')
+        colorBG = config.get('colorBG','')
+        
+        css =  '/* vindula_theme.css */\n'
+        css += '    .%s .titulo_info_boxTipo2 h4 a{color: %s !important;}\n' %(id,color) 
+        css += '    .%s .gallery-cycle-controls #cycle-prev, .%s .gallery-cycle-controls #cycle-next {background-color:%s !important;}\n' %(id,id,color)
+        css += '    .%s .portletWrapper .portletHeader {background-color: %s !important;}' %(id,color)
+        css += '    .%s .portletWrapper .portletHeader-dainamic .topPortlet {background-color: %s !important;}' %(id,color)
+        css += '    .%s .portletWrapper .portletHeader-dainamic .meioPortlet {background-color: %s !important;}' %(id,color)
+        css += '    .%s .portletWrapper .portletHeader-dainamic .bottonPortlet {background-color: %s !important;}' %(id,color)
+        css += '/* cont_pagina.css */\n'
+        css += '    .%s .cont_superior{ border-bottom-color: %s !important;}\n'%(id,color) 
+        css += '    .%s .titulo h2 {color: %s !important;}\n' %(id,color) 
+        css += '    .%s .descricao_destaque h4{ color: %s !important;}\n' %(id,color) 
+        css += '    .%s .titulo_info_boxTipo2 h4{color: %s !important;}\n' %(id,color) 
+        css += '    .%s .info_topoBoxTipo h4{color: %s !important;}\n' %(id,color) 
+        css += '    .%s .descricao_titulo h4{color: %s !important;}\n' %(id,color) 
+        css += '    .%s .opcoes_noticia h4{color: %s !important;}\n' %(id,color) 
+        css += '    .%s .titulo_area h2{color: %s !important;}\n' %(id,color) 
+        css += '    .%s .titulo_area{border-bottom-color: %s !important;}\n' %(id,color) 
+        css += '    .%s .geral_lista_comentarios .comment {border-top-color: %s !important;}\n' %(id,color) 
+        css += '    .%s .item_lista h4{color: %s !important;}\n' %(id,color) 
+        css += '    .%s .bt_comentar input{background-color: %s !important;}\n' %(id,color) 
+        css += '/* geral.css */\n'
+        css += '    .%s {background: url("%s") no-repeat scroll 50%% 0 %s;}\n' %(id,url,colorBG)
+        css += '    .%s div#content a:hover, .%s .geral_busca #LSResult .livesearchContainer div.LSIEFix a:hover {color: %s !important;}\n' %(id,id,color)
+        css += '    .%s div#content a:hover, .%s dl.portlet a:hover, .%s .geral_busca #LSResult .livesearchContainer div.LSIEFix a:hover {color: %s !important;}' %(id,id,id,color)
+        css += '    .%s #geral_breadcrumb span{color:%s;!important;}\n' %(id,color)
+        css += '    .%s #barra_superior #cont_barra_superior li a:hover {color: %s !important;}\n' %(id,color) 
+        css += '    .%s .cont_superior .documentFirstHeading{color: %s !important;}\n' %(id,color)
+        css += '    .%s #like .link{color:%s !important;}\n' %(id,color) 
+        css += '/* topo_nav.css */\n'
+        css += '    .%s #nav li a:hover {color:%s !important;}\n' %(id,color)
+        css += '    .%s .geral_busca .searchButton {background-color: %s !important;}\n' %(id,color)
+        css += '    .%s #portal-globalnav-drop .selected a,#portal-globalnav-drop li:hover a {background-color: #000000,color:%s !important;}\n' %(id,color)
+        css += '    .%s #portal-globalnav-drop.nivel1 li.selected a:hover {color:%s !important;}\n' %(id,color)
+        css += '    .%s #portal-globalnav-drop li:hover ul li:hover a.hide {background:%s; color:#000000 !important;}\n' %(id,colorBG)
+        css += '    .%s #portal-globalnav-drop li:hover ul li.selected a.hide {color:%s !important;}\n' %(id,color)
+        
+        self.response.setHeader('Content-Type', 'text/css; charset=UTF-8')
+        return css
 
 registerType(ThemeConfig, PROJECTNAME)
-
-#class ThemeConfigCssView(grok.View):
-#    grok.context(Interface)
-#    grok.require('zope2.View')
-#    grok.name('personal-layout.css')
-#            
-#    def getConfiguration(self):
-#        ctx = self.context.restrictedTraverse('OrgStruct_view')()
-#        D = {}
-#        if ctx.portal_type != 'Plone Site':
-#            if ctx.activ_personalit:
-#                D['id'] = ctx.id 
-#                D['cor'] = ctx.corPortal
-#                if ctx.getImageBackground():
-#                    D['url'] = ctx.getImageBackground().absolute_url()
-#                else:
-#                    D['url']  = ''
-#                D['colorBG'] = ctx.corBackground
-#        
-#        
-#        
-#        else:
-#            D['id'] = '' 
-#            D['cor'] = '#F58220'
-#            D['url'] = ''
-#            D['colorBG']
-#        
-#        
-#        
-#            
-#        return D

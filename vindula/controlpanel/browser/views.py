@@ -43,7 +43,6 @@ class MacroLogoTopView(grok.View):
         if ctx.portal_type != 'Plone Site':
             if ctx.activ_personalit:
                 D['id'] = ctx.id 
-                        
                 if ctx.getLogoPortal():
                     D['url'] = ctx.getLogoPortal().absolute_url()
                 else:
@@ -60,7 +59,7 @@ class MacroFooterView(grok.View):
     grok.name('vindula-macro-footer')
     
     
-    def getOrgStrucContent(self): 
+    def getOrgStrucContent(self):
         portal = self.context.portal_url.getPortalObject();
         config_obj = portal['control-panel-objects']['vindula_themeconfig'];
 
@@ -73,8 +72,8 @@ class MacroFooterView(grok.View):
                 if ctx.getLogoRodape():
                     D['url'] = ctx.getLogoRodape().absolute_url()
                 else:
-                    if config_obj.logo_top is not None:
-                        D['url']  =  config_obj.logo_top.to_object.absolute_url()
+                    if config_obj.getLogoCabecalho is not None:
+                        D['url']  =  config_obj.getLogoCabecalho().absolute_url()
                     else:
                         D['url']  = "/++resource++vindula.controlpanel/logo_rodape.png"              
         

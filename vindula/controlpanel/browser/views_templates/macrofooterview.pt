@@ -4,17 +4,16 @@
 					 
 					 view_org context/OrgStruct_view;
 					 view python: context.restrictedTraverse('@@vindula-macro-footer');"
-					 
-		 tal:on-error="nothing">	
+		>	
 		 	
 		<!-- Logo -->
 		<div id="macro_logofooter">
 			<a href="/" title="P&aacute;gina Inicial">
 				<tal:cond condition="python: view_org.portal_type!='OrganizationalStructure'">
-					<img tal:condition="python: config_obj.logo_footer is not None" 
-					     tal:attributes="src python: config_obj.logo_footer.to_object.absolute_url()" />
-			
-					<img tal:condition="python: config_obj.logo_footer is None" 
+					<img tal:condition="python: config_obj.getLogoRodape is not None" 
+					     tal:attributes="src python: config_obj.getLogoRodape().absolute_url()" />
+					
+					<img tal:condition="python: config_obj.getLogoRodape is None" 
 					     src="/++resource++vindula.controlpanel/logo_rodape.png" />
 				</tal:cond>
 					 
@@ -40,10 +39,10 @@
 		<!-- Text -->
 		<div id="macro_textfooter">
 			
-			<p tal:condition="python: config_obj.text_footer is not None"
-			   tal:content="structure config_obj/text_footer/output"></p>
+			<p tal:condition="python: config_obj.getText()"
+				tal:content="structure python: config_obj.getText()"></p>
 			   
-			<p tal:condition="python: config_obj.text_footer is None">&copy; 2011 Vindula Software. All Rights Reserved.</p>
+			<p tal:condition="python: not config_obj.getText()">&copy; 2011 Vindula Software. All Rights Reserved.</p>
 			
 			<a class="theme-edit"
 			   title="Clique aqui para editar o texto"
