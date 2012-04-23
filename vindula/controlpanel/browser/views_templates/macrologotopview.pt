@@ -2,19 +2,18 @@
 	<div id="macro_logotop"
 		 tal:define="portal python: context.portal_url.getPortalObject();
 	 				 config_obj python: portal['control-panel-objects']['vindula_themeconfig'];
-					 
 					 view_org context/OrgStruct_view;
 					 view python:context.restrictedTraverse('@@vindula-macro-logotop');"
 					 
 		 tal:on-error="nothing">
 
 		<a class="vindula-portal-logo" tal:attributes="href string:${context/portal_url}" title="P&aacute;gina Inicial">
-			<tal:cond condition="python: view_org.portal_type!='OrganizationalStructure'">
+			<tal:cond condition="python: view_org.portal_type != 'OrganizationalStructure'">
 				
-				<img tal:condition="python: config_obj.getLogoCabecalho is not None" 
+				<img tal:condition="python: config_obj.getLogoCabecalho() is not None" 
 				     tal:attributes="src python: config_obj.getLogoCabecalho().absolute_url()" />
 		
-				<img tal:condition="python: config_obj.getLogoCabecalho is None" 
+				<img tal:condition="python: config_obj.getLogoCabecalho() is None" 
 				     src="/++resource++vindula.controlpanel/logo_topo.png" />
 			</tal:cond>
 			<tal:cond condition="python: view_org.portal_type=='OrganizationalStructure'">
