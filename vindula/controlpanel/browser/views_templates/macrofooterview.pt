@@ -9,12 +9,9 @@
 		<!-- Logo -->
 		<div id="macro_logofooter">
 			<a href="/" title="P&aacute;gina Inicial">
-				<tal:cond condition="python: view_org.portal_type!='OrganizationalStructure'">
-					<img tal:condition="python: config_obj.getLogoRodape is not None" 
-					     tal:attributes="src python: config_obj.getLogoRodape().absolute_url()" />
-					
-					<img tal:condition="python: config_obj.getLogoRodape is None" 
-					     src="/++resource++vindula.controlpanel/logo_rodape.png" />
+				<tal:cond condition="python: view_org.portal_type!='OrganizationalStructure' and config_obj.getLogoRodape()">
+						<img tal:attributes="src python: config_obj.getLogoRodape().absolute_url()" />
+						<img src="/++resource++vindula.controlpanel/logo_rodape.png" />
 				</tal:cond>
 					 
 				<tal:cond condition="python: view_org.portal_type=='OrganizationalStructure'">
