@@ -97,6 +97,16 @@ ThemeConfig_schema =  ATDocumentSchema.copy() + Schema((
         ),
         schemata = 'Layout'
     ),
+    StringField(
+        name='corMenuPortal',
+        searchable=0,
+        required=0,
+        widget=SmartColorWidget(
+            label='Cor do background do Menu',
+            description="Cor do background do Menu de todo portal.",
+        ),
+        schemata = 'Layout'
+    ),
     
     ReferenceField('imageBackground',
         multiValued=0,
@@ -172,6 +182,7 @@ class ThemeConfigCssView(grok.View):
             D['url'] = obj.getImageBackground().absolute_url()
         except:
             D['url'] = '/++resource++vindula.themedefault/images/bkgs/bk_body.jpg'
+        D['corMenu'] = obj.corMenuPortal
         D['colorBG'] = obj.corBackground
         
         return D      
@@ -183,6 +194,7 @@ class ThemeConfigCssView(grok.View):
             if ctx.activ_personalit:
                 D['id'] = ctx.id 
                 D['cor'] = ctx.corPortal
+                D['corMenu'] = ctx.corMenuOrganizacional
                 if ctx.getImageBackground():
                     D['url'] = ctx.getImageBackground().absolute_url()
                 else:
@@ -199,6 +211,7 @@ class ThemeConfigCssView(grok.View):
         id = config.get('id',plone)
         color = config.get('cor','#F58220') or '#F58220'
         url = config.get('url','')
+        corMenu = config.get('corMenu','')
         colorBG = config.get('colorBG','')
         
         css =  '/* vindula_theme.css */\n'
@@ -234,6 +247,13 @@ class ThemeConfigCssView(grok.View):
         css += '    .%s .geral_busca .searchButton {background-color: %s !important;}\n' %(id,color)
         css += '    .%s #portal-globalnav-drop .selected a,#portal-globalnav-drop li:hover a {background-color: #000000;color:%s !important;}\n' %(id,color)
         css += '    .%s #portal-globalnav-drop.nivel1 li.selected a:hover {color:%s !important;}\n' %(id,color)
+        css += '    .%s #portal-globalnav-drop .selected a, #portal-globalnav-drop li:hover a {background:%s ;color: %s; !important}\n' %(id,corMenu,color)
+        css += '    .%s #nav .nivel1 li.selected {background: none repeat scroll 0 0 %s !important;}\n' %(id,corMenu)
+        css += '    .%s #nav .nivel2 li.selected {background-color: %s !important;}\n' %(id,corMenu)
+        css += '    .%s #nav .nivel2 li, #nav .nivel2 li.selected {border: 4px solid %s !important;}\n' %(id,corMenu)
+        css += '    .%s #nav .nivel2 {background: none repeat scroll 0 0 %s;}\n' %(id,corMenu)
+        css += '    .%s #nav .nivel2 li, #nav .nivel2 li.selected  {border: 4px solid %s;}\n' %(id,corMenu)
+        css += '    .%s #nav .nivel2 li, #nav .nivel2 li  {border: 4px solid %s;}\n' %(id,corMenu)
         css += '    .%s #portal-globalnav-drop li:hover ul li:hover a.hide {background-color: %s; color:#000000 !important;}\n' %(id,color)
         css += '    .%s #portal-globalnav-drop li:hover ul li.selected a.hide {color:%s !important;}\n' %(id,color)
         
