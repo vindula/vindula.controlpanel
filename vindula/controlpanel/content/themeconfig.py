@@ -243,6 +243,7 @@ class ThemeConfigCssView(grok.View):
         css += '    .%s .cont_superior .documentFirstHeading{color: %s !important;}\n' %(id,color)
         css += '    .%s #like .link{color:%s !important;}\n' %(id,color) 
         css += '/* topo_nav.css */\n'
+        css += '    .%s #nav .nivel1 {border-bottom-color: %s}\n' %(id,corMenu)
         css += '    .%s #nav li a:hover {color:%s !important;}\n' %(id,color)
         css += '    .%s .geral_busca .searchButton {background-color: %s !important;}\n' %(id,color)
         css += '    .%s #portal-globalnav-drop .selected a,#portal-globalnav-drop li:hover a {background-color: #000000;color:%s !important;}\n' %(id,color)
@@ -253,8 +254,10 @@ class ThemeConfigCssView(grok.View):
         css += '    .%s #nav #normal-menu.nivel2 li, #nav .nivel2 li.selected  {border: 4px solid %s !important;}\n' %(id,corMenu)
         css += '    .%s #nav .nivel2 li, #nav .nivel2 li.selected  {border: 4px solid %s;}\n' %(id,corMenu)
         css += '    .%s #nav .nivel2 li, #nav .nivel2 li  {border: 4px solid %s;}\n' %(id,corMenu)
+        css += '    .%s #portal-globalnav-drop li:hover ul li:hover ul li a.hide {background-color: %s !important; color:#FFFFFF !important;}\n' %(id,corMenu)
+        css += '    .%s #portal-globalnav-drop li:hover ul li.selected a.hide,#portal-globalnav-drop li:hover ul li:hover ul li.selected a.hide {color:%s !important;}\n' %(id,color)
         css += '    .%s #portal-globalnav-drop li:hover ul li:hover a.hide {background-color: %s !important; color:#000000 !important;}\n' %(id,color)
-        css += '    .%s #portal-globalnav-drop li:hover ul li.selected a.hide {color:%s !important;}\n' %(id,color)
+        css += '    .%s #portal-globalnav-drop li:hover ul li ul li:hover a.hide {background-color: %s !important; color:#000000 !important;}\n' %(id,color)
         
         self.response.setHeader('Content-Type', 'text/css; charset=UTF-8')
         return css
