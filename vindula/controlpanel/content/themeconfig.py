@@ -192,14 +192,15 @@ class ThemeConfigCssView(grok.View):
         D = {}
         if ctx.portal_type != 'Plone Site':
             if ctx.activ_personalit:
+
                 D['id'] = ctx.id 
-                D['cor'] = ctx.corPortal
-                D['corMenu'] = ctx.corMenuOrganizacional
+                D['cor'] = ctx.getCorPortal()
+                D['corMenu'] = ctx.getCorMenuOrganizacional()
                 if ctx.getImageBackground():
                     D['url'] = ctx.getImageBackground().absolute_url()
                 else:
-                    D['url']  = '/++resource++vindula.controlpanel/logo_topo.png'
-                D['colorBG'] = ctx.corBackground
+                    D['url']  = '/++resource++vindula.themedefault/images/bkgs/bk_body.jpg'
+                D['colorBG'] = ctx.getCorBackground()
         else:
             D = self.getConfLayout()
             
@@ -210,9 +211,9 @@ class ThemeConfigCssView(grok.View):
         plone = getSite().id
         id = config.get('id',plone)
         color = config.get('cor','#F58220') or '#F58220'
-        url = config.get('url','')
-        corMenu = config.get('corMenu','')
-        colorBG = config.get('colorBG','')
+        url = config.get('url','/++resource++vindula.themedefault/images/bkgs/bk_body.jpg')
+        corMenu = config.get('corMenu','#000') or '#000'
+        colorBG = config.get('colorBG','#fff') or '#FFF'
         
         css =  '/* vindula_theme.css */\n'
         css += '    .%s .titulo_info_boxTipo2 h4 a{color: %s !important;}\n' %(id,color) 

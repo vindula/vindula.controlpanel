@@ -46,8 +46,8 @@ class MacroLogoTopView(grok.View):
                 if ctx.getLogoPortal():
                     D['url'] = ctx.getLogoPortal().absolute_url()
                 else:
-                    if config_obj.logo_top is not None:
-                        D['url']  =  config_obj.logo_top.to_object.absolute_url()
+                    if config_obj.getLogoCabecalho() is not None:
+                        D['url']  =  config_obj.getLogo_top().absolute_url()
                     else:
                         D['url']  = "/++resource++vindula.controlpanel/logo_topo.png"
         return D
@@ -72,7 +72,7 @@ class MacroFooterView(grok.View):
                 if ctx.getLogoRodape():
                     D['url'] = ctx.getLogoRodape().absolute_url()
                 else:
-                    if config_obj.getLogoCabecalho is not None:
+                    if config_obj.getLogoCabecalho() is not None:
                         D['url']  =  config_obj.getLogoCabecalho().absolute_url()
                     else:
                         D['url']  = "/++resource++vindula.controlpanel/logo_rodape.png"              
