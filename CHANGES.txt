@@ -4,4 +4,7 @@ Changelog
 1.0 (released)
 ------------------
 
-
+1.1 - 2012-04-26
+-------------------
+	- patronização dos campos do objeto de configuração do tema 
+	- correção dos metodos de personalização da view personal-layout.css

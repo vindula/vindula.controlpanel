@@ -98,7 +98,7 @@ ThemeConfig_schema =  ATDocumentSchema.copy() + Schema((
         schemata = 'Layout'
     ),
     StringField(
-        name='corMenuPortal',
+        name='corMenu',
         searchable=0,
         required=0,
         widget=SmartColorWidget(
@@ -155,8 +155,11 @@ class ThemeConfig(ATDocumentBase):
         types = self.portal_types.listContentTypes()
         return types
     
-        
-    
+registerType(ThemeConfig, PROJECTNAME)
+
+
+#----------------------------        
+#Views de configuração    
 class ThemeConfigView(grok.View):
     grok.context(IThemeConfig)
     grok.require('zope2.View')
@@ -174,46 +177,50 @@ class ThemeConfigCssView(grok.View):
     grok.require('zope2.View')
     grok.name('personal-layout.css')
      
+    def checkTransparent(self, value):
+        if value == 'transparent':
+            return ''
+        else:
+            return value
+        
+    def getConfig(self, obj): 
+        D = {}
+        D['cor'] = self.checkTransparent(obj.getCorPortal()) or '#F58220'
+        D['corMenu'] = self.checkTransparent(obj.getCorMenu()) or '#000' 
+        D['colorBG'] = self.checkTransparent(obj.getCorBackground()) or '#FFF'
+        
+        if obj.getImageBackground():
+            D['url'] = obj.getImageBackground().absolute_url()
+        
+        elif D.get('colorBG') == '#FFF':
+            D['url'] = '/++resource++vindula.themedefault/images/bkgs/bk_body.jpg'
+        
+        else:
+            D['url'] = ''
+        
+        return D
+     
     def getConfLayout(self):
         obj = getSite()['control-panel-objects']['vindula_themeconfig']
-        D = {}
-        D['cor'] = obj.corPortal
-        try:
-            D['url'] = obj.getImageBackground().absolute_url()
-        except:
-            D['url'] = '/++resource++vindula.themedefault/images/bkgs/bk_body.jpg'
-        D['corMenu'] = obj.corMenuPortal
-        D['colorBG'] = obj.corBackground
-        
-        return D      
+        return self.getConfig(obj)       
           
     def getConfiguration(self):
         ctx = self.context.restrictedTraverse('OrgStruct_view')()
-        D = {}
         if ctx.portal_type != 'Plone Site':
             if ctx.activ_personalit:
+                return self.getConfig(ctx), ctx.id 
+        
+        return self.getConfLayout(), ''
 
-                D['id'] = ctx.id 
-                D['cor'] = ctx.getCorPortal()
-                D['corMenu'] = ctx.getCorMenuOrganizacional()
-                if ctx.getImageBackground():
-                    D['url'] = ctx.getImageBackground().absolute_url()
-                else:
-                    D['url']  = '/++resource++vindula.themedefault/images/bkgs/bk_body.jpg'
-                D['colorBG'] = ctx.getCorBackground()
-        else:
-            D = self.getConfLayout()
-            
-        return D
     
     def render(self):
-        config = self.getConfiguration()
+        config, id = self.getConfiguration()
         plone = getSite().id
-        id = config.get('id',plone)
+        id = id or plone
         color = config.get('cor','#F58220') or '#F58220'
         url = config.get('url','/++resource++vindula.themedefault/images/bkgs/bk_body.jpg')
-        corMenu = config.get('corMenu','#000') or '#000'
-        colorBG = config.get('colorBG','#fff') or '#FFF'
+        corMenu = config.get('corMenu','#000000') or '#0000000'
+        colorBG = config.get('colorBG','#FFFFFF') or '#FFFFFFF'
         
         css =  '/* vindula_theme.css */\n'
         css += '    .%s .titulo_info_boxTipo2 h4 a{color: %s !important;}\n' %(id,color) 
@@ -263,4 +270,4 @@ class ThemeConfigCssView(grok.View):
         self.response.setHeader('Content-Type', 'text/css; charset=UTF-8')
         return css
 
-registerType(ThemeConfig, PROJECTNAME)
+
