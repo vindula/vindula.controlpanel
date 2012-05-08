@@ -31,6 +31,15 @@ ThemeConfig_schema =  ATDocumentSchema.copy() + Schema((
       
     ),
     
+    BooleanField(
+        name='ativa_buscaAnonima',
+        default=True,
+        widget=BooleanWidget(
+            label="Ativar busca para usuários anônimos",
+            description='Se selecionado, Ativa a caixa de busca de conteudo para usuários anônimos.',
+        ),
+      
+    ),
 
     ReferenceField('logoCabecalho',
         multiValued=0,
@@ -266,6 +275,10 @@ class ThemeConfigCssView(grok.View):
         css += '    .%s #portal-globalnav-drop li:hover ul li.selected a.hide,#portal-globalnav-drop li:hover ul li:hover ul li.selected a.hide {color:%s !important;}\n' %(id,color)
         css += '    .%s #portal-globalnav-drop li:hover ul li:hover a.hide {background-color: %s !important; color:#000000 !important;}\n' %(id,color)
         css += '    .%s #portal-globalnav-drop li:hover ul li ul li:hover a.hide {background-color: %s !important; color:#000000 !important;}\n' %(id,color)
+        css += '/* chat.css */\n'
+        css += '    .%s .chatboxhead {background-color: %s; border-right-color: %s; border-left-color: %s;}\n' %(id,color,color,color)
+        css += '    .%s .chatboxblink {background-color: %s; border-right-color: %s; border-left-color: %s;}\n' %(id,color,color,color)
+        css += '    .%s .chatboxtextareaselected {border-color: %s;}\n' %(id,color)
         
         self.response.setHeader('Content-Type', 'text/css; charset=UTF-8')
         return css

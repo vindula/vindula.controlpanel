@@ -1,0 +1,15 @@
+<configure
+    xmlns:browser="http://namespaces.zope.org/browser"
+	xmlns="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="vindula.controlpanel">
+
+    <!-- Necessario adicionar no buildout: eggs = z3c.jbot -->
+    <include package="z3c.jbot" file="meta.zcml" />
+    
+	<browser:jbot
+      	  directory="templates" />		
+
+  <!-- -*- extra stuff goes here -*- -->
+	  
+</configure>
