@@ -11,7 +11,7 @@
 			                             						   errors form_data/errors | python:{};
 										  						   form_values form_data/data | python:{};">
 		    <div id="content" >
-				<h1>Edite as informações da sua empresa</h1>	
+				<h1>Informa&ccedil;&otilde;es corporativas</h1>	
 				<div id="interna" >    		
 			        <form name="vindulaCompanyInformation" id="vindulaCompanyInformation" enctype="multipart/form-data" class="enableAutoFocus" action="vindula-company-information" method="POST">
 			            <fieldset>

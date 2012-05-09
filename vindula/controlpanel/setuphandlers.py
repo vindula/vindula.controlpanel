@@ -57,7 +57,7 @@ def link_user_folder(context):
         if not 'link-user-folder' in folder_control_panel.objectIds():
             folder_control_panel.invokeFactory('Folder', 
                                                id='link-user-folder', 
-                                               title='Links Adicionais aos usuários',
+                                               title='Links da Barra Pessoal',
                                                description='Pasta que guardar os links adicionais aos usuários.',
                                                excludeFromNav = True)
                             

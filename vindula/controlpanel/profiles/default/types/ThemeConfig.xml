@@ -4,7 +4,7 @@
         xmlns:i18n="http://xml.zope.org/namespaces/i18n">
  
  <!-- Basic metadata -->
- <property name="title" i18n:translate="">Theme Config</property>
+ <property name="title" i18n:translate="">Tema</property>
  <property name="i18n_domain">vindula.controlpanel</property>
  <property name="description" i18n:translate="">Objeto de configurações do Tema do Portal.</property>
  <property name="content_icon">++resource++vindula.controlpanel/vindula.png</property>

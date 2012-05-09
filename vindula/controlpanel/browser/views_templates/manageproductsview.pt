@@ -19,7 +19,7 @@
 			
         	<link rel="stylesheet" type="text/css" tal:attributes="href string:++resource++vindula.controlpanel/controlpanel_manage_products.css"/>
 			
-            <h1>Gerenciar Produtos</h1>
+            <h1>Produtos do Plone</h1>
             <a href="" class="link-parent" tal:attributes="href string: $portal_url/plone_control_panel"> 
                 Voltar para as Configurações do Site
 			</a>

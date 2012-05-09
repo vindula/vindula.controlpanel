@@ -5,7 +5,7 @@
 		xmlns:i18n="http://xml.zope.org/namespaces/i18n">
  
  <!-- Basic metadata -->
- <property name="title" i18n:translate="">Configuraçoes de Usuários Vindula</property>
+ <property name="title" i18n:translate="">Ativação de Funcionalidades</property>
  <property name="description" i18n:translate="">
  	Permite a configução das funcionalidades que o Vindula oferece.
  </property>

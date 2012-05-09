@@ -8,7 +8,7 @@
 	    <div metal:fill-slot="prefs_configlet_content" tal:define="form_data view/load_from | python:{};
 												   form_values form_data/data | python:{}">
 		    <div id="content" >
-				<h1>Habilite os comentarios do portal</h1>	
+				<h1>Coment&aacute;rios</h1>	
 				<div id="interna" >    		
 			        <form name="companyinformation" id="companyinformation" enctype="multipart/form-data" class="enableAutoFocus" 
 						  action="vindula-comments-configuration" method="POST">
