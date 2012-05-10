@@ -32,7 +32,8 @@ class IVindulaConfigAll(form.Schema):
     
     ativa_compartilhamento = schema.Bool(
                 title=_(u'label_ativa_conpartilhamento', default=u'Ativar o compartilhamento nas redes sociais'),
-                description=_(u'help_activ_share', default=u'Se selecionado, Ativa a opção de compartilhamento nas redes sociais de todos os itens "Noticia" do portal'),
+                description=_(u'help_activ_share', default=u'Se selecionado, Ativa a opção de compartilhamento nas redes sociais\
+                                                             de todos os itens "Noticia" do portal'),
                 default=True
                 )
     
@@ -50,7 +51,8 @@ class IVindulaConfigAll(form.Schema):
     
     ativa_alert_first_access = schema.Bool(
             title=_(u'label_ativa_alert_first_access', default=u'Ativar a menssagem para o primeira cadastro no Myvindula'),
-            description=_(u'help_ativa_alert_first_access', default=u'Se selecionado, Ativa a menssagem para o usuario fazer seu primeira cadastro do Myvindula no portal'),
+            description=_(u'help_ativa_alert_first_access', default=u'Se selecionado, Ativa a menssagem para o usuario fazer\
+                                                                      seu primeira cadastro do Myvindula no portal'),
             default=True
             )
     
@@ -60,6 +62,12 @@ class IVindulaConfigAll(form.Schema):
                 default=False
                 )
     
+    ativa_filtro_busca_user = schema.Bool(
+                title=_(u'label_ativa_filtro_busca_user', default=u'Altera o mecanismo de buscar de usuários'),
+                description=_(u'help_ativa_filtro_busca_user', default=u'Se selecionado, Ativa o filtro de só buscar os usuários\
+                                                                         que possuem telefone cadastrado no portral'),
+                default=False
+                )
     
     
 class VindulaConfiguration(grok.View):
@@ -145,6 +153,14 @@ class VindulaConfiguration(grok.View):
             return control.ativa_alert_first_access
         else:
             return False   
+    
+    def check_filtro_busca_user(self):
+        if self.configurador():
+            control = self.configurador()
+            return control.ativa_filtro_busca_user
+        else:
+            return False   
         
+            
     
     
