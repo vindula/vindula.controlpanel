@@ -27,6 +27,7 @@ setup(name='vindula.controlpanel',
       install_requires=[
           'setuptools',
           'plone.app.dexterity',
+          'Products.SmartColorWidget',
           # -*- Extra requirements: -*-
       ],
       entry_points="""
