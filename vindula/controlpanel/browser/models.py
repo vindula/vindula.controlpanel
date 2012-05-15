@@ -6,7 +6,7 @@ from vindula.myvindula import MessageFactory as _
 from storm.locals import *
 from storm.locals import Store
 from vindula.myvindula.user import BaseStore, BaseFunc
-
+import pickle
 
 
 class ModelsCompanyInformation(Storm, BaseStore):
@@ -24,14 +24,46 @@ class ModelsCompanyInformation(Storm, BaseStore):
     postal_code = Unicode()
     email = Unicode()
     website = Unicode()
+    logo_corporate = Pickle()
     
     
     def get_CompanyInformation(self):
-        data = self.store.find(ModelsCompanyInformation).one()
-        if data:
+        data = self.store.find(ModelsCompanyInformation) #.one()
+        if data.count() > 0:
             return data
         else:
             return None
+    
+    def get_CompanyInformation_by_Name(self, name):
+        data = self.store.find(ModelsCompanyInformation, Or(ModelsCompanyInformation.short_name.like('%' + '%'.join(name.split(' ')) + '%' ),
+                                                            ModelsCompanyInformation.corporate_name.like('%' + '%'.join(name.split(' ')) + '%' ))
+                               )
+        if data.count() > 0:
+            return data[0]
+        else:
+            return None
+    
+    
+    
+    def get_CompanyInformation_byID(self, id):
+        data = self.store.find(ModelsCompanyInformation, ModelsCompanyInformation.id == id).one()
+        if data:
+            return data
+        else:
+            return None        
+
+    def get_CompanyInformation_by_CNPJ(self, cnpj):
+        data = self.store.find(ModelsCompanyInformation, ModelsCompanyInformation.cnpj == cnpj).one()
+        if data:
+            return data
+        else:
+            return None        
+
+    def del_CompanyInformation(self, id):
+        result = self.get_CompanyInformation_byID(id)
+        if result:
+            self.store.remove(result)
+            self.store.flush()
 
     def set_CompanyInformation(self,**kwargs):
         # adicionando...
@@ -53,10 +85,12 @@ class RegistrationCompanyInformation(BaseFunc):
               'stade'         : {'required': False, 'type' : to_utf8, 'label':'Estado',       'decription':u'Digite a estado da empresa',       'ordem':6},
               'postal_code'   : {'required': False, 'type' : to_utf8, 'label':'CEP',          'decription':u'Digite o cep da empresa',          'ordem':7},
               'email'         : {'required': False, 'type' : 'email',   'label':'E-mail',       'decription':u'Digite o email da empresa',        'ordem':8},
-              'website'       : {'required': False, 'type' : to_utf8, 'label':'Site',         'decription':u'Digite o site da empresa',         'ordem':9}}
+              'website'       : {'required': False, 'type' : to_utf8, 'label':'Site',           'decription':u'Digite o site da empresa',         'ordem':9},
+              'logo_corporate' : {'required': False, 'type' : 'file',  'label':'Logo da Empresa','decription':u'Coloque o logo da empresa',        'ordem':10},
+              }
                         
     def registration_processes(self,context):
-        success_url = context.context.absolute_url() + '/@@vindula-control-panel'
+        success_url = context.context.absolute_url() + '/vindula-company-information'
         access_denied = context.context.absolute_url() + '/login'
         form = context.request # var tipo 'dict' que guarda todas as informacoes do formulario (keys,items,values)
         form_keys = form.keys() # var tipo 'list' que guarda todas as chaves do formulario (keys)
@@ -77,20 +111,45 @@ class RegistrationCompanyInformation(BaseFunc):
             # Inicia o processamento do formulario
             # chama a funcao que valida os dados extraidos do formulario (valida_form) 
             errors, data = valida_form(campos, context.request.form)  
-
+            
+            if form['logo_corporate'].filename != '':
+                
+                photo = form.get('logo_corporate',None)
+                filename = photo.filename # pega o nome do arquivo
+                if not filename.endswith('png') and not filename.endswith('jpg') and not filename.endswith('gif') and\
+                    not filename.endswith('PNG') and not filename.endswith('JPG') and not filename.endswith('GIF'): 
+                    
+                    errors['logo_corporate'] = u"Selecione um arquivo de Imagem"
+            
             if not errors:
-                # editando...
-                result = ModelsCompanyInformation().get_CompanyInformation()
-                if result:
-                    for campo in campos.keys():
-                        value = data.get(campo, None)
-                        setattr(result, campo, value)
+
+                if form['logo_corporate'].filename != '':
+                        photo = form.get('logo_corporate',None)    
+                        upload = photo.read()       
+                        M ={}
+                        M['data'] = upload
+                        M['filename'] = filename                        
+                        data['logo_corporate'] = pickle.dumps(M)
+                    
+                if 'id' in form_keys:
+                    # editando...
+                    id = int(form.get('id'))
+                    # editando...
+                    result = ModelsCompanyInformation().get_CompanyInformation_byID(id)
+                    if result:
+                        if data['logo_corporate'] is None:
+                            data['logo_corporate'] = result.logo_corporate
+                        
+                        for campo in campos.keys():
+                            value = data.get(campo, None)
+                            setattr(result, campo, value)
 
                 else:
                     #adicionando...
                     ModelsCompanyInformation().set_CompanyInformation(**data)
+                
                 #Redirect back to the front page with a status message
-                IStatusMessage(context.request).addStatusMessage(_(u"Thank you for your order. We will contact you shortly"), "info")
+                IStatusMessage(context.request).addStatusMessage(_(u"Empresa"), "info")
                 context.request.response.redirect(success_url)
                                    
             else:
@@ -98,9 +157,21 @@ class RegistrationCompanyInformation(BaseFunc):
                 form_data['data'] = data
                 return form_data
           
-        # se for um formulario de edicao 
-        else:
-            data = ModelsCompanyInformation().get_CompanyInformation()
+        # se clicou no botao "Excluir"
+        elif 'form.excluir' in form_keys:
+            id = int(form.get('id'))
+            ModelsCompanyInformation().del_CompanyInformation(id)
+          
+            #Redirect back to the front page with a status message
+            IStatusMessage(context.request).addStatusMessage(_(u"Empresa movida"), "info")
+            context.request.response.redirect(success_url)
+          
+        # se for um formulario de edicao
+        elif 'id' in form_keys:         
+            id = form.get('id','0')
+            id = int(id)
+
+            data = ModelsCompanyInformation().get_CompanyInformation_byID(id)
             D = {}
             for campo in campos.keys():
                 D[campo] = getattr(data, campo, '')
@@ -108,13 +179,16 @@ class RegistrationCompanyInformation(BaseFunc):
                form_data['data'] = D
                return form_data
             else:
-               return form_data
-              
-#        # se o usuario não estiver logado
-#        else:
-#            IStatusMessage(context.request).addStatusMessage(_(u'Error to saving the register.'),"erro")
-#            context.request.response.redirect(access_denied)
-    
+               return form_data                
+
+                
+        # se for um formulario de adicao
+        else:
+            return form_data      
+            
+
+
+
 class ModelsProducts(Storm, BaseStore):
     __storm_table__ = 'vin_controlpanel_products'
     

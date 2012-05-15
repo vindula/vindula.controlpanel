@@ -1,0 +1,44 @@
+<html metal:use-macro="here/prefs_main_template/macros/master">
+	<head>
+		<metal:js fill-slot="javascript_head_slot">
+			<script type="text/javascript" tal:attributes="src string:++resource++vindula.controlpanel/mascara.js"></script>
+			<script type="text/javascript" tal:attributes="src string:++resource++vindula.controlpanel/companyinformation.js"></script>
+		</metal:js>
+				
+	</head>
+	<body>
+	    <div metal:fill-slot="prefs_configlet_content" tal:define="form_data view/load_from | python:{};
+			                             						   errors form_data/errors | python:{};
+										  						   form_values form_data/data | python:{};">
+		    <div id="content" >
+				<h1>Informa&ccedil;&otilde;es corporativas</h1>	
+				<div id="interna" >    		
+			        <form name="vindulaCompanyInformation" id="vindulaCompanyInformation" enctype="multipart/form-data" class="enableAutoFocus" action="vindula-manage-company" method="POST">
+			            <fieldset>
+			            	<legend>Informações da Empresa</legend>
+							
+							<!-- ID --> 
+							<input tal:condition="request/id | nothing" id="id" type="hidden" value="" name="id" tal:attributes="value request/id | nothing">												
+							
+							<tal:def define="html python:view.geraExtraCampos(form_data)">
+								<tal:rep repeat="x html">
+									<div tal:content="structure x"/>
+								</tal:rep>
+							</tal:def>
+						
+						</fieldset>
+						<!-- Botões de ação -->	
+					   	<fieldset>
+					   		<br/>
+							<div style="float:left; width:100%">
+								<input style="width:100px" class="button-erp" type="submit" value="Voltar" name="form.voltar">
+								<input style="width:100px;" class="button-erp" type="submit" value="Salvar" name="form.submited">
+								<input tal:condition="request/id|nothing" class="button-erp" type="submit" value="Excluir" name="form.excluir">
+							</div>
+						</fieldset>
+					</form>
+				</div>
+		    </div>
+	    </div>    
+	</body>
+</html>
