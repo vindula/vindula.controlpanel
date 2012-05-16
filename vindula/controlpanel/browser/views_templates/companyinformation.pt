@@ -7,32 +7,58 @@
 				
 	</head>
 	<body>
-	    <div metal:fill-slot="prefs_configlet_content" tal:define="form_data view/load_from | python:{};
-			                             						   errors form_data/errors | python:{};
-										  						   form_values form_data/data | python:{};">
+	    <div metal:fill-slot="prefs_configlet_content" tal:define="form_data view/load_from | python:{};">
 		    <div id="content" >
 				<h1>Informa&ccedil;&otilde;es corporativas</h1>	
 				<div id="interna" >    		
-			        <form name="vindulaCompanyInformation" id="vindulaCompanyInformation" enctype="multipart/form-data" class="enableAutoFocus" action="vindula-company-information" method="POST">
 			            <fieldset>
-			            	<legend>Informações da Empresa</legend>
-												
-							<tal:def define="html python:view.geraExtraCampos(form_data)">
-								<tal:rep repeat="x html">
-									<div tal:content="structure x"/>
+			            	<legend>Empresas Cadastradas</legend>
+							<table>
+								<tr>
+									<th>Nome da Empresa</th>
+									<th>Razão Social</th>
+									<th>Telefone</th>
+									<th>E-mail</th>
+									<th>Cidade / Estado</th>
+									<th>Gerenciar</th>
+									
+								</tr>
+								<tal:rep repeat="item form_data">
+									<tr>
+										<td tal:content="item/short_name|python:''"></td>
+										<td tal:content="item/corporate_name|python:''"></td>
+										<td tal:content="item/phone_number|python:''"></td>
+										<td tal:content="item/address|python:''"></td>
+										<td tal:content="string:${item/city|python:''} / ${item/stade|python:''}"></td>
+										
+										<td>
+											<a tal:attributes="href string:${context/portal_url}/vindula-manage-company?id=${item/id|nothing}">Editar</a> / 
+											<a tal:attributes="href string:${context/portal_url}/vindula-manage-company?id=${item/id|nothing}">Editar</a>
+										</td>
+									</tr>
+									
+									
 								</tal:rep>
-							</tal:def>
-						
+								
+								
+							</table>												
 						</fieldset>
+						<fieldset>
+			            	<legend>Nova Empresa</legend>
+			            	<p>
+			            		<a tal:attributes="href string:${context/portal_url}/vindula-manage-company">
+			            			Cadastrar nova empresa na intranet</a>
+			            	</p>
+						
 						<!-- Botões de ação -->	
 					   	<fieldset>
 					   		<br/>
 							<div style="float:left; width:100%">
-								<input style="width:100px" class="button-erp" type="submit" value="Voltar" name="form.voltar">
-								<input style="width:100px;" class="button-erp" type="submit" value="Salvar" name="form.submited">
+								<a tal:attributes="href string:${context/portal_url}/vindula-control-panel">
+									<input style="width:100px" class="button-erp" type="button" value="Voltar" name="form.voltar">
+								</a>
 							</div>
 						</fieldset>
-					</form>
 				</div>
 		    </div>
 	    </div>    

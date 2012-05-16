@@ -10,23 +10,22 @@ USE `myvindulaDB` ;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `myvindulaDB`.`vin_controlpanel_company_information` ;
 
-CREATE  TABLE IF NOT EXISTS `myvindulaDB`.`vin_controlpanel_company_information` (
-  `id` INT NOT NULL AUTO_INCREMENT ,
-  `short_name` VARCHAR(45) NOT NULL ,
-  `corporate_name` VARCHAR(45) NOT NULL ,
-  `cnpj` VARCHAR(45) NOT NULL ,
-  `phone_number` VARCHAR(45) NULL ,
-  `address` VARCHAR(45) NULL ,
-  `date_creation` DATETIME NOT NULL ,
-  `city` VARCHAR(45) NULL ,
-  `stade` VARCHAR(45) NULL ,
-  `postal_code` VARCHAR(45) NULL ,
-  `email` VARCHAR(45) NULL ,
-  `website` VARCHAR(45) NULL ,
-  PRIMARY KEY (`id`) )
-ENGINE = InnoDB
-AUTO_INCREMENT = 1
-DEFAULT CHARACTER SET = latin1;
+CREATE TABLE  `myvindulaDB`.`vin_controlpanel_company_information` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `short_name` varchar(45) NOT NULL,
+  `corporate_name` varchar(45) NOT NULL,
+  `cnpj` varchar(45) NOT NULL,
+  `phone_number` varchar(45) DEFAULT NULL,
+  `address` varchar(45) DEFAULT NULL,
+  `date_creation` datetime NOT NULL,
+  `city` varchar(45) DEFAULT NULL,
+  `stade` varchar(45) DEFAULT NULL,
+  `postal_code` varchar(45) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `website` varchar(45) DEFAULT NULL,
+  `logo_corporate` longblob,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1
 
 -- -----------------------------------------------------
 -- Table `myvindulaDB`.`vin_controlpanel_products`

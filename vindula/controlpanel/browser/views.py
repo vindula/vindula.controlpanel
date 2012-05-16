@@ -18,9 +18,11 @@ from plone.app.discussion.interfaces import IDiscussionSettings
 from Products.statusmessages.interfaces import IStatusMessage
 from vindula.controlpanel import MessageFactory as _
 
-from vindula.controlpanel.browser.models import RegistrationCompanyInformation, ModelsProducts
+from vindula.controlpanel.browser.models import RegistrationCompanyInformation, ModelsProducts, ModelsCompanyInformation
 
 from Products.GenericSetup.interfaces import ISetupTool    
+import pickle
+
 
 class ControlPanelView(grok.View):
     grok.context(INavigationRoot)
@@ -199,7 +201,53 @@ class CompanyInformation(grok.View, BaseFunc):
     grok.name('vindula-company-information')
     
     def load_from(self):
+        return ModelsCompanyInformation().get_CompanyInformation()
+    
+
+class ManageCompanyInformation(grok.View, BaseFunc):
+    grok.context(INavigationRoot)
+    grok.require('cmf.ManagePortal')
+    grok.name('vindula-manage-company')
+    
+    def load_from(self):
         return RegistrationCompanyInformation().registration_processes(self)
+
+#Views de renderização dos Logo da empresa --------------   
+class CompanyInfImage(grok.View, BaseFunc):
+    grok.context(Interface)
+    grok.require('zope2.View')
+    grok.name('company-logo')
+    
+    def render(self):
+        pass
+    
+    def update(self):
+        form = self.request.form
+        
+        if 'id' in form.keys():
+            id = form.get('id','0')
+            campo_image = ModelsCompanyInformation().get_CompanyInformation_byID(int(id))
+
+        elif 'cnpj' in form.keys():
+            try: cnpj = unicode(form.get('cnpj',''))
+            except: cnpj = form.get('cnpj','')  
+            campo_image = ModelsCompanyInformation().get_CompanyInformation_by_CNPJ(cnpj)
+        
+        else:
+            campo_image = None
+        
+        if campo_image:
+            image = campo_image.logo_corporate
+            x =  pickle.loads(image)
+            filename = x['filename']
+            self.request.response.setHeader("Content-Type", "image/jpeg", 0)
+            #self.request.response.setHeader('Content-Disposition','attachment; filename=%s'%(filename))
+            self.request.response.write(x['data'])
+        
+        else:
+            self.request.response.write('')    
+    
+    
     
 class CommentsConfigView(grok.View, BaseFunc):
     grok.context(INavigationRoot)

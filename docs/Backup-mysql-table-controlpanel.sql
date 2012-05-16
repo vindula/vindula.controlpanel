@@ -42,6 +42,7 @@ CREATE TABLE `vin_controlpanel_company_information` (
   `postal_code` varchar(45) DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,
   `website` varchar(45) DEFAULT NULL,
+  `logo_corporate` longblob,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -52,7 +53,7 @@ CREATE TABLE `vin_controlpanel_company_information` (
 
 LOCK TABLES `vin_controlpanel_company_information` WRITE;
 /*!40000 ALTER TABLE `vin_controlpanel_company_information` DISABLE KEYS */;
-INSERT INTO `vin_controlpanel_company_information` VALUES (1,'Vindula','Vindula Tecnologia','58.577.785/0001-45','(11) 4455-2233','Av dom Pedro II','2011-12-06 17:19:17','Santo Andre','São Paulo','09155-555','suporte@vindula.com.br','www.vindula.com.br');
+INSERT INTO `vin_controlpanel_company_information` VALUES (1,'Vindula','Vindula Tecnologia','58.577.785/0001-45','(11) 4455-2233','Av dom Pedro II','2011-12-06 17:19:17','Santo Andre','São Paulo','09155-555','suporte@vindula.com.br','www.vindula.com.br','');
 /*!40000 ALTER TABLE `vin_controlpanel_company_information` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
