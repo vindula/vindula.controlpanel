@@ -12,6 +12,7 @@ vindula.controlpanel.egg-info/paster_plugins.txt
 vindula.controlpanel.egg-info/requires.txt
 vindula.controlpanel.egg-info/top_level.txt
 vindula/controlpanel/__init__.py
+vindula/controlpanel/config.py
 vindula/controlpanel/setuphandlers.py
 vindula/controlpanel/vocabularies.py
 vindula/controlpanel/browser/__init__.py
@@ -20,5 +21,6 @@ vindula/controlpanel/browser/views.py
 vindula/controlpanel/content/__init__.py
 vindula/controlpanel/content/alertdisplay.py
 vindula/controlpanel/content/categories.py
+vindula/controlpanel/content/interfaces.py
 vindula/controlpanel/content/themeconfig.py
 vindula/controlpanel/content/vindulaconfigall.py

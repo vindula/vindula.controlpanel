@@ -354,4 +354,44 @@ class ManageLinksUserViewlet(grok.Viewlet):
                         L.append(D)
         
         return L
-        
+
+class ManageConfigBuscaView(grok.View):
+    grok.name('vindula-confg-busca') 
+    grok.require('zope2.View')
+    grok.context(Interface)
+    
+    def render(self):
+        pass
+
+    def getConfigurador(self):
+        if 'control-panel-objects' in  getSite().keys():
+            control = getSite()['control-panel-objects']
+            if 'vindula_themeconfig' in control.keys():
+                conf_theme = control['vindula_themeconfig']
+                return conf_theme.ativa_buscaAnonima 
+            else:
+                return None
+        else:
+            return None        
+
+
+    def checkSearch(self):
+        conf = self.getConfigurador()
+        if conf:
+            return True
+        else:
+            member = getSite().portal_membership.getAuthenticatedMember()
+            #Caso de intranet restrita ao publico
+            if member.getUserName() != 'Anonymous User':
+                #user Logado
+                return True
+            else:
+                #user Anonimo
+                return False
+            
+    def checkSearchRediret(self):
+        conf = self.checkSearch()
+        request = self.context.REQUEST
+        if not conf:
+            url = getSite().portal_url() + '/acl_users/credentials_cookie_auth/require_login?came_from='+request.getURL()
+            request.response.redirect(url)

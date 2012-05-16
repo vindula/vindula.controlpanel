@@ -168,7 +168,6 @@
             <img tal:attributes="src string:${portal_url}/spinner.gif" alt="" />
         </div>
     </div>
-
 </div>
 </body>
 </html>
