@@ -10,7 +10,7 @@ class IAlertDisplay(Interface):
     """ Vindula  Alert Display """
     
     activ_display = schema.Bool(title=_(u'label_activ_comment', default=u'Ativar Menssagem de Alerta'),
-                                description=_(u'help_activ_comment', default=u'Se selecionado, Ativa a visualição da mensagem em todo o portal'),
+                                description=_(u'help_activ_comment', default=u'Se selecionado, Ativa a visualização da mensagem em todo o portal'),
                                 default=False)
     
     type_messenger = schema.Choice(title=_(u"Tipo da menssagem"),
