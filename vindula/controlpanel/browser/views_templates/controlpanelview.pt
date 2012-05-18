@@ -31,7 +31,7 @@
                     <a  style="cursor:pointer;" >Usu&aacute;rios</a>
                 </li>
 				<li class="plain" id="redessociais">
-                    <a id="redessociais"  style="cursor:pointer;" >Itera&ccedil;&atilde;o/Social</a>
+                    <a id="redessociais"  style="cursor:pointer;" >Intera&ccedil;&atilde;o/Social</a>
                 </li>
 				<li class="plain" id="outros">
                     <a   style="cursor:pointer;" >Informa&ccedil;&otilde;es auxiliares</a>

@@ -8,3 +8,8 @@ Changelog
 -------------------
 	- patronização dos campos do objeto de configuração do tema 
 	- correção dos metodos de personalização da view personal-layout.css
+
+1.1 - 2012-05-14
+-------------------
+	- alteração do layout dos itens na view de configuração do vindula
+	- alteração dos titulos das funcionalidades do vindula
