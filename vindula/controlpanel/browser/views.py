@@ -416,7 +416,7 @@ class ManageConfigBuscaView(grok.View):
             control = getSite()['control-panel-objects']
             if 'vindula_themeconfig' in control.keys():
                 conf_theme = control['vindula_themeconfig']
-                return conf_theme.ativa_buscaAnonima 
+                return conf_theme.getAtiva_buscaAnonima()
             else:
                 return None
         else:

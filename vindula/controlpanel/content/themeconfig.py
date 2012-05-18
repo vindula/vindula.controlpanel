@@ -238,6 +238,7 @@ class ThemeConfigCssView(grok.View):
         css += '    .%s .portletWrapper .portletHeader-dainamic .topPortlet {background-color: %s !important;}' %(id,color)
         css += '    .%s .portletWrapper .portletHeader-dainamic .meioPortlet {background-color: %s !important;}' %(id,color)
         css += '    .%s .portletWrapper .portletHeader-dainamic .bottonPortlet {background-color: %s !important;}' %(id,color)
+        css += '    .%s .pag_all {background-color: %s !important;}' %(id,color)
         css += '/* cont_pagina.css */\n'
         css += '    .%s .cont_superior{ border-bottom-color: %s !important;}\n'%(id,color) 
         css += '    .%s .titulo h2 {color: %s !important;}\n' %(id,color) 
