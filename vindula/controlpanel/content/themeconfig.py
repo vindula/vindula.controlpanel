@@ -31,6 +31,15 @@ ThemeConfig_schema =  ATDocumentSchema.copy() + Schema((
       
     ),
     
+    BooleanField(
+        name='ativa_menudropdown_nivel2',
+        default=False,
+        widget=BooleanWidget(
+            label="Ativar segundo nível do Menu Dropdown",
+            description='Se selecionado, ativa o segundo nível do Menu DropDown do Portal.',
+        ),
+      
+    ),
 
     ReferenceField('logoCabecalho',
         multiValued=0,
