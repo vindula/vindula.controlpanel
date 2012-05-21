@@ -21,6 +21,7 @@ def installControlPanel(context):
     types = ['vindula.controlpanel.content.categories', 
              'vindula.controlpanel.content.alertdisplay',
              'vindula.controlpanel.content.vindulaconfigall',
+             'vindula.controlpanel.content.aniversariantesconfig',
              'ThemeConfig']
     
         

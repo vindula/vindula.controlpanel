@@ -57,6 +57,10 @@
 					<a tal:attributes="href string:${portal_url}/control-panel-objects/vindula_vindulaconfigall/edit">Ativa&ccedil;&atilde;o de Funcionalidades</a>
 				</div>
 				<div>
+				<img src="/++resource++vindula.controlpanel/icons/controlpanel_aniversariantesconfig.png" />
+					<a tal:attributes="href string:${portal_url}/control-panel-objects/vindula_aniversariantesconfig/edit">Listagem de campos dos aniversariantes</a>
+				</div>
+				<div>
 					<img src="/++resource++vindula.controlpanel/icons/controlpanel_vindulaeditfuncconfig.png" />
 					<a tal:attributes="href string:${portal_url}/myvindulamanagealluser">Gerenciamento de Usu&aacute;rios</a>
 				</div>
