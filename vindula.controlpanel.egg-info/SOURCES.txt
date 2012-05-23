@@ -10,18 +10,6 @@ vindula.controlpanel.egg-info/namespace_packages.txt
 vindula.controlpanel.egg-info/not-zip-safe
 vindula.controlpanel.egg-info/paster_plugins.txt
 vindula.controlpanel.egg-info/requires.txt
-vindula.controlpanel.egg-info/requires.txt.BACKUP.11843.txt
-vindula.controlpanel.egg-info/requires.txt.BACKUP.11900.txt
-vindula.controlpanel.egg-info/requires.txt.BACKUP.11957.txt
-vindula.controlpanel.egg-info/requires.txt.BASE.11843.txt
-vindula.controlpanel.egg-info/requires.txt.BASE.11900.txt
-vindula.controlpanel.egg-info/requires.txt.BASE.11957.txt
-vindula.controlpanel.egg-info/requires.txt.LOCAL.11843.txt
-vindula.controlpanel.egg-info/requires.txt.LOCAL.11900.txt
-vindula.controlpanel.egg-info/requires.txt.LOCAL.11957.txt
-vindula.controlpanel.egg-info/requires.txt.REMOTE.11843.txt
-vindula.controlpanel.egg-info/requires.txt.REMOTE.11900.txt
-vindula.controlpanel.egg-info/requires.txt.REMOTE.11957.txt
 vindula.controlpanel.egg-info/top_level.txt
 vindula/controlpanel/__init__.py
 vindula/controlpanel/config.py
@@ -32,6 +20,7 @@ vindula/controlpanel/browser/models.py
 vindula/controlpanel/browser/views.py
 vindula/controlpanel/content/__init__.py
 vindula/controlpanel/content/alertdisplay.py
+vindula/controlpanel/content/aniversariantesconfig.py
 vindula/controlpanel/content/categories.py
 vindula/controlpanel/content/interfaces.py
 vindula/controlpanel/content/themeconfig.py

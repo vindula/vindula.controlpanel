@@ -15,10 +15,12 @@ class ICategories(form.Schema):
         )
     
     list_macros = schema.Text(
-        title=_(u"Lista de macros disponiveis"),
-        description=_(u"Adicione as macro que podem ser utilizadas na tipo de conteudo 'Vindula Content Macro',<br />\
+        title=_(u"Lista de macros disponíveis"),
+        description=_(u"Adicione as macro que podem ser utilizadas na tipo de conteúdo 'Vindula Content Macro',<br />\
                         Adicione uma macro por linha, no padrão '[Nome] | [Pagina] | [Macro]'."),
-        default = _(u"Lista de usuários | myvindulalistall | page-view"),
+        default = _(u"Lista de usuários | myvindulalistall | page-view\nLista de usuários | myvindulalistall | page-view\n\
+                      Perfil do Usuário | myvindula-user-perfil | page-view\nNovos usuários | myvindula-news-employee | page-view\n\
+                      Pensamentos | howareu-list-all | page-view"),
         required=False,
         )
     

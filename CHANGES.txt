@@ -13,3 +13,7 @@ Changelog
 -------------------
 	- alteração do layout dos itens na view de configuração do vindula
 	- alteração dos titulos das funcionalidades do vindula
+	
+1.1.1 - 2012-05-23
+--------------------
+ 	- Correções de ortografia no porduto

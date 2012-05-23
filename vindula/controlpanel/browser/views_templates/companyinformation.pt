@@ -14,7 +14,7 @@
 			            <fieldset>
 			            	<legend>Empresas Cadastradas</legend>
 							<table>
-								<tr>
+								<tr align="center">
 									<th>Nome da Empresa</th>
 									<th>Razão Social</th>
 									<th>Telefone</th>
@@ -32,7 +32,6 @@
 										<td tal:content="string:${item/city|python:''} / ${item/stade|python:''}"></td>
 										
 										<td>
-											<a tal:attributes="href string:${context/portal_url}/vindula-manage-company?id=${item/id|nothing}">Editar</a> / 
 											<a tal:attributes="href string:${context/portal_url}/vindula-manage-company?id=${item/id|nothing}">Editar</a>
 										</td>
 									</tr>
