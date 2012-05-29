@@ -16,7 +16,7 @@ class ICategories(form.Schema):
     
     list_macros = schema.Text(
         title=_(u"Lista de macros disponiveis"),
-        description=_(u"Adicione as macro que podem ser utilizadas na tipo de conteudo 'Vindula Content Macro',<br />\
+        description=_(u"Adicione as macro que podem ser utilizadas no típo de conteúdo 'Vindula Content Macro',<br />\
                         Adicione uma macro por linha, no padrão '[Nome] | [Pagina] | [Macro]'."),
         default = _(u"Lista de usuários | myvindulalistall | page-view"),
         required=False,
