@@ -11,9 +11,18 @@ Changelog
 
 1.1.1 - 2012-05-14
 -------------------
-	- alteração do layout dos itens na view de configuração do vindula
-	- alteração dos titulos das funcionalidades do vindula
+- alteração do layout dos itens na view de configuração do vindula
+- alteração dos titulos das funcionalidades do vindula
+
+1.1.1 - 2012-05-23
+--------------------
+- Correções de ortografia no porduto
+
 	
 1.1.2 - 2012-05-14
 -------------------
-	- adicionado a mudan�a dinamica da cor das barras da pagina de Meu Perfil 
+- adicionado a mudança dinamica da cor das barras da pagina de Meu Perfil 
+
+1.1.3 - 2012-05-29
+---------------------
+- merge do master com o branch info-portlet-dinamic 

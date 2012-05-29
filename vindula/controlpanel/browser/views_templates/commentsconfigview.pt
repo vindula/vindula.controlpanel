@@ -13,13 +13,13 @@
 			        <form name="companyinformation" id="companyinformation" enctype="multipart/form-data" class="enableAutoFocus" 
 						  action="vindula-comments-configuration" method="POST">
 			            <fieldset>
-			            	<legend>Configuirações</legend>
+			            	<legend>Configurações</legend>
 							<div class="field">
 			                    <label for="globally_enabled">Permitir comentários</label>
 								<span class="fieldRequired" title="Obrigatório">(Obrigatório)</span>
 			                    <div  class="formHelp">Se selecionado, os usuários são capazes de postar comentários no site.
 								 					  Porém, você tem que habilitar comentários para tipos específicos de conteúdo, 
-													  pastas ou objetos de conteúdo que os usuários poderão postar comentários.</div>
+													  como pastas ou objetos de conteúdo que os usuários poderão postar comentários.</div>
 								<tal:def define="value request/globally_enabled | form_values/globally_enabled | nothing">
 									<input id="globally_enabled" value="globally_enabled"  name="globally_enabled"
 										   type="checkbox" tal:attributes="checked python:value" > Permitir comentários<br />

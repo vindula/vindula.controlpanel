@@ -13,7 +13,7 @@ class IVindulaConfigAll(form.Schema):
     """ Vindula User Config """
     
     ativa_editfunc = schema.Bool(
-                title=_(u'label_ativa_editfunc', default=u'Ativar a opção do usuário poder editar seu perfil no portal Myvindula'),
+                title=_(u'label_ativa_editfunc', default=u'Ativar a opção do usuário poder editar seu perfil no portal'),
                 description=_(u'help_activ_holerite', default=u'Se selecionado, ativa a opção do usuário poder editar seu perfil no portal Myvindula'),
                 default=True
                 )
@@ -50,8 +50,8 @@ class IVindulaConfigAll(form.Schema):
                 )
     
     ativa_alert_first_access = schema.Bool(
-            title=_(u'label_ativa_alert_first_access', default=u'Ativar a menssagem para o primeira cadastro no Myvindula'),
-            description=_(u'help_ativa_alert_first_access', default=u'Se selecionado, Ativa a menssagem para o usuario fazer\
+            title=_(u'label_ativa_alert_first_access', default=u'Ativar a mensagem para o primeiro cadastro no Myvindula'),
+            description=_(u'help_ativa_alert_first_access', default=u'Se selecionado, Ativa a mensagem para o usuário fazer\
                                                                       seu primeira cadastro do Myvindula no portal'),
             default=True
             )
@@ -65,7 +65,7 @@ class IVindulaConfigAll(form.Schema):
     ativa_filtro_busca_user = schema.Bool(
                 title=_(u'label_ativa_filtro_busca_user', default=u'Altera o mecanismo de buscar de usuários'),
                 description=_(u'help_ativa_filtro_busca_user', default=u'Se selecionado, Ativa o filtro de só buscar os usuários\
-                                                                         que possuem telefone cadastrado no portral'),
+                                                                         que possuem telefone cadastrado no portal'),
                 default=False
                 )
     
