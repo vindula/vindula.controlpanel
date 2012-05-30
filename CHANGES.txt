@@ -26,3 +26,7 @@ Changelog
 1.1.3 - 2012-05-29
 ---------------------
 - merge do master com o branch info-portlet-dinamic 
+
+1.1.4 - 2012-05-30
+---------------------
+- Adicionado opção de mostrar recados a todos os usuários da intranet
