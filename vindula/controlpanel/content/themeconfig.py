@@ -38,7 +38,17 @@ ThemeConfig_schema =  ATDocumentSchema.copy() + Schema((
             label="Ativar busca para usuários anônimos",
             description='Se selecionado, Ativa a caixa de busca de conteudo para usuários anônimos.',
         ),
-      
+        
+    ),
+
+    BooleanField(
+        name='ativa_menudropdown_nivel2',
+        default=False,
+        widget=BooleanWidget(
+            label="Ativar segundo nível do Menu Dropdown",
+            description='Se selecionado, ativa o segundo nível do Menu DropDown do Portal.',
+        ),
+        
     ),
 
     ReferenceField('logoCabecalho',
