@@ -75,6 +75,12 @@ class IVindulaConfigAll(form.Schema):
                 default=False
                 )
     
+    ativa_richtext = schema.Bool(
+                title=_(u'label_ativa_richtext', default=u'Ativar a opção do usuário poder editar os comentários com o Editor TinyMCE'),
+                description=_(u'help_activ_holerite', default=u'Se selecionado ativa a opção do usuário poder editar os comentários com o Editor TinyMCE'),
+                default=False
+                )
+    
     
 class VindulaConfiguration(grok.View):
     grok.context(Interface)
@@ -172,5 +178,11 @@ class VindulaConfiguration(grok.View):
             control = self.configurador()
             return control.ativa_recados_user_publicos
         else:
-            return False            
-            
+            return False
+                    
+    def check_ativa_richtext(self):
+        if self.configurador():
+            control = self.configurador()
+            return control.ativa_richtext
+        else:
+            return False        
