@@ -30,3 +30,8 @@ Changelog
 1.1.4 - 2012-05-30
 ---------------------
 - Adicionado opção de mostrar recados a todos os usuários da intranet
+
+1.1.5 - 2012-06-05
+---------------------
+- Adição dos campos para customização do menu dropdown
+- Implantação do novo layout do menu dropdown

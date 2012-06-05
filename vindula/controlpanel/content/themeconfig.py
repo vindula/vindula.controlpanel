@@ -103,30 +103,20 @@ ThemeConfig_schema =  ATDocumentSchema.copy() + Schema((
             description="Largura do site em pixels, insira apenas números inteiros. Esta configuração não se aplica a todos os temas.",
         ),
     ),
-                                                       
-    #-----------BackGround do portal------------------#
-    
+                               
+    # -- Layout do portal ---#
+                                                        
     StringField(
-        name='corPortal',
+        name = 'corGeralPortal',
         searchable=0,
         required=0,
         widget=SmartColorWidget(
-            label='Cor do Portal',
-            description="Cor para toda área do portal.",
+            label='Cor dos Links do Portal',
+            description="Cor para grante parte do portal.",
         ),
         schemata = 'Layout'
-    ),
-    StringField(
-        name='corMenu',
-        searchable=0,
-        required=0,
-        widget=SmartColorWidget(
-            label='Cor do background do Menu',
-            description="Cor do background do Menu de todo portal.",
-        ),
-        schemata = 'Layout'
-    ),
-    
+    ),                                                        
+     
     ReferenceField('imageBackground',
         multiValued=0,
         allowed_types=('Image'),
@@ -149,9 +139,146 @@ ThemeConfig_schema =  ATDocumentSchema.copy() + Schema((
         ),
         schemata = 'Layout'
     ),
+                                                            
+                                                       
+    #-----------Menu do portal------------------#
     
-))
+    StringField(
+        name='corMenuFundo',
+        searchable=0,
+        required=0,
+        widget=SmartColorWidget(
+            label='Cor de fundo do menu',
+            description="Clique <a class='visualizacao' href='/++resource++vindula.controlpanel/menu/corMenuFundo.png'>aqui para exemplo</a>",
+            #description="Cor para o fundo do primeiro nível do menu do portal.",
+        ),
+        schemata = 'Menu'
+    ),
+                                                            
+    StringField(
+        name='corMenuFonte',
+        searchable=0,
+        required=0,
+        widget=SmartColorWidget(
+            label='Cor da fonte do menu',
+            description="Clique <a class='visualizacao' href='/++resource++vindula.controlpanel/menu/corMenuFonte.png'>aqui para exemplo</a>",
+            #description="Cor para a fonte do primeiro nível do menu do portal.",
+        ),
+        schemata = 'Menu'
+    ),
+            
+    StringField(
+        name='corMenuHoverDropdown',
+        searchable=0,
+        required=0,
+        widget=SmartColorWidget(
+            label='Cor do background do menu dropdown',
+            description="Clique <a class='visualizacao' href='/++resource++vindula.controlpanel/menu/corMenuHoverDropdown.png'>aqui para exemplo</a>",
+            #description="Cor do background do link quando estiver com o mouse selecionado no primeiro nível, e a cor do fundo do Menu Dropdown.",
+        ),
+        schemata = 'Menu'
+    ),   
+                                                        
+    ReferenceField('imageMenuBkg',
+        multiValued=0,
+        allowed_types=('Image'),
+        label=_(u"Imagem para o background do menu dropdown"),
+        relationship='imageBkgMenu',
+        widget=ReferenceBrowserWidget(
+            default_search_index='SearchableText',
+            label=_(u"Imagem para background do menu Dropdown"),
+            description='A imagem selecionada será exibida como plano de fundo do menu.\
+                         A imagem será mostrada em seu tamanho original, com repetição.'),
+        schemata = 'Menu'
+    ),
+    
+    StringField(
+        name='corMenuFonteDropdown',
+        searchable=0,
+        required=0,
+        widget=SmartColorWidget(
+            label='Cor da fonte do menu dropdown',
+            description="Clique <a class='visualizacao' href='/++resource++vindula.controlpanel/menu/corMenuFonteDropdown.png'>aqui para exemplo</a>",
+            #description="Cor da fonte do link quando estiver selecionado pelo mouse no Menu Dropdown.",
+        ),
+        schemata = 'Menu'
+    ), 
+    
+    StringField(
+        name='corMenuFonteHoverDropdown',
+        searchable=0,
+        required=0,
+        widget=SmartColorWidget(
+            label='Cor da fonte do menu, quando ativo no menu dropdown',
+            description="Clique <a class='visualizacao' href='/++resource++vindula.controlpanel/menu/corMenuFonteHoverDropdown.png'>aqui para exemplo</a>",
+#            description="Cor para a fonte do primeiro nível do menu do portal quando ele\
+#                         estiver quando selecionado pelo mouse e ao cor dos links dentro do Menu Dropdown.",
+        ),
+        schemata = 'Menu'
+    ),
+    
+    StringField(
+        name='corMenuDropdownHover',
+        searchable=0,
+        required=0,
+        widget=SmartColorWidget(
+            label='Cor do background do link ativo dentro do menu dropdown',
+            description="Clique <a class='visualizacao' href='/++resource++vindula.controlpanel/menu/corMenuDropdownHover.png'>aqui para exemplo</a>",
+            #description="Cor do link quando estiver selecionado pelo mouse dentro do Menu Dropdown.",
+        ),
+        schemata = 'Menu'
+    ),     
+    
+    StringField(
+        name='corMenuSelected',
+        searchable=0,
+        required=0,
+        widget=SmartColorWidget(
+            label='Cor do background do link selecionado no primeiro nível do menu',
+            description="Clique <a class='visualizacao' href='/++resource++vindula.controlpanel/menu/corMenuSelected.png'>aqui para exemplo</a>",
+            #description="Cor do fundo do link quando estiver selecionado no primeiro nível do Menu.",
+        ),
+        schemata = 'Menu'
+    ),   
+    
+    StringField(
+        name='corMenuFonteSelected',
+        searchable=0,
+        required=0,
+        widget=SmartColorWidget(
+            label='Cor da fonte do link selecionado no primeiro nível do portal',
+            description="Clique <a class='visualizacao' href='/++resource++vindula.controlpanel/menu/corMenuFonteSelected.png'>aqui para exemplo</a>",
+            #description="Cor da fonte link quando estiver selecionado no primeiro nível.",
+        ),
+        schemata = 'Menu'
+    ),   
 
+    StringField(
+        name='corMenuSelectedDropdown',
+        searchable=0,
+        required=0,
+        widget=SmartColorWidget(
+            label='Cor do background do link selecionado no menu dropdown',
+            description="Clique <a class='visualizacao' href='/++resource++vindula.controlpanel/menu/corMenuSelectedDropdown.png'>aqui para exemplo</a>",
+            #description="Cor do background do link quando estiver selecionado no Menu Dropdown.",
+        ),
+        schemata = 'Menu'
+    ),                                                  
+
+    StringField(
+        name='corMenuFonteSelectedDropdown',
+        searchable=0,
+        required=0,
+        widget=SmartColorWidget(
+            label='Cor da fonte do link selecionado no menu ',
+            description="Clique <a class='visualizacao' href='/++resource++vindula.controlpanel/menu/corMenuFonteSelectedDropdown.png'>aqui para exemplo</a>",
+            #description="Cor da fonte do link quando estiver selecionado no Menu.",
+        ),
+        schemata = 'Menu'
+    ),
+
+
+))
 finalizeATCTSchema(ThemeConfig_schema, folderish=False)
 invisivel = {'view':'invisible','edit':'invisible',}
 ThemeConfig_schema['text'].widget.label = 'Texto do Rodapé'
@@ -160,6 +287,17 @@ ThemeConfig_schema.moveField('text', after='logoRodape')
 ThemeConfig_schema['title'].widget.visible = invisivel
 ThemeConfig_schema['description'].widget.visible = invisivel
 
+# Dates
+L = ['effectiveDate','expirationDate','creation_date','modification_date']   
+# Categorization
+L += ['subject','relatedItems','location','language']
+# Ownership
+L += ['creators','contributors','rights']
+# Settings
+L += ['allowDiscussion','excludeFromNav', 'presentation','tableContents']
+
+for i in L:
+    ThemeConfig_schema[i].widget.visible = invisivel    
 
 class ThemeConfig(ATDocumentBase):
     """ ThemeConfig """
@@ -204,19 +342,42 @@ class ThemeConfigCssView(grok.View):
         
     def getConfig(self, obj): 
         D = {}
-        D['cor'] = self.checkTransparent(obj.getCorPortal()) or '#F58220'
-        D['corMenu'] = self.checkTransparent(obj.getCorMenu()) or '#000' 
-        D['colorBG'] = self.checkTransparent(obj.getCorBackground()) or '#FFF'
-        
+        D['cor'] = self.checkTransparent(obj.getCorGeralPortal()) or '#F58220'
+
+        #-- Background Portal --#
+        D['corBackground'] = self.checkTransparent(obj.getCorBackground()) or '#FFF'
         if obj.getImageBackground():
             D['url'] = obj.getImageBackground().absolute_url()
         
-        elif D.get('colorBG') == '#FFF':
+        elif D.get('corBackground') == '#FFF':
             D['url'] = '/++resource++vindula.themedefault/images/bkgs/bk_body.jpg'
         
         else:
             D['url'] = ''
         
+        #-- Config Menu --#
+        D['corMenuFundo'] = self.checkTransparent(obj.getCorMenuFundo()) or '#FFF'
+        D['corMenuFonte'] = self.checkTransparent(obj.getCorMenuFonte()) or '#000'
+
+        D['corMenuHoverDropdown'] = self.checkTransparent(obj.getCorMenuHoverDropdown()) or '#525254'
+        if obj.getImageMenuBkg():
+            D['urlMenu'] = obj.getImageMenuBkg().absolute_url()
+        
+        elif D.get('corMenuHoverDropdown') == '#525254':
+            D['urlMenu'] = '/++resource++vindula.themedefault/images/bkgs/bg_menu.jpg'
+        
+        else:
+            D['urlMenu'] = ''
+        
+        D['corMenuFonteDropdown'] = self.checkTransparent(obj.getCorMenuFonteDropdown()) or '#e4e4e4'
+        D['corMenuFonteHoverDropdown'] = self.checkTransparent(obj.getCorMenuFonteHoverDropdown()) or '#F58220'
+        D['corMenuDropdownHover'] = self.checkTransparent(obj.getCorMenuDropdownHover()) or '#000'
+        D['corMenuSelected'] = self.checkTransparent(obj.getCorMenuSelected()) or '#000'
+        D['corMenuFonteSelected'] = self.checkTransparent(obj.getCorMenuFonteSelected()) or '#FFF'
+        D['corMenuSelectedDropdown'] = self.checkTransparent(obj.getCorMenuSelectedDropdown()) or '#000'
+        D['corMenuFonteSelectedDropdown'] = self.checkTransparent(obj.getCorMenuFonteSelectedDropdown()) or '#F58220'
+        
+
         return D
      
     def getConfLayout(self):
@@ -236,11 +397,24 @@ class ThemeConfigCssView(grok.View):
         config, id = self.getConfiguration()
         plone = getSite().id
         id = id or plone
-        color = config.get('cor','#F58220') or '#F58220'
-        url = config.get('url','/++resource++vindula.themedefault/images/bkgs/bk_body.jpg')
-        corMenu = config.get('corMenu','#000000') or '#0000000'
-        colorBG = config.get('colorBG','#FFFFFF') or '#FFFFFFF'
         
+        color = config.get('cor','#F58220') or '#F58220'
+        colorBG = config.get('colorBG','#FFF') or '#FFF'
+        url = config.get('url','/++resource++vindula.themedefault/images/bkgs/bk_body.jpg')
+        
+        corMenuFundo = config.get('corMenuFundo','#FFF') or '#FFF'
+        corMenuFonte = config.get('corMenuFonte','#000') or '#000'
+        corMenuHoverDropdown = config.get('corMenuHoverDropdown','#525254') or '#525254'
+        urlMenu = config.get('urlMenu', '/++resource++vindula.themedefault/images/bkgs/bg_menu.jpg')
+        corMenuFonteDropdown = config.get('corMenuFonteDropdown','#e4e4e4') or '#e4e4e4'
+        corMenuFonteHoverDropdown = config.get('corMenuFonteHoverDropdown','#F58220') or '#F58220'
+        corMenuDropdownHover = config.get('corMenuDropdownHover','#000') or '#000'
+        corMenuSelected = config.get('corMenuSelected','#000') or '#000'
+        corMenuFonteSelected = config.get('corMenuFonteSelected','#FFF') or '#FFF'
+        corMenuSelectedDropdown = config.get('corMenuSelectedDropdown','#000') or '#000'
+        corMenuFonteSelectedDropdown = config.get('corMenuFonteSelectedDropdown','#F58220') or '#F58220'
+        
+      
         css =  '/* vindula_theme.css */\n'
         css += '    .%s .titulo_info_boxTipo2 h4 a{color: %s !important;}\n' %(id,color) 
         css += '    .%s .gallery-cycle-controls #cycle-prev, .%s .gallery-cycle-controls #cycle-next {background-color:%s !important;}\n' %(id,id,color)
@@ -272,22 +446,35 @@ class ThemeConfigCssView(grok.View):
         css += '    .%s #barra_superior #cont_barra_superior li a:hover {color: %s !important;}\n' %(id,color) 
         css += '    .%s .cont_superior .documentFirstHeading{color: %s !important;}\n' %(id,color)
         css += '    .%s #like .link{color:%s !important;}\n' %(id,color) 
-        css += '/* topo_nav.css */\n'
-        css += '    .%s #nav .nivel1 {border-bottom-color: %s}\n' %(id,corMenu)
-        css += '    .%s #nav li a:hover {color:%s !important;}\n' %(id,color)
+        css += '/* topo_nav.css */\n' #23
         css += '    .%s .geral_busca .searchButton {background-color: %s !important;}\n' %(id,color)
-        css += '    .%s #portal-globalnav-drop .selected a,#portal-globalnav-drop li:hover a {background-color: #000000;color:%s !important;}\n' %(id,color)
-        css += '    .%s #portal-globalnav-drop.nivel1 li.selected a:hover {color:%s !important;}\n' %(id,color)
-        css += '    .%s #portal-globalnav-drop .selected a, #portal-globalnav-drop li:hover a {background-color:%s !important ;color: %s; !important}\n' %(id,corMenu,color)
-        css += '    .%s #nav .nivel1 li.selected {background: none repeat scroll 0 0 %s !important;}\n' %(id,corMenu)
-        css += '    .%s #nav .nivel2 {background: none repeat scroll 0 0 %s;}\n' %(id,corMenu)
-        css += '    .%s #nav #normal-menu.nivel2 li, #nav .nivel2 li.selected  {border: 4px solid %s !important;}\n' %(id,corMenu)
-        css += '    .%s #nav .nivel2 li, #nav .nivel2 li.selected  {border: 4px solid %s;}\n' %(id,corMenu)
-        css += '    .%s #nav .nivel2 li, #nav .nivel2 li  {border: 4px solid %s;}\n' %(id,corMenu)
-        css += '    .%s #portal-globalnav-drop li:hover ul li:hover ul li a.hide {background-color: %s !important; color:#FFFFFF !important;}\n' %(id,corMenu)
-        css += '    .%s #portal-globalnav-drop li:hover ul li.selected a.hide,#portal-globalnav-drop li:hover ul li:hover ul li.selected a.hide {color:%s !important;}\n' %(id,color)
-        css += '    .%s #portal-globalnav-drop li:hover ul li:hover a.hide {background-color: %s !important; color:#000000 !important;}\n' %(id,color)
-        css += '    .%s #portal-globalnav-drop li:hover ul li ul li:hover a.hide {background-color: %s !important; color:#000000 !important;}\n' %(id,color)
+        
+        css += '    .%s #nav .nivel1 {border-bottom-color: %s;background-color:%s;}\n' %(id,corMenuSelected,corMenuFundo)
+        css += '    .%s #nav li a {color:%s !important;}\n' %(id,corMenuFonte)
+        css += '    .%s #nav .nivel2 li a {color:%s !important;}\n' %(id,corMenuFonteDropdown)                
+        css += '    .%s #nav li:hover {background-color:%s; color:%s !important;}\n' %(id,corMenuHoverDropdown,corMenuFonteHoverDropdown)
+        css += '    .%s #portal-globalnav-drop li:hover a { background: url("%s") repeat scroll 0 0 %s !important; color: %s !important;}\n' %(id,urlMenu, corMenuHoverDropdown,corMenuFonteDropdown)
+#        css += '    .%s #portal-globalnav-drop .selected a  {background-color: %s;}' %(id,corMenuSelected)
+#        css += '    .%s #portal-globalnav-drop li:hover a {background-color: %s; color:%s !important;}\n' %(id,corMenuHover,color)
+        css += '    .%s #portal-globalnav-drop.nivel1 li.selected a:hover {color:%s !important;}\n' %(id,corMenuFonteSelected)
+        css += '    .%s #portal-globalnav-drop .selected a {background: none repeat scroll 0 0 %s !important; color: %s !important;}\n' %(id,corMenuSelected, corMenuFonteSelected)
+#        css += '    .%s #portal-globalnav-drop li:hover a {background-color:%s !important ;color: %s; !important}\n' %(id,corMenu,color)
+        css += '    .%s #nav .nivel1 li.selected {background: none repeat scroll 0 0 %s !important;}\n' %(id,corMenuSelected)
+        css += '    .%s #nav .nivel1 li.selected a{color: %s !important; }\n' %(id,corMenuFonteSelected)
+        css += '    .%s #portal-globalnav-drop .nivel2, .%s #portal-globalnav-drop .nivel3 {background: url("%s") repeat scroll 0 0 %s !important;}' %(id,id,urlMenu,corMenuHoverDropdown)
+        css += '    .%s #nav .nivel2 {background: none repeat scroll 0 0 %s;}\n' %(id,corMenuHoverDropdown)
+        css += '    .%s #nav .nivel3 {background: none repeat scroll 0 0 %s;}\n' %(id,corMenuHoverDropdown)
+        css += '    .%s #nav .nivel2 li.selected {background-color: %s !important; color: %s ;}\n' %(id,corMenuSelectedDropdown,corMenuFonteSelectedDropdown)
+        
+#        css += '    .%s #nav #normal-menu.nivel2 li, #nav .nivel2 li.selected  {border: 4px solid %s !important;}\n' %(id,corMenu)
+#        css += '    .%s #nav .nivel2 li, #nav .nivel2 li.selected  {border: 4px solid %s;}\n' %(id,corMenu)
+#       css += '    .%s #nav .nivel2 li, #nav .nivel2 li  {border: 4px solid %s;}\n' %(id,corMenu)
+        css += '    .%s #portal-globalnav-drop li:hover ul li:hover ul li a.hide {background: url("%s") repeat scroll 0 0 %s !important; color: %s !important;}\n' %(id,urlMenu, corMenuHoverDropdown,corMenuFonteDropdown)
+        css += '    .%s #portal-globalnav-drop li:hover ul li:hover a.hide {background: %s !important; color:%s !important;}\n' %(id,corMenuDropdownHover,corMenuFonteHoverDropdown)
+        css += '    .%s #portal-globalnav-drop li:hover ul li ul li:hover a.hide {background: %s !important; color:%s !important;}\n' %(id,corMenuDropdownHover,corMenuFonteHoverDropdown)
+        css += '    .%s #portal-globalnav-drop li:hover ul li:hover ul li.selected a.hide {color:%s !important; background: %s !important; }\n' %(id,corMenuFonteSelectedDropdown,corMenuSelectedDropdown)
+#        css += '    .%s #portal-globalnav-drop li:hover ul li:hover ul li a.hide {background-color: %s !important; color:%s !important;}\n' %(id,corMenuDropdownHover,corMenuFonteDropdown) 
+        
         css += '/* chat.css */\n'
         css += '    .%s .chatboxhead {background-color: %s; border-right-color: %s; border-left-color: %s;}\n' %(id,color,color,color)
         css += '    .%s .chatboxblink {background-color: %s; border-right-color: %s; border-left-color: %s;}\n' %(id,color,color,color)
