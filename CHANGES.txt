@@ -35,3 +35,8 @@ Changelog
 ---------------------
 - Adição dos campos para customização do menu dropdown
 - Implantação do novo layout do menu dropdown
+
+1.1.6 - 2012-06-11
+----------------------
+- Alteração do css do menu dinamico
+- Adição do css do vindula.chat dinamico
