@@ -112,7 +112,7 @@ ThemeConfig_schema =  ATDocumentSchema.copy() + Schema((
         required=0,
         widget=SmartColorWidget(
             label='Cor dos Links do Portal',
-            description="Cor para grante parte do portal.",
+            description="Cor para grande parte do portal.",
         ),
         schemata = 'Layout'
     ),                                                        
