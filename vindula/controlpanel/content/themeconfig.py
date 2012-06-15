@@ -438,6 +438,7 @@ class ThemeConfigCssView(grok.View):
         css += '    .%s .geral_lista_comentarios .comment {border-top-color: %s !important;}\n' %(id,color) 
         css += '    .%s .item_lista h4{color: %s !important;}\n' %(id,color) 
         css += '    .%s .bt_comentar input{background-color: %s !important;}\n' %(id,color) 
+        css += '    .%s .bt_comments {background-color: %s !important;}\n' %(id,color)
         css += '/* geral.css */\n'
         css += '    .%s {background: url("%s") no-repeat scroll 50%% 0 %s;}\n' %(id,url,colorBG)
         css += '    .%s div#content a:hover, .%s .geral_busca #LSResult .livesearchContainer div.LSIEFix a:hover {color: %s !important;}\n' %(id,id,color)
