@@ -64,7 +64,7 @@ def link_user_folder(context):
                             
             folder_user_data = folder_control_panel['link-user-folder']
             folder_user_data.setConstrainTypesMode(1)
-            folder_user_data.setLocallyAllowedTypes(('Link',))
+            folder_user_data.setLocallyAllowedTypes(['InternalLink'])
             
             try:portal_workflow.doActionFor(folder_user_data, 'publish')
             except:portal_workflow.doActionFor(folder_user_data, 'publish_internally')                

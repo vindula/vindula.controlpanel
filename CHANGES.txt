@@ -44,3 +44,7 @@ Changelog
 1.1.7 - 2012-06-15
 ----------------------
 - Adição da regra de css do botões na personalização dinamica 
+
+1.1.8 - 2012-06-20
+----------------------
+- Aparecer o link interno na barra de links pessoais
