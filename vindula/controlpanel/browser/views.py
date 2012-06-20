@@ -398,8 +398,11 @@ class ManageLinksUserViewlet(grok.Viewlet):
                     if checa:
                         D ={}
                         D['url'] = link.getRemoteUrl()
-                        if link.getInternal_link():
-                            D['url'] = link.getInternal_link().absolute_url()
+                        try:
+                            if link.getInternal_link():
+                                D['url'] = link.getInternal_link().absolute_url()
+                        except:
+                            pass
                         D['title'] = link.Title()
                         L.append(D)
         
