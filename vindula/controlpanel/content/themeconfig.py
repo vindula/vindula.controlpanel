@@ -139,6 +139,18 @@ ThemeConfig_schema =  ATDocumentSchema.copy() + Schema((
         ),
         schemata = 'Layout'
     ),
+    
+    ReferenceField('imageFooter',
+        multiValued=0,
+        allowed_types=('Image'),
+        label=_(u"Imagem para o rodapé do portal."),
+        relationship='imageFooter',
+        widget=ReferenceBrowserWidget(
+            default_search_index='SearchableText',
+            label=_(u"Imagem para o rodapé do portal"),
+            description='A imagem selecionada será exibida no rodapé do portal. Selecione uma imagem com dimenções 980x121'),
+        schemata = 'Layout'
+    ),
                                                             
                                                        
     #-----------Menu do portal------------------#
@@ -354,6 +366,10 @@ class ThemeConfigCssView(grok.View):
         
         else:
             D['url'] = ''
+        if obj.getImageFooter():
+            D['urlFooter'] = obj.getImageFooter().absolute_url()
+        else:
+            D['urlFooter'] = ''
         
         #-- Config Menu --#
         D['corMenuFundo'] = self.checkTransparent(obj.getCorMenuFundo()) or '#FFF'
@@ -399,8 +415,9 @@ class ThemeConfigCssView(grok.View):
         id = id or plone
         
         color = config.get('cor','#F58220') or '#F58220'
-        colorBG = config.get('colorBG','#FFF') or '#FFF'
+        colorBG = config.get('corBackground','#FFF') or '#FFF'
         url = config.get('url','/++resource++vindula.themedefault/images/bkgs/bk_body.jpg')
+        urlFooter = config.get('urlFooter') or ''
         
         corMenuFundo = config.get('corMenuFundo','#FFF') or '#FFF'
         corMenuFonte = config.get('corMenuFonte','#000') or '#000'
@@ -450,13 +467,15 @@ class ThemeConfigCssView(grok.View):
         css += '/* topo_nav.css */\n' #23
         css += '    .%s .geral_busca .searchButton {background-color: %s !important;}\n' %(id,color)
         css += '    .%s #nav .nivel1 {border-bottom-color: %s;background-color:%s;}\n' %(id,corMenuSelected,corMenuFundo)
-        css += '    .%s #nav li a {color:%s !important;}\n' %(id,corMenuFonte)
+        css += '    .%s #nav ul.normal-menu li a {color:%s !important;}\n' %(id,corMenuFonteSelected)
+        css += '    .%s #portal-globalnav-drop li a {color:%s !important;}\n' %(id,corMenuFonte)
         css += '    .%s #nav li a:hover {color:%s !important;}\n' %(id,corMenuFonteDropdown)
-        css += '    .%s #nav .nivel2 li a {color:%s !important;}\n' %(id,corMenuFonteDropdown)       
-        css += '    .%s #nav .nivel2 li.selected a {color:%s !important;}\n' %(id,corMenuFonteSelectedDropdown)
+        css += '    .%s #nav ul.menu-normal li:hover a {color:%s !important;}\n' %(id,corMenuFonteDropdown)
+        css += '    .%s #nav ul.normal-menu .nivel2 li a {color:%s !important;}\n' %(id,corMenuFonte)      
         css += '    .%s #nav li:hover {background-color:%s; color:%s !important;}\n' %(id,corMenuHoverDropdown,corMenuFonteDropdown)
         css += '    .%s #portal-globalnav-drop li:hover a { background: url("%s") repeat scroll 0 0 %s !important; color: %s !important;}\n' %(id,urlMenu, corMenuHoverDropdown,corMenuFonteDropdown)
-        css += '    .%s #portal-globalnav-drop.nivel1 li.selected a:hover {color:%s !important;}\n' %(id,corMenuFonteSelected)
+        css += '    .%s #portal-globalnav-drop li a:hover.cor-hover{ color: %s !important;}\n' %(id,corMenuFonteHoverDropdown)
+        css += '    .%s #portal-globalnav-drop.nivel1 li.selected a:hover {color:%s !important;}\n' %(id,corMenuFonteHoverDropdown)
         css += '    .%s #portal-globalnav-drop .selected a {background: none repeat scroll 0 0 %s !important; color: %s !important;}\n' %(id,corMenuSelected, corMenuFonteSelected)
         css += '    .%s #nav .nivel1 li.selected {background: none repeat scroll 0 0 %s !important;}\n' %(id,corMenuSelected)
         css += '    .%s #nav .nivel1 li.selected a{color: %s !important; }\n' %(id,corMenuFonteSelected)
@@ -478,6 +497,9 @@ class ThemeConfigCssView(grok.View):
         css += '    .%s #jappix_mini input.jm_send-messages {border-color: %s;}\n' %(id,color)
         css += '    .%s #jappix_mini div.jm_chat-content {border-color: %s;}\n' %(id,color)
         css += '    .%s #jappix_mini div.jm_actions a.jm_one-action:hover, #jappix_mini div.jm_actions a.jm_one-action:focus {background-color: %s;}\n' %(id,color)
+        if urlFooter:
+            css += '/* rodape.css */\n'
+            css += '    .%s #rodape {background: url(%s) no-repeat scroll 10px;}\n' %(id,urlFooter)
  
         
         self.response.setHeader('Content-Type', 'text/css; charset=UTF-8')

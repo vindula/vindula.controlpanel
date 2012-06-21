@@ -48,3 +48,7 @@ Changelog
 1.1.8 - 2012-06-20
 ----------------------
 - Aparecer o link interno na barra de links pessoais
+
+1.1.9 - 2012-06-21
+----------------------
+- Adicionado o campo de imagem do rodape na configuracao do tema e correçoes na layout do menu
