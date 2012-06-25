@@ -435,10 +435,9 @@ class ThemeConfigCssView(grok.View):
         css =  '/* vindula_theme.css */\n'
         css += '    .%s .titulo_info_boxTipo2 h4 a{color: %s !important;}\n' %(id,color) 
         css += '    .%s .gallery-cycle-controls #cycle-prev, .%s .gallery-cycle-controls #cycle-next {background-color:%s !important;}\n' %(id,id,color)
-        css += '    .%s .portletWrapper .portletHeader {background-color: %s !important;}' %(id,color)
-        css += '    .%s .portletWrapper .portletHeader-dainamic .topPortlet {background-color: %s !important;}' %(id,color)
-        css += '    .%s .portletWrapper .portletHeader-dainamic .meioPortlet {background-color: %s !important;}' %(id,color)
-        css += '    .%s .portletWrapper .portletHeader-dainamic .bottonPortlet {background-color: %s !important;}' %(id,color)
+        css += '    .%s .portletWrapper .portletHeader .portletTopLeft {background-color: %s !important;}' %(id,color)
+        css += '    .%s .portletWrapper .portletHeader .tile {background-color: %s !important;}' %(id,color)
+        css += '    .%s .portletWrapper .portletHeader .portletTopRight {background-color: %s !important;}' %(id,color)
         css += '    .%s .pag_all {background-color: %s !important;}' %(id,color)
         css += '    .%s .userpage div.department {background-color: %s !important;}' %(id,color)
         css += '    .%s .userpage div.area {border-bottom-color: %s !important;}' %(id,color) 
