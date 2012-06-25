@@ -448,3 +448,23 @@ class ManageConfigBuscaView(grok.View):
         if not conf:
             url = getSite().portal_url() + '/acl_users/credentials_cookie_auth/require_login?came_from='+request.getURL()
             request.response.redirect(url)
+            
+            
+class ManagePortletView(grok.View):
+    grok.context(Interface)
+    grok.require('zope2.View')
+    grok.name('vindula-manage-portlet')
+    
+    def render(self):
+        pass
+    
+    def getUrlManagePortlet(self,portlet):
+
+        baseUrl = getSite().absolute_url() + portlet['key'].replace('/'+getSite().getId(),'')
+        manager = portlet['manager']
+        name = portlet['name']
+        refererUrl = self.context.absolute_url()
+        
+        url = '%s/++contextportlets++%s/%s/edit?referer=%s' % (baseUrl, manager,name,refererUrl)
+
+        return url

@@ -1,0 +1,24 @@
+<tal:block repeat="portlet options/portlets">
+    <div tal:attributes="id string:portletwrapper-${portlet/hash};
+                         class string:portletWrapper kssattr-portlethash-${portlet/hash};"
+         tal:content="structure python:view.safe_render(portlet['renderer'])" />
+         
+    <tal:def define="manage_view python:context.restrictedTraverse('@@vindula-manage-portlet');
+                     url python:manage_view.getUrlManagePortlet(portlet)">
+        
+        <a  alt="Editar o Portlet" title="Editar o Portlet"
+            class="manage-portlet portlet-ajax"
+            tal:condition="python: view.can_manage_portlets() and portlet.get('name') != 'vindula-carrega-portlet'"
+            tal:attributes="href url" > </a>    
+    </tal:def>     
+             
+</tal:block>
+
+<div class="managePortletsLink" tal:condition="view/can_manage_portlets"
+      i18n:domain="plone">
+  <a title="View portlet management screen"
+     i18n:attributes="title"
+     i18n:translate="manage_portlets_link"
+     tal:attributes="href string:${view/base_url}/@@manage-portlets"
+     >Manage portlets</a>
+</div>

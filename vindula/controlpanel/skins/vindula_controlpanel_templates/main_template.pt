@@ -53,7 +53,7 @@
                   sunburst_view python:context.restrictedTraverse('@@sunburstview');
 				  view_org context/OrgStruct_view;"
     
-	tal:attributes="class python: body_class +' '+ view_org.id;
+	tal:attributes="class python: body_class +' '+ str(view_org.id);
                     dir python:isRTL and 'rtl' or 'ltr'">
 
 <div id="visual-portal-wrapper">

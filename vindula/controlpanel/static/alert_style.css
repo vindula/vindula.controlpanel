@@ -41,3 +41,31 @@
 #alert-display dl.warning {
     border-color: #DD8800 !important;
 }
+
+/* Edição dos Portlets */
+
+
+.manage-portlet{
+    float: right;
+    margin-right: 25px;
+    margin-top: -39px;
+    height:24px;
+    width:24px;
+    background:url('/++resource++vindula.controlpanel/pencil-icon.png') 50% 50% no-repeat;    
+}
+
+.manage-portlet:hover{
+    background:url('/++resource++vindula.controlpanel/pencil-icon-hover.png') 50% 50% no-repeat;
+}
+
+.pb-ajax #content{
+    font-size:100%; 
+    
+}
+.pb-ajax #content iframe{
+    box-shadow:none;    
+}
+
+
+
+

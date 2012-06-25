@@ -51,4 +51,8 @@ Changelog
 
 1.1.9 - 2012-06-21
 ----------------------
-- Adicionado o campo de imagem do rodape na configuracao do tema e corre�oes na layout do menu
+- Adicionado o campo de imagem do rodape na configuracao do tema e correçoes na layout do menu
+
+1.1.10 - 2012-06-25
+-------------------------
+- Adicionado link para edição dos portlet atraves do fancebox 
