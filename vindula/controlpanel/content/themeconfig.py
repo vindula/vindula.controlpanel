@@ -466,6 +466,7 @@ class ThemeConfigCssView(grok.View):
         css += '/* topo_nav.css */\n' #23
         css += '    .%s .geral_busca .searchButton {background-color: %s !important;}\n' %(id,color)
         css += '    .%s #nav .nivel1 {border-bottom-color: %s;background-color:%s;}\n' %(id,corMenuSelected,corMenuFundo)
+        css += '    .%s #nav .nivel2 li a {color: %s;}\n' %(id,corMenuFonteHoverDropdown)
         css += '    .%s #nav ul.normal-menu li a {color:%s !important;}\n' %(id,corMenuFonteSelected)
         css += '    .%s #portal-globalnav-drop li a {color:%s !important;}\n' %(id,corMenuFonte)
         css += '    .%s #nav li a:hover {color:%s !important;}\n' %(id,corMenuFonteDropdown)
