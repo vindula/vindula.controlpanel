@@ -5,6 +5,7 @@ from Products.statusmessages.interfaces import IStatusMessage
 from vindula.myvindula import MessageFactory as _
 from storm.locals import *
 from storm.locals import Store
+from storm.expr import Desc
 from vindula.myvindula.user import BaseStore, BaseFunc
 import pickle
 
@@ -227,3 +228,4 @@ class ModelsProducts(Storm, BaseStore):
         product = ModelsProducts(**kwargs)
         self.store.add(product)
         self.store.flush()
+        

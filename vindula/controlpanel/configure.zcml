@@ -29,6 +29,10 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
+  <subscriber
+            for="Products.PluggableAuthService.interfaces.events.IUserLoggedInEvent"
+            handler=".handlers.userLogged"/>
+
   <!-- -*- extra stuff goes here -*- -->
   
   <include file="skins.zcml" />

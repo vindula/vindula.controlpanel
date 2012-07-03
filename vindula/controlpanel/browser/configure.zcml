@@ -10,6 +10,6 @@
 	<browser:jbot
       	  directory="templates" />		
 
-  <!-- -*- extra stuff goes here -*- -->
-	  
-</configure>
+    <!-- -*- extra stuff goes here -*- -->
+
+ </configure>

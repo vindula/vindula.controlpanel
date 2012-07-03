@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
-<object name="vindula.controlpanel.content.aniversariantesconfig" 
+<object name="vindula.controlpanel.content.vindulaconfiglogin" 
    		meta_type="Dexterity FTI"
    		i18n:domain="vindula.controlpanel" 
 		xmlns:i18n="http://xml.zope.org/namespaces/i18n">
  
  <!-- Basic metadata -->
- <property name="title" i18n:translate="">Listagem de aniversariantes</property>
+ <property name="title" i18n:translate="">Configuração de Logins</property>
  <property name="description" i18n:translate="">
- 	Permite a configução dos campos na listagem de aniversariantes.
+ 	Permite a configuração das funcionalidades que o Vindula oferece.
  </property>
  <property name="content_icon">++resource++vindula.controlpanel/imagens/vindula.png</property>
  <property name="allow_discussion">False</property>
@@ -16,7 +16,7 @@
  <property name="allowed_content_types" />
  
  <!-- schema interface -->
- <property name="schema">vindula.controlpanel.content.aniversariantesconfig.IAniversariantesConfig</property>  
+ <property name="schema">vindula.controlpanel.content.vindulaconfiglogin.IVindulaConfigLogin</property>  
 
  <!-- add permission -->
  <property name="add_permission">cmf.AddPortalContent</property>

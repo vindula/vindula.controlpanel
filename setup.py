@@ -28,6 +28,9 @@ setup(name='vindula.controlpanel',
           'setuptools',
           'plone.app.dexterity',
           'Products.SmartColorWidget',
+          'Products.UserAndGroupSelectionWidget',
+          'plone.app.z3cform',
+          
           # -*- Extra requirements: -*-
       ],
       entry_points="""

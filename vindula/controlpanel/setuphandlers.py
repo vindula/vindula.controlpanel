@@ -22,28 +22,23 @@ def installControlPanel(context):
              'vindula.controlpanel.content.alertdisplay',
              'vindula.controlpanel.content.vindulaconfigall',
              'vindula.controlpanel.content.aniversariantesconfig',
-             'ThemeConfig']
+             'vindula.controlpanel.content.vindulaconfiglogin',
+             'ThemeConfig','ContentRedirectUser']
     
         
     for type in types:
         if portal.portal_types.get(type):
-            if type == 'ThemeConfig':
-                if not 'vindula_themeconfig' in folder_control_panel.objectIds():
-                    portal.portal_types.get('ThemeConfig').global_allow = True
-                    folder_control_panel.invokeFactory('ThemeConfig', id='vindula_themeconfig', excludeFromNav=True)
-                    print 'Create %s object.' % id
-                    portal.portal_types.get('ThemeConfig').global_allow = False
-            
-            else:
+            if len(type.split('.')) >= 3:
                 id = 'vindula_' + type.split('.')[3]
-                if not id in folder_control_panel.objectIds():
-                    folder_control_panel.setConstrainTypesMode(0)
-                    portal.portal_types.get(type).global_allow = True        
-                    folder_control_panel.invokeFactory(type, id=id, excludeFromNav=True)
-                    
-                    
-                    print 'Create %s object.' % id
-                    portal.portal_types.get(type).global_allow = False
+            else:
+                id = type
+                
+            if not id in folder_control_panel.objectIds():
+                folder_control_panel.setConstrainTypesMode(0)
+                portal.portal_types.get(type).global_allow = True        
+                folder_control_panel.invokeFactory(type, id=id, excludeFromNav=True)
+                print 'Create %s object.' % id
+                portal.portal_types.get(type).global_allow = False
 
     
 

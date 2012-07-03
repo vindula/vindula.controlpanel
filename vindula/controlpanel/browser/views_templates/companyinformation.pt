@@ -1,8 +1,8 @@
 <html metal:use-macro="here/prefs_main_template/macros/master">
 	<head>
 		<metal:js fill-slot="javascript_head_slot">
-			<script type="text/javascript" tal:attributes="src string:++resource++vindula.controlpanel/mascara.js"></script>
-			<script type="text/javascript" tal:attributes="src string:++resource++vindula.controlpanel/companyinformation.js"></script>
+			<script type="text/javascript" tal:attributes="src string:++resource++vindula.controlpanel/js/mascara.js"></script>
+			<script type="text/javascript" tal:attributes="src string:++resource++vindula.controlpanel/js/companyinformation.js"></script>
 		</metal:js>
 				
 	</head>

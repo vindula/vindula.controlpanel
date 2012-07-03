@@ -51,11 +51,11 @@
     margin-top: -39px;
     height:24px;
     width:24px;
-    background:url('/++resource++vindula.controlpanel/pencil-icon.png') 50% 50% no-repeat;    
+    background:url('/++resource++vindula.controlpanel/imagens/pencil-icon.png') 50% 50% no-repeat;    
 }
 
 .manage-portlet:hover{
-    background:url('/++resource++vindula.controlpanel/pencil-icon-hover.png') 50% 50% no-repeat;
+    background:url('/++resource++vindula.controlpanel/imagens/pencil-icon-hover.png') 50% 50% no-repeat;
 }
 
 .pb-ajax #content{

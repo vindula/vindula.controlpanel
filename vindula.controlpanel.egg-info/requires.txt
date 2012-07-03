@@ -1,3 +1,4 @@
 setuptools
 plone.app.dexterity
 Products.SmartColorWidget
+Products.UserAndGroupSelectionWidget

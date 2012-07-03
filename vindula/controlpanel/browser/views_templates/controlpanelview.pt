@@ -9,7 +9,7 @@
    <head>
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 		<metal:js fill-slot="javascript_head_slot">
-			<script type="text/javascript" src="" tal:attributes="src string:${context/portal_url}/++resource++vindula.controlpanel/abas-control-panel.js"></script>
+			<script type="text/javascript" src="" tal:attributes="src string:${context/portal_url}/++resource++vindula.controlpanel/js/abas-control-panel.js"></script>
 		</metal:js>
 	</head>
  <body>
@@ -35,6 +35,9 @@
                 </li>
 				<li class="plain" id="outros">
                     <a   style="cursor:pointer;" >Informa&ccedil;&otilde;es auxiliares</a>
+                </li>
+                <li class="plain" id="logins">
+                    <a   style="cursor:pointer;" >Login</a>
                 </li>
             </ul><div class="contentActions">&nbsp;</div>
     	</div>
@@ -126,7 +129,22 @@
 					<img src="/++resource++vindula.controlpanel/icons/controlpanel_idiomas.png" />
 					<a tal:attributes="href string:${portal_url}/myvindula-languages">Idiomas</a>
 				</div>
-			</div>	
+			</div>
+			<!--###################### Logins  ########################################################## -->
+            <div class="tab_container" id="div-logins">
+                <div>
+                    <img src="/++resource++vindula.controlpanel/icons/controlpanel_RedirectUser.png" />
+                    <a tal:attributes="href string:${portal_url}/control-panel-objects/ContentRedirectUser/folder_contents">Redirecionamento de usu&aacute;rios</a>
+                </div>
+                
+                <div>
+                    <img src="/++resource++vindula.controlpanel/icons/controlpanel_vindulaconfiglogin.png" />
+                    <a tal:attributes="href string:${portal_url}/control-panel-objects/vindula_vindulaconfiglogin/edit">Configura&ccedil;&atilde;o de Login</a>
+                </div>
+                
+            </div>
+			
+				
 		</div>
   	</metal:main>
   </body>

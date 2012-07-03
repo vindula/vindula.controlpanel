@@ -2,7 +2,7 @@
 									workflow viewlet/checkWorkflow|nothing">	
 	<tal:condition condition="python: check and workflow">
 		<!--link rel="stylesheet" tal:attributes="href string:${context/portal_url|nothing}/++resource++vindula.controlpanel/alert_style.css" type="text/css"-->
-		<script type="text/javascript" tal:attributes="src string:${context/portal_url|nothing}/++resource++vindula.controlpanel/alert_display.js"></script>
+		<script type="text/javascript" tal:attributes="src string:${context/portal_url|nothing}/++resource++vindula.controlpanel/js/alert_display.js"></script>
 		
 			<dl tal:attributes="class  string:portal-Message ${viewlet/type_message|nothing}">
 				<tal:def define="title viewlet/title|nothing">

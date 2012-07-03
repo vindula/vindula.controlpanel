@@ -7,9 +7,9 @@
  <!-- Basic metadata -->
  <property name="title" i18n:translate="">Ativação de Funcionalidades</property>
  <property name="description" i18n:translate="">
- 	Permite a configução das funcionalidades que o Vindula oferece.
+ 	Permite a configuração das funcionalidades que o Vindula oferece.
  </property>
- <property name="content_icon">++resource++vindula.controlpanel/vindula.png</property>
+ <property name="content_icon">++resource++vindula.controlpanel/imagens/vindula.png</property>
  <property name="allow_discussion">False</property>
  <property name="global_allow">False</property>
  <property name="filter_content_types">True</property>

@@ -7,7 +7,7 @@
  <!-- Basic metadata -->
  <property name="title" i18n:translate="">Vindula Theme Config</property>
  <property name="description" i18n:translate="">Objeto de configuração do tema.</property>
- <property name="content_icon">++resource++vindula.controlpanel/vindula.png</property>
+ <property name="content_icon">++resource++vindula.controlpanel/imagens/vindula.png</property>
  <property name="allow_discussion">True</property>
  <property name="global_allow">False</property>
  <property name="filter_content_types">True</property>

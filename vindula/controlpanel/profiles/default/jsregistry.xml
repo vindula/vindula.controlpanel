@@ -1,7 +1,16 @@
 <?xml version="1.0"?> 
 <object name="portal_javascripts">
-	<javascript id="++resource++vindula.controlpanel/form_width.js"
+	<javascript id="++resource++vindula.controlpanel/js/form_width.js"
     		 cacheable="True" compression="safe" cookable="False" enabled="True" 
 			 expression="" inline="False" />
+			 
+    <javascript id="++resource++vindula.controlpanel/js/popup_login.js"
+             cacheable="True" compression="safe" cookable="False" enabled="True" inline="False" 
+             expression="not: context/myvindula-conf-login/check_redirect|python:False"  />		
+             
+    <javascript id="++resource++vindula.controlpanel/js/config_login.js"
+             cacheable="True" compression="safe" cookable="False" enabled="True" inline="False" 
+             expression="python: context.portal_type == 'vindula.controlpanel.content.vindulaconfiglogin'"  />                  
+             	 
 
 </object>

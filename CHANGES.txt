@@ -55,4 +55,9 @@ Changelog
 
 1.1.10 - 2012-06-25
 -------------------------
-- Adicionado link para edição dos portlet atraves do fancebox 
+- Adicionado link para edição dos portlet atraves do fancebox
+
+1.1.11 - 2012-07-03
+-------------------------
+- Adicionamento do metodo de redirect o usuário apos o login
+- Organizado a pasta statics, criado as pastas imagens e js  

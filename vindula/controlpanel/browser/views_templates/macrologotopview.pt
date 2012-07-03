@@ -14,7 +14,7 @@
 				     tal:attributes="src python: config_obj.getLogoCabecalho().absolute_url()" />
 		
 				<img tal:condition="python: config_obj.getLogoCabecalho() is None" 
-				     src="/++resource++vindula.controlpanel/logo_topo.png" />
+				     src="/++resource++vindula.controlpanel/imagens/logo_topo.png" />
 			</tal:cond>
 			<tal:cond condition="python: view_org.portal_type=='OrganizationalStructure'">
 
@@ -28,7 +28,7 @@
 		   tal:define="paper python:context.portal_membership.getAuthenticatedMember().getRoles()"
 		   tal:condition="python:'Manager' in paper"
 		   tal:attributes="href string:${context/portal_url}/control-panel-objects/vindula_themeconfig/edit">
-			<img src="/++resource++vindula.controlpanel/theme_edit.png" />
+			<img src="/++resource++vindula.controlpanel/imagens/theme_edit.png" />
 		</a>
 			 
 	</div>
