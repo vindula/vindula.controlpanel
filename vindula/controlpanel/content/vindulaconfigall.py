@@ -81,6 +81,12 @@ class IVindulaConfigAll(form.Schema):
                 default=False
                 )
     
+    ativa_MyvindulaPrivate = schema.Bool(
+                title=_(u'label_ativa_MyvindulaPrivate', default=u'Restringe a visualização das telas do myvindula para a anônimos'),
+                description=_(u'help_ativa_MyvindulaPrivate', default=u'Restringe a visualização das telas para usuários anônimos,\
+                                                                        ideal para "intranet privada" e "intranet + extranet"'),
+                default=False
+                )
     
 class VindulaConfiguration(grok.View):
     grok.context(Interface)
@@ -186,3 +192,25 @@ class VindulaConfiguration(grok.View):
             return control.ativa_richtext
         else:
             return False        
+        
+    def check_MyvindulaPrivate(self):
+        if self.configurador():
+            control = self.configurador()
+            return control.ativa_MyvindulaPrivate
+        else:
+            return False                
+        
+        
+    def MyvindulaPrivateisAnonymousUser(self):
+        member = getSite().portal_membership
+        if self.check_MyvindulaPrivate() and\
+           member.isAnonymousUser():
+            #executar redirect ao login
+            return True
+        else:
+            #Não faz o redirect
+            return False
+        
+            
+        
+        

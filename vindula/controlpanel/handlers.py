@@ -24,7 +24,7 @@ def userLogged(event, isLogin = True):
     except: relues = None
     request = getSite().REQUEST  
     
-    if rules and not request.other.get('came_from') and check_redirect:
+    if rules and not 'myvindula-first-registre' in request.other.get('came_from','') and check_redirect:
         user_login = membership.getAuthenticatedMember()
         groups_user = [i.id for i in groups_tool.getGroupsByUserId(user_login.getUserName())]
         
