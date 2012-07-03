@@ -44,10 +44,13 @@
 
 /* Edição dos Portlets */
 
+#portal-columns .manage-portlet {
+	margin-right: 0;
+}
 
 .manage-portlet{
     float: right;
-    margin-right: 15px;
+    margin-right: 20px;
     margin-top: -39px;
     height:24px;
     width:24px;

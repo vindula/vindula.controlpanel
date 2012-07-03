@@ -457,7 +457,6 @@ class ThemeConfigCssView(grok.View):
         css += '    .%s .bt_comments {background-color: %s !important;}\n' %(id,color)
         css += '/* geral.css */\n'
         css += '    .%s {background: url("%s") no-repeat scroll 50%% 0 %s;}\n' %(id,url,colorBG)
-        css += '    .%s div#content a:hover, .%s .geral_busca #LSResult .livesearchContainer div.LSIEFix a:hover {color: %s !important;}\n' %(id,id,color)
         css += '    .%s div#content a:hover, .%s dl.portlet a:hover, .%s .geral_busca #LSResult .livesearchContainer div.LSIEFix a:hover {color: %s !important;}' %(id,id,id,color)
         css += '    .%s #geral_breadcrumb span{color:%s;!important;}\n' %(id,color)
         css += '    .%s #barra_superior #cont_barra_superior li a:hover {color: %s !important;}\n' %(id,color) 
@@ -466,6 +465,7 @@ class ThemeConfigCssView(grok.View):
         css += '/* topo_nav.css */\n' #23
         css += '    .%s .geral_busca .searchButton {background-color: %s !important;}\n' %(id,color)
         css += '    .%s #nav .nivel1 {border-bottom-color: %s;background-color:%s;}\n' %(id,corMenuSelected,corMenuFundo)
+        css += '    .%s #nav .nivel2 li a {color: %s;}\n' %(id,corMenuFonteHoverDropdown)
         css += '    .%s #nav ul.normal-menu li a {color:%s !important;}\n' %(id,corMenuFonteSelected)
         css += '    .%s #portal-globalnav-drop li a {color:%s !important;}\n' %(id,corMenuFonte)
         css += '    .%s #nav li a:hover {color:%s !important;}\n' %(id,corMenuFonteDropdown)
@@ -487,9 +487,6 @@ class ThemeConfigCssView(grok.View):
         css += '    .%s #portal-globalnav-drop li:hover ul li ul li:hover a.hide {background: %s !important; color:%s !important;}\n' %(id,corMenuDropdownHover,corMenuFonteHoverDropdown)
         css += '    .%s #portal-globalnav-drop li:hover ul li:hover ul li.selected a.hide {color:%s !important; background: %s !important; }\n' %(id,corMenuFonteSelectedDropdown,corMenuSelectedDropdown)
         css += '/* chat.css */\n'
-#        css += '    .%s .chatboxhead {background-color: %s; border-right-color: %s; border-left-color: %s;}\n' %(id,color,color,color)
-#        css += '    .%s .chatboxblink {background-color: %s; border-right-color: %s; border-left-color: %s;}\n' %(id,color,color,color)
-#        css += '    .%s .chatboxtextareaselected {border-color: %s;}\n' %(id,color)
         css += '    .%s #jappix_mini div.jm_actions {background-color: %s; border-bottom: %s;}\n' %(id,color,color)
         css += '    .%s #jappix_mini div.jm_actions a.jm_one-action {background-color: %s;}\n' %(id,color)
         css += '    .%s #jappix_mini a.jm_friend:hover, #jappix_mini a.jm_friend:focus {background-color: %s; border-color: %s;}\n' %(id,color,color)

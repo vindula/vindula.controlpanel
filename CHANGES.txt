@@ -61,3 +61,8 @@ Changelog
 -------------------------
 - Adicionamento do metodo de redirect o usuário apos o login
 - Organizado a pasta statics, criado as pastas imagens e js  
+
+1.1.12 - 2012-07-02
+-------------------------
+- Adicionado a coluna de portlet do lado esquerdo
+
