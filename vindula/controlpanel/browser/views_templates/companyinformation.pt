@@ -1,13 +1,9 @@
 <html metal:use-macro="here/prefs_main_template/macros/master">
-	<head>
-		<metal:js fill-slot="javascript_head_slot">
-			<script type="text/javascript" tal:attributes="src string:++resource++vindula.controlpanel/js/mascara.js"></script>
-			<script type="text/javascript" tal:attributes="src string:++resource++vindula.controlpanel/js/companyinformation.js"></script>
-		</metal:js>
-				
-	</head>
+
 	<body>
 	    <div metal:fill-slot="prefs_configlet_content" tal:define="form_data view/load_from | python:{};">
+	        <script type="text/javascript" tal:attributes="src string:++resource++vindula.controlpanel/js/mascara.js"></script>
+            <script type="text/javascript" tal:attributes="src string:++resource++vindula.controlpanel/js/companyinformation.js"></script>
 		    <div id="content" >
 				<h1>Informa&ccedil;&otilde;es corporativas</h1>	
 				<div id="interna" >    		

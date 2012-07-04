@@ -3,20 +3,16 @@
          xmlns:metal="http://xml.zope.org/namespaces/metal"
          xmlns:i18n="http://xml.zope.org/namespaces/i18n"
          lang="en"
-         metal:use-macro="context/main_template/macros/master"
+         metal:use-macro="context/prefs_main_template/macros/master"
          i18n:domain="plone">
    
    <head>
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-		<metal:js fill-slot="javascript_head_slot">
-			<script type="text/javascript" src="" tal:attributes="src string:${context/portal_url}/++resource++vindula.controlpanel/js/abas-control-panel.js"></script>
-		</metal:js>
+		
 	</head>
  <body>
- 	<metal:block fill-slot="top_slot">
-        <tal:dummy tal:define="dummy python:request.set('disable_border',1)" />
-	</metal:block>
-  	<metal:main fill-slot="content">
+ 	<metal:main fill-slot="prefs_configlet_content">
+  	    <script type="text/javascript" src="" tal:attributes="src string:${context/portal_url}/++resource++vindula.controlpanel/js/abas-control-panel.js"></script>
 		<div class="titulo_info">
 			<h2>Vindula Control Panel</h2>
 		</div>

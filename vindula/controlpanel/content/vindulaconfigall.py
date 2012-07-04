@@ -201,16 +201,12 @@ class VindulaConfiguration(grok.View):
             return False                
         
         
-    def MyvindulaPrivateisAnonymousUser(self):
+    def check_myvindulaprivate_isanonymous(self):
         member = getSite().portal_membership
         if self.check_MyvindulaPrivate() and\
            member.isAnonymousUser():
             #executar redirect ao login
             return True
-        else:
-            #Não faz o redirect
-            return False
-        
-            
+        return False
         
         

@@ -66,3 +66,6 @@ Changelog
 -------------------------
 - Adicionado a coluna de portlet do lado esquerdo
 
+1.1.13 - 2012-07-04
+-------------------------
+- Adicionado a opção de restrição das view do myvindal para somente usuario logado
