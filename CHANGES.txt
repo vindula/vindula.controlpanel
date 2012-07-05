@@ -69,3 +69,7 @@ Changelog
 1.1.13 - 2012-07-04
 -------------------------
 - Adicionado a opção de restrição das view do myvindal para somente usuario logado
+
+1.1.14 - 2012-07-05
+-------------------------
+- Correcao das cores dinamicas dos portlets, no portlet de configuracao do plone
