@@ -136,6 +136,8 @@
 		                    </metal:sub>
 		                </div>
 		            </metal:block>
+		            <div id="viewlet-below-content" tal:content="structure provider:plone.belowcontent" tal:condition="not:ajax_load" />
+		            
 				</div>
 				<div class="shadowTpBt bottonContCol"></div>
 			</div>

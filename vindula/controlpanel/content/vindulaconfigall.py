@@ -4,6 +4,8 @@ from plone.directives import form
 from five import grok
 from vindula.controlpanel import MessageFactory as _
 
+from random import randint
+
 from zope.interface import Interface
 from zope.app.component.hooks import getSite
 
@@ -97,6 +99,9 @@ class VindulaConfiguration(grok.View):
 
     def render(self):
         pass
+
+    def randomIdComents(self):
+        return randint(1,1000) 
 
     def configurador(self):
         if 'control-panel-objects' in  getSite().keys():
