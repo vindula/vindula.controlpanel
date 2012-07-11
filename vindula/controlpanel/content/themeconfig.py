@@ -477,7 +477,7 @@ class ThemeConfigCssView(grok.View):
         css += '    .%s #portal-globalnav-drop.nivel1 li.selected a:hover {color:%s !important;}\n' %(id,corMenuFonteHoverDropdown)
         css += '    .%s #portal-globalnav-drop .selected a {background: none repeat scroll 0 0 %s !important; color: %s !important;}\n' %(id,corMenuSelected, corMenuFonteSelected)
         css += '    .%s #nav .nivel1 li.selected {background: none repeat scroll 0 0 %s !important;}\n' %(id,corMenuSelected)
-        css += '    .%s #nav .nivel1 li.selected a{color: %s !important; }\n' %(id,corMenuFonteSelected)
+        css += '    .%s #nav ul.menu-normal li.selected a{color: %s !important; }\n' %(id,corMenuFonteSelected)
         css += '    .%s #portal-globalnav-drop .nivel2, .%s #portal-globalnav-drop .nivel3 {background: url("%s") repeat scroll 0 0 %s !important;}' %(id,id,urlMenu,corMenuHoverDropdown)
         css += '    .%s #nav .nivel2 {background: none repeat scroll 0 0 %s;}\n' %(id,corMenuHoverDropdown)
         css += '    .%s #nav .nivel3 {background: none repeat scroll 0 0 %s;}\n' %(id,corMenuHoverDropdown)
