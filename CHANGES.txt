@@ -73,3 +73,8 @@ Changelog
 1.1.14 - 2012-07-05
 -------------------------
 - Correcao das cores dinamicas dos portlets, no portlet de configuracao do plone
+
+1.1.15 - 2012-07-12
+-----------------------
+- Adição da opção para ocultar a viewlet document_byline
+

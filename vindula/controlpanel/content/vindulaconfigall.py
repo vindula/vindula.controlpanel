@@ -90,6 +90,14 @@ class IVindulaConfigAll(form.Schema):
                 default=False
                 )
     
+    ativa_infoAutor = schema.Bool(
+                title=_(u'label_ativa_infoAutor', default=u'Ativar visualização das informações auxiliares do conteúdo'),
+                description=_(u'help_activa_infoAutor', default=u'Se selecionado ativa a visualização das informações do autor e data de criação do conteúdo abaixo do título'),
+                default=True
+                )
+    
+    
+    
 class VindulaConfiguration(grok.View):
     grok.context(Interface)
     grok.require('zope2.View')
@@ -205,6 +213,12 @@ class VindulaConfiguration(grok.View):
         else:
             return False                
         
+    def check_ativa_infoAutor(self):
+        if self.configurador():
+            control = self.configurador()
+            return control.ativa_infoAutor
+        else:
+            return True        
         
     def check_myvindulaprivate_isanonymous(self):
         member = getSite().portal_membership
