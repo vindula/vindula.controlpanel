@@ -96,6 +96,11 @@ class IVindulaConfigAll(form.Schema):
                 default=True
                 )
     
+    ativa_gravatar = schema.Bool(
+                title=_(u'label_ativa_gravatar', default=u'Ativar a integração do myvindula com o gravatar.com'),
+                description=_(u'help_activa_gravatar', default=u'Se selecionado ativa a integração das fotos do usuários com o sistema gravatar'),
+                default=True
+                )
     
     
 class VindulaConfiguration(grok.View):
@@ -219,6 +224,14 @@ class VindulaConfiguration(grok.View):
             return control.ativa_infoAutor
         else:
             return True        
+        
+    def check_ativa_gravatar(self):
+        if self.configurador():
+            control = self.configurador()
+            return control.ativa_gravatar
+        else:
+            return True        
+        
         
     def check_myvindulaprivate_isanonymous(self):
         member = getSite().portal_membership

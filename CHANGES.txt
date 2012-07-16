@@ -78,3 +78,8 @@ Changelog
 -----------------------
 - Adição da opção para ocultar a viewlet document_byline
 
+1.1.12 - 2012-07-16
+------------------------
+- Integração da imagem do usuário com o gravatar
+
+
