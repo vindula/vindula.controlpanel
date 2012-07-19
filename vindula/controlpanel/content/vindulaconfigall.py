@@ -7,7 +7,7 @@ from vindula.controlpanel import MessageFactory as _
 from random import randint
 
 from zope.interface import Interface
-from zope.app.component.hooks import getSite
+from zope.app.component.hooks import getSite, setSite
 
 # Interface and schema
 
@@ -113,10 +113,22 @@ class VindulaConfiguration(grok.View):
     def render(self):
         pass
 
+    def update(self):
+        site = getSite()
+        #import pdb;pdb.set_trace()
+        try:
+            if site.portal_type != 'Plone Site':
+                print " **** Alteração do GetSite ******** " + str(site) 
+                setSite(site=self.context.portal_url.getPortalObject())
+        except:
+            setSite(site=self.context.portal_url.getPortalObject())
+
+
     def randomIdComents(self):
         return randint(1,1000) 
 
     def configurador(self):
+        self.update()
         if 'control-panel-objects' in  getSite().keys():
             control = getSite()['control-panel-objects']
             if 'vindula_vindulaconfigall' in control.keys():

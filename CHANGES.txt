@@ -82,4 +82,8 @@ Changelog
 ------------------------
 - Integração da imagem do usuário com o gravatar
 
+1.1.13 - 2012-07-19
+------------------------
+- Correção das viewlets para a remoção os portlets
+
 
