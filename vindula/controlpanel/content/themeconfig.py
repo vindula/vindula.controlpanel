@@ -86,7 +86,7 @@ ThemeConfig_schema =  ATDocumentSchema.copy() + Schema((
 
     StringField(
         name='itens_menu',
-        widget=PicklistWidget(
+        widget=InAndOutWidget(
             label=_(u"Itens do Menu"),
             description=_(u"Selecione os tipos de itens que serão apresentados no menu e no sub-menu."),
             format = 'select',
