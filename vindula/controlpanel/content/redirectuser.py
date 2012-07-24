@@ -16,6 +16,8 @@ from Products.UserAndGroupSelectionWidget.at import widget
 from Products.ATContentTypes.content.schemata import finalizeATCTSchema
 from vindula.controlpanel.config import *
 
+from vindula.controlpanel.browser.at.widget import VindulaReferenceSelectionWidget
+
 # Interface and schema
 RedirectUser_schema =  ATDocumentSchema.copy() + Schema((
 
@@ -43,7 +45,8 @@ RedirectUser_schema =  ATDocumentSchema.copy() + Schema((
         multiValued=0,
         label=_(u"Local de envio"),
         relationship='redirectPath',
-        widget=ReferenceBrowserWidget(default_search_index='SearchableText',
+        widget=VindulaReferenceSelectionWidget(#default_search_index='SearchableText',
+                                      typeview='list',
                                       label=_(u"Local de envio"),
                                       description='Selecione o local para o usuário será enviado.'),
         required=True,

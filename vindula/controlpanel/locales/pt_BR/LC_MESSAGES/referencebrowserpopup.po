@@ -1,0 +1,56 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ATReferenceBrowserWidget\n"
+"POT-Creation-Date: 2012-07-20 14:48+0000\n"
+"PO-Revision-Date: 2012-07-20 11:38-0300\n"
+"Last-Translator: Vindula\n"
+"Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language-Code: pt-br\n"
+"Language-Name: Português do Brasil\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: atreferencebrowserwidget\n"
+
+#. Default: "Add..."
+msgid "label_add"
+msgstr "Adicionar..."
+
+#. Default: "(Directory: ${directory})"
+msgid "label_directory"
+msgstr "(Diretório: ${directory})"
+
+#. Default: "Go"
+msgid "label_go"
+msgstr "Ir"
+
+#. Default: "No reference set. Click the add button to select."
+msgid "label_no_reference_set"
+msgstr "Nenhuma referência definida. Clique no botão 'Procurar' para selecionar."
+
+#. Default: "Clear reference"
+msgid "label_remove_reference"
+msgstr "Remover referência"
+
+#. Default: "History"
+msgid "referencebrowser_history"
+msgstr "Histórico"
+
+#. Default: "No items found."
+msgid "referencebrowser_no_items_found"
+msgstr "Nenhum item encontrado."
+
+#. Default: "Search index"
+msgid "referencebrowser_search_index_label"
+msgstr "Índice da busca"
+
+#. Default: "Added"
+msgid "referencebrowser_text_added_reference"
+msgstr "Adicionado"
+
+#. Default: "Removed"
+msgid "referencebrowser_text_removed_reference"
+msgstr "Removido"
+

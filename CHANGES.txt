@@ -86,4 +86,8 @@ Changelog
 ------------------------
 - Correção das viewlets para a remoção os portlets
 
+1.1.14 - 2012-07-24
+------------------------
+- Criação do novo widget de referencia de conteudo 
+- Alteração do widget de referenceBrowser nos contentTypes
 
