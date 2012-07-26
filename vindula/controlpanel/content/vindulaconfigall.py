@@ -97,8 +97,10 @@ class IVindulaConfigAll(form.Schema):
                 )
     
     ativa_gravatar = schema.Bool(
-                title=_(u'label_ativa_gravatar', default=u'Ativar a integração do myvindula com o gravatar.com'),
-                description=_(u'help_activa_gravatar', default=u'Se selecionado ativa a integração das fotos do usuários com o sistema gravatar'),
+                title=_(u'label_ativa_gravatar', default=u'Ativar a integração do Vindula com o gravatar.com'),
+                description=_(u'help_activa_gravatar', default=u'Caso selecionado a foto do perfil do usuário será a foto definida Gravatar, a foto do Gravatar será exibida apenas \
+                                                                 se o usuário não tiver uma foto já difinida no Vindula e tiver uma conta no Gravatar associada a seu email.\n\
+                                                                 Esta funcionalidade requer conectividade do Vindula com o site gravatar.com.'),
                 default=True
                 )
     
