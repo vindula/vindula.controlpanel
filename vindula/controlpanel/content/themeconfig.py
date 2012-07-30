@@ -436,7 +436,7 @@ class ThemeConfigCssView(grok.View):
         css += '    .%s .titulo_info_boxTipo2 h4 a{color: %s !important;}\n' %(id,color) 
         css += '    .%s .circle {background-color:%s !important;}\n' %(id,color)
         css += '    .%s dl.portlet .portletHeader .portletTopLeft {background-color: %s !important;}' %(id,color)
-        css += '    .%s dl.portlet .portletHeader span, .%s dl.portlet .portletHeader a {background-color: %s !important;}' %(id,id,color)
+        css += '    .%s dl.portlet .portletHeader > span, .%s dl.portlet .portletHeader > a {background-color: %s !important;}' %(id,id,color)
         css += '    .%s dl.portlet .portletHeader .portletTopRight {background-color: %s !important;}' %(id,color)
         css += '    .%s .pag_all {background-color: %s !important;}' %(id,color)
         css += '    .%s .userpage div.department {background-color: %s !important;}' %(id,color)
