@@ -51,7 +51,8 @@
                   sr python:plone_view.have_portlets('plone.rightcolumn', view);
                   body_class python:plone_view.bodyClass(template, view);
                   sunburst_view python:context.restrictedTraverse('@@sunburstview');
-				  view_org context/OrgStruct_view;"
+				  view_org context/OrgStruct_view;
+				  site_view python:context.restrictedTraverse('@@myvindula-conf-userpanel');"
     
 	tal:attributes="class python: body_class +' '+ str(view_org.id);
                     dir python:isRTL and 'rtl' or 'ltr'">

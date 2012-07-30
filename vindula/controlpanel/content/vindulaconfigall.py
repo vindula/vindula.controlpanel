@@ -7,7 +7,7 @@ from vindula.controlpanel import MessageFactory as _
 from random import randint
 
 from zope.interface import Interface
-from zope.app.component.hooks import getSite
+from zope.app.component.hooks import getSite, setSite
 
 # Interface and schema
 
@@ -96,6 +96,13 @@ class IVindulaConfigAll(form.Schema):
                 default=True
                 )
     
+    ativa_gravatar = schema.Bool(
+                title=_(u'label_ativa_gravatar', default=u'Ativar a integração do Vindula com o gravatar.com'),
+                description=_(u'help_activa_gravatar', default=u'Caso selecionado a foto do perfil do usuário será a foto definida Gravatar, a foto do Gravatar será exibida apenas \
+                                                                 se o usuário não tiver uma foto já difinida no Vindula e tiver uma conta no Gravatar associada a seu email.\n\
+                                                                 Esta funcionalidade requer conectividade do Vindula com o site gravatar.com.'),
+                default=True
+                )
     
     
 class VindulaConfiguration(grok.View):
@@ -108,10 +115,22 @@ class VindulaConfiguration(grok.View):
     def render(self):
         pass
 
+    def update(self):
+        site = getSite()
+        #import pdb;pdb.set_trace()
+        try:
+            if site.portal_type != 'Plone Site':
+                print " **** Alteração do GetSite ******** " + str(site) 
+                setSite(site=self.context.portal_url.getPortalObject())
+        except:
+            setSite(site=self.context.portal_url.getPortalObject())
+
+
     def randomIdComents(self):
         return randint(1,1000) 
 
     def configurador(self):
+        self.update()
         if 'control-panel-objects' in  getSite().keys():
             control = getSite()['control-panel-objects']
             if 'vindula_vindulaconfigall' in control.keys():
@@ -219,6 +238,14 @@ class VindulaConfiguration(grok.View):
             return control.ativa_infoAutor
         else:
             return True        
+        
+    def check_ativa_gravatar(self):
+        if self.configurador():
+            control = self.configurador()
+            return control.ativa_gravatar
+        else:
+            return True        
+        
         
     def check_myvindulaprivate_isanonymous(self):
         member = getSite().portal_membership
