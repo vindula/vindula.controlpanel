@@ -12,4 +12,13 @@
 
     <!-- -*- extra stuff goes here -*- -->
 
+    <!-- View para o widgets de referenceBroswer --> 
+    <page
+        for="*"
+        name="refbrowser_finder"
+        class=".views.VindulaFinderUploadView"
+        permission="zope2.View"   
+        allowed_attributes=""
+    />
+
  </configure>

@@ -10,11 +10,18 @@
 	        meta_type="Filesystem Directory View"
 	        directory="vindula.controlpanel:skins/vindula_controlpanel_templates"/>
  
+    <object name="vindulareferenceselectionwidget"
+            meta_type="Filesystem Directory View"
+            directory="vindula.controlpanel:skins/vindulareferenceselectionwidget"/>
+ 
 	<skin-path name="*">
 		<layer insert-after="custom" 
 		       name="vindula_controlpanel_templates"/>
+	
+	    <layer insert-after="custom" 
+               name="vindulareferenceselectionwidget"/>
+	
 	</skin-path>
-
-		 
+    		 
 </object>
 

@@ -78,12 +78,22 @@ Changelog
 -----------------------
 - Adição da opção para ocultar a viewlet document_byline
 
-1.1.12 - 2012-07-16
+1.1.16 - 2012-07-16
 ------------------------
 - Integração da imagem do usuário com o gravatar
 
-1.1.13 - 2012-07-19
+1.1.17 - 2012-07-19
 ------------------------
 - Correção das viewlets para a remoção os portlets
 
+<<<<<<< HEAD
+1.1.18 - 2012-07-24
+-----------------------
+- removido o tipo de conteudo folder padão do plone
+=======
+1.1.14 - 2012-07-24
+------------------------
+- Criação do novo widget de referencia de conteudo 
+- Alteração do widget de referenceBrowser nos contentTypes
+>>>>>>> origin/new_widget
 

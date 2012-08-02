@@ -6,6 +6,7 @@ def installControlPanel(context):
 
     # Set Global Allow False
     portal.portal_types.get('News Item').global_allow = False
+    portal.portal_types.get('Folder').global_allow = False
 
     # Creating Control Panel Folder
     if not 'control-panel-objects' in portal.objectIds():
