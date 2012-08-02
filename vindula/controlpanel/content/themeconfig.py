@@ -18,6 +18,8 @@ from archetypes.referencebrowserwidget.widget import ReferenceBrowserWidget
 from Products.ATContentTypes.content.schemata import finalizeATCTSchema
 from vindula.controlpanel.config import *
 
+from vindula.controlpanel.browser.at.widget import VindulaReferenceSelectionWidget
+
 # Interface and schema
 ThemeConfig_schema =  ATDocumentSchema.copy() + Schema((
 
@@ -56,8 +58,8 @@ ThemeConfig_schema =  ATDocumentSchema.copy() + Schema((
         allowed_types=('Image'),
         label=_(u"Logo Cabecalho"),
         relationship='logoPortal',
-        widget=ReferenceBrowserWidget(
-            default_search_index='SearchableText',
+        widget=VindulaReferenceSelectionWidget(
+            #default_search_index='SearchableText',
             label=_(u"Logo Cabecalho"),
             description='A imagem selecionada será exibida no topo do portal.'),
     ),
@@ -67,8 +69,8 @@ ThemeConfig_schema =  ATDocumentSchema.copy() + Schema((
         allowed_types=('Image'),
         label=_(u"Logo Rodapé "),
         relationship='logoRodape',
-        widget=ReferenceBrowserWidget(
-            default_search_index='SearchableText',
+        widget=VindulaReferenceSelectionWidget(
+            #default_search_index='SearchableText',
             label=_(u"Logo Rodapé"),
             description='A imagem selecionada será exibida no rodapé do portal.'),
     ),
@@ -78,8 +80,8 @@ ThemeConfig_schema =  ATDocumentSchema.copy() + Schema((
         allowed_types=('Image'),
         label=_(u"Favicon"),
         relationship='favicon',
-        widget=ReferenceBrowserWidget(
-            default_search_index='SearchableText',
+        widget=VindulaReferenceSelectionWidget(
+            #default_search_index='SearchableText',
             label=_(u"Favicon"),
             description='Logo que será exibido no topo da aba do navegador.'),
     ),                                                                   
@@ -122,8 +124,8 @@ ThemeConfig_schema =  ATDocumentSchema.copy() + Schema((
         allowed_types=('Image'),
         label=_(u"WallPapper do portal "),
         relationship='imageBackground',
-        widget=ReferenceBrowserWidget(
-            default_search_index='SearchableText',
+        widget=VindulaReferenceSelectionWidget(
+            #default_search_index='SearchableText',
             label=_(u"WallPaper do portal"),
             description='A imagem selecionada será exibida como plano de fundo do portal. A imagem será mostrada em seu tamanho original, sem repetição.'),
         schemata = 'Layout'
@@ -145,8 +147,8 @@ ThemeConfig_schema =  ATDocumentSchema.copy() + Schema((
         allowed_types=('Image'),
         label=_(u"Imagem para o rodapé do portal."),
         relationship='imageFooter',
-        widget=ReferenceBrowserWidget(
-            default_search_index='SearchableText',
+        widget=VindulaReferenceSelectionWidget(
+            #default_search_index='SearchableText',
             label=_(u"Imagem para o rodapé do portal"),
             description='A imagem selecionada será exibida no rodapé do portal. Selecione uma imagem com dimenções 980x121'),
         schemata = 'Layout'
@@ -196,8 +198,8 @@ ThemeConfig_schema =  ATDocumentSchema.copy() + Schema((
         allowed_types=('Image'),
         label=_(u"Imagem para o background do menu dropdown"),
         relationship='imageBkgMenu',
-        widget=ReferenceBrowserWidget(
-            default_search_index='SearchableText',
+        widget=VindulaReferenceSelectionWidget(
+            #default_search_index='SearchableText',
             label=_(u"Imagem para background do menu Dropdown"),
             description='A imagem selecionada será exibida como plano de fundo do menu.\
                          A imagem será mostrada em seu tamanho original, com repetição.'),

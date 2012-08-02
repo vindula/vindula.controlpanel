@@ -23,11 +23,111 @@ from vindula.controlpanel.browser.models import RegistrationCompanyInformation, 
 from Products.GenericSetup.interfaces import ISetupTool    
 import pickle
 
+from collective.plonefinder.browser.finder import Finder
+from Acquisition import aq_inner
 
 class ControlPanelView(grok.View):
     grok.context(INavigationRoot)
     grok.require('cmf.ManagePortal')
     grok.name('vindula-control-panel')
+    
+class VindulaFinderUploadView(Finder):
+    """ Custom Finder class for widget """
+
+    def __init__(self, context, request):
+        super(VindulaFinderUploadView, self).__init__(context, request)
+        self.findername = 'refbrowser_finder'
+        self.multiselect = True
+        
+        self.allowupload = True
+        self.allowaddfolder = True
+        self.allowimagesizeselection = False
+        self.review_state = ''
+
+        #self.query = {'review_state':'published'}
+               
+        context = aq_inner(context)
+
+    def __call__(self):
+        # redefine some js methods (to select items ...)
+        request = aq_inner(self.request)
+        self.jsaddons = self.get_jsaddons()
+        
+        self.review_state = request.get('review_state', self.review_state) 
+        
+        
+        return super(VindulaFinderUploadView, self).__call__()    
+
+    def finderQuery(self, topicQuery=None):
+        """
+        return query for results depending on some params
+        """
+
+        request = self.request
+        if self.query:
+            return self.query
+        elif self.typeview == 'selection':
+            return {'uid': self.blacklist}
+        elif self.displaywithoutquery or self.searchsubmit:
+            query = {}
+            path = {}
+            if not self.searchsubmit:
+                path['depth'] = 1
+            path['query'] = self.browsedpath
+            query['path'] = path
+            sort_index = self.sort_on
+            if self.sort_withcatalog:
+                query['sort_on'] = sort_index
+                query['sort_order'] = self.sort_order
+            if self.types:
+                query['portal_type'] = self.types
+
+            if self.searchsubmit:
+                # TODO : use a dynamic form
+                # with different possible searchform fields
+                q = request.get('SearchableText', '')
+                if q:
+                    for char in '?-+*':
+                        q = q.replace(char, ' ')
+                    r = q.split()
+                    r = " AND ".join(r)
+                    searchterms = _quote_bad_chars(r) + '*'
+
+                    query['SearchableText'] = searchterms
+                    
+            if self.review_state:
+                    query['review_state'] = self.review_state
+            
+            return query
+
+    def get_jsaddons(self):
+        """ redefine selectItem method in js string """
+
+        jsstring = """
+            function getUrlVars() {
+                    var vars = {};
+                    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(m,key,value) {
+                        vars[key] = value;
+                    });
+                return vars;
+            }
+        
+        selectCKEditorItem = function (selector, title) {
+                        var nameField = getUrlVars()['fieldName']; 
+                        var multi = parseInt(getUrlVars()['mult']);
+                        
+                        window.opener.RefBrowserWidget_setReference('ref_browser_'+nameField,selector,title,multi);
+                        window.opener.RefBrowserWidget_ajaxObjSelect(nameField,selector);
+                        if (!multi){
+                            window.close();
+                        }else{
+                           alert('Conteúdo '+title+' adicionado.');
+                        };
+                     };
+
+        Browser.selectItem = selectCKEditorItem;
+             """
+        return jsstring    
     
     
 class MacroLogoTopView(grok.View):
