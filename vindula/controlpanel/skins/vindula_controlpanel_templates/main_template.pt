@@ -52,11 +52,17 @@
                   body_class python:plone_view.bodyClass(template, view);
                   sunburst_view python:context.restrictedTraverse('@@sunburstview');
 				  view_org context/OrgStruct_view;
-				  site_view python:context.restrictedTraverse('@@myvindula-conf-userpanel');"
+				  site_view python:context.restrictedTraverse('@@myvindula-conf-userpanel');
+				  
+				  key_vindula python:context.restrictedTraverse('check_vindulaKey',None);"
     
 	tal:attributes="class python: body_class +' '+ str(view_org.id);
                     dir python:isRTL and 'rtl' or 'ltr'">
-
+    
+    <tal:dum tal:condition="key_vindula"> 
+       <tal:def define="dummy key_vindula/update" />
+    </tal:dum>
+    
 <div id="visual-portal-wrapper">
 
         <div id="portal-top"
