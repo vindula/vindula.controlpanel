@@ -86,14 +86,13 @@ Changelog
 ------------------------
 - Correção das viewlets para a remoção os portlets
 
-<<<<<<< HEAD
 1.1.18 - 2012-07-24
 -----------------------
 - removido o tipo de conteudo folder padão do plone
-=======
-1.1.14 - 2012-07-24
-------------------------
 - Criação do novo widget de referencia de conteudo 
 - Alteração do widget de referenceBrowser nos contentTypes
->>>>>>> origin/new_widget
+
+1.1.18 - 2012-07-24
+-----------------------
+- Adicionada a opcao de selecionar os tipos de Ordenacao que ira aparecer na viao sum�ria
 

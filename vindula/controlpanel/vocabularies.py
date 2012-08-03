@@ -10,6 +10,9 @@ from plone.app.vocabularies.types import BAD_TYPES
 
 from vindula.myvindula.user import ModelsFuncDetails
 
+from AccessControl import ClassSecurityInfo
+from Products.CMFCore.permissions import View
+from Products.ATContentTypes.criteria import _criterionRegistry
 
 class ControlPanelObjects(object):
     """ Create SimpleVocabulary for any Choice Fields """
@@ -181,3 +184,49 @@ class ListDisplayAlerts(object):
             terms.append(SimpleTerm(i, i, _(u'option_category', default=obj[i])))
         
         return SimpleVocabulary(terms)
+    
+    
+class ListToOrderBy(object):
+    """ Create SimpleVocabulary for Display of Alerts """
+    implements(IContextSourceBinder)
+    security = ClassSecurityInfo()
+    security.declareProtected(View, 'criteriaByIndexId')
+    security.declareProtected(View, 'validateAddCriterion')
+    
+    def __init__(self):
+        self.object = object 
+    def __call__(self, context):
+        tool = getToolByName(self, 'portal_atct')
+        listFields = tool.getEnabledFields() 
+        fields = [ field
+                    for field in listFields
+                    if self.validateAddCriterion(field[0], 'ATSortCriterion') ]
+        
+        return wrap_in_terms(fields) 
+    
+    def criteriaByIndexId(self, indexId):
+        catalog_tool = getToolByName(getSite(), 'portal_catalog')
+        indexObj = catalog_tool.Indexes[indexId]
+        results = _criterionRegistry.criteriaByIndex(indexObj.meta_type)
+        return results
+    
+    def validateAddCriterion(self, indexId, criteriaType):
+        """Is criteriaType acceptable criteria for indexId
+        """
+        return criteriaType in self.criteriaByIndexId(indexId)
+    
+def wrap_in_terms(items):
+    """This just wraps all the study sectors in a thing called vocabulary
+    which is needed to let the z3c.form machinery display them in select
+    boxes or what ever is appropriate.
+    """
+    terms = []
+    if items:
+        for item in items:
+            term = SimpleTerm(
+                    title = item[1],
+                    value = item,
+            )
+            terms.append(term)
+  
+    return SimpleVocabulary(terms)

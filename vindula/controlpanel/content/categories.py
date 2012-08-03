@@ -2,6 +2,8 @@
 from zope import schema
 from plone.directives import form
 from vindula.controlpanel import MessageFactory as _
+from z3c.form.browser.checkbox import CheckBoxFieldWidget
+from vindula.controlpanel.vocabularies import ListToOrderBy
 
 # Interface and schema
 
@@ -24,3 +26,10 @@ class ICategories(form.Schema):
         required=False,
         )
     
+    form.widget(order_list=CheckBoxFieldWidget)
+    order_list = schema.List(
+        title = _(u'Itens que aparaceram nos campos de ordenação do portal.'),
+        description = _(u'Selecione abaixo os tipos de ordenação de conteúdo que apareceram nos campos "Ordenar por".'),
+        required = False,
+        value_type = schema.Choice( source = ListToOrderBy() ),
+        )
