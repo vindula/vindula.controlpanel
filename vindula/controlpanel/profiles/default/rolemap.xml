@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<rolemap>
+    <roles>
+        <role name="editPortlet"/>
+    </roles>
+      
+    <permissions>
+        <permission name="Portlets: Manage portlets" acquire="True">
+            <role name="Manager" />
+            <role name="Site Administrator" />
+            <role name="editPortlet" />
+        </permission>    
+    </permissions>
+</rolemap>

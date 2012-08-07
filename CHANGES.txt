@@ -96,8 +96,12 @@ Changelog
 -----------------------
 - Adicionada a opcao de selecionar os tipos de Ordenacao que ira aparecer na viao sum�ria
 
-1.1.19 - 2012-07-25
+1.1.19 - 2012-08-07
 -----------------------
 - Ajustes no VindulaReferenceSelectionWidget, para busca uma pasta padrão de imagem
 - Ajustes no layout do popup de referenciamento 
+
+1.1.20 - 2012-08-07
+----------------------
+- Criado nova ruler para o usuario porder adicionar portlets dentro de um contexto
 

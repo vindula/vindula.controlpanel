@@ -28,7 +28,13 @@
       description="Extension profile for Vindula Control Panel"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
-
+    
+  <!-- Roles -->
+  <utility
+        name="editPortlet"
+        factory=".sharing.EditPortletRole"
+        />
+  
   <subscriber
             for="Products.PluggableAuthService.interfaces.events.IUserLoggedInEvent"
             handler=".handlers.userLogged"/>
