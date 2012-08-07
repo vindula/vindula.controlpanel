@@ -4,6 +4,10 @@ from plone.directives import form
 from vindula.controlpanel import MessageFactory as _
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from vindula.controlpanel.vocabularies import ListToOrderBy
+from plone.formwidget.contenttree import ObjPathSourceBinder
+from z3c.relationfield.schema import RelationChoice
+
+#from collective.plonefinder.widgets.referencewidget import FinderSelectWidget
 
 # Interface and schema
 
@@ -33,3 +37,11 @@ class ICategories(form.Schema):
         required = False,
         value_type = schema.Choice( source = ListToOrderBy() ),
         )
+    
+    #form.widget(folder_image=FinderSelectWidget)
+    folder_image = RelationChoice(title=_(u"Seleção da pasta padrão de imagens"),
+                                  description=_(u"Selecione a pasta que content as imagems do portal."),
+                                  source=ObjPathSourceBinder(portal_type = ('Folder', 'VindulaFolder'),
+                                                             review_state = ('published','internal','external')
+                                                             ),
+                                  required=False)

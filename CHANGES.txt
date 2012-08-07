@@ -94,5 +94,10 @@ Changelog
 
 1.1.18 - 2012-07-24
 -----------------------
-- Adicionada a opcao de selecionar os tipos de Ordenacao que ira aparecer na viao sum‡ria
+- Adicionada a opcao de selecionar os tipos de Ordenacao que ira aparecer na viao sumï¿½ria
+
+1.1.19 - 2012-07-25
+-----------------------
+- Ajustes no VindulaReferenceSelectionWidget, para busca uma pasta padrÃ£o de imagem
+- Ajustes no layout do popup de referenciamento 
 

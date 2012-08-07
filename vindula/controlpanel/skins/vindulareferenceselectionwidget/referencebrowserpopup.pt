@@ -194,9 +194,10 @@
                            popup_height widget/popup_height|string:550;
                            allowupload widget/allowupload|python:True;
                            allowaddfolder widget/allowaddfolder|python:True;
-                           urlFinderPopup python:widget.getUrlFinder(field);"
+                           urlFinderPopup python:widget.getUrlFinder(field);
+                           urlWidgetConfig python:widget.getUrlWidgetConfig(context,field)"
          
-               tal:attributes="onClick string:window.open('${context/absolute_url}/${urlFinderPopup}','Referenciamento','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=${popup_width}px, height=${popup_height}px, top='+((screen.height/2)-(${popup_height}/2))+'px, left='+((screen.width/2)-(${popup_width}/2))+'px');" />            
+               tal:attributes="onClick string:window.open('${urlWidgetConfig}/${urlFinderPopup}','Referenciamento','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=${popup_width}px, height=${popup_height}px, top='+((screen.height/2)-(${popup_height}/2))+'px, left='+((screen.width/2)-(${popup_width}/2))+'px');" />            
         
         <input type="button" class="destructive" value="Clear reference" onclick=""
                i18n:attributes="value label_remove_reference;"

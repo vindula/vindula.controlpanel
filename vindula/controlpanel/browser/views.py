@@ -52,6 +52,9 @@ class VindulaFinderUploadView(Finder):
         # redefine some js methods (to select items ...)
         request = aq_inner(self.request)
         self.jsaddons = self.get_jsaddons()
+        self.cssaddons = '''
+                            .popup .browserStatic {background: none;}
+                         '''
         
         self.review_state = request.get('review_state', self.review_state) 
         

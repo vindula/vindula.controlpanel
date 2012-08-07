@@ -30,6 +30,7 @@ setup(name='vindula.controlpanel',
           'Products.SmartColorWidget',
           'Products.UserAndGroupSelectionWidget',
           'plone.app.z3cform',
+          'collective.plonefinder',
           
           # -*- Extra requirements: -*-
       ],

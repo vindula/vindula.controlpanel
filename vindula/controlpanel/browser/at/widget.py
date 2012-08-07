@@ -77,6 +77,25 @@ class VindulaReferenceSelectionWidget(TypesWidget):
             url_finder += 'review_state=%s&' %url_quote(self.review_state)
         
         return url_finder
+    
+    security.declarePublic('getUrlWidgetConfig')
+    def getUrlWidgetConfig(self,ctx,field):
+        url = ''
+        try:
+            obj = getSite()['control-panel-objects']['vindula_categories']
+        except:
+            obj = None
+        if obj and 'Image' in field.allowed_types:
+            if obj.folder_image:
+                url = obj.folder_image.to_object.absolute_url()
+            else:
+                url = ctx.absolute_url()
+        else:
+            url = ctx.absolute_url()
+    
+    
+        return url
+    
 
 registerWidget(
     VindulaReferenceSelectionWidget,
