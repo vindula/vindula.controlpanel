@@ -23,8 +23,7 @@ def installControlPanel(context):
              'vindula.controlpanel.content.alertdisplay',
              'vindula.controlpanel.content.vindulaconfigall',
              'vindula.controlpanel.content.aniversariantesconfig',
-             'vindula.controlpanel.content.vindulaconfiglogin',
-             'ThemeConfig','ContentRedirectUser']
+             'ThemeConfig','ContentRedirectUser', 'ThemeLoginConfig']
     
         
     for type in types:

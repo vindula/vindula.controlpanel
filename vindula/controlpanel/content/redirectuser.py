@@ -20,16 +20,6 @@ from vindula.controlpanel.browser.at.widget import VindulaReferenceSelectionWidg
 
 # Interface and schema
 RedirectUser_schema =  ATDocumentSchema.copy() + Schema((
-
-#    BooleanField(
-#        name='ativa_regra',
-#        default=True,
-#        widget=BooleanWidget(
-#            label="Ativar Regra",
-#            description='Se selecionado, Ativa está regra para os usuários.',
-#        ),
-#      
-#    ),
     
     LinesField(
             name="userORgroups",

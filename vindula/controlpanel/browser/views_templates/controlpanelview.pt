@@ -37,12 +37,12 @@
                 </li>
             </ul><div class="contentActions">&nbsp;</div>
     	</div>
-		<div class="controlpanel-abas controlpanel-links" id="content">
+		<div class="controlpanel-abas controlpanel-links" id="content"> 
 			<!--###################### Layout  ##################################################### -->
 			<div class="tab-content" id="div-layout">
 				<div>
 					<img src="/++resource++vindula.controlpanel/icons/controlpanel_theme.png" />
-					<a tal:attributes="href string:${portal_url}/control-panel-objects/vindula_themeconfig/edit">Tema</a>
+					<a tal:attributes="href string:${portal_url}/control-panel-objects/ThemeConfig/edit">Tema</a>
 				</div>
 			</div>
 			<!--###################### Usuarios  ##################################################### -->
@@ -135,7 +135,7 @@
                 
                 <div>
                     <img src="/++resource++vindula.controlpanel/icons/controlpanel_vindulaconfiglogin.png" />
-                    <a tal:attributes="href string:${portal_url}/control-panel-objects/vindula_vindulaconfiglogin/edit">Configura&ccedil;&atilde;o de Login</a>
+                    <a tal:attributes="href string:${portal_url}/control-panel-objects/ThemeLoginConfig/edit">Configura&ccedil;&atilde;o de Login</a>
                 </div>
                 
             </div>

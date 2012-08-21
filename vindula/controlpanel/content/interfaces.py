@@ -9,5 +9,8 @@ class IContentRedirectUser(Interface):
 
 class IRedirectUser(Interface):
     """ Interface for RedirectUser content type """
+    
+class IThemeLoginConfig(Interface):
+    """ Interface for ThemeLoginConfig content type """
 
 

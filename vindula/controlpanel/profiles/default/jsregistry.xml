@@ -10,7 +10,7 @@
              
     <javascript id="++resource++vindula.controlpanel/js/config_login.js"
              cacheable="True" compression="safe" cookable="False" enabled="True" inline="False" 
-             expression="python: context.portal_type == 'vindula.controlpanel.content.vindulaconfiglogin'"  />                  
+             expression="python: context.portal_type == 'ThemeLoginConfig'"  />                  
              	 
 
 </object>
