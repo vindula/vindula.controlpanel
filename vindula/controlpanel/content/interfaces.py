@@ -10,4 +10,5 @@ class IContentRedirectUser(Interface):
 class IRedirectUser(Interface):
     """ Interface for RedirectUser content type """
 
-
+class IFieldSetMyvindula(Interface):
+    """ Interface for FieldSetMyvindula content type """

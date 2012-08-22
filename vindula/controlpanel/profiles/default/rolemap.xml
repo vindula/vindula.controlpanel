@@ -9,6 +9,12 @@
             <role name="Manager" />
             <role name="Site Administrator" />
             <role name="editPortlet" />
-        </permission>    
+        </permission>
+        
+        <permission name="vindula.UserLogado" acquire="True">
+            <role name="Member" />
+        </permission>
+        
+            
     </permissions>
 </rolemap>

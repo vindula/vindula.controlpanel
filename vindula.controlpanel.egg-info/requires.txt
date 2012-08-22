@@ -3,3 +3,4 @@ plone.app.dexterity
 Products.SmartColorWidget
 Products.UserAndGroupSelectionWidget
 plone.app.z3cform
+collective.plonefinder

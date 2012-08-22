@@ -15,6 +15,7 @@ vindula/controlpanel/__init__.py
 vindula/controlpanel/config.py
 vindula/controlpanel/handlers.py
 vindula/controlpanel/setuphandlers.py
+vindula/controlpanel/sharing.py
 vindula/controlpanel/vocabularies.py
 vindula/controlpanel/browser/__init__.py
 vindula/controlpanel/browser/models.py
