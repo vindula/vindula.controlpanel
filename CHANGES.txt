@@ -105,3 +105,8 @@ Changelog
 ----------------------
 - Criado nova ruler para o usuario porder adicionar portlets dentro de um contexto
 
+
+1.1.21 - 2012-08-23
+-------------------------
+- Criado tipo de conteudo para criar novas categorias ao perfil do usuario
+
