@@ -105,3 +105,7 @@ Changelog
 ----------------------
 - Criado nova ruler para o usuario porder adicionar portlets dentro de um contexto
 
+1.1.21 - 2012-08-23
+------------------------
+- Adicionado a nova imagem de powerBy no rodape do vindula
+

@@ -3,8 +3,7 @@
 		 			 config_obj python: portal['control-panel-objects']['vindula_themeconfig'];
 					 
 					 view_org context/OrgStruct_view;
-					 view python: context.restrictedTraverse('@@vindula-macro-footer');"
-		>	
+					 view python: context.restrictedTraverse('@@vindula-macro-footer');">
 		 	
 		<!-- Logo -->
 		<div id="macro_logofooter">
@@ -21,7 +20,7 @@
 	
 					<img tal:attributes="src python: view.getOrgStrucContent().get('url','')" />
 					 
-				</tal:cond>					 
+				</tal:cond>
 					 
 					 
 			</a>	 
@@ -42,7 +41,10 @@
 			<p tal:condition="python: config_obj.getText()"
 				tal:content="structure python: config_obj.getText()"></p>
 			   
-			<p tal:condition="python: not config_obj.getText()">&copy; 2011 Vindula Software. All Rights Reserved.</p>
+			<p tal:condition="python: not config_obj.getText()">
+			    <img tal:attributes="src string:${context/portal_url}/++resource++vindula.controlpanel/imagens/vindula_logo_powerby.png" />
+			    
+			</p>
 			
 			<a class="theme-edit"
 			   title="Clique aqui para editar o texto"
