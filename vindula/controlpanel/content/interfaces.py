@@ -13,4 +13,5 @@ class IRedirectUser(Interface):
 class IThemeLoginConfig(Interface):
     """ Interface for ThemeLoginConfig content type """
 
-
+class IFieldSetMyvindula(Interface):
+    """ Interface for FieldSetMyvindula content type """

@@ -115,4 +115,5 @@ Changelog
 1.1.22 - 2012-08-23
 ------------------------
 - Adicionado a nova imagem de powerBy no rodape do vindula
+- Criado tipo de conteudo para criar novas categorias ao perfil do usuario
 

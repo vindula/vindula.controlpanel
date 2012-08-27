@@ -49,22 +49,34 @@ def link_user_folder(context):
     
     # Creating Migration Users Folder
     if 'control-panel-objects' in ctx.objectIds():
+        portal.portal_types.get('Folder').global_allow = True
         folder_control_panel = ctx['control-panel-objects']
-        if not 'link-user-folder' in folder_control_panel.objectIds():
-            folder_control_panel.invokeFactory('Folder', 
-                                               id='link-user-folder', 
-                                               title='Links da Barra Pessoal',
-                                               description='Pasta que guardar os links adicionais aos usuários.',
-                                               excludeFromNav = True)
-                            
-            folder_user_data = folder_control_panel['link-user-folder']
-            folder_user_data.setConstrainTypesMode(1)
-            folder_user_data.setLocallyAllowedTypes(['InternalLink'])
-            
-            try:portal_workflow.doActionFor(folder_user_data, 'publish')
-            except:portal_workflow.doActionFor(folder_user_data, 'publish_internally')                
+        folders = [{'id':'link-user-folder',
+                    'title':'Links da Barra Pessoal',
+                    'description':'Pasta que guardar os links adicionais aos usuários.',
+                    'AllowedTypes':('InternalLink',)},
+                   {'id':'fieldset-myvindula',
+                    'title':'Categorias para o perfil dos usuários',
+                    'description':'Patas que guardar as categorias adicionais do perfil dos usuários',
+                    'AllowedTypes':('FieldSetMyvindula',)}
+                   ]
+        
+        for folder in folders:
+            if not folder['id'] in folder_control_panel.objectIds():
+                folder_control_panel.invokeFactory('Folder', 
+                                                   id=folder['id'], 
+                                                   title=folder['title'],
+                                                   description=folder['description'],
+                                                   excludeFromNav = True)
+                                
+                folder_data = folder_control_panel[folder['id']]
+                folder_data.setConstrainTypesMode(1)
+                folder_data.setLocallyAllowedTypes(folder['AllowedTypes'])
+                
+                try:portal_workflow.doActionFor(folder_data, 'publish')
+                except:portal_workflow.doActionFor(folder_data, 'publish_internally')                
 
-
+        portal.portal_types.get('Folder').global_allow = False
 
 def CreateForderImage(context):
     portal = context.getSite()

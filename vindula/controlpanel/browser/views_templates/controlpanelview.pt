@@ -105,6 +105,10 @@
 					<img src="/++resource++vindula.controlpanel/icons/controlpanel_categories.png" />
 					<a tal:attributes="href string:${portal_url}/control-panel-objects/vindula_categories/edit">Gest&atilde;o de Categorias</a>
 				</div>
+				<div>
+                    <img src="/++resource++vindula.controlpanel/icons/controlpanel_fieldset.png" />
+                    <a tal:attributes="href string:${portal_url}/control-panel-objects/fieldset-myvindula">Gest&atilde;o de Categorias do Perfil do Usu&atilde;rio</a>
+                </div>
 	          	<div>
 	            	<img src="/++resource++vindula.controlpanel/icons/controlpanel_manage_products.png" />
 	            	<a tal:attributes="href string:${portal_url}/vindula-manage-products">Produtos do Plone</a>
