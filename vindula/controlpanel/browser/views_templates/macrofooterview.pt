@@ -1,6 +1,6 @@
 <metal:macro metal:define-macro="footer">
 	<div tal:define="portal python: context.portal_url.getPortalObject();
-		 			 config_obj python: portal['control-panel-objects']['vindula_themeconfig'];
+		 			 config_obj python: portal['control-panel-objects']['ThemeConfig'];
 					 
 					 view_org context/OrgStruct_view;
 					 view python: context.restrictedTraverse('@@vindula-macro-footer');">
@@ -29,7 +29,7 @@
 			   title="Clique aqui para editar o logo"
 			   tal:define="paper python:context.portal_membership.getAuthenticatedMember().getRoles()"
 			   tal:condition="python:'Manager' in paper"
-			   tal:attributes="href string:${context/portal_url}/control-panel-objects/vindula_themeconfig/edit">
+			   tal:attributes="href string:${context/portal_url}/control-panel-objects/ThemeConfig/edit">
 				<img src="/++resource++vindula.controlpanel/imagens/theme_edit.png" />
 			</a>
 
@@ -50,7 +50,7 @@
 			   title="Clique aqui para editar o texto"
 			   tal:define="paper python:context.portal_membership.getAuthenticatedMember().getRoles()"
 			   tal:condition="python:'Manager' in paper"
-			   tal:attributes="href string:${context/portal_url}/control-panel-objects/vindula_themeconfig/edit">
+			   tal:attributes="href string:${context/portal_url}/control-panel-objects/ThemeConfig/edit">
 				<img src="/++resource++vindula.controlpanel/imagens/theme_edit.png" />
 			</a>
 			

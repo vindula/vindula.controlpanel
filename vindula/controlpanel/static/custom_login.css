@@ -1,0 +1,188 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font-family: Helvetica;
+	vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+body {
+	line-height: 1.2em;
+	background-color: #E3E3E3;
+	min-height: 610px;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+blockquote, q {
+	quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+input[type="text"],
+textarea,
+input[type="password"] {
+    border: 2px solid #A8A8A8;
+    margin-right: 4px;
+    padding: 3px;
+    width: 220px;
+	border-radius: 5px;
+	height: 20px;
+	font-size: 15px;
+}
+
+input[type="text"]:focus,
+textarea:focus,
+input[type="password"]:focus { 
+	border-color: #F9BC38 !important; 
+	background-color: #FFFFFF;
+	outline: none;
+}
+
+input[type="text"],
+textarea,
+input[type="password"] {
+	transition: border-color 0.7s;
+	-moz-transition: border-color 0.7s; /* Firefox 4 */
+	-webkit-transition: border-color 0.7s; /* Safari and Chrome */
+	-o-transition: border-color 0.7s; /* Opera */
+}
+
+label {
+	display: block;
+    font-weight: bold;
+	padding: 0 0 5px;
+}
+
+.fontSmallSize { font-size: 12px;}
+.clearBoth { clear: both;}
+.padding5px { padding: 5px; }
+.superIndex { z-index: 10 !important;}
+.loginFailed {
+    border-color: #FF5656 !important;
+	background-color: #F9E0E0;
+}
+
+/* Imagem de fundo */
+
+img.bg {
+	/* Set rules to fill background */
+	min-height: 100%;
+	min-width: 1024px;
+	
+	/* Set up proportionate scaling */
+	width: 100%;
+	height: auto;
+	
+	/* Set up positioning */
+	position: fixed;
+	top: 0;
+	left: 0;
+	
+	z-index: -10;
+}
+
+@media screen and (max-width: 1024px) { /* Specific to this particular image */
+	img.bg {
+		left: 50%;
+		margin-left: -512px;   /* 50% */
+	}
+}
+
+/* Content */
+
+.centered {
+	left: 50%;
+	position: absolute;
+	top: 25%;
+	z-index: 0;
+}
+
+.boxBorder {
+	border: 1px solid #A8A8AA;
+	border-radius: 5px;
+}
+
+.column {
+	margin-left: -240px;
+    width: 500px;
+    padding: 20px;
+}
+
+.columnFailed { 
+	margin-left: -400px;
+    margin-top: 400px;
+    width: 100%;
+}
+
+.columnBottom {
+	margin-top: 375px;
+}
+
+.boxLogin {
+	background: none repeat scroll 0 0 #FAFAFA;
+    box-shadow: 0 0 7px #BFBFBF inset, 0 0 15px 0 #A5A5A5;
+}
+
+.logo {
+	padding: 0 0 10px;
+    text-align: center;
+}
+
+.loginBox {
+	margin: 15px 0;
+	padding: 20px 20px 20px 25%;
+	background: none repeat scroll 0 0 #CDD4DA
+}
+
+.field { padding-bottom: 10px; }
+
+/*START Botoes*/
+
+.formControls {
+	float: right;
+}
+
+.formControls input[type="submit"] {
+	background: none repeat scroll 0 0 #F5A536;
+    border-color: #F99430;
+    border-radius: 5px 5px 5px 5px;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 5px 10px;
+    text-transform: uppercase;
+	cursor: pointer;
+}
+
+/*END Botoes*/

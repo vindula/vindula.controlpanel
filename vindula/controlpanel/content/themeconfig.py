@@ -340,7 +340,7 @@ class ThemeConfigView(grok.View):
         pass
     
     def update(self):
-        url = getSite().portal_url() + '/vindula-control-panel'
+        url = self.context.absolute_url()+'/edit'
         self.context.REQUEST.response.redirect(url)
         
 class ThemeConfigCssView(grok.View):
@@ -399,7 +399,7 @@ class ThemeConfigCssView(grok.View):
         return D
      
     def getConfLayout(self):
-        obj = getSite()['control-panel-objects']['vindula_themeconfig']
+        obj = getSite()['control-panel-objects']['ThemeConfig']
         return self.getConfig(obj)       
           
     def getConfiguration(self):

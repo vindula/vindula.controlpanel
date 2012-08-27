@@ -142,7 +142,7 @@ class MacroLogoTopView(grok.View):
     def getOrgStrucContent(self):
         ctx = self.context.restrictedTraverse('OrgStruct_view')()
         portal = self.context.portal_url.getPortalObject();
-        config_obj = portal['control-panel-objects']['vindula_themeconfig'];
+        config_obj = portal['control-panel-objects']['ThemeConfig'];
         
         D = {}
         if ctx.portal_type != 'Plone Site':
@@ -166,7 +166,7 @@ class MacroFooterView(grok.View):
     
     def getOrgStrucContent(self):
         portal = self.context.portal_url.getPortalObject();
-        config_obj = portal['control-panel-objects']['vindula_themeconfig'];
+        config_obj = portal['control-panel-objects']['ThemeConfig'];
 
         ctx = self.context.restrictedTraverse('OrgStruct_view')()
         D = {}
@@ -522,8 +522,8 @@ class ManageConfigBuscaView(grok.View):
     def getConfigurador(self):
         if 'control-panel-objects' in  getSite().keys():
             control = getSite()['control-panel-objects']
-            if 'vindula_themeconfig' in control.keys():
-                conf_theme = control['vindula_themeconfig']
+            if 'ThemeConfig' in control.keys():
+                conf_theme = control['ThemeConfig']
                 return conf_theme.getAtiva_buscaAnonima()
             else:
                 return None
@@ -571,3 +571,94 @@ class ManagePortletView(grok.View):
         url = '%s/++contextportlets++%s/%s/edit?referer=%s' % (baseUrl, manager,name,refererUrl)
 
         return url
+            
+            
+class CustomLoginView(grok.View):
+    grok.context(Interface)
+    grok.require('zope2.View')
+    grok.name('vindula-custom-login')
+    
+    def getControlPanelObjects(self):
+        if 'control-panel-objects' in  getSite().keys():
+            return getSite().get('control-panel-objects')
+        return None
+    
+    def getThemeConfObj(self):
+        control = self.getControlPanelObjects()
+        if 'ThemeConfig' in control.keys():
+            return control.get('ThemeConfig')
+        return None
+    
+    def getLoginConfObj(self):
+        control = self.getControlPanelObjects()
+        if 'ThemeLoginConfig' in control.keys():
+            return control.get('ThemeLoginConfig')
+        return None
+    
+    def getLoginGrafico(self):
+        conf_login = self.getLoginConfObj()
+        if conf_login:
+            if conf_login.getTipoLogin() == 'grafico':
+                return True
+        return None
+    
+    def getUrlImageBackground(self):
+        conf_login = self.getLoginConfObj()
+        if conf_login:
+            img = conf_login.getImagemBackground()
+            if img:
+                return img.absolute_url()
+        return None
+    
+    def getTypeBackground(self):
+        conf_login = self.getLoginConfObj()
+        if conf_login:
+            type = conf_login.getPosicaoImagem()
+            if type == 'centro':
+                return 'background: url("%s") no-repeat scroll center center %s' % (self.getUrlImageBackground() or '', conf_login.getCorSolidaBackground() or 'transparent')
+            elif type == 'lado_lado':
+                return 'background: url("%s") repeat scroll 0 0 %s' % (self.getUrlImageBackground() or '', conf_login.getCorSolidaBackground() or 'transparent')
+            elif type == 'estender':
+                color = conf_login.getCorSolidaBackground()
+                if color and color != 'transparent':
+                    return 'background: repeat scroll 0 0 %s' % (conf_login.getCorSolidaBackground())
+        return None
+    
+class CustomCssLogin(grok.View):
+    grok.context(Interface)
+    grok.require('zope2.View')
+    grok.name('custom-login-dynamic.css')
+    
+    def render(self):
+        css = """
+            input[type="text"]:focus,
+            textarea:focus,
+            input[type="password"]:focus { 
+                border-color: %(portal_color)s !important;
+            }
+            
+            .formControls input[type="submit"] { background-color: %(portal_color)s; border-color: %(portal_color)s }
+            
+        """ % {'portal_color': self.getPortalColor()}
+
+        self.response.setHeader('Content-Type', 'text/css; charset=UTF-8')
+        return css
+        
+        
+    def getThemeConfObj(self):
+        control = self.getControlPanelObjects()
+        if 'ThemeConfig' in control.keys():
+            return control.get('ThemeConfig')
+        return None
+    
+    def getPortalColor(self):
+        portal_color = self.getThemeConfObj().getCorGeralPortal()
+        return portal_color == 'transparent' and 'none' or portal_color
+    
+    def getControlPanelObjects(self):
+        if 'control-panel-objects' in  getSite().keys():
+            return getSite().get('control-panel-objects')
+        return None
+        
+        
+        

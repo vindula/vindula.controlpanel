@@ -105,7 +105,14 @@ Changelog
 ----------------------
 - Criado nova ruler para o usuario porder adicionar portlets dentro de um contexto
 
-1.1.21 - 2012-08-23
+1.1.21 - 2012-08-21
+----------------------
+- Adicionada opcao de usar uma tela de login gráfico
+- Modificado a busca da configuracao do tema do objeto vindula_themeconfig para o objeto ThemeConfig (em archetype)
+- Correcao do came_from e da logica do login do usuário, a regra de redirecionamento só funciona se o usuário estiver na raiz do site,
+  caso contrário ele será redirecionado para o local onde ele fez o login
+
+1.1.22 - 2012-08-23
 ------------------------
 - Adicionado a nova imagem de powerBy no rodape do vindula
 

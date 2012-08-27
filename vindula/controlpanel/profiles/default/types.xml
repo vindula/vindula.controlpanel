@@ -7,8 +7,6 @@
   <object name="vindula.controlpanel.content.vindulaconfigall" meta_type="Dexterity FTI"/>
   <object name="vindula.controlpanel.content.aniversariantesconfig" meta_type="Dexterity FTI"/>
     
-  <object name="vindula.controlpanel.content.vindulaconfiglogin" meta_type="Dexterity FTI"/>
-    
   <object name="ThemeConfig" 
   		meta_type="Factory-based Type Information with dynamic views"/>
   
@@ -16,6 +14,9 @@
         meta_type="Factory-based Type Information with dynamic views"/>
 
   <object name="RedirectUser" 
-        meta_type="Factory-based Type Information with dynamic views"/>        		
+        meta_type="Factory-based Type Information with dynamic views"/>
+		
+  <object name="ThemeLoginConfig" 
+  		meta_type="Factory-based Type Information with dynamic views"/>       		
   
 </object>

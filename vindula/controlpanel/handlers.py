@@ -23,8 +23,12 @@ def userLogged(event, isLogin = True):
     try: rules = getSite()['control-panel-objects']['ContentRedirectUser']
     except: relues = None
     request = getSite().REQUEST  
+
+    if request.other.get('came_from') not in ('myvindula-first-registre', getSite().portal_url()+'/', '', None):
+        request.response.redirect(request.other.get('came_from'), lock=True)
+        return
     
-    if rules and not 'myvindula-first-registre' in request.other.get('came_from','') and check_redirect:
+    elif rules and not 'myvindula-first-registre' in request.other.get('came_from','') and check_redirect:
         user_login = membership.getAuthenticatedMember()
         groups_user = [i.id for i in groups_tool.getGroupsByUserId(user_login.getUserName())]
         
@@ -45,7 +49,7 @@ def userLogged(event, isLogin = True):
                             request.response.redirect(url, lock=True)
                             return
         
-        url = getSite().absolute_url()
+        url = getSite().portal_url()
         request.other["came_from"]=url
         request.response.redirect(url, lock=True)
         
