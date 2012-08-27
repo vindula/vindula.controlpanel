@@ -78,8 +78,8 @@ class IVindulaConfigAll(form.Schema):
                 )
     
     ativa_richtext = schema.Bool(
-                title=_(u'label_ativa_richtext', default=u'Ativar a opção do usuário poder editar os comentários com o Editor TinyMCE'),
-                description=_(u'help_activ_holerite', default=u'Se selecionado ativa a opção do usuário poder editar os comentários com o Editor TinyMCE'),
+                title=_(u'label_ativa_richtext', default=u'Ativar a opção do usuário poder editar os comentários com o Editor Ckeditor'),
+                description=_(u'help_activ_holerite', default=u'Se selecionado ativa a opção do usuário poder editar os comentários com o Editor Ckeditor'),
                 default=False
                 )
     
