@@ -1,0 +1,86 @@
+/*LIB #portlet-prefs*/
+#portlet-prefs .fontGray { color: #707070; }
+#portlet-prefs .padding10px { padding: 10px; }
+#portlet-prefs .padding30pxLf { padding-left: 30px; }
+#portlet-prefs .listItem { display: list-item; }
+#portlet-prefs .height12px { height: 12px; }
+
+
+#portlet-prefs { font-size: 80%; }
+#portlet-prefs a:hover { text-decoration: underline; }
+
+#portlet-prefs .subtopicLink { 
+	padding-bottom: 2px;
+    padding-top: 4px;
+}
+
+#portlet-prefs .portletItemPrefs {
+	background: #FFFFFF;
+    width: 225px;
+	border-bottom: 1px solid #D7D7D7;
+}
+
+#portlet-prefs .mouseHover:hover { 
+	background-color: #B2B3B7;
+	color: #FFFFFF;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+#portlet-prefs .seta {
+	float: left;
+	border: 4px solid transparent;
+	margin: 2px 4px 0 0;
+	width: 0;
+	height: 0;
+}
+
+#portlet-prefs .seta-left { border-left-color:#000; }
+#portlet-prefs .seta-top { border-top-color:#000; }
+#portlet-prefs .mouseHover:hover .seta-left { border-left-color:#FFF; }
+#portlet-prefs .mouseHover:hover .seta-top { border-top-color:#FFF; }
+#portlet-prefs .selectedHead .seta-left { border-left-color:#FFF; }
+#portlet-prefs .selectedHead .seta-top { border-top-color:#FFF; }
+
+#portlet-prefs .subTopic .selected { 
+	background-color: #000000;
+	color: #FFFFFF;
+}
+
+#portlet-prefs .subTopic .selected { 
+	background-color: #000000;
+	color: #FFFFFF;
+}
+
+#portlet-prefs .subTopic .selected { 
+	background-color: #000000;
+	color: #FFFFFF;
+}
+
+#portlet-prefs .selectedHead {
+	background-color: #FAA719;
+	color: #FFFFFF;
+}
+
+#portlet-prefs .subTopicSpan { line-height: 2em; }
+
+#portlet-prefs .padlock { 
+	bottom: 23px;
+    float: right;
+    position: relative;
+    right: 10px;
+}
+
+#portlet-prefs .padlockTopic {
+	left: 93%;
+	*left: 85%; /*IE7*/
+    position: relative;
+	bottom: 14px;
+	width: 14px;
+}
+
+.editPermissions {
+	font-size: 11px;
+	color: #707070 !important;
+}
+.editPermissions:hover { text-decoration: underline; }

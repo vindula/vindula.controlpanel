@@ -6,7 +6,13 @@
     id="++resource++vindula.controlpanel/alert_style.css"
     media="screen" rel="stylesheet" rendering="import"
     cacheable="True" compression="safe" cookable="True"
-    enabled="1" expression=""/>	  
+    enabled="1" expression=""/>
+
+ <stylesheet title="smartcolor_helper.css"
+    id="smartcolor_helper.css"
+    media="screen" rel="stylesheet" rendering="import"
+    cacheable="True" compression="safe" cookable="True"
+    enabled="1" expression=""/>	 
 	
 
 </object>

@@ -1,0 +1,74 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="plone">
+<body>
+<metal:portlet define-macro="portlet"
+   tal:define="controlPanel python:modules['Products.CMFCore.utils'].getToolByName(here, 'portal_controlpanel');
+               groups python:controlPanel.getGroups('site');
+               portal_url context/portal_url;
+			   
+			   view_vindulaprefs python: context.restrictedTraverse('@@vindula_portlet_prefs');
+			   topics view_vindulaprefs/getDicTopics;">
+
+<dl class="portlet-prefs"
+    id="portlet-prefs">
+
+    <dd class="portletItemPrefs"
+        tal:repeat="topic topics">
+		<tal:def define="super python: view_vindulaprefs.getAccessTopic(topic['topic']);
+						 hasSubActive python: view_vindulaprefs.hasSubTopicActive(topic['topic']);">
+			
+			<div id="topic" tal:attributes="class python: hasSubActive and 'padding10px mouseHover head height12px' or 'padding10px mouseHover height12px'">
+				<div tal:condition="hasSubActive" class="seta seta-top"></div>
+		        <strong tal:content="topic/topic/Title"
+		                i18n:translate="">Plone Configlet Group Title</strong>
+						
+				<div tal:condition="not: hasSubActive" class="padlockTopic">
+					<img tal:attributes="src string:${context/portal_url|nothing}/++resource++vindula.controlpanel/imagens/locked.png" />
+				</div>
+				<div tal:condition="hasSubActive" class="padlockTopic">
+					<img tal:attributes="src string:${context/portal_url|nothing}/++resource++vindula.controlpanel/imagens/unlocked.png" />
+				</div>
+			</div>
+			
+	        <ul tal:condition="hasSubActive" tal:define="subtopics topic/subtopics">
+	            <tal:configlets tal:repeat="subtopic subtopics">
+		            <tal:def define="hasAccess python: view_vindulaprefs.getAccessTopic(subtopic, super)">
+			            <li tal:condition="hasAccess" class="subTopic">
+			            	<tal:cond condition="not: subtopic/getUseAjaxMode">
+				            	<a tal:attributes="href string: ${context/absolute_url}/${subtopic/getViewName};
+												   class python: view_vindulaprefs.getSelected(subtopic) and 'padding30pxLf fontGray mouseHover listItem subtopicLink selected' or 'padding30pxLf fontGray mouseHover listItem subtopicLink'" 
+								   tal:content="subtopic/Title">
+								</a>
+							</tal:cond>
+							
+							<tal:cond condition="subtopic/getUseAjaxMode">
+			            		<span tal:attributes="name string: ${context/absolute_url}/${subtopic/getViewName};
+									  				  class python: view_vindulaprefs.getSelected(subtopic) and 'subTopicSpan subTopicAjax padding30pxLf fontGray mouseHover listItem subtopicLink selected' or 'subTopicSpan subTopicAjax padding30pxLf fontGray mouseHover listItem subtopicLink'"
+									  tal:content="subtopic/Title"></span>
+							</tal:cond>
+							
+							<div class="padlock"><img tal:attributes="src string:${context/portal_url|nothing}/++resource++vindula.controlpanel/imagens/unlocked.png" /></div>
+			            </li>
+						
+						<li tal:condition="not: hasAccess" class="subTopic">
+		            		<span tal:content="subtopic/Title"
+								  class="subTopicSpan padding30pxLf fontGray mouseHover listItem subtopicLink"></span>
+							<div class="padlock"><img tal:attributes="src string:${context/portal_url|nothing}/++resource++vindula.controlpanel/imagens/locked.png" /></div>
+			            </li>
+						
+					</tal:def>
+	            </tal:configlets>
+	        </ul>
+			
+	        <span class="portletBottomLeft"></span>
+	        <span class="portletBottomRight"></span>
+		</tal:def>
+    </dd>
+</dl>
+
+</metal:portlet>
+</body>
+</html>

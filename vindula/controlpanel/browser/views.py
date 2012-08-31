@@ -26,6 +26,9 @@ import pickle
 from collective.plonefinder.browser.finder import Finder
 from Acquisition import aq_inner
 
+
+from plone.app.layout.viewlets.interfaces import IBelowContent
+
 class ControlPanelView(grok.View):
     grok.context(INavigationRoot)
     grok.require('cmf.ManagePortal')
@@ -659,6 +662,127 @@ class CustomCssLogin(grok.View):
         if 'control-panel-objects' in  getSite().keys():
             return getSite().get('control-panel-objects')
         return None
+    
+    
+class VindulaPortletPrefs(grok.View):
+    grok.context(Interface)
+    grok.require('zope2.View')
+    grok.name('vindula_portlet_prefs')
+    
+    def getControlPanelObjects(self):
+        if 'control-panel-objects' in  getSite().keys():
+            return getSite().get('control-panel-objects')
+        return None
+    
+    def getDicTopics(self):
+        control = self.getControlPanelObjects()
+        if control and control.get('ContainerTopicsControlPanel') and control.get('ContainerTopicsControlPanel').contentValues():
+            topics = control.get('ContainerTopicsControlPanel').contentValues({'portal_type': 'TopicControlPanel'})
+            if topics:
+                list_topics = []
+                for topic in topics:
+                    dic_topic = {}
+                    dic_topic['topic'] = topic
+                    dic_topic['subtopics'] = []
+                    subtopics = topic.contentValues({'portal_type': 'SubtopicControlPanel'})
+                    if subtopics:
+                        for subtopic in subtopics:
+                            dic_topic['subtopics'].append(subtopic)
+                    list_topics.append(dic_topic)
+                return list_topics
+        return None
+    
+    def getSelected(self, topico):
+        url = self.request.URL
+        url_topico = '%s/%s' % (self.context.portal_url(), topico.getViewName())
+        if url_topico == url:
+            return True
+        return False
+    
+    def getAccessTopic(self, topic, super=False):
+        groups_tool = getToolByName(getSite(), 'portal_groups')
+        member = getSite().portal_membership.getAuthenticatedMember()
+        groups_user = [i.id for i in groups_tool.getGroupsByUserId(member.getUserName())]
+        
+        try:
+            topic.portal_url()
+        except:
+            dict_topics = self.getDicTopics()
+            url_topic = topic.getURL().replace(getSite().portal_url()+'/', '')
+            if dict_topics:
+                topic = None
+                for lis_topic in dict_topics:
+                    for subtopic in lis_topic['subtopics']:
+                        view_name = subtopic.getViewName()
+                        if view_name == url_topic:
+                            topic = subtopic
+                            super = self.getAccessTopic(lis_topic['topic'])
+                            break
+                    if topic:
+                        break
+                
+        if super:
+            return True
+        elif topic:
+            try:
+                if topic.getUseSuperiorGroups():
+                    topic_access = topic.getUsersOrGroupsTopic()
+                else: 
+                    topic_access = topic.getUsersOrGroupsSub()
+            except:
+                topic_access = topic.getUsersOrGroupsTopic()
+            
+            if member.id in topic_access:
+                return True
+            else:
+                for group in groups_user:
+                    if group in topic_access:
+                        return True
+            return False
+        else:
+            return False
+        
+    def hasSubTopicActive(self, topic):
+        for subtopic in topic.contentValues({'portal_type': 'SubtopicControlPanel'}):
+            if self.getAccessTopic(subtopic):
+                return True
+        return False
+        
+        
+class LinkEditContent(grok.Viewlet): 
+    grok.context(Interface) 
+    grok.name('vindula.controlpanel.linkeditcontent') 
+    grok.require('cmf.ManagePortal')
+    grok.viewletmanager(IBelowContent)
+    
+    def getContentEdit(self):
+        request = self.request
+        pc = getSite().portal_catalog
+        url = request.URL.replace(getSite().portal_url()+'/', '')
+        results = pc({'portal_type': 'SubtopicControlPanel'})
+        if self.context.portal_type != 'SubtopicControlPanel':
+            for result in results:
+                result = result.getObject()
+                if result.getViewName() in url:
+                    return result.absolute_url() + '/edit'
+                
+        return None
+        
+        
+    
+
+                    
+        
+            
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         

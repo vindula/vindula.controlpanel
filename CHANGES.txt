@@ -111,3 +111,10 @@ Changelog
 - Modificado a busca da configuracao do tema do objeto vindula_themeconfig para o objeto ThemeConfig (em archetype)
 - Correcao do came_from e da logica do login do usuário, a regra de redirecionamento só funciona se o usuário estiver na raiz do site,
   caso contrário ele será redirecionado para o local onde ele fez o login
+  
+ 1.1.22 - 2012-08-31
+----------------------
+- Modificado o painel de controle do Vindula, foi unificado o painel de controle do Plone com o do Vindula em um mesmo lugar
+- foram adiciados tipos de conte�do para configurar as views de vao ser carregadas no painel de controle, e tem a possibilidade de escolher
+- os usuarios que podem ter acesso a aquela configuracao (os usu�rios tem que ter perfil de admim para modificar as configuracoes)
+- Bugs do login corrigidos 

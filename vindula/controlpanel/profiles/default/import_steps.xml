@@ -31,4 +31,11 @@
 	    	<dependency step="workflow"/>
 		</import-step>
 		
+		<import-step id="vindula.controlpanel.updateTopicsControlPanel" 
+					 version="1.0"
+	                 handler="vindula.controlpanel.setuphandlers.updateTopicsControlPanel"
+	                 title="Create Vindula Control Panel Object">
+	        <dependency step="content"/>
+		</import-step>
+		
 	</import-steps>

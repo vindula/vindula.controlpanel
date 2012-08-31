@@ -3,3 +3,6 @@ import themeconfig
 import contentredirectuser
 import redirectuser
 import themeloginconfig
+import containertopicscontrolpanel
+import topiccontrolpanel
+import subtopiccontrolpanel

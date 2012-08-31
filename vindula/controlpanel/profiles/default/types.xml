@@ -19,4 +19,13 @@
   <object name="ThemeLoginConfig" 
   		meta_type="Factory-based Type Information with dynamic views"/>       		
   
+  <object name="ContainerTopicsControlPanel" 
+  		meta_type="Factory-based Type Information with dynamic views"/>
+
+  <object name="TopicControlPanel" 
+  		meta_type="Factory-based Type Information with dynamic views"/>
+		
+	<object name="SubtopicControlPanel" 
+  		meta_type="Factory-based Type Information with dynamic views"/>
+		
 </object>

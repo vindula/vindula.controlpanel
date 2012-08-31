@@ -13,4 +13,14 @@ class IRedirectUser(Interface):
 class IThemeLoginConfig(Interface):
     """ Interface for ThemeLoginConfig content type """
 
+class IContentRedirectUser(Interface):
+    """ Interface for ContentRedirectUser content type """
+    
+class IContainerTopicsControlPanel(Interface):
+    """ Interface for ContainerTopicsControlPanel content type """
 
+class ITopicControlPanel(Interface):
+    """ Interface for TopicControlPanel content type """
+    
+class ISubtopicControlPanel(Interface):
+    """ Interface for SubtopicControlPanel content type """
