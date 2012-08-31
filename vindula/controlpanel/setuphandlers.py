@@ -23,9 +23,9 @@ def installControlPanel(context):
              'vindula.controlpanel.content.alertdisplay',
              'vindula.controlpanel.content.vindulaconfigall',
              'vindula.controlpanel.content.aniversariantesconfig',
-             'ThemeConfig','ContentRedirectUser', 'ThemeLoginConfig']
+             'ThemeConfig','ContentRedirectUser', 'ThemeLoginConfig',
+             'ContainerTopicsControlPanel']
     
-        
     for type in types:
         if portal.portal_types.get(type):
             if len(type.split('.')) >= 3:
@@ -97,6 +97,57 @@ def CreateForderImage(context):
         try:portal_workflow.doActionFor(folder_images_data, 'publish')
         except:portal_workflow.doActionFor(folder_images_data, 'publish_internally')
         
+def updateTopicsControlPanel(context):
+    portal = context.getSite()
+    control_panel = getToolByName(portal, 'portal_controlpanel')
+    groups = control_panel.getGroups('site')
+    try:
+        folder_topics = portal.get('control-panel-objects').get('ContainerTopicsControlPanel')
+    except:
+        folder_topics = None
+    
+    if folder_topics:
+        try:
+            for group in groups:
+                products = control_panel.enumConfiglets(group=group['id'])
+                id_topic = 'topic_%s' % group['id']
+                if not folder_topics.get(id_topic):
+                    folder_topics.invokeFactory('TopicControlPanel', id=id_topic, title=group['title'], excludeFromNav=True)
+                for product in products:
+                    topic = folder_topics.get(id_topic)
+                    id_prod = 'subtopic_%s' % product['id']
+                    if not topic.get(id_prod):
+                        topic.invokeFactory('SubtopicControlPanel',
+                                             id=id_prod,
+                                             title=product['title'],
+                                             description=product['description'],
+                                             viewName=product['url'].replace(portal.portal_url()+'/', ''),
+                                             excludeFromNav=True,
+                                            )
+        except ValueError:
+            pass
+    
+    cp_objects = portal.get('control-panel-objects').objectValues()
+    if cp_objects and folder_topics:
+        id_topic = 'vindula-control-panel'
+        try:
+            if not folder_topics.get(id_topic):
+                folder_topics.invokeFactory('TopicControlPanel', id=id_topic, title='Vindula Control Panel', excludeFromNav=True)
+            for object in cp_objects:
+                topic = folder_topics.get(id_topic)
+                id_prod = 'subtopic_%s' % object.id
+                if not topic.get(id_prod):
+                    topic.invokeFactory('SubtopicControlPanel',
+                                         id=id_prod,
+                                         title=object.id,
+                                         description=object.Description(),
+                                         viewName=object.absolute_url().replace(portal.portal_url()+'/', ''),
+                                         excludeFromNav=True,
+                                         useAjaxMode = True,
+                                        )
+        except ValueError:
+            pass
+    
         
 def installTheme(context):    
     portal = context.getSite()

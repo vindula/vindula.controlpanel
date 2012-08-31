@@ -495,6 +495,8 @@ class ThemeConfigCssView(grok.View):
         css += '    .%s #jappix_mini input.jm_send-messages {border-color: %s;}\n' %(id,color)
         css += '    .%s #jappix_mini div.jm_chat-content {border-color: %s;}\n' %(id,color)
         css += '    .%s #jappix_mini div.jm_actions a.jm_one-action:hover, #jappix_mini div.jm_actions a.jm_one-action:focus {background-color: %s;}\n' %(id,color)
+        css += '/* portlet_controlpanel.css */\n'
+        css += '    .%s #portlet-prefs .selectedHead {background-color: %s;}\n' %(id,color)
         if urlFooter:
             css += '/* rodape.css */\n'
             css += '    .%s #rodape {background: url(%s) no-repeat scroll 10px;}\n' %(id,urlFooter)

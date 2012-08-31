@@ -11,6 +11,20 @@
     <javascript id="++resource++vindula.controlpanel/js/config_login.js"
              cacheable="True" compression="safe" cookable="False" enabled="True" inline="False" 
              expression="python: context.portal_type == 'ThemeLoginConfig'"  />                  
-             	 
+    
+	<javascript id="referencebrowserpopup.js"
+             cacheable="True" compression="safe" cookable="False" enabled="True" inline="False" 
+             expression=""  />
+	
+	<javascript id="userandgroupselect.js"
+             cacheable="True" compression="safe" cookable="False" enabled="True" inline="False" 
+             expression=""  />
+	
+	<javascript id="++resource++smartcolorwidget-static/smartcolor_helper.js"
+             cacheable="True" compression="safe" cookable="False" enabled="True" inline="False" 
+             expression=""  />
 
+    <javascript id="widgets/js/inandout.js"
+             cacheable="True" compression="safe" cookable="False" enabled="True" inline="False" 
+             expression=""  />
 </object>
