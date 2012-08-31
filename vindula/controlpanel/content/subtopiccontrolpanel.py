@@ -37,7 +37,6 @@ SubtopicControlPanel_schema =  ATDocumentSchema.copy() + Schema((
         widget = widget.UserAndGroupSelectionWidget(
             label=u"Usuarios ou grupos",
             description=u"Selecione os usuarios ou grupos que terao permissao para acessar esse subtopico.",
-            required=True,
             ),
         required=False,
     ),

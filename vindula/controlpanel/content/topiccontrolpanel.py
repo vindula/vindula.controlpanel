@@ -25,7 +25,7 @@ TopicControlPanel_schema =  ATFolder.schema.copy() + Schema((
             label=u"Usuarios ou Grupos",
             description=u"Selecione os usuarios ou grupos que terao permissao para acessar todo conteudo deste topico.",
             ),
-        required=True,
+        required=False,
     ),
     
 )) 

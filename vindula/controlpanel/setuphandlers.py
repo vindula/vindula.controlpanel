@@ -112,7 +112,7 @@ def updateTopicsControlPanel(context):
                 products = control_panel.enumConfiglets(group=group['id'])
                 id_topic = 'topic_%s' % group['id']
                 if not folder_topics.get(id_topic):
-                    folder_topics.invokeFactory('TopicControlPanel', id=id_topic, title=group['title'], excludeFromNav=True)
+                    folder_topics.invokeFactory('TopicControlPanel', id=id_topic, title=group['title'], usersOrGroupsTopic=['admin'], excludeFromNav=True)
                 for product in products:
                     topic = folder_topics.get(id_topic)
                     id_prod = 'subtopic_%s' % product['id']
@@ -132,7 +132,7 @@ def updateTopicsControlPanel(context):
         id_topic = 'vindula-control-panel'
         try:
             if not folder_topics.get(id_topic):
-                folder_topics.invokeFactory('TopicControlPanel', id=id_topic, title='Vindula Control Panel', excludeFromNav=True)
+                folder_topics.invokeFactory('TopicControlPanel', id=id_topic, title='Vindula Control Panel', usersOrGroupsTopic=['admin'], excludeFromNav=True)
             for object in cp_objects:
                 topic = folder_topics.get(id_topic)
                 id_prod = 'subtopic_%s' % object.id

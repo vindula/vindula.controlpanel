@@ -69,83 +69,80 @@ $j(document).ready(function(){
 			}
 		});
 	});
-	
-	
-	$j(".addUserGrups input[type='submit']").live('click', function(){
-		var button_clicked = this;
+
+	$j(".ajax-columnMid #content form").live('submit', function(event){
+		/* stop form from submitting normally 
+		   para o evento submit normal do form */
+		event.preventDefault();
+		var button_clicked = event.originalEvent.explicitOriginalTarget;
 		
-		$j(".ajax-columnMid #content form").live('submit', function(event){
-			/* stop form from submitting normally 
-			   para o evento submit normal do form */
-			event.preventDefault();
-			
-			/* get some values from elements on the page: */
-	    	var form = $j(this);
-			var url = form.attr('action');
-			var select_list = form.find('select');
-			var params = {};
-			
-			
-			// FONTE: http://be.twixt.us/jquery/formSubmission.php
-			form
-			.find("input:checked, input[type='text'], input[type='hidden'], input[type='password'], option:selected, textarea")
-			.each(function() {
-				name = this.name || this.parentNode.name || this.id || this.parentNode.id;
-				if ((this.type == 'checkbox' || name.split(':').length == 2) && params[this.name]) {
-					if (params[name] instanceof Array){
-						params[name].push(this.value);
-					}
-					else{
-						var old_value =  params[name]
-						params[name] = new Array();
-						params[name].push(old_value);
-						params[name].push(this.value);
-					}
+		/* get some values from elements on the page: */
+    	var form = $j(this);
+		var url = form.attr('action');
+		var select_list = form.find('select');
+		var params = {};
+		
+		
+		// FONTE: http://be.twixt.us/jquery/formSubmission.php
+		form
+		.find("input:checked, input[type='text'], input[type='hidden'], input[type='password'], option:selected, textarea")
+		.each(function() {
+			name = this.name || this.parentNode.name || this.id || this.parentNode.id;
+			if ((this.type == 'checkbox' || name.split(':').length == 2) && params[this.name]) {
+				if (params[name] instanceof Array){
+					params[name].push(this.value);
 				}
 				else{
-					params[ name ] = this.value;
+					var old_value =  params[name]
+					params[name] = new Array();
+					params[name].push(old_value);
+					params[name].push(this.value);
 				}
-			});
-			
-			params[button_clicked.name] = button_clicked.value;
-			
-			select_list.each(function(){
-				if (this.multiple)
-				{
-					var name_select = this.name || this.parentNode.name || this.id || this.parentNode.id;
-					var options = $j(this)
-					.find('option')
-					.each(function(){
-						if (params[name_select] instanceof Array){
-							params[name_select].push(this.value);
-						}
-						else{
-							params[name_select] = new Array();
-							params[name_select].push(this.value);
-						}
-					});
-				}
-			});
-	
-			/* Send the data using post and put the results in a div */
-			removeEditor();
-			$j.ajax({
-				traditional: true,
-				type: "post",
-				url: url,
-				dataType: "text",
-				data: params,
-				success: function(data) {
-					var dom = $j(data);
-					dom.find('.managePortletsFallback').remove();
-					var content = dom.find('.columnMid').attr('class', 'ajax-columnMid');
-			        dom.filter('script').each(function(){
-			            $j.globalEval(this.text || this.textContent || this.innerHTML || '');
-			        });
-			        $j('.columnMid').html(content);
-					loadAll();
-				}
-			});
+			}
+			else{
+				params[ name ] = this.value;
+			}
+		});
+		
+		params[button_clicked.name] = button_clicked.value;
+		
+		select_list.each(function(){
+			if (this.multiple)
+			{
+				var name_select = this.name || this.parentNode.name || this.id || this.parentNode.id;
+				var options = $j(this)
+				.find('option')
+				.each(function(){
+					if (params[name_select] instanceof Array){
+						params[name_select].push(this.value);
+					}
+					else{
+						params[name_select] = new Array();
+						params[name_select].push(this.value);
+					}
+				});
+			}
+		});
+
+		/* Send the data using post and put the results in a div */
+		removeEditor();
+		$j.ajax({
+			traditional: true,
+			type: "post",
+			url: url,
+			dataType: "text",
+			data: params,
+			success: function(data) {
+				var dom = $j(data);
+				dom.find('.managePortletsFallback').remove();
+				var content = dom.find('.columnMid').attr('class', 'ajax-columnMid');
+		        dom.filter('script').each(function(){
+		            $j.globalEval(this.text || this.textContent || this.innerHTML || '');
+		        });
+		        $j('.columnMid').html(content);
+				window.scrollTo(0, 0);
+				loadAll();
+			}
 		});
 	});
 });
