@@ -70,21 +70,16 @@ $j(document).ready(function(){
 		});
 	});
 
-	$j(".ajax-columnMid #content form").live('submit', function(event){
-		/* stop form from submitting normally 
-		   para o evento submit normal do form */
-		event.preventDefault();
-		var button_clicked = event.originalEvent.explicitOriginalTarget;
-		
+	$j(".ajax-columnMid #content form input[type='submit']").live('click', function(){
 		/* get some values from elements on the page: */
-    	var form = $j(this);
-		var url = form.attr('action');
-		var select_list = form.find('select');
+		var button_clicked = this;
+		var form = getSuperForm(this);
+		var url = form.action;
+		var select_list = $j(form).find('select');
 		var params = {};
 		
-		
 		// FONTE: http://be.twixt.us/jquery/formSubmission.php
-		form
+		$j(form)
 		.find("input:checked, input[type='text'], input[type='hidden'], input[type='password'], option:selected, textarea")
 		.each(function() {
 			name = this.name || this.parentNode.name || this.id || this.parentNode.id;
@@ -144,5 +139,20 @@ $j(document).ready(function(){
 				loadAll();
 			}
 		});
+		
+		//cancel the submit button default behaviours
+        return false;
 	});
+	
+	//pega o form do elemento input
+	function getSuperForm(el)
+	{
+		var form = el.parentElement;
+		if (form.tagName != 'FORM')
+		{
+			form = getSuperForm(form);
+		}
+		
+		return form;
+	}
 });
