@@ -21,7 +21,7 @@
              expression=""  />
 	
 	<javascript id="++resource++smartcolorwidget-static/smartcolor_helper.js"
-             cacheable="True" compression="safe" cookable="False" enabled="True" inline="False" 
+             cacheable="False" compression="safe" cookable="False" enabled="True" inline="False" 
              expression=""  />
 
     <javascript id="widgets/js/inandout.js"
