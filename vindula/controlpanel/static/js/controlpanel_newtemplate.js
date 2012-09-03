@@ -1,9 +1,9 @@
 $j = jQuery.noConflict();
 
 function loadAll(){
-	ploneFormTabbing.initialize();
 	loadSmartColorPickers();
 	launchCKInstances();
+	window.scrollTo(0, 0);
 	
 	var common_content_filter = '#content=*,dl.portalMessage.error,dl.portalMessage.info';
 	$j('a.editPermissions').prepOverlay({
@@ -65,6 +65,7 @@ $j(document).ready(function(){
 		            $j.globalEval(this.text || this.textContent || this.innerHTML || '');
 		        });
 		        $j('.columnMid').html(content);
+				ploneFormTabbing.initialize();
 				loadAll();
 			}
 		});
@@ -135,7 +136,7 @@ $j(document).ready(function(){
 		            $j.globalEval(this.text || this.textContent || this.innerHTML || '');
 		        });
 		        $j('.columnMid').html(content);
-				window.scrollTo(0, 0);
+				ploneFormTabbing.initialize();
 				loadAll();
 			}
 		});
