@@ -3,7 +3,7 @@ $j = jQuery.noConflict();
 function loadAll(){
 	loadSmartColorPickers();
 	launchCKInstances();
-	window.scrollTo(0, 0);
+	goTop();
 	
 	var common_content_filter = '#content=*,dl.portalMessage.error,dl.portalMessage.info';
 	$j('a.editPermissions').prepOverlay({
@@ -15,8 +15,23 @@ function loadAll(){
     });
 }
 
-$j(document).ready(function(){
+//pega o form do elemento input
+function getSuperForm(el){
+	var form = el.parentElement;
+	if (form.tagName != 'FORM')
+	{
+		form = getSuperForm(form);
+	}
 	
+	return form;
+}
+
+//vai para o topo da pagina
+function goTop(){
+	window.scrollTo(0, 0);
+}
+
+$j(document).ready(function(){
 	loadAll();
 	
 	$j('.portletItemPrefs .head').click(function() {
@@ -29,7 +44,6 @@ $j(document).ready(function(){
 	
 	var topic_selected = $j('.subTopic .selected').parents('dd').find('#topic');
 	topic_selected.addClass('selectedHead');
-	
 
 	$j('.portletItemPrefs .head').each(function(){
 		var topic = $j(this);
@@ -41,7 +55,6 @@ $j(document).ready(function(){
 			topic.next().hide();
 		}
 	})
-
 		
 	$j(".subTopicAjax").live('click', function(){
 		var url = $j(this).attr('name');
@@ -52,6 +65,9 @@ $j(document).ready(function(){
 		$j(this).addClass('selected');
 		var topic_selected = $j('.subTopic .selected').parents('dd').find('#topic');
 		topic_selected.addClass('selectedHead');
+		
+		$j('#portal-column-content').addClass('transparent');
+		goTop();
 		
 		$j.ajax({    
 			type: "get",
@@ -66,10 +82,11 @@ $j(document).ready(function(){
 		        });
 		        $j('.columnMid').html(content);
 				ploneFormTabbing.initialize();
+				$j('#portal-column-content').removeClass('transparent');
 				loadAll();
 			}
 		});
-	});
+	})
 
 	$j(".ajax-columnMid #content form input[type='submit']").live('click', function(){
 		/* get some values from elements on the page: */
@@ -79,11 +96,14 @@ $j(document).ready(function(){
 		var select_list = $j(form).find('select');
 		var params = {};
 		
+		$j('#portal-column-content').addClass('transparent');
+		goTop();
+		
 		// FONTE: http://be.twixt.us/jquery/formSubmission.php
 		$j(form)
 		.find("input:checked, input[type='text'], input[type='hidden'], input[type='password'], option:selected, textarea")
 		.each(function() {
-			name = this.name || this.parentNode.name || this.id || this.parentNode.id;
+			var name = this.name || this.parentNode.name || this.id || this.parentNode.id;
 			if ((this.type == 'checkbox' || name.split(':').length == 2) && params[this.name]) {
 				if (params[name] instanceof Array){
 					params[name].push(this.value);
@@ -137,6 +157,7 @@ $j(document).ready(function(){
 		        });
 		        $j('.columnMid').html(content);
 				ploneFormTabbing.initialize();
+				$j('#portal-column-content').removeClass('transparent');
 				loadAll();
 			}
 		});
@@ -144,16 +165,4 @@ $j(document).ready(function(){
 		//cancel the submit button default behaviours
         return false;
 	});
-	
-	//pega o form do elemento input
-	function getSuperForm(el)
-	{
-		var form = el.parentElement;
-		if (form.tagName != 'FORM')
-		{
-			form = getSuperForm(form);
-		}
-		
-		return form;
-	}
 });
