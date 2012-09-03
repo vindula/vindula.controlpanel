@@ -38,14 +38,14 @@
 		            <tal:def define="hasAccess python: view_vindulaprefs.getAccessTopic(subtopic, super)">
 			            <li tal:condition="hasAccess" class="subTopic">
 			            	<tal:cond condition="not: subtopic/getUseAjaxMode">
-				            	<a tal:attributes="href string: ${context/absolute_url}/${subtopic/getViewName};
+				            	<a tal:attributes="href string: ${context/portal_url}/${subtopic/getViewName};
 												   class python: view_vindulaprefs.getSelected(subtopic) and 'padding30pxLf fontGray mouseHover listItem subtopicLink selected' or 'padding30pxLf fontGray mouseHover listItem subtopicLink'" 
 								   tal:content="subtopic/Title">
 								</a>
 							</tal:cond>
 							
 							<tal:cond condition="subtopic/getUseAjaxMode">
-			            		<span tal:attributes="name string: ${context/absolute_url}/${subtopic/getViewName};
+			            		<span tal:attributes="name string: ${context/portal_url}/${subtopic/getViewName};
 									  				  class python: view_vindulaprefs.getSelected(subtopic) and 'subTopicSpan subTopicAjax padding30pxLf fontGray mouseHover listItem subtopicLink selected' or 'subTopicSpan subTopicAjax padding30pxLf fontGray mouseHover listItem subtopicLink'"
 									  tal:content="subtopic/Title"></span>
 							</tal:cond>
