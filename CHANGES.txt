@@ -120,6 +120,11 @@ Changelog
  1.1.23 - 2012-08-31
 ----------------------
 - Modificado o painel de controle do Vindula, foi unificado o painel de controle do Plone com o do Vindula em um mesmo lugar
-- foram adiciados tipos de conteœdo para configurar as views de vao ser carregadas no painel de controle, e tem a possibilidade de escolher
-- os usuarios que podem ter acesso a aquela configuracao (os usu‡rios tem que ter perfil de admim para modificar as configuracoes)
+- foram adiciados tipos de conteï¿½do para configurar as views de vao ser carregadas no painel de controle, e tem a possibilidade de escolher
+- os usuarios que podem ter acesso a aquela configuracao (os usuï¿½rios tem que ter perfil de admim para modificar as configuracoes)
 - Bugs do login corrigidos 
+
+1.1.24 - 2012-09-04
+----------------------
+- Ajustes na macro do head e footer para quando estiver no contexto de estrutura organizacional
+
