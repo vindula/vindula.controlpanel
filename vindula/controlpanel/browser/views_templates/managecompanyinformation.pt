@@ -1,8 +1,7 @@
 <html metal:use-macro="here/prefs_main_template/macros/master">
 	<head>
 		<metal:js fill-slot="javascript_head_slot">
-			<script type="text/javascript" tal:attributes="src string:++resource++vindula.controlpanel/js/mascara.js"></script>
-			<script type="text/javascript" tal:attributes="src string:++resource++vindula.controlpanel/js/companyinformation.js"></script>
+			
 		</metal:js>
 				
 	</head>
@@ -11,6 +10,7 @@
 			                             						   errors form_data/errors | python:{};
 										  						   form_values form_data/data | python:{};">
 		    <div id="content" >
+		        <script type="text/javascript" tal:attributes="src string:++resource++vindula.controlpanel/js/mascara.js"></script>
 				<h1>Informa&ccedil;&otilde;es corporativas</h1>	
 				<div id="interna" >    		
 			        <form name="vindulaCompanyInformation" id="vindulaCompanyInformation" enctype="multipart/form-data" class="enableAutoFocus" action="vindula-manage-company" method="POST">

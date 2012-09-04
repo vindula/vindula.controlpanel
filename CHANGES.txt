@@ -127,4 +127,4 @@ Changelog
 1.1.24 - 2012-09-04
 ----------------------
 - Ajustes na macro do head e footer para quando estiver no contexto de estrutura organizacional
-
+- Adição de mascara e validação nos campos de cadastro das Informações corporativas

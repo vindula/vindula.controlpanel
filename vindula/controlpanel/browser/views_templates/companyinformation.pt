@@ -25,7 +25,7 @@
 										<td tal:content="item/corporate_name|python:''"></td>
 										<td tal:content="item/phone_number|python:''"></td>
 										<td tal:content="item/address|python:''"></td>
-										<td tal:content="string:${item/city|python:''} / ${item/stade|python:''}"></td>
+										<td tal:content="string:${item/city} / ${item/stade}"></td>
 										
 										<td>
 											<a tal:attributes="href string:${context/portal_url}/vindula-manage-company?id=${item/id|nothing}">Editar</a>

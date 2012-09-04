@@ -77,17 +77,17 @@ class RegistrationCompanyInformation(BaseFunc):
     def to_utf8(value):
         return unicode(value, 'utf-8')
 
-    campos = {'short_name'    : {'required': False, 'type' : to_utf8, 'label':'Nome',         'decription':u'Digite o nome da empresa',         'ordem':0},
-              'corporate_name': {'required': False, 'type' : to_utf8, 'label':'Razão Social', 'decription':u'Digite a razão Social da empresa', 'ordem':1},
-              'cnpj'          : {'required': False, 'type' : to_utf8, 'label':'CNPJ',         'decription':u'Digite o CNPJ do empresa',         'ordem':2},
-              'phone_number'  : {'required': False, 'type' : to_utf8, 'label':'Telefone',     'decription':u'Digite o telefone da empresa',     'ordem':3},
+    campos = {'short_name'    : {'required': True, 'type' : to_utf8, 'label':'Nome',         'decription':u'Digite o nome da empresa',          'ordem':0},
+              'corporate_name': {'required': True, 'type' : to_utf8, 'label':'Razão Social', 'decription':u'Digite a razão Social da empresa',  'ordem':1},
+              'cnpj'          : {'required': True, 'type' : to_utf8, 'label':'CNPJ',         'decription':u'Digite o CNPJ do empresa',          'ordem':2, 'mascara':'Cnpj'},
+              'phone_number'  : {'required': False, 'type' : to_utf8, 'label':'Telefone',     'decription':u'Digite o telefone da empresa',     'ordem':3, 'mascara':'Telefone'},
               'address'       : {'required': False, 'type' : to_utf8, 'label':'Endereço',     'decription':u'Digite o endereço do empresa',     'ordem':4},
               'city'          : {'required': False, 'type' : to_utf8, 'label':'Cidade',       'decription':u'Digite o cidade da empresa',       'ordem':5},
               'stade'         : {'required': False, 'type' : to_utf8, 'label':'Estado',       'decription':u'Digite a estado da empresa',       'ordem':6},
-              'postal_code'   : {'required': False, 'type' : to_utf8, 'label':'CEP',          'decription':u'Digite o cep da empresa',          'ordem':7},
-              'email'         : {'required': False, 'type' : 'email',   'label':'E-mail',       'decription':u'Digite o email da empresa',        'ordem':8},
-              'website'       : {'required': False, 'type' : to_utf8, 'label':'Site',           'decription':u'Digite o site da empresa',         'ordem':9},
-              'logo_corporate' : {'required': False, 'type' : 'file',  'label':'Logo da Empresa','decription':u'Coloque o logo da empresa',        'ordem':10},
+              'postal_code'   : {'required': False, 'type' : to_utf8, 'label':'CEP',          'decription':u'Digite o cep da empresa',          'ordem':7, 'mascara':'Cep'},
+              'email'         : {'required': False, 'type' : 'email',   'label':'E-mail',       'decription':u'Digite o email da empresa',      'ordem':8},
+              'website'       : {'required': False, 'type' : to_utf8, 'label':'Site',           'decription':u'Digite o site da empresa',       'ordem':9, 'mascara':'Site'},
+              'logo_corporate' : {'required': False, 'type' : 'file',  'label':'Logo da Empresa','decription':u'Coloque o logo da empresa',     'ordem':10},
               }
                         
     def registration_processes(self,context):
