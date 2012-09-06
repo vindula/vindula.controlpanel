@@ -464,6 +464,7 @@ class ThemeConfigCssView(grok.View):
         css += '    .%s #barra_superior #cont_barra_superior li a:hover {color: %s !important;}\n' %(id,color) 
         css += '    .%s .cont_superior .documentFirstHeading{color: %s !important;}\n' %(id,color)
         css += '    .%s #like .link{color:%s !important;}\n' %(id,color) 
+        css += '    .%s div.listingBar a:hover{color:%s !important;}\n' %(id,color)
         css += '/* topo_nav.css */\n' #23
         css += '    .%s .geral_busca .searchButton {background-color: %s !important;}\n' %(id,color)
         css += '    .%s #nav .nivel1 {border-bottom-color: %s;background-color:%s;}\n' %(id,corMenuSelected,corMenuFundo)
