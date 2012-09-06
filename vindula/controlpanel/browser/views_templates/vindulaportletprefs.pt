@@ -21,7 +21,7 @@
 						 hasSubActive python: view_vindulaprefs.hasSubTopicActive(topic['topic']);">
 			
 			<div id="topic" tal:attributes="class python: hasSubActive and 'padding10px mouseHover head height12px' or 'padding10px mouseHover height12px'">
-				<div tal:condition="hasSubActive" class="seta seta-top"></div>
+				<div tal:attributes="class python: hasSubActive and 'seta seta-top' or 'seta seta-left'"></div>
 		        <strong tal:content="topic/topic/Title"
 		                i18n:translate="">Plone Configlet Group Title</strong>
 						
