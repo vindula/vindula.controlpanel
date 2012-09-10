@@ -23,7 +23,7 @@
                 Selecione os produtos que poder&atilde;o ser reinstalados, desinstalados e instalados pelo usu&aacute;rio.
             </p>
 			
-			<form method="post" tal:define="products view/getProducts;">
+			<form method="post" tal:define="products view/getProducts;" tal:attributes="action string:${context/absolute_url}/vindula-manage-products">
 				
 				<table id="table_products" width="100%">
 
