@@ -128,3 +128,13 @@ Changelog
 ----------------------
 - Ajustes na macro do head e footer para quando estiver no contexto de estrutura organizacional
 - Adição de mascara e validação nos campos de cadastro das Informações corporativas
+
+1.1.25 - 2012-09-12
+----------------------
+- Adicionado novos campos do Theme Config:
+	. Campos para editar o layout dos portlets
+	. Campo para adicionar imagens que vao rotacionar do lado do logotipo
+	. Campo para definir a posicao e a repeticao da imagem de backgroud
+	. Campo para escolher a imagem de backgrou do primeiro nivel do menu
+- Melhoria no c�digo
+- Bug fix

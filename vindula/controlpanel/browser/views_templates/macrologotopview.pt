@@ -30,6 +30,12 @@
 		   tal:attributes="href string:${context/portal_url}/control-panel-objects/ThemeConfig/edit">
 			<img src="/++resource++vindula.controlpanel/imagens/theme_edit.png" />
 		</a>
+		
+		<div tal:define="images_cycle python: config_obj.getImagesCycleLogo()" tal:condition="images_cycle" id="cycle-logo" style="float: right;">
+			<tal:rep repeat="image images_cycle">
+				<img tal:attributes="src image/absolute_url" />
+			</tal:rep>				
+		</div>
 			 
 	</div>
 </metal:macro>
