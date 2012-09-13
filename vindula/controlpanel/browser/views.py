@@ -39,7 +39,7 @@ class MacroLogoTopView(grok.View):
     def getOrgStrucContent(self):
         ctx = self.context.restrictedTraverse('OrgStruct_view')()
         portal = self.context.portal_url.getPortalObject();
-        config_obj = portal['control-panel-objects']['vindula_themeconfig'];
+        config_obj = portal['control-panel-objects']['ThemeConfig'];
         
         D = {}
         if ctx.portal_type != 'Plone Site':
@@ -63,7 +63,7 @@ class MacroFooterView(grok.View):
     
     def getOrgStrucContent(self):
         portal = self.context.portal_url.getPortalObject();
-        config_obj = portal['control-panel-objects']['vindula_themeconfig'];
+        config_obj = portal['control-panel-objects']['ThemeConfig'];
 
         ctx = self.context.restrictedTraverse('OrgStruct_view')()
         D = {}
@@ -419,8 +419,8 @@ class ManageConfigBuscaView(grok.View):
     def getConfigurador(self):
         if 'control-panel-objects' in  getSite().keys():
             control = getSite()['control-panel-objects']
-            if 'vindula_themeconfig' in control.keys():
-                conf_theme = control['vindula_themeconfig']
+            if 'ThemeConfig' in control.keys():
+                conf_theme = control['ThemeConfig']
                 return conf_theme.getAtiva_buscaAnonima()
             else:
                 return None
