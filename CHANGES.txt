@@ -136,5 +136,10 @@ Changelog
 	. Campo para adicionar imagens que vao rotacionar do lado do logotipo
 	. Campo para definir a posicao e a repeticao da imagem de backgroud
 	. Campo para escolher a imagem de backgrou do primeiro nivel do menu
-- Melhoria no c�digo
+- Melhoria no c�digo
 - Bug fix
+
+1.1.26 - 2012-09-18
+------------------------
+- Correções do ticket #186  - Correção de Ortografia
+

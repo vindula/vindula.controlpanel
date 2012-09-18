@@ -22,8 +22,8 @@ TopicControlPanel_schema =  ATFolder.schema.copy() + Schema((
         name="usersOrGroupsTopic",
         multiValued=1,
         widget = widget.UserAndGroupSelectionWidget(
-            label=u"Usuarios ou Grupos",
-            description=u"Selecione os usuarios ou grupos que terao permissao para acessar todo conteudo deste topico.",
+            label=u"Usuários ou Grupos",
+            description=u"Selecione os usuarios ou grupos que terão permissão para acessar todo conteúdo deste tópico.",
             ),
         required=False,
     ),

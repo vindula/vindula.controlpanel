@@ -36,7 +36,7 @@ SubtopicControlPanel_schema =  ATDocumentSchema.copy() + Schema((
         multiValued=1,
         widget = widget.UserAndGroupSelectionWidget(
             label=u"Usuarios ou grupos",
-            description=u"Selecione os usuarios ou grupos que terao permissao para acessar esse subtopico.",
+            description=u"Selecione os usuários ou grupos que terão permissão para acessar esse subtópico.",
             ),
         required=False,
     ),
@@ -45,8 +45,8 @@ SubtopicControlPanel_schema =  ATDocumentSchema.copy() + Schema((
         name='useSuperiorGroups',
         default=True,
         widget=BooleanWidget(
-            label="Herdar usuarios e grupos",
-            description='Herdar configuracoeo de usuarios e grupos do topico "pai".',
+            label="Herdar usuários e grupos",
+            description='Herdar configurações de usuários e grupos do tópico "pai".',
         ),
     ),
     
@@ -55,7 +55,7 @@ SubtopicControlPanel_schema =  ATDocumentSchema.copy() + Schema((
         default=False,
         widget=BooleanWidget(
             label="Renderizar a view por ajax.",
-            description='Ative essa opcao para renderizar a view ao lado por ajax.<br>Essa opcao nao funciona bem em todos os tipos de conteudo.',
+            description='Ative essa opção para renderizar a view ao lado por ajax.<br>Essa opção não funciona bem em todos os tipos de conteúdo.',
         ),
     ),
     
