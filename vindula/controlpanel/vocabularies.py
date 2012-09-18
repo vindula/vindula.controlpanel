@@ -144,9 +144,9 @@ class ListExitForm(object):
         self.object = object 
     def __call__(self, context):
         terms = []
-        obj = {'email':u'Enviar um e-mail com os dados do form',
+        obj = {'email':u'Enviar um e-mail com os dados do formulário',
                'savedb':u'Salvar o formulário no banco de dados para uma futura consulta',
-               'content_type':u'Cria um conteúdo do portal para relacionar com o banco de dados'}
+               'content_type':u'Criar um tipo de conteúdo para cada resultado do formulário'}
         
         for i in obj.keys():
             terms.append(SimpleTerm(i, i, _(u'option_category', default=obj[i])))

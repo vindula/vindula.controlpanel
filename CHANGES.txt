@@ -143,3 +143,6 @@ Changelog
 ------------------------
 - Correções do ticket #186  - Correção de Ortografia
 
+1.1.27 - 2012-09-19
+-----------------------
+- Correção do Ticket #199
