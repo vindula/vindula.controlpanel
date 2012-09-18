@@ -112,7 +112,7 @@ class RegistrationCompanyInformation(BaseFunc):
             # Inicia o processamento do formulario
             # chama a funcao que valida os dados extraidos do formulario (valida_form) 
             errors, data = valida_form(campos, context.request.form)  
-            
+
             if form['logo_corporate'].filename != '':
                 
                 photo = form.get('logo_corporate',None)
@@ -130,7 +130,7 @@ class RegistrationCompanyInformation(BaseFunc):
                         M ={}
                         M['data'] = upload
                         M['filename'] = filename                        
-                        data['logo_corporate'] = pickle.dumps(M)
+                        data['logo_corporate'] = unicode(pickle.dumps(M),'utf-8')
                     
                 if 'id' in form_keys:
                     # editando...
@@ -138,12 +138,14 @@ class RegistrationCompanyInformation(BaseFunc):
                     # editando...
                     result = ModelsCompanyInformation().get_CompanyInformation_byID(id)
                     if result:
-                        if data['logo_corporate'] is None:
+                        if not form['logo_corporate'].filename:
                             data['logo_corporate'] = result.logo_corporate
                         
                         for campo in campos.keys():
                             value = data.get(campo, None)
                             setattr(result, campo, value)
+                        
+                        BaseStore().store.commit()
 
                 else:
                     #adicionando...
