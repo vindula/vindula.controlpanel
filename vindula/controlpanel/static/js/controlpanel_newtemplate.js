@@ -89,6 +89,9 @@ $j(document).ready(function(){
 	})
 
 	$j(".ajax-columnMid #content form input[type='submit']").live('click', function(){
+		/* Atualiza os textarea que usa o CKEditor */
+		CKupdate();
+		
 		/* get some values from elements on the page: */
 		var button_clicked = this;
 		var form = getSuperForm(this);
