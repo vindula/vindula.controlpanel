@@ -5,9 +5,9 @@
 		xmlns:i18n="http://xml.zope.org/namespaces/i18n">
  
  <!-- Basic metadata -->
- <property name="title" i18n:translate="">Listagem de aniversariantes</property>
+ <property name="title" i18n:translate="">Aniversariantes</property>
  <property name="description" i18n:translate="">
- 	Permite a configução dos campos na listagem de aniversariantes.
+ 	Configurações relacionadas a funcionalidade de aniversariantes.
  </property>
  <property name="content_icon">++resource++vindula.controlpanel/imagens/vindula.png</property>
  <property name="allow_discussion">False</property>
