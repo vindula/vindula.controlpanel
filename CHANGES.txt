@@ -149,3 +149,4 @@ Changelog
 - Correção do Ticket #149 - Informações Corporativas
 - Correção do Ticket #167
 - Correção do Ticket #172
+- Correção do Ticket #173
