@@ -150,3 +150,6 @@ Changelog
 - Corre√ß√£o do Ticket #167
 - Corre√ß√£o do Ticket #172
 - Corre√ß√£o do Ticket #173
+- Alteracão das telas de usuários e grupos
+	. A tabela nao mostra mais os Perfis dos usuários
+	. Foi adicionado um botão para visualizar "Mais opçoes", os Perfis, da tabela de usuários e grupos

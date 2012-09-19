@@ -767,6 +767,11 @@ class LinkEditContent(grok.Viewlet):
                     return result.absolute_url() + '/edit'
                 
         return None
+    
+class ShowAllRolesUsersView(grok.View):
+    grok.context(Interface)
+    grok.require('zope2.View')
+    grok.name('usergroup-userprefs-all')
         
         
     
