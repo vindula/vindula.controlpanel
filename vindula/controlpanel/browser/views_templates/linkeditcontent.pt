@@ -1,6 +1,6 @@
 <div tal:define="content_edit viewlet/getContentEdit">
 	<a class="editPermissions" tal:condition="content_edit" tal:attributes="href content_edit">
 		<img tal:attributes="src string:${context/portal_url|nothing}/++resource++vindula.controlpanel/imagens/gray-lock.png" />
-		Editar permiss&otilde;es da p&aacute;gina.
+		Editar permiss&otilde;es desta p&aacute;gina.
 	</a>
 </div>
