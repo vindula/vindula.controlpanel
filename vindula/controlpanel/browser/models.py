@@ -125,12 +125,14 @@ class RegistrationCompanyInformation(BaseFunc):
             if not errors:
 
                 if form['logo_corporate'].filename != '':
-                        photo = form.get('logo_corporate',None)    
-                        upload = photo.read()       
-                        M ={}
-                        M['data'] = upload
-                        M['filename'] = filename                        
-                        data['logo_corporate'] = unicode(pickle.dumps(M),'utf-8')
+                    photo = form.get('logo_corporate',None)    
+                    upload = photo.read()       
+                    M ={}
+                    M['data'] = upload
+                    M['filename'] = filename                        
+                    data['logo_corporate'] = unicode(pickle.dumps(M),'utf-8')
+                else:
+                    data['logo_corporate'] = ''
                     
                 if 'id' in form_keys:
                     # editando...
