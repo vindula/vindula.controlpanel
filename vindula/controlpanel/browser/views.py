@@ -64,6 +64,15 @@ class VindulaFinderUploadView(Finder):
         
         return super(VindulaFinderUploadView, self).__call__()    
 
+    def _quotestring(self, s):
+        return '"%s"' % s
+
+    def _quote_bad_chars(self, s):
+        bad_chars = ["(", ")"]
+        for char in bad_chars:
+            s = s.replace(char, self._quotestring(char))
+        return s
+
     def finderQuery(self, topicQuery=None):
         """
         return query for results depending on some params
@@ -97,7 +106,7 @@ class VindulaFinderUploadView(Finder):
                         q = q.replace(char, ' ')
                     r = q.split()
                     r = " AND ".join(r)
-                    searchterms = _quote_bad_chars(r) + '*'
+                    searchterms = self._quote_bad_chars(r) + '*'
 
                     query['SearchableText'] = searchterms
                     

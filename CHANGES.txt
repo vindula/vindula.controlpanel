@@ -150,3 +150,9 @@ Changelog
 - Correção do Ticket #167
 - Correção do Ticket #172
 - Correção do Ticket #173
+
+1.1.28 - 2012-10-20
+-----------------------
+- Remoção dos view do Cursos e linguas
+- Correção do Ticket #150
+- Correção do Ticket #227
