@@ -89,6 +89,18 @@ ThemeConfig_schema =  ATDocumentSchema.copy() + Schema((
         ),
     ),
     
+    ReferenceField('socialNetworks',
+        multiValued=1,
+        required=0,
+        allowed_types=('SocialNetwork'),
+        relationship='socialNetworks',
+        widget=VindulaReferenceSelectionWidget(
+            default_search_index='SearchableText',
+            label=_(u"Redes sociais"),
+            description=_(u"Selecione as redes sociais que aparecerão no rodapé."),
+        ),
+    ),
+    
     ReferenceField('favicon',
         multiValued=0,
         allowed_types=('Image'),

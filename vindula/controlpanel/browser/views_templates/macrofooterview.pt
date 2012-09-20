@@ -35,6 +35,19 @@
 
 		</div>
 		
+		<!-- Social Networks -->
+		<div id="macro_socialnetworks" tal:define="social_networks config_obj/getSocialNetworks" tal:condition="social_networks">
+			<tal:rep repeat="network social_networks">
+				<a tal:attributes="href network/getLink" target="_blank" class="float-left icon">
+					<img tal:define="image network/getImage" 
+						 tal:on-error="nothing"
+						 tal:attributes="src image/absolute_url;
+										 width string:${network/getImageWidth}px;
+										 height string:${network/getImageHeight}px;">
+				</a>
+			</tal:rep>
+		</div>
+		
 		<!-- Text -->
 		<div id="macro_textfooter">
 			
