@@ -121,14 +121,14 @@
 					<img src="/++resource++vindula.controlpanel/icons/controlpanel_manageform.png" />
 					<a tal:attributes="href string:${portal_url}/@@manage-form">Vindula Formul&aacute;rio B&aacute;sico</a>
 				</div>
-				<div>
+				<!--div>
 					<img src="/++resource++vindula.controlpanel/icons/controlpanel_cursos.png" />
 					<a tal:attributes="href string:${portal_url}/myvindula-courses">Cursos</a>
 				</div>
 				<div>
 					<img src="/++resource++vindula.controlpanel/icons/controlpanel_idiomas.png" />
 					<a tal:attributes="href string:${portal_url}/myvindula-languages">Idiomas</a>
-				</div>
+				</div-->
 			</div>
 			<!--###################### Logins  ########################################################## -->
             <div class="tab_container" id="div-logins">
