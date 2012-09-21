@@ -162,5 +162,7 @@ Changelog
 	. A tabela nao mostra mais os Perfis dos usuï¿½rios
 	. Foi adicionado um botï¿½o para visualizar "Mais opï¿½oes", os Perfis, da tabela de usuï¿½rios e grupos
 	
-
+1.1.28 - 2012-09-21
+----------------------- 
+- Ajustes das imagens randomicas do cabealho
 
