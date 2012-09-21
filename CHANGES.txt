@@ -151,9 +151,16 @@ Changelog
 - Correção do Ticket #172
 - Correção do Ticket #173
 
-1.1.28 - 2012-10-20
------------------------
+1.1.28 - 2012-09-20
+----------------------- 
+- Adicionado o campo na configuracao no tema, para selecionar as Redes Sociais que apareceram no rodape
 - Remoção dos view do Cursos e linguas
 - Correção do Ticket #150
 - Correção do Ticket #227
 - Correção do Ticket #229
+- Alterac�o das telas de usu�rios e grupos
+	. A tabela nao mostra mais os Perfis dos usu�rios
+	. Foi adicionado um bot�o para visualizar "Mais op�oes", os Perfis, da tabela de usu�rios e grupos
+	
+
+

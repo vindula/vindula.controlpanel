@@ -1,0 +1,67 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      i18n:domain="plone">
+<head>
+	<base tal:define="plone_view context/@@plone" 
+          tal:attributes="href plone_view/renderBase" /><!--[if lt IE 7]></base><![endif]-->
+    <div tal:replace="structure provider:plone.htmlhead" />
+	
+	<style>
+		body { background: none; }
+		
+		#logo {
+			margin: 0 0 30px 0;
+		}
+	</style>
+</head>
+
+<body>
+	
+	<div id="logo" tal:define= "portal python: context.portal_url.getPortalObject();
+							    config_obj python: portal['control-panel-objects']['ThemeConfig'];">
+							    	
+		<a class="vindula-portal-logo" tal:attributes="href string:${context/portal_url}" title="P&aacute;gina Inicial">
+			<img tal:condition="config_obj/getLogoCabecalho" 
+			     tal:attributes="src python: config_obj.getLogoCabecalho().absolute_url() or None" />
+	
+			<img tal:condition="not: config_obj/getLogoCabecalho" 
+			     src="/++resource++vindula.controlpanel/imagens/logo_topo.png" />	
+		</a>
+		
+	</div>
+	
+	<dl class="portalMessage info"
+		tal:condition="python:context.REQUEST.form.get('form.button.Modify')"
+        tal:define="mtype string:info"
+        tal:attributes="class string:portalMessage ${mtype};">
+        <dt tal:content="python:mtype.capitalize()"
+            i18n:translate="">
+            Info
+        </dt>
+        <dd tal:content="string:Altera&ccedil;&otilde;es aplicadas."
+            i18n:translate="">
+            The status message.
+        </dd>
+    </dl>
+	
+	<tal:def define="from_teplate python: context.REQUEST.form.get('from_template', 'usergroup-userprefs');
+					 view python:context.restrictedTraverse(from_teplate);
+					 call view/__call__;
+					 show_roles python: True;
+					 template_id string:@@usergroup-userprefs-all">
+
+		<tal:cond condition="python: from_teplate == 'usergroup-userprefs'">
+			<div metal:use-macro="context/@@usergroup-userprefs/macros/table_users"></div>
+		</tal:cond>
+		
+		<tal:cond condition="python: from_teplate == 'usergroup-groupprefs'">
+			<div metal:use-macro="context/@@usergroup-groupprefs/macros/table_users"></div>
+		</tal:cond>
+		
+	</tal:def>
+</body>
+
+</html>
