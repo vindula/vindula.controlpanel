@@ -156,3 +156,4 @@ Changelog
 - Remoção dos view do Cursos e linguas
 - Correção do Ticket #150
 - Correção do Ticket #227
+- Correção do Ticket #229
