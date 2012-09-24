@@ -162,6 +162,14 @@ Changelog
 	. A tabela nao mostra mais os Perfis dos usu�rios
 	. Foi adicionado um bot�o para visualizar "Mais op�oes", os Perfis, da tabela de usu�rios e grupos
 	
-1.1.29 - 2012-09-24
+1.1.29 - 2012-09-21
+----------------------- 
+- Ajustes das imagens randomicas do cabe�alho
+
+1.1.30 - 2012-09-24
 -----------------------
 - Correção Ticket #243
+
+
+
+>>>>>>> a481c6007ecd87038b0fb6aa5e0a3abd83574424
