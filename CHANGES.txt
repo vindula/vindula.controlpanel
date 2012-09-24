@@ -162,5 +162,6 @@ Changelog
 	. A tabela nao mostra mais os Perfis dos usu�rios
 	. Foi adicionado um bot�o para visualizar "Mais op�oes", os Perfis, da tabela de usu�rios e grupos
 	
-
-
+1.1.29 - 2012-09-24
+-----------------------
+- Correção Ticket #243

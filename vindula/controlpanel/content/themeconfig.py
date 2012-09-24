@@ -38,7 +38,7 @@ ThemeConfig_schema =  ATDocumentSchema.copy() + Schema((
         default=True,
         widget=BooleanWidget(
             label="Ativar busca para usuários anônimos",
-            description='Se selecionado, Ativa a caixa de busca de conteudo para usuários anônimos.',
+            description='Se selecionado, Ativa a caixa de busca de conteúdo para usuários anônimos.',
         ),
         
     ),
@@ -56,11 +56,11 @@ ThemeConfig_schema =  ATDocumentSchema.copy() + Schema((
     ReferenceField('logoCabecalho',
         multiValued=0,
         allowed_types=('Image'),
-        label=_(u"Logo Cabecalho"),
+        label=_(u"Logo Cabeçalho"),
         relationship='logoPortal',
         widget=VindulaReferenceSelectionWidget(
             #default_search_index='SearchableText',
-            label=_(u"Logo Cabecalho"),
+            label=_(u"Logo Cabeçalho"),
             description='A imagem selecionada será exibida no topo do portal.'
         ),
     ),
@@ -123,15 +123,15 @@ ThemeConfig_schema =  ATDocumentSchema.copy() + Schema((
         required=False,
     ),
     
-    IntegerField(
-        name='larguraPortal',
-        required=0,
-        widget=IntegerWidget(
-            label='Largura do Portal',
-            description="Largura do site em pixels, insira apenas números inteiros. Esta configuração não se aplica a todos os temas.",
-        ),
-    ),
-                               
+#    IntegerField(
+#        name='larguraPortal',
+#        required=0,
+#        widget=IntegerWidget(
+#            label='Largura do Portal',
+#            description="Largura do site em pixels, insira apenas números inteiros. Esta configuração não se aplica a todos os temas.",
+#        ),
+#    ),
+#                               
     # -- Layout do portal ---#
                                                         
     StringField(
@@ -153,7 +153,7 @@ ThemeConfig_schema =  ATDocumentSchema.copy() + Schema((
         widget=VindulaReferenceSelectionWidget(
             #default_search_index='SearchableText',
             label=_(u"WallPaper do portal"),
-            description='A imagem selecionada será exibida como plano de fundo do portal. A imagem será mostrada em seu tamanho original, sem repetição.'),
+            description='A imagem selecionada será exibida como plano de fundo do portal.'),
         schemata = 'Layout'
     ),
     
@@ -161,10 +161,10 @@ ThemeConfig_schema =  ATDocumentSchema.copy() + Schema((
         name = 'posicaoImageBackground',
         widget=SelectionWidget(
             label='Posição da imagem de fundo',
-            description="Selecione o coportamento da imagem de fundo.",
+            description="Selecione o comportamento da imagem de fundo.",
             format = 'select',
         ),
-        vocabulary = [('no-repeat', 'Centralizar'), ('repeat', 'Repetir na pagina toda'), ('repeat-x', 'Repetir horizontalmente'), ('repeat-y', 'Repetir verticamente'),],
+        vocabulary = [('no-repeat', 'Centralizar'), ('repeat', 'Repetir na página toda'), ('repeat-x', 'Repetir horizontalmente'), ('repeat-y', 'Repetir verticamente'),],
         default='no-repeat',
         schemata = 'Layout'
     ),                                                                 
@@ -188,7 +188,7 @@ ThemeConfig_schema =  ATDocumentSchema.copy() + Schema((
         widget=VindulaReferenceSelectionWidget(
             #default_search_index='SearchableText',
             label=_(u"Imagem para o rodapé do portal"),
-            description='A imagem selecionada será exibida no rodapé do portal. Selecione uma imagem com dimenções 980x121'),
+            description='A imagem selecionada será exibida no rodapé do portal. Selecione uma imagem com dimensões 980x121'),
         schemata = 'Layout'
     ),
                                                             
@@ -337,7 +337,7 @@ ThemeConfig_schema =  ATDocumentSchema.copy() + Schema((
         relationship='imageTopPortlet',
         widget=VindulaReferenceSelectionWidget(
             label=_(u"Imagem para aparecer no topo do portlet"),
-            description='A imagem selecionada será exibida como plano de fundo do menu.\
+            description='A imagem selecionada será exibida como plano de fundo do portlet.\
                          A imagem será mostrada com a sua altura original, com repetição.'),
         schemata = 'Portlet'
 
@@ -358,7 +358,7 @@ ThemeConfig_schema =  ATDocumentSchema.copy() + Schema((
         relationship='imageMiddlePortlet',
         widget=VindulaReferenceSelectionWidget(
             label=_(u"Imagem para aparecer no meio do portlet"),
-            description='A imagem selecionada será exibida como plano de fundo do menu.\
+            description='A imagem selecionada será exibida como plano de fundo do portlet.\
                          A imagem será mostrada com a sua altura original, com repetição.'),
         schemata = 'Portlet'
     ),
@@ -369,7 +369,7 @@ ThemeConfig_schema =  ATDocumentSchema.copy() + Schema((
         relationship='imageBottomPortlet',
         widget=VindulaReferenceSelectionWidget(
             label=_(u"Imagem para aparecer em baixo do portlet"),
-            description='A imagem selecionada será exibida como plano de fundo do menu.\
+            description='A imagem selecionada será exibida como plano de fundo do portlet.\
                          A imagem será mostrada com a sua altura original, com repetição.'),
         schemata = 'Portlet'
     ),
