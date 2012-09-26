@@ -4,7 +4,7 @@
         xmlns:i18n="http://xml.zope.org/namespaces/i18n">
  
  <!-- Basic metadata -->
- <property name="title">Topico Do Control Panel</property>
+ <property name="title">Tópico Do Control Panel</property>
  <property name="i18n_domain">vindula.controlpanel</property>
  <property name="description">Pasta onde serão armazenados os topicos do control panel.</property>
  <property name="content_icon">++resource++vindula.controlpanel/imagens/vindula.png</property>
