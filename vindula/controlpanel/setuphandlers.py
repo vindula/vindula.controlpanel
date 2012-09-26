@@ -10,11 +10,14 @@ def installControlPanel(context):
 
     # Creating Control Panel Folder
     if not 'control-panel-objects' in portal.objectIds():
+        portal.portal_types.get('Folder').global_allow = True    
         portal.invokeFactory('Folder', 
                               id='control-panel-objects', 
                               title='Control Panel Objects',
                               description='Pasta que guarda os objetos de configuração do Vindula.',
                               excludeFromNav = True)
+        
+        portal.portal_types.get('Folder').global_allow = False
         
     folder_control_panel = portal['control-panel-objects']
 
@@ -24,7 +27,7 @@ def installControlPanel(context):
              'vindula.controlpanel.content.vindulaconfigall',
              'vindula.controlpanel.content.aniversariantesconfig',
              'ThemeConfig','ContentRedirectUser', 'ThemeLoginConfig',
-             'ContainerTopicsControlPanel']
+             'ContainerTopicsControlPanel','UpdateUser']
     
     for type in types:
         if portal.portal_types.get(type):
@@ -81,9 +84,11 @@ def link_user_folder(context):
 def CreateForderImage(context):
     portal = context.getSite()
     portal_workflow = getToolByName(portal, 'portal_workflow')
-
+    
     # Creating Banco de Imagens Folder
     if not 'banco-de-imagens' in portal.objectIds():
+        portal.portal_types.get('Folder').global_allow = True
+        
         portal.invokeFactory('Folder', 
                               id='banco-de-imagens',
                               title='Banco de Imagens',
@@ -96,6 +101,8 @@ def CreateForderImage(context):
         
         try:portal_workflow.doActionFor(folder_images_data, 'publish')
         except:portal_workflow.doActionFor(folder_images_data, 'publish_internally')
+        
+        portal.portal_types.get('Folder').global_allow = False
         
 def updateTopicsControlPanel(context):
     portal = context.getSite()
@@ -153,7 +160,9 @@ def installTheme(context):
     portal = context.getSite()
     portal_workflow = getToolByName(portal, 'portal_workflow')
     
+    
     if not 'links' in portal.objectIds():
+        portal.portal_types.get('Folder').global_allow = True
         portal.invokeFactory('Folder', 
                               id='links', 
                               title='Links Úteis',
@@ -164,4 +173,6 @@ def installTheme(context):
         pasta.setLocallyAllowedTypes(('Link',))
         
         try:portal_workflow.doActionFor(pasta, 'publish')
-        except:portal_workflow.doActionFor(pasta, 'publish_internally')                        
+        except:portal_workflow.doActionFor(pasta, 'publish_internally')              
+        
+        portal.portal_types.get('Folder').global_allow = False          

@@ -173,3 +173,4 @@ Changelog
 1.1.31 - 2012-09-26
 -----------------------
 - Correção Ticket #182
+- Correção do Ticket #148 -  Setuphandlers
