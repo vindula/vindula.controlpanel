@@ -5,7 +5,7 @@
 		xmlns:i18n="http://xml.zope.org/namespaces/i18n">
  
  <!-- Basic metadata -->
- <property name="title" i18n:translate="">Gestão de Categorias</property>
+ <property name="title" i18n:translate="">Tabelas auxiliares</property>
  <property name="description" i18n:translate="">Objeto de cadastro de categorias.</property>
  <property name="content_icon">++resource++vindula.controlpanel/imagens/vindula.png</property>
  <property name="allow_discussion">True</property>
