@@ -4,7 +4,7 @@ from vindula.controlpanel import MessageFactory as _
 from AccessControl import ClassSecurityInfo
 from zope.interface import Interface
 
-from Products.ATContentTypes.content.document import ATDocumentSchema, ATDocumentBase
+from Products.ATContentTypes.content import schemata, base
 from vindula.controlpanel.content.interfaces import ISubtopicControlPanel
 
 from zope.interface import implements
@@ -19,7 +19,7 @@ from vindula.controlpanel.config import *
 from vindula.controlpanel.browser.at.widget import VindulaReferenceSelectionWidget
 
 # Interface and schema
-SubtopicControlPanel_schema =  ATDocumentSchema.copy() + Schema((
+SubtopicControlPanel_schema =  schemata.ATContentTypeSchema.copy() + Schema((
     
     StringField(
         name='viewName',
@@ -35,8 +35,8 @@ SubtopicControlPanel_schema =  ATDocumentSchema.copy() + Schema((
         name="usersOrGroupsSub",
         multiValued=1,
         widget = widget.UserAndGroupSelectionWidget(
-            label=u"Usuarios ou grupos",
-            description=u"Selecione os usuários ou grupos que terão permissão para acessar esse subtópico.",
+            label=u"Usuários ou grupos",
+            description=u"Selecione os usuários ou grupos que terão permissão para acessar esse sub-tópico.",
             ),
         required=False,
     ),
@@ -59,33 +59,23 @@ SubtopicControlPanel_schema =  ATDocumentSchema.copy() + Schema((
         ),
     ),
     
-#    ReferenceField('icon',
-#        multiValued=0,
-#        allowed_types=('Image'),
-#        relationship='iconTopic',
-#        widget=VindulaReferenceSelectionWidget(
-#            label=_(u"Icone do topico"),
-#            description='Icone que aparecera ao lado do topico na lista.'),
-#    ),
-    
 ))
 finalizeATCTSchema(SubtopicControlPanel_schema, folderish=False)
 invisivel = {'view':'invisible','edit':'invisible',}
 
-L = ['text'] 
 # Dates
-L += ['effectiveDate','expirationDate','creation_date','modification_date']   
+L = ['effectiveDate','expirationDate','creation_date','modification_date']   
 # Categorization
 L += ['subject','relatedItems','location','language']
 # Ownership
 L += ['creators','contributors','rights']
 # Settings
-L += ['allowDiscussion','excludeFromNav', 'presentation','tableContents']
+L += ['allowDiscussion','excludeFromNav']
 
 for i in L:
     SubtopicControlPanel_schema[i].widget.visible = invisivel    
 
-class SubtopicControlPanel(ATDocumentBase):
+class SubtopicControlPanel(base.ATCTContent):
     """ SubtopicControlPane """
     
     security = ClassSecurityInfo()
@@ -93,5 +83,5 @@ class SubtopicControlPanel(ATDocumentBase):
     portal_type = 'SubtopicControlPane'
     _at_rename_after_creation = True
     schema = SubtopicControlPanel_schema
-    
+
 registerType(SubtopicControlPanel, PROJECTNAME)

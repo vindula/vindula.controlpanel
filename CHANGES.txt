@@ -174,3 +174,4 @@ Changelog
 -----------------------
 - Correção Ticket #182
 - Correção do Ticket #148 -  Setuphandlers
+- Correção Ticket #170

@@ -4,5 +4,6 @@
         <dependency>profile-plone.app.dexterity:default</dependency>
         <dependency>profile-Products.UserAndGroupSelectionWidget:default</dependency>
         <dependency>profile-collective.plonefinder:default</dependency>
+        <dependency>profile-Products.DataGridField:default</dependency>
     </dependencies>
 </metadata>

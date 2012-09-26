@@ -4,7 +4,7 @@
         xmlns:i18n="http://xml.zope.org/namespaces/i18n">
  
  <!-- Basic metadata -->
- <property name="title" i18n:translate="">Subtopico</property>
+ <property name="title" i18n:translate="">Sub-Tópico</property>
  <property name="i18n_domain">vindula.controlpanel</property>
  <property name="description" i18n:translate="">Objeto da regra de redirecionamento.</property>
  <property name="content_icon">++resource++vindula.controlpanel/imagens/vindula.png</property>

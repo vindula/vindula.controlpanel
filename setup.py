@@ -31,6 +31,7 @@ setup(name='vindula.controlpanel',
           'Products.UserAndGroupSelectionWidget',
           'plone.app.z3cform',
           'collective.plonefinder',
+          'Products.DataGridField',
           
           # -*- Extra requirements: -*-
       ],

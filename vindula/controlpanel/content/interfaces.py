@@ -27,3 +27,7 @@ class ITopicControlPanel(Interface):
     
 class ISubtopicControlPanel(Interface):
     """ Interface for SubtopicControlPanel content type """
+
+class IUpdateUser(Interface):
+    """ Interface for UpdateUser content type """
+  

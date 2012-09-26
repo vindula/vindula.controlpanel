@@ -54,7 +54,7 @@
 				  view_org context/OrgStruct_view;
 				  site_view python:context.restrictedTraverse('@@myvindula-conf-userpanel');
 				  
-				  key_vindula python:context.restrictedTraverse('check_vindulaKey',None);"
+				  key_vindula python:context.restrictedTraverse('@@check_vindulaKey');"
     
 	tal:attributes="class python: body_class +' '+ str(view_org.id);
                     dir python:isRTL and 'rtl' or 'ltr'">
