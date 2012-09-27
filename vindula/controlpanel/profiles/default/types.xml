@@ -32,7 +32,7 @@
   		meta_type="Factory-based Type Information with dynamic views"/>
 		
   
-  <object name="UpdateUser"    
-            meta_type="Factory-based Type Information with dynamic views"/>		
+  <!--object name="UpdateUser"    
+            meta_type="Factory-based Type Information with dynamic views"/-->		
 		
 </object>
