@@ -175,3 +175,8 @@ Changelog
 - Correção Ticket #182
 - Correção do Ticket #148 -  Setuphandlers
 - Correção Ticket #170
+
+1.1.32 - 2012-09-27
+-----------------------
+- Modificada a template de calend�rio do Plone para DIA/MES/ANO
+- Adicionado os campos Orgaos e Modalidades ao conteudo Categoria
