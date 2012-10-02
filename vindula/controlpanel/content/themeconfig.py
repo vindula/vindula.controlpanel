@@ -553,8 +553,8 @@ class ThemeConfigCssView(grok.View):
                ' .%(id)s .titulo_area{border-bottom-color: %(color)s !important;}\n' \
                ' .%(id)s .geral_lista_comentarios .comment {border-top-color: %(color)s !important;}\n' \
                ' .%(id)s .item_lista h4{color: %(color)s !important;}\n' \
-               ' .%(id)s .bt_comentar input{background-color: %(color)s !important;}\n' \
-               ' .%(id)s .bt_comments {background-color: %(color)s !important;}\n' \
+               ' .%(id)s .bt_comentar input{background-color: %(color)s;}\n' \
+               ' .%(id)s .bt_comments {background-color: %(color)s;}\n' \
          '/* geral.css */\n' \
                ' .%(id)s {background: url("%(urlBG)s") %(posicaoBG)s scroll 50%% 0 %(colorBG)s;}\n' \
                ' .%(id)s div#content a:hover, .%(id)s dl.portlet a:hover, .%(id)s .geral_busca #LSResult .livesearchContainer div.LSIEFix a:hover {color: %(color)s !important;}' \
