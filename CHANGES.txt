@@ -180,3 +180,8 @@ Changelog
 -----------------------
 - Modificada a template de calendário do Plone para DIA/MES/ANO
 - Adicionado os campos Orgaos e Modalidades ao conteudo Categoria
+
+1.1.33 - 2012-10-03
+-----------------------
+- Mudança do label Topico Do Control Panel para Editar Tópico
+- Adicionado o factorytool.xml
