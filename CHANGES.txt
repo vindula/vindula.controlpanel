@@ -185,3 +185,8 @@ Changelog
 -----------------------
 - Mudança do label Topico Do Control Panel para Editar Tópico
 - Adicionado o factorytool.xml
+
+1.1.34 - 2012-10-08
+-----------------------
+- Integraçao do usuário do Vindula com o do LDAP/AD e do Plone
+- Removido o link para editar usuários do Vindula Control Panel, é usado apenas as configuracoes de usuários do Plone

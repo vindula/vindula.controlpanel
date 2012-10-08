@@ -20,5 +20,12 @@
         permission="zope2.View"   
         allowed_attributes=""
     />
+	
+	<browser:page
+		name="new-user-vindula"
+		for="plone.app.layout.navigation.interfaces.INavigationRoot"
+		class=".views.AddUserForm"
+		permission="plone.app.controlpanel.UsersAndGroups"
+	/>
 
  </configure>

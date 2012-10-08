@@ -60,10 +60,6 @@
 					<a tal:attributes="href string:${portal_url}/control-panel-objects/vindula_aniversariantesconfig/edit">Lista de campos dos aniversariantes</a>
 				</div>
 				<div>
-					<img src="/++resource++vindula.controlpanel/icons/controlpanel_vindulaeditfuncconfig.png" />
-					<a tal:attributes="href string:${portal_url}/myvindulamanagealluser">Gerenciamento de Usu&aacute;rios</a>
-				</div>
-				<div>
 					<img src="/++resource++vindula.controlpanel/icons/controlpanel_myvindulaholerite.png" />
 					<a tal:attributes="href string:${portal_url}/myvindula-import-holerite">Contra-Cheque</a>
 				</div>
