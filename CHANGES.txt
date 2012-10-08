@@ -190,3 +190,4 @@ Changelog
 -----------------------
 - Integraçao do usuário do Vindula com o do LDAP/AD e do Plone
 - Removido o link para editar usuários do Vindula Control Panel, é usado apenas as configuracoes de usuários do Plone
+- Alterado o nome de usuário do plone para Usuário local na listagem de usuários

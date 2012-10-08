@@ -165,16 +165,16 @@
                                             userid user/userid;
                                             userquery python:view.makeQuery(userid=userid);
 											fullname python:user.get('fullname') and user.get('fullname') or user.get('cn', '');
-											pluginid python: user['pluginid'] == 'source_users' and 'usuário do plone' or user['pluginid']"
+											pluginid python: user['pluginid'] == 'source_users' and 'Usuário local' or user['pluginid']"
                                 tal:attributes="class python:oddrow and 'odd' or 'even'">
                                 	
                                 <td class="listingCheckbox">
-                                	<tal:cond condition="python: pluginid == 'usuário do plone'">
+                                	<tal:cond condition="python: pluginid == 'Usuário local'">
                                 		<img src="" alt="" tal:attributes="src string:${context/portal_url}/site_icon.gif;
 															 			   alt pluginid;
 																		   title pluginid;">
 									</tal:cond>
-									<tal:cond condition="python: pluginid != 'usuário do plone'">
+									<tal:cond condition="python: pluginid != 'Usuário local'">
 										<img src="" alt="" tal:attributes="src string:${context/portal_url}/misc_/PloneLDAP/ldapmultiplugin.png;
 															 			   alt pluginid;
 																		   title pluginid;">
