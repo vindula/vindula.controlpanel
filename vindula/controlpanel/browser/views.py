@@ -775,10 +775,12 @@ class LinkEditContent(grok.Viewlet):
         pc = getSite().portal_catalog
         url = request.URL.replace(getSite().portal_url()+'/', '')
         results = pc({'portal_type': 'SubtopicControlPanel'})
-        if self.context.portal_type not in ('SubtopicControlPanel', 'TopicControlPanel',):
+        
+        if self.context.portal_type not in ('SubtopicControlPanel', 'TopicControlPanel',) and url:
             for result in results:
                 result = result.getObject()
-                if result.getViewName() in url:
+                view_name = result.getViewName()
+                if view_name and view_name in url:
                     return result.absolute_url() + '/edit'
                 
         return None
