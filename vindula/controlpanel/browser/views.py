@@ -763,27 +763,28 @@ class VindulaPortletPrefs(grok.View):
                 return True
         return False
         
-        
-class LinkEditContent(grok.Viewlet): 
-    grok.context(Interface) 
-    grok.name('vindula.controlpanel.linkeditcontent') 
-    grok.require('cmf.ManagePortal')
-    grok.viewletmanager(IBelowContent)
-    
-    def getContentEdit(self):
-        request = self.request
-        pc = getSite().portal_catalog
-        url = request.URL.replace(getSite().portal_url()+'/', '')
-        results = pc({'portal_type': 'SubtopicControlPanel'})
-        
-        if self.context.portal_type not in ('SubtopicControlPanel', 'TopicControlPanel',) and url:
-            for result in results:
-                result = result.getObject()
-                view_name = result.getViewName()
-                if view_name and view_name in url:
-                    return result.absolute_url() + '/edit'
-                
-        return None
+# Codigo comentado pois a funcionalidade nao vai ser utilizada no momento
+   
+#class LinkEditContent(grok.Viewlet): 
+#    grok.context(Interface) 
+#    grok.name('vindula.controlpanel.linkeditcontent') 
+#    grok.require('cmf.ManagePortal')
+#    grok.viewletmanager(IBelowContent)
+#    
+#    def getContentEdit(self):
+#        request = self.request
+#        pc = getSite().portal_catalog
+#        url = request.URL.replace(getSite().portal_url()+'/', '')
+#        results = pc({'portal_type': 'SubtopicControlPanel'})
+#        
+#        if self.context.portal_type not in ('SubtopicControlPanel', 'TopicControlPanel',) and url:
+#            for result in results:
+#                result = result.getObject()
+#                view_name = result.getViewName()
+#                if view_name and view_name in url:
+#                    return result.absolute_url() + '/edit'
+#                
+#        return None
     
 class ShowAllRolesUsersView(grok.View):
     grok.context(Interface)
