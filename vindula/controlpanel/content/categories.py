@@ -33,7 +33,7 @@ class ICategories(form.Schema):
     form.widget(order_list=CheckBoxFieldWidget)
     order_list = schema.List(
         title = _(u'Itens que aparaceram nos campos de ordenação do portal.'),
-        description = _(u'Selecione abaixo os tipos de ordenação de conteúdo que apareceram nos campos "Ordenar por".'),
+        description = _(u'Selecione abaixo os tipos de ordenação de conteúdo que aparecerão nos campos "Ordenar por".'),
         required = False,
         value_type = schema.Choice( source = ListToOrderBy() ),
         )
@@ -47,7 +47,7 @@ class ICategories(form.Schema):
                                   required=False)
     
     orgaoEdital = schema.Text(
-        title=_(u"Orgaos dos editais"),
+        title=_(u"Órgãos dos editais"),
         description=_(u"""Adicione orgãos para ser relacionado a um edital.<br>
                           Adicione um orgão por linha.
                        """),
