@@ -48,7 +48,7 @@ class ICategories(form.Schema):
     
     orgaoEdital = schema.Text(
         title=_(u"Órgãos dos editais"),
-        description=_(u"""Adicione orgãos para ser relacionado a um edital.<br>
+        description=_(u"""Adicione orgãos para serem relacionados a um edital.<br>
                           Adicione um orgão por linha.
                        """),
         required=False,
@@ -56,7 +56,7 @@ class ICategories(form.Schema):
     
     modalidadeEdital = schema.Text(
         title=_(u"Modalidade dos editais"),
-        description=_(u"""Adicione modalidades para ser relacionado a um edital.<br>
+        description=_(u"""Adicione modalidades para serem relacionados a um edital.<br>
                           Adicione uma modalidade por linha.
                        """),
         required=False,
