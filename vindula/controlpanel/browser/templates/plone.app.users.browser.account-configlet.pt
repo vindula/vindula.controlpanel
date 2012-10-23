@@ -1,0 +1,84 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/prefs_main_template/macros/master"
+      i18n:domain="plone">
+
+<head>
+	
+	<metal:js fill-slot="javascript_head_slot">
+	</metal:js>
+	
+	<metal:block fill-slot="top_slot">
+	     <tal:dummy tal:define="dummy python:request.set('disable_border',1);
+	               disable_column_one python:request.set('disable_plone.leftcolumn',0);
+	               disable_column_two python:request.set('disable_plone.rightcolumn',1);" />
+	</metal:block>	
+
+</head>
+
+<body>
+	<metal:main fill-slot="prefs_configlet_content"
+            	tal:define="getmacro nocall: context/account-macro;
+                        	configlet_view python:True;
+							view_name view/__name__;">
+
+        <div id="edit-bar"
+             tal:define="userid view/userid|nothing;
+                         userquery python:view.makeQuery(userid=userid)">
+            <ul class="contentViews" id="content-views">
+              <li tal:define="selected python:view_name=='user-information'"
+                  tal:attributes="class python:selected and 'selected' or 'plain'">
+                <a href=""
+                   tal:attributes="href string:$portal_url/@@user-information?${userquery}"
+                   i18n:translate="title_personal_information_form">Personal Information</a>
+              </li>
+              <li tal:define="selected python:view_name=='user-preferences'"
+                  tal:attributes="class python:selected and 'selected' or 'plain'">
+                <a href=""
+                   tal:attributes="href string:$portal_url/@@user-preferences?${userquery}"
+                   i18n:translate="">Personal Preferences</a>
+              </li>
+
+              <li>
+                <a href=""
+                   tal:attributes="href string:$portal_url/@@usergroup-usermembership?${userquery}"
+                   i18n:translate="label_group_memberships">Group Memberships</a>
+              </li>
+            </ul>
+            <div class="contentActions">&nbsp;</div>
+        </div>
+		
+		<tal:cond condition="python: view_name == 'user-preferences'">
+			<metal:use_form use-macro="python: getmacro('main')"/>
+		</tal:cond>
+        
+		<tal:cond condition="python: view_name == 'user-information'">
+			<tal:view-user tal:define="view python:context.restrictedTraverse('@@myvindulaprefs');
+									   form_data view/load_form | python:{};
+	                                   errors form_data/errors | python:{};
+							           form_values form_data/data | python:{};
+							           departamentos form_data/departametos|python:{};
+							           
+							           check_editfunc context/@@myvindula-conf-userpanel/check_editfunc;
+							  
+									   username form_data/username|python:{};
+									   config_myvindula form_data/config_myvindula|python:{};
+									   manage form_data/manage|python:False;">
+									   	
+				<script type="text/javascript" tal:attributes="src string:${view/static}/js/comments.js"></script>
+				<script type="text/javascript" tal:attributes="src string:${view/static}/js/popup.js"></script>
+				<script type="text/javascript" tal:attributes="src string:${view/static}/js/mascara.js"></script>
+				<script type="text/javascript" tal:attributes="src string:${view/static}/cropper/js/jquery.Jcrop.js"></script>
+		        <script type="text/javascript" tal:attributes="src string:${view/static}/js/crop_image_user.js" ></script>
+									   	
+				<metal:use_form use-macro="context/myvindulaprefs/macros/config-user" />
+			</tal:view-user>	
+		</tal:cond>
+		
+    </metal:main>
+	
+</body>
+</html>

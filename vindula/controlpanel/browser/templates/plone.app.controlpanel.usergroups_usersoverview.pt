@@ -72,7 +72,7 @@
                 <form action=""
                       name="users_add"
                       method="post"
-                      tal:attributes="action string:$portal_url/@@new-user">
+                      tal:attributes="action string:$portal_url/@@new-user-vindula">
 
                   <input class="standalone add"
                              type="submit"
@@ -149,6 +149,7 @@
                           </tr>
                           <tal:block tal:condition="portal_users" >
                           <tr class="odd">
+                          	  <th tal:attributes="rowspan python:show_roles and 2 or 1" rowspan="2">Conex&atilde;o</th>
                               <th tal:attributes="rowspan python:show_roles and 2 or 1" rowspan="2" i18n:translate="listingheader_user_name">User name</th>
                               <th tal:condition="show_roles" colspan="3" tal:attributes="colspan python:len(portal_roles)"
                                   i18n:translate="listingheader_roles">Roles</th>
@@ -162,13 +163,28 @@
                           <tal:block repeat="user batch">
                             <tr tal:define="oddrow repeat/user/odd;
                                             userid user/userid;
-                                            userquery python:view.makeQuery(userid=userid);"
+                                            userquery python:view.makeQuery(userid=userid);
+											fullname python:user.get('fullname') and user.get('fullname') or user.get('cn', '');
+											pluginid python: user['pluginid'] == 'source_users' and 'Usuário local' or user['pluginid']"
                                 tal:attributes="class python:oddrow and 'odd' or 'even'">
+                                	
+                                <td class="listingCheckbox">
+                                	<tal:cond condition="python: pluginid == 'Usuário local'">
+                                		<img src="" alt="" tal:attributes="src string:${context/portal_url}/site_icon.gif;
+															 			   alt pluginid;
+																		   title pluginid;">
+									</tal:cond>
+									<tal:cond condition="python: pluginid != 'Usuário local'">
+										<img src="" alt="" tal:attributes="src string:${context/portal_url}/misc_/PloneLDAP/ldapmultiplugin.png;
+															 			   alt pluginid;
+																		   title pluginid;">
+									</tal:cond>
+                                </td>
 
                                 <td>
                                     <a href="@@user-information"
                                        tal:attributes="href string:$portal_url/@@user-information?${userquery}">
-                                        <tal:block replace="structure context/portal_url/user.png"/>&nbsp;<span tal:replace="user/fullname">Full Name</span>
+                                        <tal:block replace="structure context/portal_url/user.png"/>&nbsp;<span tal:replace="fullname">Full Name</span>
                                         (<span tal:replace="userid">username</span>)
                                     </a>
                                     <input type="hidden" name="users.id:records" tal:attributes="value userid" />

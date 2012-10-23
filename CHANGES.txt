@@ -178,10 +178,20 @@ Changelog
 
 1.1.32 - 2012-09-27
 -----------------------
-- Modificada a template de calend‡rio do Plone para DIA/MES/ANO
+- Modificada a template de calendï¿½rio do Plone para DIA/MES/ANO
 - Adicionado os campos Orgaos e Modalidades ao conteudo Categoria
 
 1.1.33 - 2012-10-03
 -----------------------
-- Mudana do label Topico Do Control Panel para Editar T—pico
+- Mudanï¿½a do label Topico Do Control Panel para Editar Tï¿½pico
 - Adicionado o factorytool.xml
+
+1.1.34 - 2012-10-08
+-----------------------
+- Integraï¿½ao do usuï¿½rio do Vindula com o do LDAP/AD e do Plone
+- Removido o link para editar usuï¿½rios do Vindula Control Panel, ï¿½ usado apenas as configuracoes de usuï¿½rios do Plone
+- Alterado o nome de usuï¿½rio do plone para Usuï¿½rio local na listagem de usuï¿½rios
+
+1.1.34 - 2012-10-22		
+-----------------------
+- CorreÃ§Ã£o ortogrÃ¡fica em Tabelas Auxiliares
