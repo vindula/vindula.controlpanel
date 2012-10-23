@@ -21,7 +21,7 @@ from vindula.controlpanel import MessageFactory as _
 from vindula.controlpanel.browser.models import RegistrationCompanyInformation, ModelsProducts, ModelsCompanyInformation
 
 from Products.GenericSetup.interfaces import ISetupTool    
-import pickle
+import pickle, os, string
 
 from collective.plonefinder.browser.finder import Finder
 from Acquisition import aq_inner
@@ -462,13 +462,24 @@ class StatusDataBaseView(grok.View):
     grok.name('vindula-status-DB')
     
     def load(self):
-        sql = "show tables;"
+        data = self.generate_random_string(13)
+        sql = 'SELECT * FROM vin_myvindula_instance_funcdetails WHERE username = "%s";' %(data) 
         result=[]
         data = BaseStore().store.execute(sql)
         if data.rowcount != 0:
             for obj in data.get_all():
                 result.append(obj[0])
+        
         return result
+
+
+    def generate_random_string(self, length, stringset=string.ascii_letters+string.digits+string.punctuation):
+        '''
+        Returns a string with `length` characters chosen from `stringset`
+        >>> len(generate_random_string(20) == 20 
+        '''
+        return ''.join([stringset[i%len(stringset)] \
+            for i in [ord(x) for x in os.urandom(length)]])
 
 
 class ManageLinksUserViewlet(grok.Viewlet):
