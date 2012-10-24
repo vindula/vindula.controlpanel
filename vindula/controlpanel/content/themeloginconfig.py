@@ -27,8 +27,8 @@ ThemeLoginConfig_schema =  ATDocumentSchema.copy() + Schema((
             description="Selecione o tipo da tela de login do portal.",
             format = 'radio',
         ),
-        vocabulary = [('classico', 'Login clássico'), ('grafico','Login gráfico'),],
-        default='classico',
+        vocabulary = [('clássico', 'Login clássico'), ('gráfico','Login gráfico'),],
+        default='clássico',
     ),
     
     BooleanField(
@@ -83,7 +83,7 @@ ThemeLoginConfig_schema =  ATDocumentSchema.copy() + Schema((
         required=0,
         widget=SmartColorWidget(
             label='Cor solida do background',
-            description="Cor solida que aparacera no fundo da tela de login gráfico.",
+            description="Cor sólida que aparacerá no fundo da tela de login gráfico.",
         ),
         schemata = 'Layout'
     ),  
