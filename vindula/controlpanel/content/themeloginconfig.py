@@ -27,7 +27,7 @@ ThemeLoginConfig_schema =  ATDocumentSchema.copy() + Schema((
             description="Selecione o tipo da tela de login do portal.",
             format = 'radio',
         ),
-        vocabulary = [('clássico', 'Login clássico'), ('gráfico','Login gráfico'),],
+        vocabulary = [('classico', 'Login clássico'), ('grafico','Login gráfico'),],
         default='clássico',
     ),
     
