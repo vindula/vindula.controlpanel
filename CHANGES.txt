@@ -200,8 +200,7 @@ Changelog
 -----------------------
 - Correção ortográfica na edição do Menu
 
-
 1.1.35 - 2012-10-29
 --------------------
 - Correção do editor de portlet por contexto
-
+- Correcoes na tela de login e adicionado um campo para dar transparencia a tela de login

@@ -86,6 +86,18 @@ ThemeLoginConfig_schema =  ATDocumentSchema.copy() + Schema((
             description="Cor sólida que aparacerá no fundo da tela de login gráfico.",
         ),
         schemata = 'Layout'
+    ), 
+    
+    StringField(
+        name = 'opacityBox',
+        required=True,
+        widget=StringWidget(
+            label='Transparência da caixa de login',
+            description="Insira o nível de transparêcia da caixa de login, insira um entre 1 e 0\n  \
+                         Ex: 0.8",
+        ),
+        schemata = 'Layout',
+        default='1'
     ),  
                                                         
 ))

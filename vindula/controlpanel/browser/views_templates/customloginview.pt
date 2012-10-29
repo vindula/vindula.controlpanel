@@ -62,7 +62,12 @@
 		<link tal:attributes="href string:${context/absolute_url|nothing}/custom-login-dynamic.css" media="screen" type="text/css" rel="stylesheet">
 		
 		<div class="centered superIndex" id="content-core">
-			<div class="column boxBorder boxLogin">
+			<tal:cond condition="config_login_obj">
+				<img class="bg" tal:condition="python: config_login_obj.getPosicaoImagem() == 'estender'" 
+					     tal:attributes="src view_login/getUrlImageBackground" />
+			</tal:cond>
+			
+			<div class="column boxBorder boxLogin" tal:attributes="style view_login/getOpacityBox|nothing">
 				<div class="logo" tal:condition="config_obj">
 					<a class="vindula-portal-logo" tal:attributes="href string:${context/portal_url}" title="P&aacute;gina Inicial">
 						<img tal:condition="config_obj/getLogoCabecalho" 
@@ -72,17 +77,12 @@
 						     src="/++resource++vindula.controlpanel/imagens/logo_topo.png" />	
 					</a>
 				</div>
-				
-				<tal:cond condition="config_login_obj">
-					<img class="bg" tal:condition="python: config_login_obj.getPosicaoImagem() == 'estender'" 
-						     tal:attributes="src view_login/getUrlImageBackground" />
-				</tal:cond>
-	
+
 	            <div tal:condition="python: not auth" i18n:translate="login_form_disabled">
 	                Since cookie authentication is disabled, cookie-based login is not available.
 	            </div>
 				
-				<div tal:condition="login_failed" class="boxBorder fontSmallSize loginFailed padding5px">
+				<div tal:condition="login_failed" class="boxBorder fontSmallSize loginFailed padding5px marginLfRg20">
 					<p>Login e/ou senha inv&aacute;lidos.</p>
 				</div>
 	
