@@ -639,6 +639,19 @@ class CustomLoginView(grok.View):
                 return img.absolute_url()
         return None
     
+    def getOpacityBox(self):
+        conf_login = self.getLoginConfObj()
+        if conf_login:
+            try:
+                type = float(conf_login.getOpacityBox())
+                if type >= 0 and type <= 1:
+                    return 'opacity: %s;' % (type)
+            except:
+                pass
+            
+        return None
+        
+    
     def getTypeBackground(self):
         conf_login = self.getLoginConfObj()
         if conf_login:

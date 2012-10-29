@@ -88,6 +88,10 @@ label {
 .clearBoth { clear: both;}
 .padding5px { padding: 5px; }
 .superIndex { z-index: 10 !important;}
+.marginLfRg20 {
+	margin-left: 20px;
+	margin-right: 20px;
+}
 .loginFailed {
     border-color: #FF5656 !important;
 	background-color: #F9E0E0;
@@ -136,7 +140,7 @@ img.bg {
 .column {
 	margin-left: -240px;
     width: 500px;
-    padding: 20px;
+    padding: 20px 0;
 }
 
 .columnFailed { 
@@ -160,9 +164,10 @@ img.bg {
 }
 
 .loginBox {
-	margin: 15px 0;
-	padding: 20px 20px 20px 25%;
-	background: none repeat scroll 0 0 #CDD4DA
+	padding: 20px 20px 20px 115px;
+	background: url('/++resource++vindula.controlpanel/imagens/bg_caixa-de-login.png') no-repeat scroll center 0 #CDD4DA;
+	width: 325px;
+	margin: 15px auto;
 }
 
 .field { padding-bottom: 10px; }
@@ -171,6 +176,7 @@ img.bg {
 
 .formControls {
 	float: right;
+	padding-right: 20px;
 }
 
 .formControls input[type="submit"] {
