@@ -197,10 +197,10 @@ class ListToOrderBy(object):
         self.object = object 
     def __call__(self, context):
         tool = getToolByName(self, 'portal_atct')
-        listFields = tool.getEnabledFields() 
+        listFields = tool.getEnabledFields()
         fields = [ field
-                    for field in listFields
-                    if self.validateAddCriterion(field[0], 'ATSortCriterion') ]
+                   for field in listFields
+                   if self.validateAddCriterion(field[0], 'ATSortCriterion') and field[0] not in ['created', 'sortable_title']]
         
         return wrap_in_terms(fields) 
     
