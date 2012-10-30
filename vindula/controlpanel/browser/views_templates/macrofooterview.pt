@@ -55,8 +55,9 @@
 				tal:content="structure python: config_obj.getText()"></p>
 			   
 			<p tal:condition="python: not config_obj.getText()">
+				<a href="http://www.vindula.com.br/" alt="Vindula" title="Vindula">
 			    <img tal:attributes="src string:${context/portal_url}/++resource++vindula.controlpanel/imagens/vindula_logo_powerby.png" />
-			    
+			    </a>
 			</p>
 			
 			<a class="theme-edit"

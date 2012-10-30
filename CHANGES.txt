@@ -204,3 +204,7 @@ Changelog
 --------------------
 - Correção do editor de portlet por contexto
 - Correcoes na tela de login e adicionado um campo para dar transparencia a tela de login
+
+1.1.36 - 2012-10-30
+--------------------
+- Adicionado link no icone do rodape do vindula
