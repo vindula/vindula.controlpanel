@@ -446,53 +446,98 @@ class ThemeConfigCssView(grok.View):
             return value
         
     def getConfig(self, obj): 
+        config_padrao = getSite()['control-panel-objects']['ThemeConfig']
+        
         D = {}
-        D['cor'] = self.checkTransparent(obj.getCorGeralPortal()) or '#F58220'
+        D['cor'] = self.checkTransparent(obj.getCorGeralPortal()) or self.checkTransparent(config_padrao.getCorGeralPortal()) or '#F58220'
 
         #-- Background Portal --#
-        D['corBG'] = self.checkTransparent(obj.getCorBackground()) or '#FFF'
+        D['corBG'] = self.checkTransparent(obj.getCorBackground()) or self.checkTransparent(config_padrao.getCorBackground()) or '#FFF'
 
-        if obj.getImageBackground():
+        if config_padrao.getImageBackground():
+            D['urlBG'] = obj.getImageBackground().absolute_url()
+        elif config_padrao.getImageBackground():
             D['urlBG'] = obj.getImageBackground().absolute_url()
         elif D.get('corBG') == '#FFF':
             D['urlBG'] = '/++resource++vindula.themedefault/images/bkgs/bk_body.jpg'
         else:
             D['urlBG'] = ''
-        
-        if D['urlBG']: D['posicaoBG'] = obj.getPosicaoImageBackground()
+
+        if D['urlBG']:
+            D['posicaoBG'] = obj.getPosicaoImageBackground() or config_padrao.getPosicaoImageBackground() or 'no-repeat'
 
         if obj.getImageFooter():
             D['urlFooter'] = obj.getImageFooter().absolute_url()
+        elif config_padrao.getImageFooter():
+            D['urlFooter'] = config_padrao.getImageFooter().absolute_url()
         else:
             D['urlFooter'] = ''
         
         #-- Config Menu --#
-        D['corMenuFundo'] = self.checkTransparent(obj.getCorMenuFundo()) or '#FFF'
-        D['corMenuFonte'] = self.checkTransparent(obj.getCorMenuFonte()) or '#000'
-        D['corMenuHoverDropdown'] = self.checkTransparent(obj.getCorMenuHoverDropdown()) or '#525254'
+        D['corMenuFundo'] = self.checkTransparent(obj.getCorMenuFundo())                                 or self.checkTransparent(config_padrao.getCorMenuFundo()) or '#FFF'
+        D['corMenuFonte'] = self.checkTransparent(obj.getCorMenuFonte())                                 or self.checkTransparent(config_padrao.getCorMenuFonte()) or '#000'
+        D['corMenuHoverDropdown'] = self.checkTransparent(obj.getCorMenuHoverDropdown())                 or self.checkTransparent(config_padrao.getCorMenuHoverDropdown()) or '#525254'
             
-        D['corMenuFonteDropdown'] = self.checkTransparent(obj.getCorMenuFonteDropdown()) or '#e4e4e4'
-        D['corMenuFonteHoverDropdown'] = self.checkTransparent(obj.getCorMenuFonteHoverDropdown()) or '#F58220'
-        D['corMenuDropdownHover'] = self.checkTransparent(obj.getCorMenuDropdownHover()) or '#000'
-        D['corMenuSelected'] = self.checkTransparent(obj.getCorMenuSelected()) or '#000'
-        D['corMenuFonteSelected'] = self.checkTransparent(obj.getCorMenuFonteSelected()) or '#FFF'
-        D['corMenuSelectedDropdown'] = self.checkTransparent(obj.getCorMenuSelectedDropdown()) or '#000'
-        D['corMenuFonteSelectedDropdown'] = self.checkTransparent(obj.getCorMenuFonteSelectedDropdown()) or '#F58220'
+        D['corMenuFonteDropdown'] = self.checkTransparent(obj.getCorMenuFonteDropdown())                 or self.checkTransparent(config_padrao.getCorMenuFonteDropdown()) or '#e4e4e4'
+        D['corMenuFonteHoverDropdown'] = self.checkTransparent(obj.getCorMenuFonteHoverDropdown())       or self.checkTransparent(config_padrao.getCorMenuFonteHoverDropdown()) or '#F58220'
+        D['corMenuDropdownHover'] = self.checkTransparent(obj.getCorMenuDropdownHover())                 or self.checkTransparent(config_padrao.getCorMenuDropdownHover()) or '#000'
+        D['corMenuSelected'] = self.checkTransparent(obj.getCorMenuSelected())                           or self.checkTransparent(config_padrao.getCorMenuSelected()) or '#000'
+        D['corMenuFonteSelected'] = self.checkTransparent(obj.getCorMenuFonteSelected())                 or self.checkTransparent(config_padrao.getCorMenuFonteSelected()) or '#FFF'
+        D['corMenuSelectedDropdown'] = self.checkTransparent(obj.getCorMenuSelectedDropdown())           or self.checkTransparent(config_padrao.getCorMenuSelectedDropdown()) or '#000'
+        D['corMenuFonteSelectedDropdown'] = self.checkTransparent(obj.getCorMenuFonteSelectedDropdown()) or self.checkTransparent(config_padrao.getCorMenuFonteSelectedDropdown()) or '#F58220'
         
         # IMAGENS DE FUNDO DO MENU E SUBMENU #
-        if obj.getImageMenuBkg()   : D['urlMenu']    = obj.getImageMenuBkg().absolute_url()
+        if obj.getImageMenuBkg():
+            D['urlMenu'] = obj.getImageMenuBkg().absolute_url()
+        elif config_padrao.getImageMenuBkg():
+            D['urlMenu'] = config_padrao.getImageMenuBkg().absolute_url()
+            
+        
         D['urlSubmenu'] = ''
         if obj.getImageSubmenuBkg():
             D['urlSubmenu'] = obj.getImageSubmenuBkg().absolute_url()
+        elif config_padrao.getImageSubmenuBkg():
+            D['urlSubmenu'] = config_padrao.getImageSubmenuBkg().absolute_url()
+            
+            
         elif D.get('corMenuHoverDropdown') == '#525254':
             D['urlSubmenu'] = '/++resource++vindula.themedefault/images/bkgs/bg_menu.jpg'
         
         # CONFIGURACAO DO PORTLET #
-        if obj.getImageTopPortlet()    : D['urlTopPortlet']       = obj.getImageTopPortlet().absolute_url()
-        if obj.getImageMiddlePortlet() : D['urlMiddlePortlet']    = obj.getImageMiddlePortlet().absolute_url()
-        if obj.getImageBottomPortlet() : D['urlBottomPortlet']    = obj.getImageBottomPortlet().absolute_url()
-        if obj.getHeightTopPortlet()   : D['heightTopPortlet']    = obj.getHeightTopPortlet()
-        if obj.getHeightBottomPortlet(): D['heightBottomPortlet'] = obj.getHeightBottomPortlet()
+        if obj.getImageTopPortlet():
+            D['urlTopPortlet'] = obj.getImageTopPortlet().absolute_url()
+        elif config_padrao.getImageTopPortlet():
+            D['urlTopPortlet'] = obj.getImageTopPortlet().absolute_url()
+        else:
+            D['urlTopPortlet'] = '++resource++vindula.themedefault/images/bkgs/topoBoxTipo2-top.png'
+            
+        if obj.getImageMiddlePortlet():
+            D['urlMiddlePortlet'] = obj.getImageMiddlePortlet().absolute_url()
+        elif config_padrao.getImageMiddlePortlet():
+            D['urlMiddlePortlet'] = config_padrao.getImageMiddlePortlet().absolute_url()            
+        else:
+            D['urlMiddlePortlet'] = '++resource++vindula.themedefault/images/bkgs/topoBoxTipo2-meio.png'
+        
+        if obj.getImageBottomPortlet():
+            D['urlBottomPortlet'] = obj.getImageBottomPortlet().absolute_url()
+        elif config_padrao.getImageBottomPortlet():
+            D['urlBottomPortlet'] = config_padrao.getImageBottomPortlet().absolute_url()
+        else:
+            D['urlBottomPortlet'] = '++resource++vindula.themedefault/images/bkgs/topoBoxTipo2-botton.png'
+        
+        if obj.getHeightTopPortlet():
+            D['heightTopPortlet'] = obj.getHeightTopPortlet()
+        elif config_padrao.getHeightTopPortlet():
+            D['heightTopPortlet'] = config_padrao.getHeightTopPortlet()
+        else:
+            D['heightTopPortlet'] = 15
+        
+        if obj.getHeightBottomPortlet():
+            D['heightBottomPortlet'] = obj.getHeightBottomPortlet()
+        elif config_padrao.getHeightBottomPortlet():
+            D['heightBottomPortlet'] = config_padrao.getHeightBottomPortlet()            
+        else:
+            D['heightBottomPortlet'] = 23
         
         return D
      
@@ -511,37 +556,38 @@ class ThemeConfigCssView(grok.View):
     
     def render(self):
         config, id = self.getConfiguration()
+        
         plone = getSite().id
         params = {}
         params['id'] = id or plone
         
         #CONFIGURACAO DO PORTAL
-        params['color']     = config.get('cor','#F58220') or '#F58220'
-        params['urlBG']     = config.get('urlBG','/++resource++vindula.themedefault/images/bkgs/bk_body.jpg')
-        params['posicaoBG'] = config.get('posicaoBG', 'no-repeat')
-        params['colorBG']   = config.get('corBG','#FFF') or '#FFF'
-        params['urlFooter'] = config.get('urlFooter') or ''
+        params['color']     = config.get('cor')       
+        params['urlBG']     = config.get('urlBG')      
+        params['posicaoBG'] = config.get('posicaoBG')  
+        params['colorBG']   = config.get('corBG')     
+        params['urlFooter'] = config.get('urlFooter') 
         
         #CONFIGURACAO DO MENU
-        params['urlMenu']                      = config.get('urlMenu'                     , '')
-        params['urlSubmenu']                   = config.get('urlSubmenu'                  , '/++resource++vindula.themedefault/images/bkgs/bg_menu.jpg')
-        params['corMenuFundo']                 = config.get('corMenuFundo'                ,'#FFF')    or '#FFF'
-        params['corMenuFonte']                 = config.get('corMenuFonte'                ,'#000')    or '#000'
-        params['corMenuSelected']              = config.get('corMenuSelected'             ,'#000')    or '#000'
-        params['corMenuHoverDropdown']         = config.get('corMenuHoverDropdown'        ,'#525254') or '#525254'
-        params['corMenuFonteDropdown']         = config.get('corMenuFonteDropdown'        ,'#e4e4e4') or '#e4e4e4'
-        params['corMenuDropdownHover']         = config.get('corMenuDropdownHover'        ,'#000')    or '#000'
-        params['corMenuFonteSelected']         = config.get('corMenuFonteSelected'        ,'#FFF')    or '#FFF'
-        params['corMenuSelectedDropdown']      = config.get('corMenuSelectedDropdown'     ,'#000')    or '#000'
-        params['corMenuFonteHoverDropdown']    = config.get('corMenuFonteHoverDropdown'   ,'#F58220') or '#F58220'
-        params['corMenuFonteSelectedDropdown'] = config.get('corMenuFonteSelectedDropdown','#F58220') or '#F58220'
+        params['urlMenu']                      = config.get('urlMenu'                     )
+        params['urlSubmenu']                   = config.get('urlSubmenu'                  )
+        params['corMenuFundo']                 = config.get('corMenuFundo'                )
+        params['corMenuFonte']                 = config.get('corMenuFonte'                )
+        params['corMenuSelected']              = config.get('corMenuSelected'             )
+        params['corMenuHoverDropdown']         = config.get('corMenuHoverDropdown'        )
+        params['corMenuFonteDropdown']         = config.get('corMenuFonteDropdown'        )
+        params['corMenuDropdownHover']         = config.get('corMenuDropdownHover'        )
+        params['corMenuFonteSelected']         = config.get('corMenuFonteSelected'        )
+        params['corMenuSelectedDropdown']      = config.get('corMenuSelectedDropdown'     )
+        params['corMenuFonteHoverDropdown']    = config.get('corMenuFonteHoverDropdown'   )
+        params['corMenuFonteSelectedDropdown'] = config.get('corMenuFonteSelectedDropdown')
         
         #CONFIGURACAO DO PORTLET
-        params['urlTopPortlet']       = config.get('urlTopPortlet'   ,    '++resource++vindula.themedefault/images/bkgs/topoBoxTipo2-top.png')
-        params['urlMiddlePortlet']    = config.get('urlMiddlePortlet',    '++resource++vindula.themedefault/images/bkgs/topoBoxTipo2-meio.png')
-        params['urlBottomPortlet']    = config.get('urlBottomPortlet',    '++resource++vindula.themedefault/images/bkgs/topoBoxTipo2-botton.png')
-        params['heightTopPortlet']    = config.get('heightTopPortlet',    15)
-        params['heightBottomPortlet'] = config.get('heightBottomPortlet', 23)
+        params['urlTopPortlet']       = config.get('urlTopPortlet'      )
+        params['urlMiddlePortlet']    = config.get('urlMiddlePortlet'   )
+        params['urlBottomPortlet']    = config.get('urlBottomPortlet'   )
+        params['heightTopPortlet']    = config.get('heightTopPortlet'   )
+        params['heightBottomPortlet'] = config.get('heightBottomPortlet')
         
         # CRIACAO DO CSS DINAMICO #    
         css =  \
@@ -617,5 +663,4 @@ class ThemeConfigCssView(grok.View):
         
         self.response.setHeader('Content-Type', 'text/css; charset=UTF-8')
         return css
-
 

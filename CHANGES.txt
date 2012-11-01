@@ -208,3 +208,9 @@ Changelog
 1.1.36 - 2012-10-30
 --------------------
 - Adicionado link no icone do rodape do vindula
+
+1.1.37 - 2012-11-01
+----------------------
+- Correção da view de personalização dinâmica para mesclar as configurações globais e locais das Eos
+
+
