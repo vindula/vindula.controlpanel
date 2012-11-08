@@ -213,4 +213,7 @@ Changelog
 ----------------------
 - Correção da view de personalização dinâmica para mesclar as configurações globais e locais das Eos
 
+1.1.38 - 2012-11-08
+----------------------
+- Adicionado redirect ao acessar o 'vindula-control-panel'  
 
