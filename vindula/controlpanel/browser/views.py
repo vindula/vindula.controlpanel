@@ -598,7 +598,7 @@ class ManagePortletView(grok.View):
     def getUrlManagePortlet(self,portlet):
         portal = self.context.portal_url.getPortalObject()
         
-        baseUrl = portal.absolute_url() + '/'.join(portlet['key'].split('/')[2:])
+        baseUrl = portal.absolute_url()+ '/' + '/'.join(portlet['key'].split('/')[2:])
         manager = portlet['manager']
         name = portlet['name']
         refererUrl = self.context.absolute_url()
