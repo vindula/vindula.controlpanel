@@ -40,6 +40,11 @@ class ControlPanelView(grok.View):
     grok.require('cmf.ManagePortal')
     grok.name('vindula-control-panel')
     
+    def update(self):
+        url = self.context.absolute_url() + '/@@overview-controlpanel'
+        self.request.response.redirect(url)
+        
+    
 class VindulaFinderUploadView(Finder):
     """ Custom Finder class for widget """
 

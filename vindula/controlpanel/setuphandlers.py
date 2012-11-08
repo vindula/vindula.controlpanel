@@ -179,3 +179,50 @@ def installTheme(context):
         except:portal_workflow.doActionFor(pasta, 'publish_internally')              
         
         portal.portal_types.get('Folder').global_allow = False          
+        
+        
+def installSteps(context):
+    portal = context.getSite()
+
+    if 'control-panel-objects' in portal.objectIds():
+        control = portal['control-panel-objects']
+        
+        if 'vindula_wizard' in control.objectIds():
+            wizard = control['vindula_wizard']
+            
+            passos = [{'id':'theme',
+                       'url':'/control-panel-objects/vindula_themeconfig/edit',
+                       'title':'Layout Portal',
+                       'description':'Editar o layout do portal vindula',
+                       'status':True
+                       },
+                      {'id':'categories',
+                       'url':'/control-panel-objects/vindula_categories/edit',
+                       'title':'Categorias',
+                       'description':'Editar as categorias do portal vindula',
+                       'status':True
+                       },
+                      {'id':'company',
+                       'url':'/vindula-company-information',
+                       'title':'Informações da empresa',
+                       'description':'Editar as informações impresariais',
+                       'status':True
+                       },
+                      {'id':'users',
+                       'url':'/@@usergroup-userprefs',
+                       'title':'Usuários e Grupos',
+                       'description':'Editar as informações dos usuários',
+                       'status':True
+                       }]
+            
+            for passo in passos:
+                if not passo.get('id') in wizard.objectIds():
+                    wizard.invokeFactory('Steps',**passo)
+        
+                          
+
+            
+    
+            
+        
+        

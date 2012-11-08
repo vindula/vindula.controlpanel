@@ -38,4 +38,12 @@
 	        <dependency step="content"/>
 		</import-step>
 		
+		<import-step id="vindula.controlpanel.installSteps" 
+                     version="1.0"
+                     handler="vindula.controlpanel.setuphandlers.installSteps"
+                     title="Create Vindula Steps Object">
+            <dependency step="content"/>
+        </import-step>
+		
+		
 	</import-steps>
