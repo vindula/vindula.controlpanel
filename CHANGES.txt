@@ -216,4 +216,4 @@ Changelog
 1.1.38 - 2012-11-08
 ----------------------
 - Adicionado redirect ao acessar o 'vindula-control-panel'  
-
+- Removido a view de configurações do perfil do usuarios e grupos
