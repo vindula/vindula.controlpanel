@@ -53,6 +53,7 @@ def installControlPanel(context):
             
             new_object = {}
             new_object['id'] = 'VindulaCategories'
+            new_object['title'] = 'vindula_categories'
             new_object['orgstructure'] = categories_old.orgstructure
             new_object['list_macros'] = categories_old.list_macros
 #            try:
