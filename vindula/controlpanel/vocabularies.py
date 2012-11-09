@@ -69,7 +69,8 @@ class ControlPanelMacro(object):
         
         if obj:
             try:
-                field = obj.__getattribute__(self.type)
+                field = 'obj.'+self.type
+                field = eval(field)
             except:
                 field = None
             if field is not None:

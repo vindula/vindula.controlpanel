@@ -9,5 +9,6 @@
 		<type portal_type="ContainerTopicsControlPanel"/>
 		<type portal_type="TopicControlPanel"/>
 		<type portal_type="SubtopicControlPanel"/>
+		<type portal_type="ObjectsControlPanel"/>
 	</factorytypes>
 </object>

@@ -217,3 +217,9 @@ Changelog
 ----------------------
 - Adicionado redirect ao acessar o 'vindula-control-panel'  
 - Removido a view de configura√ß√µes do perfil do usuarios e grupos
+
+1.1.39 - 2012-11-09
+----------------------
+- Adicionado o objeto de configuracoes do vindula, onde vai ficar os objetos de configuraçao do Vindula
+- Migrado o vindula categorias de dexterity para archetype
+- Ocultado o conteúdo Págida padrao do Plone

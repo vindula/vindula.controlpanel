@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
-<object name="FieldSetMyvindula"
+<object name="VindulaCategories"
         meta_type="Factory-based Type Information with dynamic views"
         xmlns:i18n="http://xml.zope.org/namespaces/i18n">
  
  <!-- Basic metadata -->
- <property name="title" i18n:translate="">Categorias Myvindula</property>
+ <property name="title" i18n:translate="">Categorias</property>
  <property name="i18n_domain">vindula.controlpanel</property>
- <property name="description" i18n:translate="">Objeto as categorias no perfil do usuário.</property>
- <property name="content_icon">++resource++vindula.controlpanel/imagens/fieldset.png</property>
- <property name="content_meta_type">FieldSetMyvindula</property>
+ <property name="description" i18n:translate="">Objeto de cadastro de categorias.</property>
+ <property name="content_icon">++resource++vindula.controlpanel/imagens/vindula.png</property>
+ <property name="content_meta_type">VindulaCategories</property>
  <property name="product">vindula.controlpanel</property>
- <property name="factory">addFieldSetMyvindula</property>
+ <property name="factory">addVindulaCategories</property>
  <property name="immediate_view">base_view</property>
  <property name="allow_discussion">False</property>
  <property name="global_allow">False</property>
@@ -27,7 +27,7 @@
          condition_expr=""
          url_expr="string:${object_url}/" 
          visible="True">
-    <permission value="View"/>
+  <permission value="View"/>
  </action>
  
  <action title="Edit" 
@@ -36,7 +36,7 @@
          condition_expr=""
          url_expr="string:${object_url}/edit" 
          visible="True">
-    <permission value="Modify portal content"/>
+  <permission value="Modify portal content"/>
  </action>
 
 </object>

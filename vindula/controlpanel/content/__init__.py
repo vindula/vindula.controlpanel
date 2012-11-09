@@ -7,4 +7,6 @@ import fieldsetmyvindula
 import containertopicscontrolpanel
 import topiccontrolpanel
 import subtopiccontrolpanel
+import objectscontrolpanel
+import vindulacategories
 #import updateuser

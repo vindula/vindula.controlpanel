@@ -14,7 +14,7 @@ from vindula.myvindula.validation import to_utf8, valida_form
 from zope.app.component.hooks import getSite
 
 from plone.registry.interfaces import IRegistry
-from zope.component import queryUtility, getUtility, getAdapter, getMultiAdapter
+from zope.component import queryUtility, getUtility, getAdapters, getMultiAdapter
 from plone.app.discussion.interfaces import IDiscussionSettings
 from Products.statusmessages.interfaces import IStatusMessage
 from vindula.controlpanel import MessageFactory as _
@@ -24,16 +24,22 @@ from vindula.controlpanel.browser.models import RegistrationCompanyInformation, 
 from Products.GenericSetup.interfaces import ISetupTool    
 import pickle, os, string
 
+from Products.Five import BrowserView
 from collective.plonefinder.browser.finder import Finder
 from Acquisition import aq_inner
 
 from plone.app.layout.viewlets.interfaces import IBelowContent
+
+from zope.browsermenu.interfaces import IBrowserMenu, IMenuItemType
+from zope.browsermenu.interfaces import IBrowserMenuItem, IBrowserSubMenuItem
+from zope.browsermenu.interfaces import IMenuAccessView
 
 #Imports para criar a tela de Criar Usuário do Plone
 from plone.app.users.browser.register import BaseRegistrationForm
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from AccessControl import getSecurityManager
 from zope.formlib import form
+from copy import copy
 
 class ControlPanelView(grok.View):
     grok.context(INavigationRoot)
@@ -889,20 +895,51 @@ class AddUserForm(BaseRegistrationForm):
             '/@@usergroup-userprefs?searchstring=' + user_id)
         
         
-    
+class ContentMenu(BrowserView):
+    def getMenuItems(self):
+        menu = getUtility(IBrowserMenu, name='plone_contentmenu')
+        items = menu.getMenuItems(self.context, self.request)
+        items.reverse()
+        
+        conf_additems = getSite().get('control-panel-objects', None)
+        if conf_additems:
+            conf_additems = conf_additems.get('vindula_categories', None)
+            if conf_additems:
+                conf_additems = conf_additems.getCategories_additem()
+                dic_categorias = {}
+                for item in conf_additems:
+                    categoria = item.get('catagories')
+                    if dic_categorias.get(categoria):
+                        dic_categorias[categoria].append(item.get('content_type'))
+                    else:
+                        dic_categorias[categoria] = [item.get('content_type')]
+        
+        if dic_categorias:
+            for item in items:
+                if item['extra']['id'] == 'plone-contentmenu-factories':
+                    list_aux = copy(item['submenu'])
+                    for submenu in list_aux:
+                        for key in dic_categorias.keys():
+                            if submenu.get('id', None) and submenu['id'].lower() in dic_categorias[key]:
+                                category = [menu for menu in item['submenu'] if menu.get('id', None) == key]
+                                if not category:
+                                    new_category = {'action': None,
+                                                    'description': '',
+                                                    'extra': {'class': 'dropdownAddContent positionRelative',
+                                                                       'id': 'dropdownAddContent',
+                                                                       'separator': None},
+                                                    'icon': '',
+                                                    'id':  key,
+                                                    'selected':  False,
+                                                    'submenu': [],
+                                                    'title': key}
+                                    
+                                    item['submenu'].insert(0, new_category)
+                                    index = item['submenu'].index(new_category)
+                                else:
+                                    index = item['submenu'].index(category[0])
+                                 
+                                item['submenu'][index]['submenu'].append(submenu)
+                                item['submenu'].remove(submenu)
 
-                    
-        
-            
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        return items  

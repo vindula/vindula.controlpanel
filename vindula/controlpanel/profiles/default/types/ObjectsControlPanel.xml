@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<object name="ObjectsControlPanel"
+        meta_type="Factory-based Type Information with dynamic views"
+        xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+ 
+ <!-- Basic metadata -->
+ <property name="title">Objetos de Configuração do Vindula</property>
+ <property name="i18n_domain">vindula.controlpanel</property>
+ <property name="description">Pasta onde serão armazenos objetos de configuração do vindula.</property>
+ <property name="content_icon">++resource++vindula.controlpanel/imagens/vindula.png</property>
+ <property name="content_meta_type">ObjectsControlPanel</property>
+ <property name="product">vindula.controlpanel</property>
+ <property name="factory">addObjectsControlPanel</property>
+ <property name="immediate_view">base_view</property>
+ <property name="allow_discussion">False</property>
+ <property name="global_allow">False</property>
+ <property name="filter_content_types">True</property>
+ <property name="allowed_content_types">
+	<element value="vindula.controlpanel.content.categories" />
+	<element value="vindula.controlpanel.content.alertdisplay" />
+	<element value="vindula.controlpanel.content.vindulaconfigall" />
+	<element value="vindula.controlpanel.content.aniversariantesconfig" />
+	<element value="vindula.myvindula.vindulalistdocumentuser" />
+	<element value="vindula.chat.content.settings" />
+	<element value="vindula.controlpanel.content.vindulaconfiglogin" />
+	
+	<element value="VindulaCategories" />
+	<element value="VindulaFolder" />
+	<element value="ThemeConfig" />
+	<element value="ContentRedirectUser" />
+	<element value="ThemeLoginConfig" />
+	<element value="FieldSetMyvindula" />
+	<element value="ContainerTopicsControlPanel" />
+	<element value="SocialNetwork" />
+	<element value="Folder" />
+ </property>     
+        	
+ <property name="default_view">base_view</property>
+ <property name="default_view_fallback">False</property> 
+ 
+ <alias from="edit" to="base_edit"/>
+ 
+ <alias from="(Default)" to="folder_contents"/>
+ <action title="View" 
+         action_id="view"
+         category="object" 
+         condition_expr=""
+         url_expr="string:${object_url}/folder_contents" 
+         visible="True">
+  <permission value="View"/>
+ </action>
+ 
+ <action title="Edit" 
+         action_id="edit"
+         category="object" 
+         condition_expr=""
+         url_expr="string:${object_url}/edit" 
+         visible="True">
+  <permission value="Modify portal content"/>
+ </action>
+</object>

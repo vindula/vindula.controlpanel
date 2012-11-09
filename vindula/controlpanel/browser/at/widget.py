@@ -86,9 +86,9 @@ class VindulaReferenceSelectionWidget(TypesWidget):
         except:
             obj = None
         if obj and 'Image' in field.allowed_types:
-            if obj.folder_image:
-                if obj.folder_image.to_object:
-                    url = obj.folder_image.to_object.absolute_url()
+            if obj.getFolder_image():
+                if obj.getFolder_image().to_object:
+                    url = obj.getFolder_image().to_object.absolute_url()
                 else:
                     url = ''
             else:

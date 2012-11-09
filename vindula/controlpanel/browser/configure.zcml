@@ -27,5 +27,13 @@
 		class=".views.AddUserForm"
 		permission="plone.app.controlpanel.UsersAndGroups"
 	/>
+	
+	<browser:page
+        for="*"
+        name="menu_editable"
+        class=".views.ContentMenu"
+        permission="zope2.View"
+        allowed_attributes=""
+    />
 
  </configure>

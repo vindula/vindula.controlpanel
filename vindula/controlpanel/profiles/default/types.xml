@@ -28,10 +28,15 @@
   <object name="TopicControlPanel" 
   		meta_type="Factory-based Type Information with dynamic views"/>
 		
-	<object name="SubtopicControlPanel" 
+  <object name="SubtopicControlPanel" 
+  		meta_type="Factory-based Type Information with dynamic views"/>
+
+  <object name="ObjectsControlPanel" 
+  		meta_type="Factory-based Type Information with dynamic views"/>
+  
+  <object name="VindulaCategories"
   		meta_type="Factory-based Type Information with dynamic views"/>
 		
-  
   <!--object name="UpdateUser"    
             meta_type="Factory-based Type Information with dynamic views"/-->		
 		

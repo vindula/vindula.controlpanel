@@ -30,4 +30,9 @@ class ISubtopicControlPanel(Interface):
 
 class IUpdateUser(Interface):
     """ Interface for UpdateUser content type """
-  
+
+class IObjectsControlPanel(Interface):
+    """ Interface for UpdateUser content type """
+    
+class IVindulaCategories(Interface):
+    """ Interface for Categories content type """
