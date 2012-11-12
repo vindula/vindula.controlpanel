@@ -919,27 +919,28 @@ class ContentMenu(BrowserView):
                 if item['extra']['id'] == 'plone-contentmenu-factories':
                     list_aux = copy(item['submenu'])
                     for key in reversed(obj_vindula_categories.getCategories().keys()):
-                        for submenu in list_aux:
-                            if submenu.get('id', None) and submenu['id'].lower() in dic_categorias[key]:
-                                category = [menu for menu in item['submenu'] if menu.get('id', None) == key]
-                                if not category:
-                                    new_category = {'action': None,
-                                                    'description': '',
-                                                    'extra': {'class': 'dropdownAddContent positionRelative',
-                                                                       'id': 'dropdownAddContent',
-                                                                       'separator': None},
-                                                    'icon': '',
-                                                    'id':  key,
-                                                    'selected':  False,
-                                                    'submenu': [],
-                                                    'title': key}
-                                    
-                                    item['submenu'].insert(0, new_category)
-                                    index = item['submenu'].index(new_category)
-                                else:
-                                    index = item['submenu'].index(category[0])
-                                 
-                                item['submenu'][index]['submenu'].append(submenu)
-                                item['submenu'].remove(submenu)
+                        if dic_categorias.get(key, None):
+                            for submenu in list_aux:
+                                if submenu.get('id', None) and submenu['id'].lower() in dic_categorias[key]:
+                                    category = [menu for menu in item['submenu'] if menu.get('id', None) == key]
+                                    if not category:
+                                        new_category = {'action': None,
+                                                        'description': '',
+                                                        'extra': {'class': 'dropdownAddContent positionRelative',
+                                                                           'id': 'dropdownAddContent',
+                                                                           'separator': None},
+                                                        'icon': '',
+                                                        'id':  key,
+                                                        'selected':  False,
+                                                        'submenu': [],
+                                                        'title': key}
+                                        
+                                        item['submenu'].insert(0, new_category)
+                                        index = item['submenu'].index(new_category)
+                                    else:
+                                        index = item['submenu'].index(category[0])
+                                     
+                                    item['submenu'][index]['submenu'].append(submenu)
+                                    item['submenu'].remove(submenu)
 
         return items  

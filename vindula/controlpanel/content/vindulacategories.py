@@ -122,9 +122,8 @@ VindulaCategories_schema =  schemata.ATContentTypeSchema.copy() + Schema((
     TextField(
         name='categories',
         widget=TextAreaWidget(
-            label=_(u"Categorias dos tipos de conteudo"),
-            description=_(u"""Adicione modalidades para serem relacionados a um edital.<br>
-                              Adicione uma modalidade por linha.
+            label=_(u"Categorias dos menus"),
+            description=_(u"""Adicione categorias para o menu. Uma por linha.
                            """),
             label_msgid='vindula_controlpanel_label_categories',
             description_msgid='vindula_controlpanel_help_categories',
@@ -141,13 +140,13 @@ VindulaCategories_schema =  schemata.ATContentTypeSchema.copy() + Schema((
         allow_insert = True,
         allow_reorder = True,
         widget = DataGridWidget(
-            label="Categorias Adicionar Item",
-            description="Categoria dos itens a serem adicionado no portal.",
+            label="Categorizar tipos de conteúdo",
+            description="Selecione em qual categoria, definida acima, o tipo de conteúdo deve aparacer.",
             description_msgid='vindula_controlpanel_help_categories_additem',
             label_msgid='vindula_controlpanel_label_categories_additem',
             columns= {
                 "content_type" : SelectColumn(_(u"Tipos de Conteúdo"), vocabulary="getContentTypes"),
-                "catagories" : SelectColumn(_(u"Categoria"), vocabulary="getCategories")
+                "catagories" : SelectColumn(_(u"Categorias"), vocabulary="getCategories")
             }
         ),
     ),                                                            
