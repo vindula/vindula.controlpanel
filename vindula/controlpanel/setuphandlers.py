@@ -9,6 +9,7 @@ def installControlPanel(context):
     portal.portal_types.get('Folder').global_allow = False
     portal.portal_types.get('File').global_allow = False
     portal.portal_types.get('Document').global_allow = False
+    portal.portal_types.get('Link').global_allow = False
 
     # Creating Control Panel Objects
     cpanel_objects = portal.get('control-panel-objects', None)
