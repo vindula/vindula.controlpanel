@@ -901,11 +901,11 @@ class ContentMenu(BrowserView):
         items = menu.getMenuItems(self.context, self.request)
         items.reverse()
         
-        conf_additems = getSite().get('control-panel-objects', None)
-        if conf_additems:
-            conf_additems = conf_additems.get('vindula_categories', None)
-            if conf_additems:
-                conf_additems = conf_additems.getCategories_additem()
+        obj_vindula_categories = getSite().get('control-panel-objects', None)
+        if obj_vindula_categories:
+            obj_vindula_categories = obj_vindula_categories.get('vindula_categories', None)
+            if obj_vindula_categories:
+                conf_additems = obj_vindula_categories.getCategories_additem()
                 dic_categorias = {}
                 for item in conf_additems:
                     categoria = item.get('catagories')
@@ -918,8 +918,8 @@ class ContentMenu(BrowserView):
             for item in items:
                 if item['extra']['id'] == 'plone-contentmenu-factories':
                     list_aux = copy(item['submenu'])
-                    for submenu in list_aux:
-                        for key in dic_categorias.keys():
+                    for key in reversed(obj_vindula_categories.getCategories().keys()):
+                        for submenu in list_aux:
                             if submenu.get('id', None) and submenu['id'].lower() in dic_categorias[key]:
                                 category = [menu for menu in item['submenu'] if menu.get('id', None) == key]
                                 if not category:

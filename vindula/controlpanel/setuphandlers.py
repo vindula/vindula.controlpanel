@@ -271,11 +271,3 @@ def installSteps(context):
             for passo in passos:
                 if not passo.get('id') in wizard.objectIds():
                     wizard.invokeFactory('Steps',**passo)
-        
-                          
-
-            
-    
-            
-        
-        
