@@ -41,6 +41,8 @@ from AccessControl import getSecurityManager
 from zope.formlib import form
 from copy import copy
 
+import pkg_resources
+
 class ControlPanelView(grok.View):
     grok.context(INavigationRoot)
     grok.require('cmf.ManagePortal')
@@ -49,6 +51,13 @@ class ControlPanelView(grok.View):
     def update(self):
         url = self.context.absolute_url() + '/@@overview-controlpanel'
         self.request.response.redirect(url)
+        
+    def getVindulaVersion(self):
+        try:
+            return 'Vindula %s' % pkg_resources.get_distribution('Vindula.MyVindula').version
+        except Exception as error:
+            print error
+            return 'Não encontrada'
         
     
 class VindulaFinderUploadView(Finder):

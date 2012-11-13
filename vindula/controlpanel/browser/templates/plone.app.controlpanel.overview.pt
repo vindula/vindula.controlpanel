@@ -130,10 +130,20 @@
         </div>
 
     </tal:category-->
-
+	
+	<div tal:define="view_cp python: context.restrictedTraverse('vindula-control-panel');">
+		
+		<h2>Versão do Vindula</h2>
+		<ul>
+	        <li tal:content="view_cp/getVindulaVersion">Version</li>
+	    </ul>
+		
+	</div>
+	
     <div class="visualClear"><!--  --></div>
 
-    <h2 i18n:translate="heading_version_overview">Version Overview</h2>
+    <!--h2 i18n:translate="heading_version_overview">Version Overview</h2-->
+	<h2>Versões Gerais</h2>
 
     <ul tal:repeat="version view/version_overview">
         <li tal:content="version">Version</li>
