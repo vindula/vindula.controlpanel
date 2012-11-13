@@ -7,7 +7,6 @@ def installControlPanel(context):
     # Set Global Allow False
     portal.portal_types.get('News Item').global_allow = False
     portal.portal_types.get('Folder').global_allow = False
-    portal.portal_types.get('File').global_allow = False
     portal.portal_types.get('Document').global_allow = False
     portal.portal_types.get('Link').global_allow = False
 
