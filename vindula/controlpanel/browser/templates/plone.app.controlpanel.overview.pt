@@ -73,16 +73,14 @@
 	
 	<h2>Usando o Painel de Controle</h2>
 	<p>
-    	Para acessar as configura&ccedil;&otilde;es do Vindula acesse o menu ao lado e selecione a op&ccedil;&atilde;o que deseja.
+    	Para acessar as configurações do Vindula, acesse o menu ao lado esquerdo e clique a opção desejada.
     </p>
 	<ul>
 		<li>
-	    	As op&ccedil;&otilde;es que est&atilde;o com o cadeado verde <img tal:attributes="src string:${context/portal_url|nothing}/++resource++vindula.controlpanel/imagens/unlocked.png" />
-			s&atilde;o as op&ccedil;&otilde;es que voc&ecirc; tem permiss&atilde;o de configurar.
+	    	<img tal:attributes="src string:${context/portal_url|nothing}/++resource++vindula.controlpanel/imagens/unlocked.png" /> Itens disponíveis para seu perfil de usuário
 		</li>
 		<li>
-			As op&ccedil;&otilde;es que est&atilde;o com o cadeado vermelho <img tal:attributes="src string:${context/portal_url|nothing}/++resource++vindula.controlpanel/imagens/locked.png" />
-			s&atilde;o as op&ccedil;&otilde;es que voc&ecirc; n&atilde;o tem permiss&atilde;o de configurar, para liberar acesso &agrave; alguma configura&ccedil;&atilde;o, que voc&ecirc; n&atilde;o tenha acesso, contate o Administrador do Site.
+			<img tal:attributes="src string:${context/portal_url|nothing}/++resource++vindula.controlpanel/imagens/locked.png" /> Itens não disponíveis para seu perfil de usuário
 		</li>
     </ul>
 

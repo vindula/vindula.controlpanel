@@ -51,37 +51,34 @@ def installControlPanel(context):
         
         if cpanel_objects.get('vindula_categories', None):
             categories_old = cpanel_objects.get('vindula_categories')
-            
-            new_object = {}
-            new_object['id'] = 'VindulaCategories'
-            new_object['title'] = 'vindula_categories'
-            new_object['orgstructure'] = categories_old.orgstructure
-            new_object['list_macros'] = categories_old.list_macros
-#            try:
-#                new_object['order_list'] = tuple(categories_old.order_list)
-#            except:
-#                pass
-            try:
-                new_object['folder_image'] = categories_old.folder_image
-            except:
-                pass
-            try:
-                new_object['orgaoEdital'] = categories_old.orgaoEdital
-            except:
-                pass
-            try:
-                new_object['modalidadeEdital'] = categories_old.modalidadeEdital
-            except:
-                pass
-            new_object['excludeFromNav'] = True
-            
-            try:
-                categories_new = cpanel_objects.invokeFactory('VindulaCategories', 
-                                                               **new_object)
-                cpanel_objects.manage_renameObject(categories_old.getId(), categories_old.getId() + "-old")
-                cpanel_objects.manage_renameObject(categories_new, 'vindula_categories')
-            except:
-                pass
+            if categories_old.portal_type != 'VindulaCategories':
+                new_object = {}
+                new_object['id'] = 'VindulaCategories'
+                new_object['title'] = 'vindula_categories'
+                new_object['orgstructure'] = categories_old.orgstructure
+                new_object['list_macros'] = categories_old.list_macros
+
+                try:
+                    new_object['folder_image'] = categories_old.folder_image
+                except:
+                    pass
+                try:
+                    new_object['orgaoEdital'] = categories_old.orgaoEdital
+                except:
+                    pass
+                try:
+                    new_object['modalidadeEdital'] = categories_old.modalidadeEdital
+                except:
+                    pass
+                new_object['excludeFromNav'] = True
+                
+                try:
+                    categories_new = cpanel_objects.invokeFactory('VindulaCategories', 
+                                                                   **new_object)
+                    cpanel_objects.manage_renameObject(categories_old.getId(), categories_old.getId() + "-old")
+                    cpanel_objects.manage_renameObject(categories_new, 'vindula_categories')
+                except:
+                    pass
         
         for type in types:
             if portal.portal_types.get(type):
