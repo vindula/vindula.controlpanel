@@ -909,13 +909,13 @@ class ContentMenu(BrowserView):
         menu = getUtility(IBrowserMenu, name='plone_contentmenu')
         items = menu.getMenuItems(self.context, self.request)
         items.reverse()
+        dic_categorias = {}
         
         obj_vindula_categories = getSite().get('control-panel-objects', None)
         if obj_vindula_categories:
             obj_vindula_categories = obj_vindula_categories.get('vindula_categories', None)
             if obj_vindula_categories and obj_vindula_categories.portal_type == 'VindulaCategories':
                 conf_additems = obj_vindula_categories.getCategories_additem()
-                dic_categorias = {}
                 for item in conf_additems:
                     categoria = item.get('catagories')
                     if dic_categorias.get(categoria):
