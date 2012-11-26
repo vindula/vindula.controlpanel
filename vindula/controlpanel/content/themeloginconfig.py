@@ -36,7 +36,7 @@ ThemeLoginConfig_schema =  ATDocumentSchema.copy() + Schema((
         default=True,
         widget=BooleanWidget(
             label="Ativar a função de redirecionar",
-            description='Se selecionado ativa a função de redirecionamento dos usuário',
+            description='Caso selecionado, a função de redirecionamento é ativada.',
         ),
     ),
     
