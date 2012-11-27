@@ -41,6 +41,8 @@ from AccessControl import getSecurityManager
 from zope.formlib import form
 from copy import copy
 
+from vindula.myvindula.registration import SchemaFunc
+
 import pkg_resources
 
 class ControlPanelView(grok.View):
@@ -879,7 +881,6 @@ class AddUserForm(BaseRegistrationForm):
                  validator='validate_registration', name=u'register')
     def action_join(self, action, data):
         super(AddUserForm, self).handle_join_success(data)
-        
         portal_groups = getToolByName(self.context, 'portal_groups')
         user_id = data['username']
         is_zope_manager = getSecurityManager().checkPermission(ManagePortal, self.context)
@@ -896,6 +897,8 @@ class AddUserForm(BaseRegistrationForm):
         except (AttributeError, ValueError), err:
             IStatusMessage(self.request).addStatusMessage(err, type="error")
             return
+        
+        SchemaFunc().registration_processes(data, user_id, True)    
 
         IStatusMessage(self.request).addStatusMessage(
             _(u"User added."), type='info')

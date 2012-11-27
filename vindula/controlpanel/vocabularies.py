@@ -58,7 +58,7 @@ class ControlPanelMacro(object):
         # nome do objeto de configuracao do vindula, deve estar na pasta "control-panel-objects"
         self.object = object 
         # nome do campo do objeto onde ira buscar os valores, precisa ser do tipo "schema.Text"
-        self.type = type 
+        self.type = type
 
     def __call__(self, context):
         terms = []
@@ -68,6 +68,10 @@ class ControlPanelMacro(object):
         except:obj = None
         
         if obj:
+            #verifica se o object eh o Vindula Categories archetype ou dexterity
+            if obj.portal_type == 'VindulaCategories' and self.type == 'list_macros':
+                self.type = 'getList_macros()'
+            
             try:
                 field = 'obj.'+self.type
                 field = eval(field)

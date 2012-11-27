@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from Products.CMFCore.utils import getToolByName
+import transaction
 
 def installControlPanel(context):    
     portal = context.getSite()
@@ -30,10 +31,12 @@ def installControlPanel(context):
                                   excludeFromNav = True)
             
             if cpanel_objects_old:
-                copy_objs = portal[cpanel_objects_old.getId()].manage_copyObjects(portal[cpanel_objects_old.getId()].objectIds())
+                copy_objs = portal[cpanel_objects_old.getId()].manage_cutObjects(portal[cpanel_objects_old.getId()].objectIds())
+                transaction.commit()
             cpanel_objects = portal['control-panel-objects']
             if copy_objs:
                 cpanel_objects.manage_pasteObjects(copy_objs)
+                transaction.commit()
                 portal.portal_types.get('Folder').global_allow = True
                 portal.manage_delObjects([cpanel_objects_old.getId()])
                 portal.portal_types.get('Folder').global_allow = False
@@ -57,7 +60,6 @@ def installControlPanel(context):
                 new_object['title'] = 'vindula_categories'
                 new_object['orgstructure'] = categories_old.orgstructure
                 new_object['list_macros'] = categories_old.list_macros
-
                 try:
                     new_object['folder_image'] = categories_old.folder_image
                 except:
