@@ -31,12 +31,17 @@ def installControlPanel(context):
                                   excludeFromNav = True)
             
             if cpanel_objects_old:
-                copy_objs = portal[cpanel_objects_old.getId()].manage_copyObjects(portal[cpanel_objects_old.getId()].objectIds())
-                transaction.commit()
+                obj_cpanel_old = portal[cpanel_objects_old.getId()]
+                ids_contents = obj_cpanel_old.objectIds()
+                list_ids = []
+                for id_item in ids_contents:
+                    list_ids.append(obj_cpanel_old.manage_cutObjects(id_item))
+                    transaction.commit()
             cpanel_objects = portal['control-panel-objects']
-            if copy_objs:
-                cpanel_objects.manage_pasteObjects(copy_objs)
-                transaction.commit()
+            if list_ids:
+                for cut_item in list_ids:
+                    cpanel_objects.manage_pasteObjects(cut_item)
+                    transaction.commit()
                 portal.portal_types.get('Folder').global_allow = True
                 portal.manage_delObjects([cpanel_objects_old.getId()])
                 portal.portal_types.get('Folder').global_allow = False
