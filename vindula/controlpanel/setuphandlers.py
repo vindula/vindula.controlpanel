@@ -31,7 +31,7 @@ def installControlPanel(context):
                                   excludeFromNav = True)
             
             if cpanel_objects_old:
-                copy_objs = portal[cpanel_objects_old.getId()].manage_cutObjects(portal[cpanel_objects_old.getId()].objectIds())
+                copy_objs = portal[cpanel_objects_old.getId()].manage_copyObjects(portal[cpanel_objects_old.getId()].objectIds())
                 transaction.commit()
             cpanel_objects = portal['control-panel-objects']
             if copy_objs:
