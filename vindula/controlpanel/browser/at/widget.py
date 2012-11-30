@@ -72,9 +72,12 @@ class VindulaReferenceSelectionWidget(TypesWidget):
                     url_finder += 'types:list=%s&' % url_quote(itype)
             else:
                 url_finder += 'types:list=%s&' % url_quote(field.allowed_types)
-        
         if self.review_state:
-            url_finder += 'review_state=%s&' %url_quote(self.review_state)
+            if isinstance(self.review_state, tuple):
+                for itype in tuple(self.review_state):
+                    url_finder += 'review_state:list=%s&' % url_quote(itype)
+            else:
+                url_finder += 'review_state=%s&' %url_quote(self.review_state)
         
         return url_finder
     
