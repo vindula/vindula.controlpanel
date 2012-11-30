@@ -3,7 +3,7 @@ from five import grok
 from zope.interface import Interface
 from plone.app.layout.navigation.interfaces import INavigationRoot
 from Products.CMFCore.interfaces import ISiteRoot
-from plone.app.layout.viewlets.interfaces import IAboveContent
+from plone.app.layout.viewlets.interfaces import IBelowContent, IBelowContentBody, IAboveContent
 from zope.app.component.hooks import getSite
 from vindula.myvindula.user import BaseFunc, BaseStore
 
@@ -28,8 +28,6 @@ from Products.Five import BrowserView
 from collective.plonefinder.browser.finder import Finder
 from Acquisition import aq_inner
 
-from plone.app.layout.viewlets.interfaces import IBelowContent
-
 from zope.browsermenu.interfaces import IBrowserMenu, IMenuItemType
 from zope.browsermenu.interfaces import IBrowserMenuItem, IBrowserSubMenuItem
 from zope.browsermenu.interfaces import IMenuAccessView
@@ -42,6 +40,7 @@ from zope.formlib import form
 from copy import copy
 
 from vindula.myvindula.registration import SchemaFunc
+from vindula.content.content.interfaces import IVindulaNews
 
 import pkg_resources
 
@@ -956,3 +955,67 @@ class ContentMenu(BrowserView):
                                     item['submenu'].remove(submenu)
 
         return items  
+
+class ReadMoreViewlet(grok.Viewlet): 
+    grok.context(IVindulaNews) 
+    grok.name('vindula.controlpanel.readmore') 
+    grok.require('zope2.View')
+    grok.viewletmanager(IBelowContentBody)
+    
+    def getReadMore(self):
+        news = list(self.catalogNews(context=self.context, withKeywords=True))
+        results = []
+        [results.append(new) for new in news if new.getObject() != self.context]
+        
+        return results
+    
+    def catalogNews(self, context=None, withKeywords=False):
+        p_catalog = getSite().portal_catalog
+        if not context:
+            context = self.context
+
+        query = {}
+        query['portal_type'] = ['VindulaNews', 'News Item']
+        query['sort_order'] = 'descending'
+        if withKeywords:
+            query['Subject'] = context.getRawSubject()
+        query['sort_on'] = 'effective'
+        query['review_state'] = ['published', 'external']
+        
+        return p_catalog(**query)
+    
+class SeeAlsoViewlet(grok.Viewlet): 
+    grok.context(IVindulaNews) 
+    grok.name('vindula.controlpanel.seealso') 
+    grok.require('zope2.View')
+    grok.viewletmanager(IBelowContentBody)
+    
+    def getSeeAlso(self):
+        news = list(self.catalogNews(context=self.context))
+        results = []
+        if self.context.ThemeNews():
+            for item in news:
+                obj = item.getObject()
+                if obj.portal_type == 'VindulaNews':
+                    if obj == self.context or not obj.ThemeNews():
+                       continue
+                    else:
+                        for tema in obj.ThemeNews():
+                            if tema in self.context.ThemeNews():
+                                results.append(item)
+        return results
+    
+    def catalogNews(self, context=None, withKeywords=False):
+        p_catalog = getSite().portal_catalog
+        if not context:
+            context = self.context
+
+        query = {}
+        query['portal_type'] = ['VindulaNews', 'News Item']
+        query['sort_order'] = 'descending'
+        if withKeywords:
+            query['Subject'] = context.getRawSubject()
+        query['sort_on'] = 'effective'
+        query['review_state'] = ['published', 'external']
+        
+        return p_catalog(**query)
