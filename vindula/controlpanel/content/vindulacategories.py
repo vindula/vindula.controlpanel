@@ -200,9 +200,9 @@ class VindulaCategories(base.ATCTContent):
     def listToOrderBy(self):
         tool = getToolByName(self, 'portal_atct')
         listFields = tool.getEnabledFields()
-        fields = [ field
+        fields = [ (str(field), field[1])
                    for field in listFields
-                   if self.validateAddCriterion(field[0], 'ATSortCriterion') and field[0] not in ['created', 'sortable_title']]
+                   if self.validateAddCriterion(field[0], 'ATSortCriterion') and field[0] not in ['effective', 'sortable_title']]
         
         return fields
     
