@@ -17,7 +17,7 @@
                           condition="refs">
 
         <tal:block
-               tal:condition="python: not field.multiValued and (can_view or not hide_inaccessible)"
+               tal:condition="python: not field.multiValued and (can_view or not hide_inaccessible) and refs[0]"
                tal:define="obj python:refs[0];
                            obj_path python: '/'.join(obj.getPhysicalPath());
                            can_view python: helper.canView(obj)">
@@ -55,7 +55,7 @@
                 tal:define="
                     obj_path python: '/'.join(obj.getPhysicalPath());
                     can_view python: helper.canView(obj)"
-                tal:condition="python: can_view or not hide_inaccessible">
+                tal:condition="python: can_view or not hide_inaccessible and obj">
               <li>
                 <img tal:condition="python:obj.portal_type in image_portal_types"
                      tal:attributes="src string:${obj/absolute_url}/$image_method" />
@@ -85,10 +85,6 @@
 
       </tal:define>
     </metal:view_macro>
-
-
-
-
 
     <metal:reference_edit
         define-macro="reference_edit"
@@ -160,16 +156,16 @@
             <li tal:repeat="set refs"
                 tal:attributes="
                   id string:ref-${fieldName}-${repeat/set/index};">
-              <label tal:define="
-                   title set/title_or_id | string:Undisclosed;
-                   obj_path python: '/'.join(set.getPhysicalPath());">
-                <input type="checkbox"
-                       tal:attributes="name string:${fieldName}:list;
-                                       value python:helper.getUidFromReference(set);"
-                       checked="checked" />
-                <tal:block replace="python: show_path and '%s (%s)' % (title, obj_path.replace(portal_path, '')) or title" />
-              </label>
-
+              <tal:cond condition="set">
+	              <label tal:define="title set/title_or_id | string:Undisclosed;
+			                   		 obj_path python: '/'.join(set.getPhysicalPath());">
+	                <input type="checkbox"
+	                       tal:attributes="name string:${fieldName}:list;
+	                                       value python:helper.getUidFromReference(set);"
+	                       checked="checked" />
+	                <tal:block replace="python: show_path and '%s (%s)' % (title, obj_path.replace(portal_path, '')) or title" />
+	              </label>
+			  </tal:cond>
               <tal:sorting condition="widget/allow_sorting">
                 <a href="" title="Move up"
                     onclick="javascript:RefBrowserWidget_moveReferenceUp(this); return false">&#x25b2;</a>
@@ -181,8 +177,6 @@
           </ul>
         </div>
       </tal:multi>
-      
-      
       
       <div style="clear: both">
         <input type="button" class="searchButton addreference" value="Add..."
