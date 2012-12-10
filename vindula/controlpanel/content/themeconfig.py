@@ -30,7 +30,7 @@ ThemeConfig_schema =  ATDocumentSchema.copy() + Schema((
             label="Ativar Menu Dropdown",
             description='Se selecionado, Ativa o Menu DropDown do Portal.',
         ),
-      
+        schemata = 'Menu'         
     ),
     
     BooleanField(
@@ -40,7 +40,6 @@ ThemeConfig_schema =  ATDocumentSchema.copy() + Schema((
             label="Ativar busca para usuários anônimos",
             description='Se selecionado, Ativa a caixa de busca de conteúdo para usuários anônimos.',
         ),
-        
     ),
 
     BooleanField(
@@ -50,7 +49,7 @@ ThemeConfig_schema =  ATDocumentSchema.copy() + Schema((
             label="Ativar segundo nível do Menu Dropdown",
             description='Se selecionado, ativa o segundo nível do Menu DropDown do Portal.',
         ),
-        
+        schemata = 'Menu'        
     ),
 
     ReferenceField('logoCabecalho',
