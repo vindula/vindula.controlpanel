@@ -15,84 +15,84 @@ class IVindulaConfigAll(form.Schema):
     """ Vindula User Config """
     
     ativa_editfunc = schema.Bool(
-                title=_(u'label_ativa_editfunc', default=u'Ativar a opção do usuário poder editar seu perfil no portal'),
-                description=_(u'help_activ_holerite', default=u'Se selecionado ativa a opção do usuário poder editar seu perfil no portal Myvindula'),
+                title=_(u'label_ativa_editfunc', default=u'Ativar a opção do usuário poder editar seu perfil'),
+                description=_(u'help_activ_holerite', default=u'Caso selecionado ativa a opção do usuário poder editar seu perfil no Vindula'),
                 default=True
                 )
     
     ativa_holerite = schema.Bool(
-                title=_(u'label_ativa_holerites', default=u'Ativar a visualização de holerites no portal Myvindula'),
-                description=_(u'help_activ_holerite', default=u'Se selecionado ativa a opção de holerite para todos os usuários do Myvindula no portal'),
+                title=_(u'label_ativa_holerites', default=u'Ativar a visualização de holerites'),
+                description=_(u'help_activ_holerite', default=u'Caso selecionado ativa a opção de holerite para todos os usuários do Vindula'),
                 default=True
                 )
     
     ativa_documents = schema.Bool(
-                title=_(u'label_ativa_documents', default=u'Ativar a visualização de documentos no portal Myvindula'),
-                description=_(u'help_activ_holerite', default=u'Se selecionado ativa a opção de documentos para todos os usuários do Myvindula no portal'),
+                title=_(u'label_ativa_documents', default=u'Ativar a visualização de documentos'),
+                description=_(u'help_activ_holerite', default=u'Caso selecionado ativa a opção de documentos para todos os usuários do Vindula'),
                 default=True
                 )
     
     ativa_compartilhamento = schema.Bool(
                 title=_(u'label_ativa_conpartilhamento', default=u'Ativar o compartilhamento nas redes sociais'),
-                description=_(u'help_activ_share', default=u'Se selecionado ativa a opção de compartilhamento nas redes sociais\
-                                                             de todos os itens "Noticia" do portal'),
+                description=_(u'help_activ_share', default=u'Caso selecionado ativa a opção de compartilhamento nas redes sociais\
+                                                             de todos os itens "Página" do Vindula'),
                 default=True
                 )
     
     ativa_pensamentos = schema.Bool(
-                title=_(u'label_ativa_pensamentos', default=u'Ativar a visualização dos pensametos no portal Myvindula'),
-                description=_(u'help_activ_holerite', default=u'Se selecionado ativa a opção de pensamentos para todos os usuários do Myvindula no portal'),
+                title=_(u'label_ativa_pensamentos', default=u'Ativar a visualização dos pensametos'),
+                description=_(u'help_activ_holerite', default=u'Caso selecionado ativa a opção de pensamentos para todos os usuários do Vindula'),
                 default=True
                 )
     
     ativa_recados = schema.Bool(
-                title=_(u'label_ativa_recados', default=u'Ativar os recados aos usuários do Myvindula no portal'),
-                description=_(u'help_activ_share', default=u'Se selecionado ativa a opção de recados para todos os usuários do Myvindula no portal'),
+                title=_(u'label_ativa_recados', default=u'Ativar os recados aos usuários'),
+                description=_(u'help_activ_share', default=u'Caso selecionado ativa a opção de recados para todos os usuários do Vindula'),
                 default=True
                 )
     
     ativa_alert_first_access = schema.Bool(
-            title=_(u'label_ativa_alert_first_access', default=u'Ativar a mensagem para o primeiro cadastro no Myvindula'),
-            description=_(u'help_ativa_alert_first_access', default=u'Se selecionado ativa a mensagem para o usuário fazer\
-                                                                      seu primeira cadastro do Myvindula no portal'),
+            title=_(u'label_ativa_alert_first_access', default=u'Ativar a mensagem para o primeiro cadastro'),
+            description=_(u'help_ativa_alert_first_access', default=u'Caso selecionado ativa a mensagem para o usuário fazer\
+                                                                      seu primeiro cadastro do Vindula'),
             default=True
             )
     
     ativa_muit_user = schema.Bool(
-                title=_(u'label_ativa_muit_user', default=u'Ativar o mecanismo para muitos usuários no myvindula'),
-                description=_(u'help_ativa_muit_user', default=u'Se selecionado ativa a opção de muitos usuários no myvindula'),
+                title=_(u'label_ativa_muit_user', default=u'Ativar o mecanismo para muitos usuários'),
+                description=_(u'help_ativa_muit_user', default=u'Caso selecionado ativa a opção de muitos usuários no Vindula'),
                 default=False
                 )
     
     ativa_filtro_busca_user = schema.Bool(
-                title=_(u'label_ativa_filtro_busca_user', default=u'Altera o mecanismo de buscar de usuários'),
-                description=_(u'help_ativa_filtro_busca_user', default=u'Se selecionado ativa o filtro de só buscar os usuários\
-                                                                         que possuem telefone cadastrado no portal'),
+                title=_(u'label_ativa_filtro_busca_user', default=u'Altera o mecanismo do portlet busca de pessoas'),
+                description=_(u'help_ativa_filtro_busca_user', default=u'Caso selecionado ativa o filtro para somente buscar os usuários\
+                                                                         que possuam telefone cadastrado no perfil do Vindula'),
                 default=False
                 )
 
     ativa_recados_user_publicos = schema.Bool(
                 title=_(u'label_ativa_recados_user_publicos', default=u'Ativa a opção de recados públicos aos usuários'),
-                description=_(u'help_ativa_recados_user_publicos', default=u'Se selecionado ativa a opção de recados visíveis a todos os usuários do portal'),
+                description=_(u'help_ativa_recados_user_publicos', default=u'Caso selecionado ativa a opção de recados visíveis a todos os usuários do Vindula'),
                 default=False
                 )
     
     ativa_richtext = schema.Bool(
                 title=_(u'label_ativa_richtext', default=u'Ativar a opção do usuário poder editar os comentários com o Editor Ckeditor'),
-                description=_(u'help_activ_holerite', default=u'Se selecionado ativa a opção do usuário poder editar os comentários com o Editor Ckeditor'),
+                description=_(u'help_activ_holerite', default=u'Caso selecionado ativa a opção do usuário poder editar os comentários com o Editor Ckeditor'),
                 default=False
                 )
     
     ativa_MyvindulaPrivate = schema.Bool(
-                title=_(u'label_ativa_MyvindulaPrivate', default=u'Restringe a visualização das telas do myvindula para a anônimos'),
-                description=_(u'help_ativa_MyvindulaPrivate', default=u'Restringe a visualização das telas para usuários anônimos,\
+                title=_(u'label_ativa_MyvindulaPrivate', default=u'Restringe a visualização da tela Meu Perfil para usuários anônimos'),
+                description=_(u'help_ativa_MyvindulaPrivate', default=u'Restringe a visualização da tela Meu Perfil para usuários anônimos,\
                                                                         ideal para "intranet privada" e "intranet + extranet"'),
                 default=False
                 )
     
     ativa_infoAutor = schema.Bool(
                 title=_(u'label_ativa_infoAutor', default=u'Ativar visualização das informações auxiliares do conteúdo'),
-                description=_(u'help_activa_infoAutor', default=u'Se selecionado ativa a visualização das informações do autor e data de criação do conteúdo abaixo do título'),
+                description=_(u'help_activa_infoAutor', default=u'Caso selecionado ativa a visualização das informações do autor e data de criação do conteúdo abaixo do título'),
                 default=True
                 )
     

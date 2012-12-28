@@ -28,7 +28,7 @@ ThemeConfig_schema =  ATDocumentSchema.copy() + Schema((
         default=False,
         widget=BooleanWidget(
             label="Ativar Menu Dropdown",
-            description='Se selecionado, Ativa o Menu DropDown do Portal.',
+            description='Caso selecionado, ativa o Menu DropDown do Portal.',
         ),
         schemata = 'Menu'         
     ),
@@ -38,7 +38,7 @@ ThemeConfig_schema =  ATDocumentSchema.copy() + Schema((
         default=True,
         widget=BooleanWidget(
             label="Ativar busca para usuários anônimos",
-            description='Se selecionado, Ativa a caixa de busca de conteúdo para usuários anônimos.',
+            description='Caso selecionado, ativa a caixa de busca de conteúdo para usuários anônimos.',
         ),
     ),
 
@@ -47,7 +47,7 @@ ThemeConfig_schema =  ATDocumentSchema.copy() + Schema((
         default=False,
         widget=BooleanWidget(
             label="Ativar segundo nível do Menu Dropdown",
-            description='Se selecionado, ativa o segundo nível do Menu DropDown do Portal.',
+            description='Caso selecionado, ativa o segundo nível do Menu DropDown do Portal.',
         ),
         schemata = 'Menu'        
     ),
