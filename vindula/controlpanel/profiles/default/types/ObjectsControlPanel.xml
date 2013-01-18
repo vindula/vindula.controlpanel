@@ -33,6 +33,7 @@
 	<element value="ContainerTopicsControlPanel" />
 	<element value="SocialNetwork" />
 	<element value="Folder" />
+	<element value="File" />
  </property>     
         	
  <property name="default_view">base_view</property>
