@@ -23,6 +23,7 @@ from vindula.controlpanel.browser.models import RegistrationCompanyInformation, 
 
 from Products.GenericSetup.interfaces import ISetupTool    
 import pickle, os, string
+from random import choice
 
 from Products.Five import BrowserView
 from collective.plonefinder.browser.finder import Finder
@@ -500,14 +501,12 @@ class StatusDataBaseView(grok.View):
         return result
 
 
-    def generate_random_string(self, length, stringset=string.ascii_letters+string.digits+string.punctuation):
+    def generate_random_string(self, length, stringset=string.letters + string.digits):
         '''
         Returns a string with `length` characters chosen from `stringset`
         >>> len(generate_random_string(20) == 20 
         '''
-        return ''.join([stringset[i%len(stringset)] \
-            for i in [ord(x) for x in os.urandom(length)]])
-
+        return ''.join([choice(stringset) for i in range(length)])
 
 class ManageLinksUserViewlet(grok.Viewlet):
     grok.name('vindula.controlpanel.linkuser') 
