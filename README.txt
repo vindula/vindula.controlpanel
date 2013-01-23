@@ -1,6 +1,4 @@
-Introduction
-============
+Painel de Controle do Vindula
+=============================
 
-
-
-This product may contain traces of nuts.
+Este produto é utilizado para gerenciar atividades administrativas do Vindula.

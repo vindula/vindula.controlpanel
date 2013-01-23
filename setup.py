@@ -5,7 +5,7 @@ version = '2.0a3'
 
 setup(name='vindula.controlpanel',
       version=version,
-      description="Vindula Control Panel",
+      description="Painel de Controle do Vindula",
       long_description=open("README.txt").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       # Get more strings from
