@@ -614,6 +614,7 @@ class ThemeConfigCssView(grok.View):
                ' .%(id)s .bt_comentar input{background-color: %(color)s !important;}\n' \
                ' .%(id)s .bt_comments {background-color: %(color)s !important;}\n' \
          '/* geral.css */\n' \
+               ' .%(id)s {background: %(colorBG)s;}\n' \
                ' .%(id)s {background: url("%(urlBG)s") %(posicaoBG)s scroll 50%% 0 %(colorBG)s;}\n' \
                ' .%(id)s div#content a:hover, .%(id)s dl.portlet a:hover, .%(id)s .geral_busca #LSResult .livesearchContainer div.LSIEFix a:hover {color: %(color)s !important;}' \
                ' .%(id)s #geral_breadcrumb span{color:%(color)s;!important;}\n' \
