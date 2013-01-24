@@ -51,6 +51,13 @@ class IVindulaConfigAll(form.Schema):
                 default=True
                 )
     
+    ativa_recados_user_publicos = schema.Bool(
+                title=_(u'label_ativa_recados_user_publicos', default=u'Ativa a opção de recados públicos aos usuários'),
+                description=_(u'help_ativa_recados_user_publicos', default=u'Caso selecionado, ativa a opção de recados visíveis a todos os usuários do Vindula'),
+                default=False
+                )
+    
+    
     ativa_alert_first_access = schema.Bool(
             title=_(u'label_ativa_alert_first_access', default=u'Ativar a mensagem para o primeiro cadastro'),
             description=_(u'help_ativa_alert_first_access', default=u'Caso selecionado, ativa a mensagem para o usuário fazer\
@@ -71,12 +78,7 @@ class IVindulaConfigAll(form.Schema):
                 default=False
                 )
 
-    ativa_recados_user_publicos = schema.Bool(
-                title=_(u'label_ativa_recados_user_publicos', default=u'Ativa a opção de recados públicos aos usuários'),
-                description=_(u'help_ativa_recados_user_publicos', default=u'Caso selecionado, ativa a opção de recados visíveis a todos os usuários do Vindula'),
-                default=False
-                )
-    
+  
     ativa_richtext = schema.Bool(
                 title=_(u'label_ativa_richtext', default=u'Ativar a opção do usuário poder editar os comentários com o Editor Ckeditor'),
                 description=_(u'help_activ_holerite', default=u'Caso selecionado, ativa a opção do usuário poder editar os comentários com o Editor Ckeditor'),
