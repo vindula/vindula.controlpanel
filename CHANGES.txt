@@ -230,4 +230,4 @@ Changelog
 
 1.1.40 - 2013-01-23
 ----------------------
-- CorreÃ§Ã£o da funcionalidade que aplica uma cor de fundo sÃ³lida ao portal.
+- Correção da funcionalidade que aplica uma cor de fundo sólida ao portal.
