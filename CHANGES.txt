@@ -6,44 +6,44 @@ Changelog
 
 1.1 - 2012-04-26
 -------------------
-	- patronização dos campos do objeto de configuração do tema 
-	- correção dos metodos de personalização da view personal-layout.css
+- patronizaÃ§Ã£o dos campos do objeto de configuraÃ§Ã£o do tema
+- correÃ§Ã£o dos metodos de personalizaÃ§Ã£o da view personal-layout.css
 
 1.1.1 - 2012-05-14
 -------------------
-- alteração do layout dos itens na view de configuração do vindula
-- alteração dos titulos das funcionalidades do vindula
+- alteraÃ§Ã£o do layout dos itens na view de configuraÃ§Ã£o do vindula
+- alteraÃ§Ã£o dos titulos das funcionalidades do vindula
 
 1.1.1 - 2012-05-23
 --------------------
-- Correções de ortografia no porduto
+- CorreÃ§Ãµes de ortografia no porduto
 
-	
+
 1.1.2 - 2012-05-14
 -------------------
-- adicionado a mudança dinamica da cor das barras da pagina de Meu Perfil 
+- adicionado a mudanÃ§a dinamica da cor das barras da pagina de Meu Perfil
 
 1.1.3 - 2012-05-29
 ---------------------
-- merge do master com o branch info-portlet-dinamic 
+- merge do master com o branch info-portlet-dinamic
 
 1.1.4 - 2012-05-30
 ---------------------
-- Adicionado opção de mostrar recados a todos os usuários da intranet
+- Adicionado opÃ§Ã£o de mostrar recados a todos os usuÃ¡rios da intranet
 
 1.1.5 - 2012-06-05
 ---------------------
-- Adição dos campos para customização do menu dropdown
-- Implantação do novo layout do menu dropdown
+- AdiÃ§Ã£o dos campos para customizaÃ§Ã£o do menu dropdown
+- ImplantaÃ§Ã£o do novo layout do menu dropdown
 
 1.1.6 - 2012-06-11
 ----------------------
-- Alteração do css do menu dinamico
-- Adição do css do vindula.chat dinamico
+- AlteraÃ§Ã£o do css do menu dinamico
+- AdiÃ§Ã£o do css do vindula.chat dinamico
 
 1.1.7 - 2012-06-15
 ----------------------
-- Adição da regra de css do botões na personalização dinamica 
+- AdiÃ§Ã£o da regra de css do botÃµes na personalizaÃ§Ã£o dinamica
 
 1.1.8 - 2012-06-20
 ----------------------
@@ -51,16 +51,16 @@ Changelog
 
 1.1.9 - 2012-06-21
 ----------------------
-- Adicionado o campo de imagem do rodape na configuracao do tema e correçoes na layout do menu
+- Adicionado o campo de imagem do rodape na configuracao do tema e correÃ§oes na layout do menu
 
 1.1.10 - 2012-06-25
 -------------------------
-- Adicionado link para edição dos portlet atraves do fancebox
+- Adicionado link para ediÃ§Ã£o dos portlet atraves do fancebox
 
 1.1.11 - 2012-07-03
 -------------------------
-- Adicionamento do metodo de redirect o usuário apos o login
-- Organizado a pasta statics, criado as pastas imagens e js  
+- Adicionamento do metodo de redirect o usuÃ¡rio apos o login
+- Organizado a pasta statics, criado as pastas imagens e js
 
 1.1.12 - 2012-07-02
 -------------------------
@@ -68,7 +68,7 @@ Changelog
 
 1.1.13 - 2012-07-04
 -------------------------
-- Adicionado a opção de restrição das view do myvindal para somente usuario logado
+- Adicionado a opÃ§Ã£o de restriÃ§Ã£o das view do myvindal para somente usuario logado
 
 1.1.14 - 2012-07-05
 -------------------------
@@ -76,30 +76,30 @@ Changelog
 
 1.1.15 - 2012-07-12
 -----------------------
-- Adição da opção para ocultar a viewlet document_byline
+- AdiÃ§Ã£o da opÃ§Ã£o para ocultar a viewlet document_byline
 
 1.1.16 - 2012-07-16
 ------------------------
-- Integração da imagem do usuário com o gravatar
+- IntegraÃ§Ã£o da imagem do usuÃ¡rio com o gravatar
 
 1.1.17 - 2012-07-19
 ------------------------
-- Correção das viewlets para a remoção os portlets
+- CorreÃ§Ã£o das viewlets para a remoÃ§Ã£o os portlets
 
 1.1.18 - 2012-07-24
 -----------------------
-- removido o tipo de conteudo folder padão do plone
-- Criação do novo widget de referencia de conteudo 
-- Alteração do widget de referenceBrowser nos contentTypes
+- removido o tipo de conteudo folder padÃ£o do plone
+- CriaÃ§Ã£o do novo widget de referencia de conteudo
+- AlteraÃ§Ã£o do widget de referenceBrowser nos contentTypes
 
 1.1.18 - 2012-07-24
 -----------------------
-- Adicionada a opcao de selecionar os tipos de Ordenacao que ira aparecer na viao sum�ria
+- Adicionada a opcao de selecionar os tipos de Ordenacao que ira aparecer na viao sumï¿½ria
 
 1.1.19 - 2012-08-07
 -----------------------
-- Ajustes no VindulaReferenceSelectionWidget, para busca uma pasta padrão de imagem
-- Ajustes no layout do popup de referenciamento 
+- Ajustes no VindulaReferenceSelectionWidget, para busca uma pasta padrÃ£o de imagem
+- Ajustes no layout do popup de referenciamento
 
 1.1.20 - 2012-08-07
 ----------------------
@@ -107,10 +107,10 @@ Changelog
 
 1.1.21 - 2012-08-21
 ----------------------
-- Adicionada opcao de usar uma tela de login gráfico
+- Adicionada opcao de usar uma tela de login grÃ¡fico
 - Modificado a busca da configuracao do tema do objeto vindula_themeconfig para o objeto ThemeConfig (em archetype)
-- Correcao do came_from e da logica do login do usuário, a regra de redirecionamento só funciona se o usuário estiver na raiz do site,
-  caso contrário ele será redirecionado para o local onde ele fez o login
+- Correcao do came_from e da logica do login do usuÃ¡rio, a regra de redirecionamento sÃ³ funciona se o usuÃ¡rio estiver na raiz do site,
+  caso contrÃ¡rio ele serÃ¡ redirecionado para o local onde ele fez o login
 
 1.1.22 - 2012-08-23
 ------------------------
@@ -120,89 +120,89 @@ Changelog
  1.1.23 - 2012-08-31
 ----------------------
 - Modificado o painel de controle do Vindula, foi unificado o painel de controle do Plone com o do Vindula em um mesmo lugar
-- foram adiciados tipos de conte�do para configurar as views de vao ser carregadas no painel de controle, e tem a possibilidade de escolher
-- os usuarios que podem ter acesso a aquela configuracao (os usu�rios tem que ter perfil de admim para modificar as configuracoes)
-- Bugs do login corrigidos 
+- foram adiciados tipos de conteï¿½do para configurar as views de vao ser carregadas no painel de controle, e tem a possibilidade de escolher
+- os usuarios que podem ter acesso a aquela configuracao (os usuï¿½rios tem que ter perfil de admim para modificar as configuracoes)
+- Bugs do login corrigidos
 
 1.1.24 - 2012-09-04
 ----------------------
 - Ajustes na macro do head e footer para quando estiver no contexto de estrutura organizacional
-- Adição de mascara e validação nos campos de cadastro das Informações corporativas
+- AdiÃ§Ã£o de mascara e validaÃ§Ã£o nos campos de cadastro das InformaÃ§Ãµes corporativas
 
 1.1.25 - 2012-09-12
 ----------------------
 - Adicionado novos campos do Theme Config:
-	. Campos para editar o layout dos portlets
-	. Campo para adicionar imagens que vao rotacionar do lado do logotipo
-	. Campo para definir a posicao e a repeticao da imagem de backgroud
-	. Campo para escolher a imagem de backgrou do primeiro nivel do menu
-- Melhoria no c�digo
+. Campos para editar o layout dos portlets
+. Campo para adicionar imagens que vao rotacionar do lado do logotipo
+. Campo para definir a posicao e a repeticao da imagem de backgroud
+. Campo para escolher a imagem de backgrou do primeiro nivel do menu
+- Melhoria no cï¿½digo
 - Bug fix
 
 1.1.26 - 2012-09-18
 ------------------------
-- Correções do ticket #186  - Correção de Ortografia
+- CorreÃ§Ãµes do ticket #186 - CorreÃ§Ã£o de Ortografia
 
 1.1.27 - 2012-09-19
 -----------------------
-- Correção do Ticket #199
-- Correção do Ticket #149 - Informações Corporativas
-- Correção do Ticket #167
-- Correção do Ticket #172
-- Correção do Ticket #173
+- CorreÃ§Ã£o do Ticket #199
+- CorreÃ§Ã£o do Ticket #149 - InformaÃ§Ãµes Corporativas
+- CorreÃ§Ã£o do Ticket #167
+- CorreÃ§Ã£o do Ticket #172
+- CorreÃ§Ã£o do Ticket #173
 
 1.1.28 - 2012-09-20
------------------------ 
+-----------------------
 - Adicionado o campo na configuracao no tema, para selecionar as Redes Sociais que apareceram no rodape
-- Remoção dos view do Cursos e linguas
-- Correção do Ticket #150
-- Correção do Ticket #227
-- Correção do Ticket #229
-- Alterac�o das telas de usu�rios e grupos
-	. A tabela nao mostra mais os Perfis dos usu�rios
-	. Foi adicionado um bot�o para visualizar "Mais op�oes", os Perfis, da tabela de usu�rios e grupos
-	
+- RemoÃ§Ã£o dos view do Cursos e linguas
+- CorreÃ§Ã£o do Ticket #150
+- CorreÃ§Ã£o do Ticket #227
+- CorreÃ§Ã£o do Ticket #229
+- Alteracï¿½o das telas de usuï¿½rios e grupos
+. A tabela nao mostra mais os Perfis dos usuï¿½rios
+. Foi adicionado um botï¿½o para visualizar "Mais opï¿½oes", os Perfis, da tabela de usuï¿½rios e grupos
+
 1.1.29 - 2012-09-21
------------------------ 
-- Ajustes das imagens randomicas do cabe�alho
+-----------------------
+- Ajustes das imagens randomicas do cabeï¿½alho
 
 1.1.30 - 2012-09-24
 -----------------------
-- Correção Ticket #243
+- CorreÃ§Ã£o Ticket #243
 
 1.1.31 - 2012-09-26
 -----------------------
-- Correção Ticket #182
-- Correção do Ticket #148 -  Setuphandlers
-- Correção Ticket #170
+- CorreÃ§Ã£o Ticket #182
+- CorreÃ§Ã£o do Ticket #148 - Setuphandlers
+- CorreÃ§Ã£o Ticket #170
 
 1.1.32 - 2012-09-27
 -----------------------
-- Modificada a template de calend�rio do Plone para DIA/MES/ANO
+- Modificada a template de calendï¿½rio do Plone para DIA/MES/ANO
 - Adicionado os campos Orgaos e Modalidades ao conteudo Categoria
 
 1.1.33 - 2012-10-03
 -----------------------
-- Mudan�a do label Topico Do Control Panel para Editar T�pico
+- Mudanï¿½a do label Topico Do Control Panel para Editar Tï¿½pico
 - Adicionado o factorytool.xml
 
 1.1.34 - 2012-10-08
 -----------------------
-- Integra�ao do usu�rio do Vindula com o do LDAP/AD e do Plone
-- Removido o link para editar usu�rios do Vindula Control Panel, � usado apenas as configuracoes de usu�rios do Plone
-- Alterado o nome de usu�rio do plone para Usu�rio local na listagem de usu�rios
+- Integraï¿½ao do usuï¿½rio do Vindula com o do LDAP/AD e do Plone
+- Removido o link para editar usuï¿½rios do Vindula Control Panel, ï¿½ usado apenas as configuracoes de usuï¿½rios do Plone
+- Alterado o nome de usuï¿½rio do plone para Usuï¿½rio local na listagem de usuï¿½rios
 
-1.1.34 - 2012-10-22		
+1.1.34 - 2012-10-22
 -----------------------
-- Correção ortográfica em Tabelas Auxiliares
+- CorreÃ§Ã£o ortogrÃ¡fica em Tabelas Auxiliares
 
-1.1.34 - 2012-10-24		
+1.1.34 - 2012-10-24
 -----------------------
-- Correção ortográfica na edição do Menu
+- CorreÃ§Ã£o ortogrÃ¡fica na ediÃ§Ã£o do Menu
 
 1.1.35 - 2012-10-29
 --------------------
-- Correção do editor de portlet por contexto
+- CorreÃ§Ã£o do editor de portlet por contexto
 - Correcoes na tela de login e adicionado um campo para dar transparencia a tela de login
 
 1.1.36 - 2012-10-30
@@ -211,23 +211,23 @@ Changelog
 
 1.1.37 - 2012-11-01
 ----------------------
-- Correção da view de personalização dinâmica para mesclar as configurações globais e locais das Eos
+- CorreÃ§Ã£o da view de personalizaÃ§Ã£o dinÃ¢mica para mesclar as configuraÃ§Ãµes globais e locais das Eos
 
 1.1.38 - 2012-11-08
 ----------------------
-- Adicionado redirect ao acessar o 'vindula-control-panel'  
-- Removido a view de configurações do perfil do usuarios e grupos
+- Adicionado redirect ao acessar o 'vindula-control-panel'
+- Removido a view de configuraÃ§Ãµes do perfil do usuarios e grupos
 
 1.1.39 - 2012-11-09
 ----------------------
-- Adicionado o objeto de configuracoes do vindula, onde vai ficar os objetos de configura�ao do Vindula
+- Adicionado o objeto de configuracoes do vindula, onde vai ficar os objetos de configuraao do Vindula
 - Migrado o vindula categorias de dexterity para archetype
-- Ocultado o conte�do P�gida padrao do Plone
+- Ocultado o conteœdo P‡gida padrao do Plone
 
 1.1.39 - 2012-11-09
 ----------------------
 - Modificado o VindulaReferenceSelectionWidget para aceitar mais que um estado de workflow
 
-1.1.40 - 2013-01-24
+1.1.40 - 2013-01-23
 ----------------------
-- Alteração de label
+- Correção da funcionalidade que aplica uma cor de fundo sólida ao portal.
