@@ -220,10 +220,14 @@ Changelog
 
 1.1.39 - 2012-11-09
 ----------------------
-- Adicionado o objeto de configuracoes do vindula, onde vai ficar os objetos de configuraçao do Vindula
+- Adicionado o objeto de configuracoes do vindula, onde vai ficar os objetos de configuraÔøΩao do Vindula
 - Migrado o vindula categorias de dexterity para archetype
-- Ocultado o conteúdo Págida padrao do Plone
+- Ocultado o conteÔøΩdo PÔøΩgida padrao do Plone
 
 1.1.39 - 2012-11-09
 ----------------------
 - Modificado o VindulaReferenceSelectionWidget para aceitar mais que um estado de workflow
+
+1.1.40 - 2013-01-24
+----------------------
+- Altera√ß√£o de label
