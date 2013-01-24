@@ -30,17 +30,7 @@ from Products.DataGridField.HelpColumn import HelpColumn
 
 
 VindulaCategories_schema =  schemata.ATContentTypeSchema.copy() + Schema((                                                          
-    TextField(
-        name='orgstructure',
-        widget=TextAreaWidget(
-            label=_(u"Categorias de Estruturas Organizacionais"),
-            description=_(u"Adicione uma categoria por linha."),
-            label_msgid='vindula_controlpanel_label_orgstructure',
-            description_msgid='vindula_controlpanel_orgstructure',
-            i18n_domain='vindula_controlpanel',
-        ),
-        required=False,
-    ),
+  
     
     TextField(
         name='list_macros',
