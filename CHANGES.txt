@@ -238,4 +238,8 @@ Changelog
 - Alteração de Label
 - Label removida
 
+1.1.43 - 2013-01-28
+---------------------
+- Label alterada
+
 
