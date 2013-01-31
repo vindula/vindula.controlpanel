@@ -158,12 +158,13 @@
 		                </div>
 		            </metal:block>
 		            <div id="viewlet-below-content" tal:content="structure provider:plone.belowcontent" tal:condition="not:ajax_load" />
+					<div id="vindula-network-staticbar-viewlet-manager" tal:content="structure provider:vindula.network.staticbarviewletmanager" tal:condition="not:ajax_load" />
 		            
 				</div>
 				<div class="shadowTpBt bottonContCol"></div>
 			</div>
         </div>
-
+		
         <tal:notajax tal:condition="not:ajax_load">
         <div id="portal-column-one"
             class="cell width-1:4 position-0"

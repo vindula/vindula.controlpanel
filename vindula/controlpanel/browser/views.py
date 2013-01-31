@@ -1018,3 +1018,12 @@ class SeeAlsoViewlet(grok.Viewlet):
         query['review_state'] = ['published', 'external']
         
         return p_catalog(**query)
+    
+class StaticBarViewletManager(grok.ViewletManager):
+    """ This viewlet manager is responsible for all gomobiletheme.basic viewlet registrations.
+
+    Viewlets are directly referred in main_template.pt by viewlet name,
+    thus overriding Plone behavior to go through ViewletManager render step.
+    """
+    grok.context(Interface)
+    grok.name('vindula.network.staticbarviewletmanager')
