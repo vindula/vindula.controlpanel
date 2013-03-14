@@ -31,6 +31,11 @@
 		                 dummy python:session.delete('ajax_include_head')" />
     </tal:cond-->
 	
+	<!-- Cria o Token de acesso  -->
+	<!-- TODO criar view generica para estes registros --> 
+	<tal:def define="token_user python:context.restrictedTraverse('myvindula-user-token');
+					 dummy token_user/update" />
+	
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
@@ -55,6 +60,24 @@
         <meta name="viewport" content="width=device-width; initial-scale=0.6666; maximum-scale=1.0; minimum-scale=0.6666" />
         <meta name="generator" content="Plone - http://plone.org" />
     </tal:notajax>
+	
+	<script tal:attributes="src string:${context/portal_url|nothing}/statics/js/vindula_all.js"></script>
+	
+	<script type="text/javascript" 
+			tal:define="member context/@@plone_portal_state/member;"
+			tal:content="python: ''' 
+						$j(document).ready(function(){
+							$j('body').vindula({username : '%s',
+												dominio: '%s',
+												user_token: '%s'
+												
+							});
+							
+						});
+					'''%(member.getUserName(),context.portal_url(),session.get('user_token'))
+					" >
+			
+	</script>
 	
 </head>
 
