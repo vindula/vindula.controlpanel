@@ -191,7 +191,7 @@
                                 </td>
 
                                 <td class="listingCheckbox"
-									tal:condition="show_roles"
+									tal:attributes="style python:(not show_roles) and 'display:none'"
                                     tal:repeat="portal_role portal_roles">
                                   <tal:block tal:define="inherited python:user['roles'][portal_role]['inherited'];
                                                          explicit python:user['roles'][portal_role]['explicit'];
