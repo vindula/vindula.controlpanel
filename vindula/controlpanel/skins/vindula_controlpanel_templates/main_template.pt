@@ -34,6 +34,7 @@
 	<!-- Cria o Token de acesso  -->
 	<!-- TODO criar view generica para estes registros --> 
 	<tal:def define="token_user python:context.restrictedTraverse('myvindula-user-token');
+	                 global context_owner token_user/getOwner;  
 					 dummy token_user/update" />
 	
 <head>
@@ -61,8 +62,7 @@
         <meta name="generator" content="Plone - http://plone.org" />
     </tal:notajax>
 	
-	<script tal:attributes="src string:${context/portal_url|nothing}/statics/js/vindula_all.js"></script>
-	
+	<script tal:attributes="src string:${context/portal_url|nothing}/vindula_staticfile/js/vindula_all.js"></script>
 	<script type="text/javascript" 
 			tal:define="member context/@@plone_portal_state/member;"
 			tal:content="python: ''' 
@@ -74,10 +74,9 @@
 							});
 							
 						});
-					'''%(member.getUserName(),context.portal_url(),session.get('user_token'))
-					" >
-			
-	</script>
+					'''%(member.getUserName(),context.portal_url(),session.get('user_token'))" ></script>
+	
+	
 	
 </head>
 
@@ -163,6 +162,18 @@
 		                             </metal:description>
 		
 		                             <div id="viewlet-above-content-body" tal:content="structure provider:plone.abovecontentbody" tal:condition="not:ajax_load" />
+		                             
+		                             <div class="vd-root" tal:define="getworkflow  context/@@plone_context_state" 
+								                          tal:attributes="data-uid context/UID;
+                                                                          data-type context/portal_type;
+                                                                          
+                                                                          data-title context/Title;
+								                                          data-description context/Description;
+								                                          data-owner context_owner;
+								                                          data-date_created context/creation_date;
+								                                          data-date_modified context/bobobase_modification_time;
+								                                          data-workflow getworkflow/workflow_state;"></div>
+		                             
 		                             <div id="content-core">
 		                                 <metal:text define-slot="content-core" tal:content="nothing">
 		                                     Page body text
