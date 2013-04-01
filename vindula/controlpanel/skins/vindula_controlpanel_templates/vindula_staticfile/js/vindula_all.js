@@ -85,7 +85,7 @@
 		var action = 'root',
 			height = 0,
 			parameters = ['type','uid'],
-			get_parameters = ['title','description','owner','date_created','date_modified','workflow'];
+			get_parameters = ['title','description','owner','date_created','date_modified','workflow','image'];
 			
 		this.load(action,height,parameters,get_parameters);
 		
