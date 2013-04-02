@@ -28,6 +28,8 @@
 		this.like();
 		this.comment();
 		this.rating();
+		this.share();
+		this.favorite();
 
 	},
 	load : function(action,height,parameters,get_parameters){
@@ -110,6 +112,22 @@
 		// Constantes
 		var action = 'rating',
 			height = 70,
+			parameters = ['type','uid'];
+
+		this.load(action,height,parameters);
+	},
+	share : function() {
+		// Constantes
+		var action = 'share',
+			height = 70,
+			parameters = ['type','uid'];
+
+		this.load(action,height,parameters);
+	},
+	favorite : function() {
+		// Constantes
+		var action = 'favorite',
+			height = 150,
 			parameters = ['type','uid'];
 
 		this.load(action,height,parameters);
