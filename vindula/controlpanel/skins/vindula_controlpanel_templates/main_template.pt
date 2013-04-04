@@ -35,7 +35,8 @@
 	<!-- TODO criar view generica para estes registros --> 
 	<tal:def define="token_user python:context.restrictedTraverse('myvindula-user-token');
 	                 global context_owner token_user/getOwner;  
-					 dummy token_user/update" />
+					 dummy token_user/update;
+					 content_history token_user/gethistory" />
 	
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />

@@ -12,6 +12,27 @@ def installControlPanel(context):
     portal.portal_types.get('Document').global_allow = False
     portal.portal_types.get('Link').global_allow = False
 
+    # put your custom types in this list
+    TYPES_TO_VERSION = ('VindulaNews', 'VindulaFolder', 'OrganizationalStructure',\
+                        'VindulaPhotoAlbum','VindulaPortlet')
+    DEFAULT_POLICIES = ['at_edit_autoversion', 'version_on_revert']
+
+    portal_repository = getToolByName(portal, 'portal_repository')
+    versionable_types = list(portal_repository.getVersionableContentTypes())
+    
+    for type_id in TYPES_TO_VERSION:
+    
+        if type_id not in versionable_types:
+            # use append() to make sure we don't overwrite any
+            # content-types which may already be under version control
+    
+            versionable_types.append(type_id)
+    
+            # Add default versioning policies to the versioned type
+            for policy_id in DEFAULT_POLICIES:
+                portal_repository.addPolicyForContentType(type_id, policy_id)
+                portal_repository.setVersionableContentTypes(versionable_types)
+
     # Creating Control Panel Objects
     cpanel_objects = portal.get('control-panel-objects', None)
     cpanel_objects_old = portal.get('control-panel-objects-old', None)

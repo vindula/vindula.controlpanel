@@ -30,6 +30,7 @@
 		this.rating();
 		this.share();
 		this.favorite();
+		this.follow();
 
 	},
 	load : function(action,height,parameters,get_parameters){
@@ -131,7 +132,17 @@
 			parameters = ['type','uid'];
 
 		this.load(action,height,parameters);
+	},
+	follow : function() {
+		// Constantes
+		var action = 'follow',
+			height = 65,
+			parameters = ['type','uid'];
+
+		this.load(action,height,parameters);
 	}
+	
+	
 	};
 	
     $.fn.extend({ 
