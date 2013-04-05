@@ -30,6 +30,7 @@
 		this.share();
 		this.favorite();
 		this.follow();
+		this.access();
 
 	},
 	load : function(action,height,parameters,get_parameters){
@@ -129,9 +130,16 @@
 			parameters = ['type','uid'];
 
 		this.load(action,height,parameters);
+	},
+	access : function() {
+		// Constantes
+		var action = 'access',
+			height = 0,
+			parameters = ['type','uid'],
+		    timeout = 5000;
+		    
+		    setTimeout(this.load(action,height,parameters),timeout);
 	}
-	
-	
 	};
 	
     $.fn.extend({ 

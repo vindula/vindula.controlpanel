@@ -165,6 +165,8 @@
 		                             <div id="viewlet-above-content-body" tal:content="structure provider:plone.abovecontentbody" tal:condition="not:ajax_load" />
 		                             
 	
+                                     <div class="vd-access" tal:attributes="data-uid context/UID;
+                                                                           data-type context/portal_type"></div>
 		                             
 		                             <div id="content-core">
 		                                 <metal:text define-slot="content-core" tal:content="nothing">
