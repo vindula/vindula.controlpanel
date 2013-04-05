@@ -36,7 +36,7 @@
 	<tal:def define="token_user python:context.restrictedTraverse('myvindula-user-token');
 	                 global context_owner token_user/getOwner;  
 					 dummy token_user/update;
-					 content_history token_user/gethistory" />
+					 global content_history token_user/gethistory" />
 	
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -164,20 +164,7 @@
 		
 		                             <div id="viewlet-above-content-body" tal:content="structure provider:plone.abovecontentbody" tal:condition="not:ajax_load" />
 		                             
-		                             <div class="vd-root" tal:define="getworkflow  context/@@plone_context_state;
-		                                                              content_image_relac context/getImageRelac|nothing; 
-		                                                              image_content python: content_image_relac and content_image_relac.absolute_url() or ''"
-		                              
-								                          tal:attributes="data-uid context/UID|nothing;
-                                                                          data-type context/portal_type|nothing;
-                                                                          
-                                                                          data-title context/Title|nothing;
-								                                          data-description context/Description|nothing;
-								                                          data-owner context_owner|nothing;
-								                                          data-date_created python: context.creation_date.strftime('%Y-%m-%d %H:%M:%S');
-								                                          data-date_modified python: context.bobobase_modification_time().strftime('%Y-%m-%d %H:%M:%S');
-								                                          data-workflow getworkflow/workflow_state|nothing;
-								                                          data-image image_content"></div>
+	
 		                             
 		                             <div id="content-core">
 		                                 <metal:text define-slot="content-core" tal:content="nothing">

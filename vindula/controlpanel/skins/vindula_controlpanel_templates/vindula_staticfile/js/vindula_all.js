@@ -24,7 +24,6 @@
 	config : {}, 
 	init : function(options) {
 		this.config = options;
-		this.root();
 		this.like();
 		this.comment();
 		this.rating();
@@ -82,16 +81,6 @@
 		}
 
 		return url;
-	}, 
-	root : function() {
-		// Constantes
-		var action = 'root',
-			height = 0,
-			parameters = ['type','uid'],
-			get_parameters = ['title','description','owner','date_created','date_modified','workflow','image'];
-			
-		this.load(action,height,parameters,get_parameters);
-		
 	}, 
 	like : function() {
 		// Constantes
