@@ -31,6 +31,7 @@
         	this.share();
         	this.favorite();
         	this.follow();
+            this.access();
             this.combo_standard();
         },
         load : function(action,height,parameters,get_parameters,url_action){
@@ -173,6 +174,15 @@
                 parameters = ['type','uid'];
         
             this.load(action,height,parameters,get_parameters,url_action);
+        },
+        access : function() {
+            // Constantes
+            var action = 'access',
+                height = 0,
+                parameters = ['type','uid'],
+                timeout = 5000;
+                
+            setTimeout(this.load(action,height,parameters),timeout);
         }
 	};
 	
