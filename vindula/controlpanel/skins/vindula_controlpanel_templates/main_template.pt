@@ -63,8 +63,8 @@
         <meta name="generator" content="Plone - http://plone.org" />
     </tal:notajax>
 	
-    <script tal:attributes="src string:${context/portal_url|nothing}/vindula_staticfile/js/md5-min.js"></script>
-	<script tal:attributes="src string:${context/portal_url|nothing}/vindula_staticfile/js/vindula_all.js"></script>
+    <script tal:attributes="src string:${context/portal_url|nothing}/vindula-api/static/js/md5-min.js"></script>
+	<script tal:attributes="src string:${context/portal_url|nothing}/vindula-api/static/js/vindula_all.js"></script>
 	<script type="text/javascript" 
 			tal:define="member context/@@plone_portal_state/member;"
 			tal:content="python: ''' 
