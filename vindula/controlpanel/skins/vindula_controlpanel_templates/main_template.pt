@@ -180,8 +180,11 @@
 		                    </metal:sub>
 		                </div>
 		            </metal:block>
-		            <div id="viewlet-below-content" tal:content="structure provider:plone.belowcontent" tal:condition="not:ajax_load" />
-					<div id="vindula-network-staticbar-viewlet-manager" tal:content="structure provider:vindula.network.staticbarviewletmanager" tal:condition="not:ajax_load" />
+		            <metal:text define-slot="below-content">
+                        <div id="viewlet-below-content" tal:content="structure provider:plone.belowcontent" tal:condition="not:ajax_load" />
+					</metal:text>
+
+                    <div id="vindula-network-staticbar-viewlet-manager" tal:content="structure provider:vindula.network.staticbarviewletmanager" tal:condition="not:ajax_load" />
 
 				</div>
 				<div class="shadowTpBt bottonContCol"></div>
