@@ -12,9 +12,10 @@ def installControlPanel(context):
     portal.portal_types.get('Document').global_allow = False
     portal.portal_types.get('Link').global_allow = False
 
+    #ADIÇÃO DO VERSIONAMENTO PARA OS TIPO DE CONTEUDO
     # put your custom types in this list
     TYPES_TO_VERSION = ('VindulaNews', 'VindulaFolder', 'OrganizationalStructure',\
-                        'VindulaPhotoAlbum','VindulaPortlet', 'Servico')
+                        'VindulaPhotoAlbum','VindulaPortlet', 'Servico','ATFil')
     DEFAULT_POLICIES = ['at_edit_autoversion', 'version_on_revert']
 
     portal_repository = getToolByName(portal, 'portal_repository')
@@ -32,6 +33,24 @@ def installControlPanel(context):
             for policy_id in DEFAULT_POLICIES:
                 portal_repository.addPolicyForContentType(type_id, policy_id)
                 portal_repository.setVersionableContentTypes(versionable_types)
+
+
+    #ADIÇÃO DOS INTEX DE CATALOG
+    catalog = getToolByName(portal, 'portal_catalog')
+    indexes = catalog.indexes()
+    # Specify the indexes you want, with ('index_name', 'index_type')
+    wanted = (('categoria', 'FieldIndex'),
+              ('ThemeNews','KeywordIndex'),
+              )
+    indexables = []
+    for name, meta_type in wanted:
+        if name not in indexes:
+            catalog.addIndex(name, meta_type)
+            indexables.append(name)
+
+    if len(indexables) > 0:
+        catalog.manage_reindexIndex(ids=indexables)
+
 
     # Creating Control Panel Objects
     cpanel_objects = portal.get('control-panel-objects', None)
