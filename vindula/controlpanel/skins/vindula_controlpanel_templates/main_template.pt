@@ -85,7 +85,7 @@
                   sl python:plone_view.have_portlets('plone.leftcolumn', view);
                   sr python:plone_view.have_portlets('plone.rightcolumn', view);
                   body_class python:plone_view.bodyClass(template, view);
-                  sunburst_view python:context.restrictedTraverse('@@sunburstview');
+                  themevindula_view python:context.restrictedTraverse('@@themevindulaview');
 				  view_org context/OrgStruct_view;
 				  site_view python:context.restrictedTraverse('@@myvindula-conf-userpanel');
 
@@ -111,8 +111,28 @@
 </div>
         </div>
     <div id="portal-columns" class="row">
-
-        <div id="portal-column-content" class="cell" tal:attributes="class python:sunburst_view.getColumnsClass(view)">
+        
+        <tal:notajax tal:condition="not:ajax_load">
+        <!--div id="portal-column-one"
+            class="cell width-1:4 position-0"
+            metal:define-slot="column_one_slot"
+            tal:condition="sl"
+            tal:attributes="class python:isRTL and 'cell width-1:4 position-3:4' or 'cell width-1:4 position-0'">
+            <metal:portlets define-slot="portlets_one_slot">
+                <tal:block replace="structure provider:plone.leftcolumn" />
+            </metal:portlets>
+        </div-->
+        <div id="portal-column-one"
+            class="columns large-3"
+            metal:define-slot="column_one_slot"
+            tal:condition="sl">
+            <metal:portlets define-slot="portlets_one_slot">
+                <tal:block replace="structure provider:plone.leftcolumn" />
+            </metal:portlets>
+        </div>
+        </tal:notajax>
+        
+        <div id="portal-column-content" class="cell" tal:attributes="class python:themevindula_view.getColumnsClass(view)">
 			<div class="columnContRight">
 				<div class="topContCol shadowTpBt"></div>
 				<div class="columnMid">
@@ -196,21 +216,19 @@
         </div>
 
         <tal:notajax tal:condition="not:ajax_load">
-        <div id="portal-column-one"
-            class="cell width-1:4 position-0"
-            metal:define-slot="column_one_slot"
-            tal:condition="sl"
-            tal:attributes="class python:isRTL and 'cell width-1:4 position-3:4' or 'cell width-1:4 position-0'">
-            <metal:portlets define-slot="portlets_one_slot">
-                <tal:block replace="structure provider:plone.leftcolumn" />
-            </metal:portlets>
-        </div>
-
-        <div id="portal-column-two"
+        <!--div id="portal-column-two"
             class="cell width-1:4 position-3:4"
             metal:define-slot="column_two_slot"
             tal:condition="sr"
             tal:attributes="class python:isRTL and 'cell width-1:4 position-0' or 'cell width-1:4 position-3:4'">
+            <metal:portlets define-slot="portlets_two_slot">
+                <tal:block replace="structure provider:plone.rightcolumn" />
+            </metal:portlets>
+        </div-->
+        <div id="portal-column-two"
+            class="columns large-3"
+            metal:define-slot="column_two_slot"
+            tal:condition="sr">
             <metal:portlets define-slot="portlets_two_slot">
                 <tal:block replace="structure provider:plone.rightcolumn" />
             </metal:portlets>
