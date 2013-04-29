@@ -157,7 +157,11 @@ def link_user_folder(context):
                    {'id':'fieldset-myvindula',
                     'title':'Categorias para o perfil dos usuários',
                     'description':'Patas que guardar as categorias adicionais do perfil dos usuários',
-                    'AllowedTypes':('FieldSetMyvindula',)}
+                    'AllowedTypes':('FieldSetMyvindula',)},
+                   {'id':'footertopic',
+                    'title':'Topicos para o Rodapé',
+                    'description':'Patas que guardar os topicos do rodape',
+                    'AllowedTypes':('FooterTopic',)}
                    ]
 
         for folder in folders:

@@ -1,43 +1,46 @@
 <?xml version="1.0"?>
 <object name="portal_types" meta_type="Plone Types Tool">
-	
+
   <object name="vindula.controlpanel.content.categories" meta_type="Dexterity FTI" />
   <object name="vindula.controlpanel.content.alertdisplay" meta_type="Dexterity FTI" />
 
   <object name="vindula.controlpanel.content.vindulaconfigall" meta_type="Dexterity FTI"/>
   <object name="vindula.controlpanel.content.aniversariantesconfig" meta_type="Dexterity FTI"/>
-    
-  <object name="ThemeConfig" 
+
+  <object name="ThemeConfig"
   		meta_type="Factory-based Type Information with dynamic views" />
-  
-  <object name="ContentRedirectUser" 
+
+  <object name="ContentRedirectUser"
         meta_type="Factory-based Type Information with dynamic views" />
 
-  <object name="RedirectUser" 
+  <object name="RedirectUser"
         meta_type="Factory-based Type Information with dynamic views"/>
-		
-  <object name="ThemeLoginConfig" 
-  		meta_type="Factory-based Type Information with dynamic views"/>       		
 
-  <object name="FieldSetMyvindula" 
-        meta_type="Factory-based Type Information with dynamic views" />        
-
-  <object name="ContainerTopicsControlPanel" 
+  <object name="ThemeLoginConfig"
   		meta_type="Factory-based Type Information with dynamic views"/>
 
-  <object name="TopicControlPanel" 
-  		meta_type="Factory-based Type Information with dynamic views"/>
-		
-  <object name="SubtopicControlPanel" 
+  <object name="FieldSetMyvindula"
+        meta_type="Factory-based Type Information with dynamic views" />
+
+  <object name="ContainerTopicsControlPanel"
   		meta_type="Factory-based Type Information with dynamic views"/>
 
-  <object name="ObjectsControlPanel" 
+  <object name="TopicControlPanel"
   		meta_type="Factory-based Type Information with dynamic views"/>
-  
+
+  <object name="SubtopicControlPanel"
+  		meta_type="Factory-based Type Information with dynamic views"/>
+
+  <object name="ObjectsControlPanel"
+  		meta_type="Factory-based Type Information with dynamic views"/>
+
   <object name="VindulaCategories"
   		meta_type="Factory-based Type Information with dynamic views"/>
-		
-  <!--object name="UpdateUser"    
-            meta_type="Factory-based Type Information with dynamic views"/-->		
-		
+
+  <object name="FooterTopic"
+      meta_type="Factory-based Type Information with dynamic views"/>
+
+  <!--object name="UpdateUser"
+            meta_type="Factory-based Type Information with dynamic views"/-->
+
 </object>
