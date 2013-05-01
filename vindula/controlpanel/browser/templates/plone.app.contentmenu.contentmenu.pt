@@ -41,7 +41,7 @@
           </dt>
           <dd class="actionMenuContent"
               tal:condition="not:menuItem/extra/hideChildren | not:submenu | nothing">
-            <ul>
+            <ul class="contentSubMenus">
                 <tal:block repeat="subMenuItem submenu">
                   <li tal:attributes="class subMenuItem/extra/separator">
                     <a href="#"
