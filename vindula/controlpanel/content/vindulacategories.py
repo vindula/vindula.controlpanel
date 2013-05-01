@@ -108,6 +108,20 @@ VindulaCategories_schema =  schemata.ATContentTypeSchema.copy() + Schema((
         ),
         required=False,
     ),
+
+    TextField(
+        name='tipoUnidade',
+        widget=TextAreaWidget(
+            label=_(u"Tipos de Unidades Organizacionais"),
+            description=_(u"""Adicione Tipos de Unidades Organizacionais para serem relacionados.<br>
+                              Adicione um Tipo por linha.
+                           """),
+            label_msgid='vindula_controlpanel_label_tipoUnidade',
+            description_msgid='vindula_controlpanel_help_tipoUnidade',
+            i18n_domain='vindula_controlpanel',
+        ),
+        required=False,
+    ),
     
     TextField(
         name='categories',
