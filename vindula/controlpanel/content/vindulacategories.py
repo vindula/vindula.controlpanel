@@ -188,18 +188,7 @@ class VindulaCategories(base.ATCTContent):
     
     def getContentTypes(self):
         return DisplayList(tuple([ (id.lower(), id) for id in self.portal_types.listContentTypes() ]))
-        
-        # ANTIGO DIC
-#        site_properties = getToolByName(self, "portal_properties").site_properties
-#        not_searched = site_properties.getProperty('types_not_searched', [])
-#    
-#        portal_types = getToolByName(self, "portal_types")
-#        types = portal_types.listContentTypes()
-#    
-#        # Get list of content type ids which are not filtered out
-#        prepared_types = [t for t in types if t not in not_searched]
-#        # Return (id, title) pairs
-#        return DisplayList(tuple([ (id.lower(), portal_types[id].title) for id in prepared_types ]))
+
     
     def listToOrderBy(self):
         tool = getToolByName(self, 'portal_atct')
