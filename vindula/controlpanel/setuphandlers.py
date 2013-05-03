@@ -41,6 +41,7 @@ def installControlPanel(context):
     # Specify the indexes you want, with ('index_name', 'index_type')
     wanted = (('categoria', 'FieldIndex'),
               ('ThemeNews','KeywordIndex'),
+              ('getSiglaunidade','FieldIndex'),
               )
     indexables = []
     for name, meta_type in wanted:
