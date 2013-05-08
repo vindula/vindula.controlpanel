@@ -68,16 +68,18 @@
     </tal:notajax>
 
     <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/vindula-api/static/js/md5-min.js"></script>
-	<script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/vindula-api/static/js/vindula_all.js"></script>
+    <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/vindula-api/static/js/vindula_all.js"></script>
+    <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/vindula-api/static/js/sockjs.min.js"></script>
+    <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/vindula-api/static/js/sockjs_utils.js"></script>
+
 	<script type="text/javascript"
 			tal:define="member context/@@plone_portal_state/member;"
 			tal:content="python: '''
 						$j(document).ready(function(){
 							$j('body').vindula(null, {username : '%s', dominio: '%s', user_token: '%s'});
+							window.token = '%s';
 						});
-					'''%(member.getUserName(),context.portal_url(),session.get('user_token'))" ></script>
-
-
+					'''%(member.getUserName(),context.portal_url(),session.get('user_token'),session.get('user_token'))" ></script>
 
 </head>
 
@@ -97,11 +99,10 @@
     <tal:dum tal:condition="key_vindula">
        <tal:def define="dummy key_vindula/update" />
     </tal:dum>
-
+    
 	<div id="no-diazo" tal:condition="python: ajax_load and ajax_include_head" />
 
 <div id="visual-portal-wrapper">
-
         <div id="portal-top"
             class="row"
             i18n:domain="plone"
