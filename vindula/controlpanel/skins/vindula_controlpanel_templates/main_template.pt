@@ -1,7 +1,7 @@
 <metal:page define-macro="master">
 <tal:doctype tal:replace="structure string:&lt;!DOCTYPE html&gt;" />
 
-<tal:def define="dummy context/wizard" />
+<!--tal:def define="dummy context/wizard" /-->
 
 <html xmlns="http://www.w3.org/1999/xhtml"
     tal:define="portal_state context/@@plone_portal_state;
@@ -99,7 +99,7 @@
     <tal:dum tal:condition="key_vindula">
        <tal:def define="dummy key_vindula/update" />
     </tal:dum>
-    
+
 	<div id="no-diazo" tal:condition="python: ajax_load and ajax_include_head" />
 
 <div id="visual-portal-wrapper">
@@ -112,7 +112,7 @@
 </div>
         </div>
     <div id="portal-columns" class="row">
-        
+
         <tal:notajax tal:condition="not:ajax_load">
         <!--div id="portal-column-one"
             class="cell width-1:4 position-0"
@@ -132,7 +132,7 @@
             </metal:portlets>
         </div>
         </tal:notajax>
-        
+
         <div id="portal-column-content" class="cell" tal:attributes="class python:themevindula_view.getColumnsClass(view)">
 			<div class="columnContRight">
 				<div class="topContCol shadowTpBt"></div>
