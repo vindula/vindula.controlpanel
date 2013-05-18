@@ -51,7 +51,6 @@
         </div>
 
         <div id="content-core">
-
             <form action="."
                   metal:define-macro="master"
                   tal:define="is_fieldsets view/is_fieldsets"

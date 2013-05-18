@@ -187,7 +187,7 @@
 
                                      <div class="vd_access" tal:attributes="data_uid context/UID|nothing;
                                                                             data_type context/portal_type|nothing"></div>
-		                             <div id="content-core" class="row">
+		                             <div id="content-core">
 		                                 <metal:text define-slot="content-core" tal:content="nothing">
 		                                     Page body text
 		                                 </metal:text>
