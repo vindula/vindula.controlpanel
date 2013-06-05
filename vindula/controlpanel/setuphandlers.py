@@ -263,28 +263,6 @@ def updateTopicsControlPanel(context):
 #            pass
 
 
-def installTheme(context):
-    portal = context.getSite()
-    portal_workflow = getToolByName(portal, 'portal_workflow')
-
-
-    if not 'links' in portal.objectIds():
-        portal.portal_types.get('Folder').global_allow = True
-        portal.invokeFactory('Folder',
-                              id='links',
-                              title='Links Úteis',
-                              excludeFromNav = True)
-
-        pasta = portal['links']
-        pasta.setConstrainTypesMode(1)
-        pasta.setLocallyAllowedTypes(('Link',))
-
-        try:portal_workflow.doActionFor(pasta, 'publish')
-        except:portal_workflow.doActionFor(pasta, 'publish_internally')
-
-        portal.portal_types.get('Folder').global_allow = False
-
-
 def installSteps(context):
     portal = context.getSite()
 

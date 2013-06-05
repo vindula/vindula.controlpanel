@@ -5,7 +5,7 @@
                      b_start request/b_start | b_start;
                      batch python:Batch(see_also, int(b_size), int(b_start), pagerange=len(see_also));">
         	
-        <div id="pag-nav" class="float-right">
+        <div id="pag-nav" class="ajax_pagination right">
             <metal:block metal:use-macro="context/boll_batch/macros/navigation" />
         </div>
 		                      
