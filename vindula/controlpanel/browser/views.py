@@ -61,6 +61,13 @@ class ControlPanelView(grok.View):
             print error
             return 'Não encontrada'
 
+class ManageContentTypesView(grok.View):
+    grok.context(INavigationRoot)
+    grok.require('cmf.ManagePortal')
+    grok.name('manage-content-types')
+
+
+
 
 class VindulaFinderUploadView(Finder):
     """ Custom Finder class for widget """

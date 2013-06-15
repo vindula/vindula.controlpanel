@@ -76,10 +76,12 @@
 			tal:define="member context/@@plone_portal_state/member;"
 			tal:content="python: '''
 						$j(document).ready(function(){
-							$j('body').vindula(null, {username : '%s', dominio: '%s', user_token: '%s'});
-							window.token = '%s';
+							$j('body').vindula(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
+							window.token = '%(token)s';
+                            window.url_notified_notification = '%(portal_url)s/vindula-api/social/manager/%(token)s/notification/';
+                            window.url_notified_message = '%(portal_url)s/vindula-api/social/manager/%(token)s/message/';
 						});
-					'''%(member.getUserName(),context.portal_url(),session.get('user_token'),session.get('user_token'))" ></script>
+					   ''' %{'username': member.getUserName(),'portal_url': context.portal_url(), 'token': session.get('user_token')}" ></script>
 
 </head>
 
