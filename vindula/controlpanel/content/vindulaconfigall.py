@@ -5,6 +5,7 @@ from five import grok
 from vindula.controlpanel import MessageFactory as _
 
 from random import randint
+from zope.schema.vocabulary import SimpleVocabulary,SimpleTerm
 
 from zope.interface import Interface
 from zope.app.component.hooks import getSite, setSite
@@ -104,6 +105,13 @@ class IVindulaConfigAll(form.Schema):
                                                                  se o usuário não tiver uma foto já difinida no Vindula e tiver uma conta no Gravatar associada a seu email.\n\
                                                                  Esta funcionalidade requer conectividade do Vindula com o site gravatar.com.'),
                 default=True
+                )
+
+    modelo_holerite = schema.Choice(
+                title=_(u'label_modelo_holerite', default=u'Selecione o modelo de holerite'),
+                description=_(u'help_modelo_holerite', default=u'Selecione qual o modelo de holerite que sera utilizado pela intranet'),
+                vocabulary =  SimpleVocabulary([SimpleTerm(value=u'01', title=_(u'Modelo 01')),
+                                                SimpleTerm(value=u'02', title=_(u'Modelo 02'))])
                 )
     
     
@@ -257,4 +265,9 @@ class VindulaConfiguration(grok.View):
             return True
         return False
         
-        
+    def select_modelo_holerite(self):
+        if self.configurador():
+            control = self.configurador()
+            return control.modelo_holerite
+        else:
+            return '01'        
