@@ -1,5 +1,6 @@
 <tal:def define="view_login python: context.restrictedTraverse('@@vindula-custom-login');
 				 isAnon context/@@plone_portal_state/anonymous;
+                 config_login_obj view_login/getLoginConfObj;
 				 loginGrafico view_login/getLoginGrafico;">
 
 	<tal:cond condition="python: loginGrafico and isAnon">
@@ -15,7 +16,13 @@
 						tal:attributes="src string:${context/portal_url}/login.js">
 				</script>
 			
-				<link type="text/css" rel="stylesheet" tal:attributes="href string:${context/portal_url|nothing}/++resource++vindula.controlpanel/custom_login.css">
+				<link tal:condition="python:config_login_obj.getTipoLogin() == 'grafico'"
+                      type="text/css" rel="stylesheet" tal:attributes="href string:${context/portal_url|nothing}/++resource++vindula.controlpanel/custom_login.css">
+    
+                <style type="text/css" rel="stylesheet"
+                       tal:content="structure view_login/getEstiloLoginCustomizado"
+                       tal:condition="python:config_login_obj.getTipoLogin() == 'customizado'">
+                </style>
 			</head>
 			
 		    <body tal:attributes="style view_login/getTypeBackground">

@@ -551,11 +551,12 @@ class CustomLoginView(grok.View):
         if 'ThemeLoginConfig' in control.keys():
             return control.get('ThemeLoginConfig')
         return None
-
+    
+    #Metodo retorna verdadeiro caso o tipo de login nao for grafico nem personalizado
     def getLoginGrafico(self):
         conf_login = self.getLoginConfObj()
         if conf_login:
-            if conf_login.getTipoLogin() == 'grafico':
+            if conf_login.getTipoLogin() != 'classico':
                 return True
         return None
 
@@ -593,7 +594,15 @@ class CustomLoginView(grok.View):
                 if color and color != 'transparent':
                     return 'background: repeat scroll 0 0 %s' % (conf_login.getCorSolidaBackground())
         return None
-
+    
+    def getEstiloLoginCustomizado(self):
+        conf_login = self.getLoginConfObj()
+        css = ''
+        if conf_login:
+            for linha in conf_login.getCustomCSS():
+                css += linha
+        return css
+    
 class CustomCssLogin(grok.View):
     grok.context(Interface)
     grok.require('zope2.View')
