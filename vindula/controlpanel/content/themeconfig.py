@@ -448,6 +448,24 @@ class ThemeConfigCssView(grok.View):
         config_padrao = getSite()['control-panel-objects']['ThemeConfig']
         
         D = {}
+
+        if config_padrao.getLogoCabecalho():
+            D['logo_portal'] = config_padrao.getLogoCabecalho().absolute_url()
+        else:
+            D['logo_portal'] = config_padrao.portal_url() + '/++resource++vindula.controlpanel/imagens/logo_topo.png'
+
+
+        if config_padrao.getImagesCycleLogo():
+            images_cycle = config_padrao.getImagesCycleLogo()
+            D['banner_topo'] = images_cycle[0].absolute_url()
+        
+
+        if config_padrao.getLogoRodape():
+            D['logo_footer'] = config_padrao.getLogoRodape().absolute_url()
+        else:
+            D['logo_footer'] = config_padrao.portal_url() + '/++resource++vindula.controlpanel/imagens/logo_rodape.png'
+
+
         D['cor'] = self.checkTransparent(obj.getCorGeralPortal()) or self.checkTransparent(config_padrao.getCorGeralPortal()) or '#F58220'
 
         #-- Background Portal --#
