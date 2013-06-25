@@ -548,8 +548,9 @@ class CustomLoginView(grok.View):
 
     def getLoginConfObj(self):
         control = self.getControlPanelObjects()
-        if 'ThemeLoginConfig' in control.keys():
-            return control.get('ThemeLoginConfig')
+        if control:
+            if 'ThemeLoginConfig' in control.keys():
+                return control.get('ThemeLoginConfig')
         return None
     
     #Metodo retorna verdadeiro caso o tipo de login nao for grafico nem personalizado
