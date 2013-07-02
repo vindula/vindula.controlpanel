@@ -40,7 +40,8 @@ from AccessControl import getSecurityManager
 from zope.formlib import form
 from copy import copy
 
-from vindula.myvindula.registration import SchemaFunc
+from vindula.myvindula.models.dados_funcdetail import ModelsDadosFuncdetails
+# from vindula.myvindula.registration import SchemaFunc
 from vindula.content.content.interfaces import IVindulaNews
 
 import pkg_resources
@@ -552,7 +553,7 @@ class CustomLoginView(grok.View):
             if 'ThemeLoginConfig' in control.keys():
                 return control.get('ThemeLoginConfig')
         return None
-    
+
     #Metodo retorna verdadeiro caso o tipo de login nao for grafico nem personalizado
     def getLoginGrafico(self):
         conf_login = self.getLoginConfObj()
@@ -595,7 +596,7 @@ class CustomLoginView(grok.View):
                 if color and color != 'transparent':
                     return 'background: repeat scroll 0 0 %s' % (conf_login.getCorSolidaBackground())
         return None
-    
+
     def getEstiloLoginCustomizado(self):
         conf_login = self.getLoginConfObj()
         css = ''
@@ -603,7 +604,7 @@ class CustomLoginView(grok.View):
             for linha in conf_login.getCustomCSS():
                 css += linha
         return css
-    
+
 class CustomCssLogin(grok.View):
     grok.context(Interface)
     grok.require('zope2.View')
@@ -813,7 +814,14 @@ class AddUserForm(BaseRegistrationForm):
             IStatusMessage(self.request).addStatusMessage(err, type="error")
             return
 
-        SchemaFunc().registration_processes(data, user_id, True)
+        # SchemaFunc().registration_processes(data, user_id, True)
+        dados = {u'username':self.unicode(user_id),
+                 u'email':self.unicode(data.get('email','')),
+                 u'name':self.unicode(data.get('fullname',user_id))}
+
+        user_schema = ModelsDadosFuncdetails()
+        user_schema.createUserProfile(dados)
+
 
         IStatusMessage(self.request).addStatusMessage(
             _(u"User added."), type='info')
@@ -821,6 +829,12 @@ class AddUserForm(BaseRegistrationForm):
             self.context.absolute_url() +
             '/@@usergroup-userprefs?searchstring=' + user_id)
 
+
+    def unicode(self,valor):
+        if type(valor) == unicode:
+            return valor
+        else:
+            return unicode(valor,'utf-8')
 
 class ContentMenu(BrowserView):
     def getMenuItems(self):
