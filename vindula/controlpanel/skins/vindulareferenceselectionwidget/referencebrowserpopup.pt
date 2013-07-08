@@ -107,9 +107,11 @@
       <tal:single tal:condition="not:multiValued" >
 
         <tal:value tal:condition="value">
-          <tal:block tal:condition="python:refs[0]!=NoneType"
-                     tal:define="obj python:refs[0];
-                                 obj_path python: '/'.join(obj.getPhysicalPath())" >
+
+          <tal:block tal:condition="python:refs[0] != None">
+
+              <tal:def define="obj python:refs[0];
+                                   obj_path python: '/'.join(obj.getPhysicalPath())" >
 
                 <div tal:attributes="id string:ref_browser_${fieldName}_content_edit">
                     <img tal:condition="python: obj.portal_type in image_portal_types"
@@ -126,7 +128,9 @@
                         tal:attributes="value obj/title_or_id;
                                         size python:test(widget.size=='', 30, widget.size);
                                         id string:ref_browser_${fieldName}_label" />
+              </tal:def>
           </tal:block>
+
         </tal:value>
 
         <input id="" size="50" type="text" readonly="readonly"
