@@ -36,10 +36,19 @@ ThemeLoginConfig_schema =  ATDocumentSchema.copy() + Schema((
         default=True,
         widget=BooleanWidget(
             label="Ativar a função de redirecionar",
-            description='Caso selecionado, a função de redirecionamento é ativada.',
+            description='Quando selecionado, a função de redirecionamento é ativada.',
         ),
     ),
-    
+
+    BooleanField(
+        name='ativaRecuperaSenha',
+        default=True,
+        widget=BooleanWidget(
+            label="Ativar a função de recuperação de senha",
+            description='Quando selecionado, o link "Esqueci minha Senha" é exibido.',
+        ),
+    ),
+
     #Schemata Layout
     
     ReferenceField('imagemBackground',

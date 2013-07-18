@@ -61,7 +61,8 @@
 		                        target request/target|nothing;
 		                        target python:(target in ('_parent', '_top', '_blank', '_self')) and target or None;
 		                        ztu modules/ZTUtils;
-								login_failed login_failed | python: False;">
+								login_failed login_failed | python: False;
+								ativaRecuperaSenha python:config_login_obj.ativaRecuperaSenha;">
 								
 		<link tal:attributes="href string:${context/absolute_url|nothing}/custom-login-dynamic.css" media="screen" type="text/css" rel="stylesheet">
 		
@@ -217,7 +218,7 @@
 						
 						<metal:forgotpass define-macro="forgotten-password"> 
 				            <div id="login-forgotten-password"
-				                 tal:condition="python:mail_password_url and use_normal">
+				                 tal:condition="python:mail_password_url and use_normal and ativaRecuperaSenha">
 				                 <a tal:define="mail_password_url python:mail_password_url+(mail_password_url.find('?')==-1 and '?' or '&amp;')+ztu.make_query(userid=login_name)"
 			                           tal:attributes="href mail_password_url; target target;">
 					                <span class="fontSmallSize" i18n:translate="box_forgot_password_option">
