@@ -15,7 +15,7 @@ def installControlPanel(context):
     #ADIÇÃO DO VERSIONAMENTO PARA OS TIPO DE CONTEUDO
     # put your custom types in this list
     TYPES_TO_VERSION = ('VindulaNews', 'VindulaFolder', 'OrganizationalStructure',\
-                        'VindulaPhotoAlbum','VindulaPortlet', 'Servico','ATFil')
+                        'VindulaPhotoAlbum','VindulaPortlet', 'Servico')
     # put your custom types in this list to remove from versionable_types
     REMOVE_TYPES_TO_VERSION = ('ATFil', 'ATFile', 'File', 'ATBlob')
     DEFAULT_POLICIES = ['at_edit_autoversion', 'version_on_revert']
