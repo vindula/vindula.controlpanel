@@ -15,15 +15,15 @@ def installControlPanel(context):
     #ADIÇÃO DO VERSIONAMENTO PARA OS TIPO DE CONTEUDO
     # put your custom types in this list
     TYPES_TO_VERSION = ('VindulaNews', 'VindulaFolder', 'OrganizationalStructure',\
-                        'VindulaPhotoAlbum','VindulaPortlet', 'Servico','ATFile',
-                        'File','ATBlob',)
+                        'VindulaPhotoAlbum','VindulaPortlet', 'Servico','ATFil')
+    # put your custom types in this list to remove from versionable_types
+    REMOVE_TYPES_TO_VERSION = ('ATFil', 'ATFile', 'File', 'ATBlob')
     DEFAULT_POLICIES = ['at_edit_autoversion', 'version_on_revert']
 
     portal_repository = getToolByName(portal, 'portal_repository')
     versionable_types = list(portal_repository.getVersionableContentTypes())
 
     for type_id in TYPES_TO_VERSION:
-
         if type_id not in versionable_types:
             # use append() to make sure we don't overwrite any
             # content-types which may already be under version control
@@ -34,7 +34,16 @@ def installControlPanel(context):
             for policy_id in DEFAULT_POLICIES:
                 portal_repository.addPolicyForContentType(type_id, policy_id)
                 portal_repository.setVersionableContentTypes(versionable_types)
+    
+    for type_id in REMOVE_TYPES_TO_VERSION:
+        if type_id in versionable_types:
 
+            versionable_types.remove(type_id)
+            
+            # Remove default versioning policies to the versioned type
+            for policy_id in DEFAULT_POLICIES:
+                portal_repository.removePolicyFromContentType(type_id, policy_id)
+                portal_repository.setVersionableContentTypes(versionable_types)
 
     #ADIÇÃO DOS INTEX DE CATALOG
     catalog = getToolByName(portal, 'portal_catalog')
