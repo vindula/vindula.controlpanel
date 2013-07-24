@@ -15,7 +15,8 @@ def installControlPanel(context):
     #ADIÇÃO DO VERSIONAMENTO PARA OS TIPO DE CONTEUDO
     # put your custom types in this list
     TYPES_TO_VERSION = ('VindulaNews', 'VindulaFolder', 'OrganizationalStructure',\
-                        'VindulaPhotoAlbum','VindulaPortlet', 'Servico','ATFile')
+                        'VindulaPhotoAlbum','VindulaPortlet', 'Servico','ATFile',
+                        'File','ATBlob',)
     DEFAULT_POLICIES = ['at_edit_autoversion', 'version_on_revert']
 
     portal_repository = getToolByName(portal, 'portal_repository')
