@@ -47,6 +47,7 @@
 
 	<link tal:attributes="href string:${context/absolute_url|nothing}/personal-layout.css" media="screen" type="text/css" rel="stylesheet">
     <link tal:attributes="href string:${context/portal_url|nothing}/ploneCustom.css" id="new-theme" media="screen" type="text/css" rel="stylesheet">
+    <link tal:attributes="href string:${context/portal_url|nothing}/keywordwidget.css" id="new-theme" media="screen" type="text/css" rel="stylesheet">
 
 
     <tal:content tal:define="scss nocall: context/@@load-scss;"
