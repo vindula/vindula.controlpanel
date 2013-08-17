@@ -9,22 +9,22 @@ class IContentRedirectUser(Interface):
 
 class IRedirectUser(Interface):
     """ Interface for RedirectUser content type """
-    
+
 class IThemeLoginConfig(Interface):
     """ Interface for ThemeLoginConfig content type """
-    
+
 class IFieldSetMyvindula(Interface):
     """ Interface for FieldSetMyvindula content type """
-    
+
 class IContentRedirectUser(Interface):
     """ Interface for ContentRedirectUser content type """
-    
+
 class IContainerTopicsControlPanel(Interface):
     """ Interface for ContainerTopicsControlPanel content type """
 
 class ITopicControlPanel(Interface):
     """ Interface for TopicControlPanel content type """
-    
+
 class ISubtopicControlPanel(Interface):
     """ Interface for SubtopicControlPanel content type """
 
@@ -33,6 +33,10 @@ class IUpdateUser(Interface):
 
 class IObjectsControlPanel(Interface):
     """ Interface for UpdateUser content type """
-    
+
 class IVindulaCategories(Interface):
     """ Interface for Categories content type """
+
+class IFooterTopic(Interface):
+    """ Interface for FooterTopic content type """
+

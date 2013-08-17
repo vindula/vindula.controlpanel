@@ -1,4 +1,3 @@
-
 import themeconfig
 import contentredirectuser
 import redirectuser
@@ -9,4 +8,6 @@ import topiccontrolpanel
 import subtopiccontrolpanel
 import objectscontrolpanel
 import vindulacategories
+import topiccontrolpanel
+import footertopic
 #import updateuser

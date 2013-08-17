@@ -1,4 +1,6 @@
-<metal:page define-macro="master_login_custom">
+<metal:page define-macro="master_login_custom"
+            tal:define="config_obj view_login/getThemeConfObj;
+                        config_login_obj view_login/getLoginConfObj;">
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
@@ -15,7 +17,12 @@
             tal:attributes="src string:${context/portal_url}/login.js">
     </script>
 	
-	<link type="text/css" rel="stylesheet" tal:attributes="href string:${context/portal_url|nothing}/++resource++vindula.controlpanel/custom_login.css">
+	<link tal:condition="python:config_login_obj.getTipoLogin() == 'grafico'" type="text/css" rel="stylesheet" tal:attributes="href string:${context/portal_url|nothing}/++resource++vindula.controlpanel/custom_login.css">
+    
+    <style type="text/css" rel="stylesheet"
+           tal:content="structure view_login/getEstiloLoginCustomizado"
+           tal:condition="python:config_login_obj.getTipoLogin() == 'customizado'">
+    </style>
 	
 </head>
 
@@ -55,9 +62,7 @@
 		                        target python:(target in ('_parent', '_top', '_blank', '_self')) and target or None;
 		                        ztu modules/ZTUtils;
 								login_failed login_failed | python: False;
-								
-	 				 			config_obj view_login/getThemeConfObj;
-								config_login_obj view_login/getLoginConfObj;">
+								ativaRecuperaSenha python:config_login_obj.ativaRecuperaSenha;">
 								
 		<link tal:attributes="href string:${context/absolute_url|nothing}/custom-login-dynamic.css" media="screen" type="text/css" rel="stylesheet">
 		
@@ -68,7 +73,7 @@
 			</tal:cond>
 			
 			<div class="column boxBorder boxLogin" tal:attributes="style view_login/getOpacityBox|nothing">
-				<div class="logo" tal:condition="config_obj">
+				<div class="logo" tal:condition="python:config_obj and config_login_obj.getTipoLogin() != 'customizado'">
 					<a class="vindula-portal-logo" tal:attributes="href string:${context/portal_url}" title="P&aacute;gina Inicial">
 						<img tal:condition="config_obj/getLogoCabecalho" 
 						     tal:attributes="src python: config_obj.getLogoCabecalho().absolute_url() or None" />
@@ -213,7 +218,7 @@
 						
 						<metal:forgotpass define-macro="forgotten-password"> 
 				            <div id="login-forgotten-password"
-				                 tal:condition="python:mail_password_url and use_normal">
+				                 tal:condition="python:mail_password_url and use_normal and ativaRecuperaSenha">
 				                 <a tal:define="mail_password_url python:mail_password_url+(mail_password_url.find('?')==-1 and '?' or '&amp;')+ztu.make_query(userid=login_name)"
 			                           tal:attributes="href mail_password_url; target target;">
 					                <span class="fontSmallSize" i18n:translate="box_forgot_password_option">

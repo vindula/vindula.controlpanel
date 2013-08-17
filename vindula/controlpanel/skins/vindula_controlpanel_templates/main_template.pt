@@ -1,7 +1,7 @@
 <metal:page define-macro="master">
 <tal:doctype tal:replace="structure string:&lt;!DOCTYPE html&gt;" />
 
-<tal:def define="dummy context/wizard" />
+<!--tal:def define="dummy context/wizard" /-->
 
 <html xmlns="http://www.w3.org/1999/xhtml"
     tal:define="portal_state context/@@plone_portal_state;
@@ -13,7 +13,7 @@
         portal_url portal_state/portal_url;
         checkPermission nocall: context/portal_membership/checkPermission;
         site_properties context/portal_properties/site_properties;
-        
+
 		session request/SESSION | nothing;
 		ajax_load request/ajax_load | session/ajax_load | nothing;
         ajax_include_head request/ajax_include_head | session/ajax_include_head | nothing;
@@ -23,14 +23,21 @@
     <metal:cache use-macro="context/global_cache_settings/macros/cacheheaders">
     Get the global cache headers located in global_cache_settings.
     </metal:cache>
-	
+
 	<tal:def define="dummy context/removeSession" />
-	
+
 	<!--tal:cond condition="python: ajax_load or ajax_include_head ">
 		<tal:def define="dummy python:session.delete('ajax_load');
 		                 dummy python:session.delete('ajax_include_head')" />
     </tal:cond-->
-	
+
+	<!-- Cria o Token de acesso  -->
+	<!-- TODO criar view generica para estes registros -->
+	<tal:def define="token_user python:context.restrictedTraverse('myvindula-user-token');
+	                 global context_owner token_user/getOwner;
+					 dummy token_user/update;
+					 global content_history token_user/gethistory" />
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
@@ -39,6 +46,10 @@
     </metal:baseslot>
 
 	<link tal:attributes="href string:${context/absolute_url|nothing}/personal-layout.css" media="screen" type="text/css" rel="stylesheet">
+
+
+    <tal:content tal:define="scss nocall: context/@@load-scss;"
+                 content="structure scss/load"></tal:content>
 
     <tal:notajax tal:condition="python:not ajax_load or ajax_include_head">
         <div tal:replace="structure provider:plone.htmlhead" />
@@ -55,30 +66,45 @@
         <meta name="viewport" content="width=device-width; initial-scale=0.6666; maximum-scale=1.0; minimum-scale=0.6666" />
         <meta name="generator" content="Plone - http://plone.org" />
     </tal:notajax>
-	
+
+    <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/vindula-api/static/js/md5-min.js"></script>
+    <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/vindula-api/static/js/vindula_all.js"></script>
+    <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/vindula-api/static/js/sockjs.min.js"></script>
+    <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/vindula-api/static/js/sockjs_utils.js"></script>
+
+	<script type="text/javascript"
+			tal:define="member context/@@plone_portal_state/member;"
+			tal:content="python: '''
+						$j(document).ready(function(){
+							$j('body').vindula(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
+							window.token = '%(token)s';
+                            window.url_notified_notification = '%(portal_url)s/vindula-api/social/manager/%(token)s/notification/';
+                            window.url_notified_message = '%(portal_url)s/vindula-api/social/manager/%(token)s/message/';
+						});
+					   ''' %{'username': member.getUserName(),'portal_url': context.portal_url(), 'token': session.get('user_token')}" ></script>
+
 </head>
 
 <body tal:define="isRTL portal_state/is_rtl;
                   sl python:plone_view.have_portlets('plone.leftcolumn', view);
                   sr python:plone_view.have_portlets('plone.rightcolumn', view);
                   body_class python:plone_view.bodyClass(template, view);
-                  sunburst_view python:context.restrictedTraverse('@@sunburstview');
+                  themevindula_view python:context.restrictedTraverse('@@themevindulaview');
 				  view_org context/OrgStruct_view;
 				  site_view python:context.restrictedTraverse('@@myvindula-conf-userpanel');
-				  
+
 				  key_vindula python:context.restrictedTraverse('@@check_vindulaKey', None);"
-    
+
 	tal:attributes="class python: body_class +' '+ str(view_org.id);
                     dir python:isRTL and 'rtl' or 'ltr'">
-    
-    <tal:dum tal:condition="key_vindula"> 
+
+    <tal:dum tal:condition="key_vindula">
        <tal:def define="dummy key_vindula/update" />
     </tal:dum>
-	
-	<div id="no-diazo" tal:condition="python: ajax_load and ajax_include_head" /> 
-	
-<div id="visual-portal-wrapper">
 
+	<div id="no-diazo" tal:condition="python: ajax_load and ajax_include_head" />
+
+<div id="visual-portal-wrapper">
         <div id="portal-top"
             class="row"
             i18n:domain="plone"
@@ -88,35 +114,55 @@
 </div>
         </div>
     <div id="portal-columns" class="row">
-    	
-        <div id="portal-column-content" class="cell" tal:attributes="class python:sunburst_view.getColumnsClass(view)">
+
+        <tal:notajax tal:condition="not:ajax_load">
+        <!--div id="portal-column-one"
+            class="cell width-1:4 position-0"
+            metal:define-slot="column_one_slot"
+            tal:condition="sl"
+            tal:attributes="class python:isRTL and 'cell width-1:4 position-3:4' or 'cell width-1:4 position-0'">
+            <metal:portlets define-slot="portlets_one_slot">
+                <tal:block replace="structure provider:plone.leftcolumn" />
+            </metal:portlets>
+        </div-->
+        <div id="portal-column-one"
+            class="columns large-3"
+            metal:define-slot="column_one_slot"
+            tal:condition="sl">
+            <metal:portlets define-slot="portlets_one_slot">
+                <tal:block replace="structure provider:plone.leftcolumn" />
+            </metal:portlets>
+        </div>
+        </tal:notajax>
+
+        <div id="portal-column-content" class="cell" tal:attributes="class python:themevindula_view.getColumnsClass(view)">
 			<div class="columnContRight">
 				<div class="topContCol shadowTpBt"></div>
 				<div class="columnMid">
 		            <div id="viewlet-above-content" tal:content="structure provider:plone.abovecontent" tal:condition="not:ajax_load" />
-		
+
 		            <metal:block define-slot="content">
 		                <div metal:define-macro="content"
 		                    tal:define="show_border context/@@plone/showEditableBorder; show_border python:show_border and not ajax_load"
 		                    tal:attributes="class python:show_border and 'documentEditable' or ''">
-		
+
 		                    <div id="edit-bar"
 		                        tal:condition="show_border"
 		                        tal:content="structure provider:plone.contentviews" />
-		
+
 		                    <div metal:use-macro="context/global_statusmessage/macros/portal_message">
 		                     Status message
 		                    </div>
-		
+
 		                    <metal:slot define-slot="body">
 		                        <div id="content">
-		
+
 		                            <metal:header define-slot="header" tal:content="nothing">
 		                            Visual Header
 		                            </metal:header>
-		
+
 		                            <metal:bodytext define-slot="main">
-		
+
 		                             <div id="viewlet-above-content-title" tal:content="structure provider:plone.abovecontenttitle" tal:condition="not:ajax_load" />
 		                             <metal:title define-slot="content-title">
 		                                 <metal:comment tal:content="nothing">
@@ -128,7 +174,7 @@
 		                                 </h1>
 		                             </metal:title>
 		                             <div id="viewlet-below-content-title" tal:content="structure provider:plone.belowcontenttitle" tal:condition="not:ajax_load" />
-		
+
 		                             <metal:description define-slot="content-description">
 		                                 <metal:comment tal:content="nothing">
 		                                     If you write a custom description always use
@@ -138,49 +184,54 @@
 		                                     Generic KSS Description. Is rendered with class="documentDescription".
 		                                 </div>
 		                             </metal:description>
-		
+
 		                             <div id="viewlet-above-content-body" tal:content="structure provider:plone.abovecontentbody" tal:condition="not:ajax_load" />
+
+                                     <div class="vd_access" tal:attributes="data_uid context/UID|nothing;
+                                                                            data_type context/portal_type|nothing"></div>
 		                             <div id="content-core">
 		                                 <metal:text define-slot="content-core" tal:content="nothing">
 		                                     Page body text
 		                                 </metal:text>
 		                             </div>
-		                             <div id="viewlet-below-content-body" tal:content="structure provider:plone.belowcontentbody" tal:condition="not:ajax_load" />
-		
+                                     <metal:text define-slot="below-content-body">
+		                                  <div id="viewlet-below-content-body" tal:content="structure provider:plone.belowcontentbody" tal:condition="not:ajax_load" />
+                                     </metal:text>
 		                            </metal:bodytext>
 		                        </div>
 		                    </metal:slot>
-		
+
 		                    <metal:sub define-slot="sub" tal:content="nothing">
 		                       This slot is here for backwards compatibility only.
 		                       Don't use it in your custom templates.
 		                    </metal:sub>
 		                </div>
 		            </metal:block>
-		            <div id="viewlet-below-content" tal:content="structure provider:plone.belowcontent" tal:condition="not:ajax_load" />
-					<div id="vindula-network-staticbar-viewlet-manager" tal:content="structure provider:vindula.network.staticbarviewletmanager" tal:condition="not:ajax_load" />
-		            
+		            <metal:text define-slot="below-content">
+                        <div id="viewlet-below-content" tal:content="structure provider:plone.belowcontent" tal:condition="not:ajax_load" />
+					</metal:text>
+
+                    <div id="vindula-network-staticbar-viewlet-manager" tal:content="structure provider:vindula.network.staticbarviewletmanager" tal:condition="not:ajax_load" />
+
 				</div>
 				<div class="shadowTpBt bottonContCol"></div>
 			</div>
         </div>
-		
-        <tal:notajax tal:condition="not:ajax_load">
-        <div id="portal-column-one"
-            class="cell width-1:4 position-0"
-            metal:define-slot="column_one_slot"
-            tal:condition="sl"
-            tal:attributes="class python:isRTL and 'cell width-1:4 position-3:4' or 'cell width-1:4 position-0'">
-            <metal:portlets define-slot="portlets_one_slot">
-                <tal:block replace="structure provider:plone.leftcolumn" />
-            </metal:portlets>
-        </div>
 
-        <div id="portal-column-two"
+        <tal:notajax tal:condition="not:ajax_load">
+        <!--div id="portal-column-two"
             class="cell width-1:4 position-3:4"
             metal:define-slot="column_two_slot"
             tal:condition="sr"
             tal:attributes="class python:isRTL and 'cell width-1:4 position-0' or 'cell width-1:4 position-3:4'">
+            <metal:portlets define-slot="portlets_two_slot">
+                <tal:block replace="structure provider:plone.rightcolumn" />
+            </metal:portlets>
+        </div-->
+        <div id="portal-column-two"
+            class="columns large-3"
+            metal:define-slot="column_two_slot"
+            tal:condition="sr">
             <metal:portlets define-slot="portlets_two_slot">
                 <tal:block replace="structure provider:plone.rightcolumn" />
             </metal:portlets>

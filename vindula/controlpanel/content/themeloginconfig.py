@@ -27,7 +27,7 @@ ThemeLoginConfig_schema =  ATDocumentSchema.copy() + Schema((
             description="Selecione o tipo da tela de login do portal.",
             format = 'radio',
         ),
-        vocabulary = [('classico', 'Login clássico'), ('grafico','Login gráfico'),],
+        vocabulary = [('classico', 'Login clássico'), ('grafico','Login gráfico'), ('customizado','Login customizado'),],
         default='clássico',
     ),
     
@@ -36,10 +36,19 @@ ThemeLoginConfig_schema =  ATDocumentSchema.copy() + Schema((
         default=True,
         widget=BooleanWidget(
             label="Ativar a função de redirecionar",
-            description='Caso selecionado, a função de redirecionamento é ativada.',
+            description='Quando selecionado, a função de redirecionamento é ativada.',
         ),
     ),
-    
+
+    BooleanField(
+        name='ativaRecuperaSenha',
+        default=True,
+        widget=BooleanWidget(
+            label="Ativar a função de recuperação de senha",
+            description='Quando selecionado, o link "Esqueci minha Senha" é exibido.',
+        ),
+    ),
+
     #Schemata Layout
     
     ReferenceField('imagemBackground',
@@ -98,8 +107,18 @@ ThemeLoginConfig_schema =  ATDocumentSchema.copy() + Schema((
         ),
         schemata = 'Layout',
         default='1'
-    ),  
-                                                        
+    ),
+    
+    LinesField(
+        name = 'customCSS',
+        widget=LinesWidget(
+            label='Folha de estilo (CSS) customizado',
+            description="Caso selecionado a opção Login customizado isira a folha de estilo (CSS) no campo abaixo",
+            rows=10,
+        ),
+        schemata = 'Layout',
+    ),
+    
 ))
 
 finalizeATCTSchema(ThemeLoginConfig_schema, folderish=False)
@@ -168,4 +187,3 @@ class MyvindulaConfigLogin(grok.View):
             return control.getAtivaRedirect()
         else:
             return True
-        
