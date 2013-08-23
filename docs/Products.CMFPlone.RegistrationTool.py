@@ -246,7 +246,7 @@ class RegistrationTool(PloneBaseTool, BaseTool):
 
     security.declarePublic('mailPassword')
     def mailPassword(self, login, REQUEST):
-    import smtplib
+        import smtplib
         from email.MIMEMultipart import MIMEMultipart
         from email.MIMEText import MIMEText
         from email.MIMEBase import MIMEBase
@@ -287,9 +287,8 @@ class RegistrationTool(PloneBaseTool, BaseTool):
 
         encoding = getUtility(ISiteRoot).getProperty('email_charset', 'utf-8')
     
-    mail_text = self.mail_password_template(
-            self, REQUEST, member=member, reset=reset,
-            password=member.getPassword(), charset=encoding)
+        mail_text = self.mail_password_template(self, REQUEST, member=member, reset=reset,
+                                                password=member.getPassword(), charset=encoding)
         # The mail headers are not properly encoded we need to extract
         # them and let MailHost manage the encoding.
         if isinstance(mail_text, unicode):
@@ -299,22 +298,21 @@ class RegistrationTool(PloneBaseTool, BaseTool):
         m_to = message_obj['To']
         m_from = message_obj['From']
         
-    message_MIME = MIMEMultipart('related')
-    message_MIME['Subject'] = subject
-    message_MIME['From'] = m_from
-    message_MIME['To'] = m_to
-    message_MIME.preamble = 'This is a multi-part message in MIME format.'
-    message_MIME.attach(MIMEText(message_obj.get_payload(), 'html', 'utf-8'))
-    
-    host = getToolByName(self, 'MailHost')
+        message_MIME = MIMEMultipart('related')
+        message_MIME['Subject'] = subject
+        message_MIME['From'] = m_from
+        message_MIME['To'] = m_to
+        message_MIME.preamble = 'This is a multi-part message in MIME format.'
+        message_MIME.attach(MIMEText(message_obj.get_payload(), 'html', 'utf-8'))
+        
+        host = getToolByName(self, 'MailHost')
         try:
-            host.send(message_MIME.as_string(), m_to, m_from, subject=subject,
-                      charset=encoding)
-    #host = getToolByName(self, 'MailHost')
-        #try:
-        #    host.send(mail_text, m_to, m_from, subject=subject,
-        #              charset=encoding)
-
+            host.send(message_MIME.as_string(), m_to, m_from, subject=subject, charset=encoding)
+        #host = getToolByName(self, 'MailHost')
+            #try:
+            #    host.send(mail_text, m_to, m_from, subject=subject,
+            #              charset=encoding)
+    
             return self.mail_password_response(self, REQUEST)
         except SMTPRecipientsRefused:
             # Don't disclose email address on failure
