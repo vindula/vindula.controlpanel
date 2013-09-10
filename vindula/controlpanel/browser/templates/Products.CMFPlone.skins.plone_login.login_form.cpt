@@ -21,12 +21,12 @@
 	    <metal:block fill-slot="top_slot"
 	                 tal:define="dummy python:request.set('disable_border',1);
 	                             disable_column_one python:request.set('disable_plone.leftcolumn',1);
-	                             disable_column_two python:request.set('disable_plone.rightcolumn',1);" />
+	                             disable_column_two python:request.set('disable_plone.rightcolumn',1);">
+       </metal:block>
 	</head>
 	
 	<body>
 	    <metal:main fill-slot="main">
-	
 	    <div id="content-core">
 	        <metal:login define-macro="login"
 	            tal:define="auth nocall:context/acl_users/credentials_cookie_auth|context/cookie_authentication|nothing;

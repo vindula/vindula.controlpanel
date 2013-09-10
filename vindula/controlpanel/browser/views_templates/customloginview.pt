@@ -17,19 +17,20 @@
             tal:attributes="src string:${context/portal_url}/login.js">
     </script>
 	
-	<link tal:condition="python:config_login_obj.getTipoLogin() == 'grafico'" type="text/css" rel="stylesheet" tal:attributes="href string:${context/portal_url|nothing}/++resource++vindula.controlpanel/custom_login.css">
+	<link tal:condition="python:config_login_obj.getTipoLogin() == 'grafico'" type="text/css" rel="stylesheet" 
+          tal:attributes="href string:${context/portal_url|nothing}/++resource++vindula.controlpanel/custom_login.css">
     
     <style type="text/css" rel="stylesheet"
            tal:content="structure view_login/getEstiloLoginCustomizado"
            tal:condition="python:config_login_obj.getTipoLogin() == 'customizado'">
     </style>
-	
 </head>
 
 <body tal:attributes="style view_login/getTypeBackground">
-   
 	<metal:login define-macro="login_custom"
-		            tal:define="auth nocall:context/acl_users/credentials_cookie_auth|context/cookie_authentication|nothing;
+		            tal:define="config_obj view_login/getThemeConfObj;
+                                config_login_obj view_login/getLoginConfObj;
+                                auth nocall:context/acl_users/credentials_cookie_auth|context/cookie_authentication|nothing;
 		                        isURLInPortal nocall:context/portal_url/isURLInPortal;
 		                        login_template_ids python:'login login_success login_password login_failed login_form logged_in logout logged_out registered mail_password mail_password_form register require_login member_search_results pwreset_finish localhost'.split();
 		                        came_from request/came_from|request/HTTP_REFERER|nothing;
@@ -65,7 +66,7 @@
 								ativaRecuperaSenha python:config_login_obj.ativaRecuperaSenha;">
 								
 		<link tal:attributes="href string:${context/absolute_url|nothing}/custom-login-dynamic.css" media="screen" type="text/css" rel="stylesheet">
-		
+		<h1 tal:content="options/state"></h1>
 		<div class="centered superIndex" id="content-core">
 			<tal:cond condition="config_login_obj">
 				<img class="bg" tal:condition="python: config_login_obj.getPosicaoImagem() == 'estender'" 
@@ -98,7 +99,7 @@
 	                  tal:condition="use_normal">
 					<div class="loginBox boxBorder">
 		                <div id="login-form">
-		
+		  
 		                    <input type="hidden"
 		                        name="came_from"
 		                        value=""

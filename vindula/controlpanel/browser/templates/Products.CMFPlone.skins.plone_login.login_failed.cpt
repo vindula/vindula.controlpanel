@@ -1,8 +1,6 @@
 <tal:def define="view_login python: context.restrictedTraverse('@@vindula-custom-login');
                  config_login_obj view_login/getLoginConfObj;">
     
-    <h1 tal:content="config_login_obj/getTipoLogin"></h1>    
-	
     <tal:cond condition="view_login/getLoginGrafico">
 		<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
 		      xmlns:tal="http://xml.zope.org/namespaces/tal"
@@ -16,7 +14,8 @@
 						tal:attributes="src string:${context/portal_url}/login.js">
 				</script>
 			
-				<link tal:condition="python:config_login_obj.getTipoLogin() == 'grafico'" type="text/css" rel="stylesheet" tal:attributes="href string:${context/portal_url|nothing}/++resource++vindula.controlpanel/custom_login.css">
+				<link tal:condition="python:config_login_obj.getTipoLogin() == 'grafico'" type="text/css" rel="stylesheet" 
+                      tal:attributes="href string:${context/portal_url|nothing}/++resource++vindula.controlpanel/custom_login.css">
     
                 <style type="text/css" rel="stylesheet"
                        tal:content="structure view_login/getEstiloLoginCustomizado"
