@@ -42,6 +42,23 @@ ThemeConfig_schema =  ATDocumentSchema.copy() + Schema((
         ),
     ),
 
+    StringField(
+        name='tipo_buscaPortal',
+        widget=SelectionWidget(
+            label=_(u"Selecione o tipo de busca para o portal"),
+            description=_(u"Selecione o layout da busca."),
+            label_msgid='vindula_tile_label_tipo_buscaPortal',
+            description_msgid='vindula_tile_help_tipo_buscaPortal',
+            i18n_domain='vindula_tile',
+            format='select',
+        ),
+        vocabulary=[("search_01",_(u"Busca de 4 áreas")),
+                    ("search_02", _(u"Busca de 2 áreas")),
+                   ],
+        default='search_01',
+        required=True,
+    ),
+
     BooleanField(
         name='ativa_menudropdown_nivel2',
         default=False,

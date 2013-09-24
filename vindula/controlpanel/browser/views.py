@@ -481,7 +481,7 @@ class ManageConfigBuscaView(grok.View):
             control = getSite()['control-panel-objects']
             if 'ThemeConfig' in control.keys():
                 conf_theme = control['ThemeConfig']
-                return conf_theme.getAtiva_buscaAnonima()
+                return conf_theme
             else:
                 return None
         else:
@@ -490,17 +490,51 @@ class ManageConfigBuscaView(grok.View):
 
     def checkSearch(self):
         conf = self.getConfigurador()
+
         if conf:
-            return True
+            if conf.getAtiva_buscaAnonima():
+                return True
+
+            else:
+                member = getSite().portal_membership.getAuthenticatedMember()
+                #Caso de intranet restrita ao publico
+                if member.getUserName() != 'Anonymous User':
+                    #user Logado
+                    return True
+                else:
+                    #user Anonimo
+                    return False
         else:
-            member = getSite().portal_membership.getAuthenticatedMember()
-            #Caso de intranet restrita ao publico
-            if member.getUserName() != 'Anonymous User':
-                #user Logado
+            return True
+
+    def _getTypeSearch(self):
+        conf = self.getConfigurador()
+        if conf:
+            type_search = conf.getTipo_buscaPortal()
+            return type_search
+
+        return None
+
+    def checkType01(self):
+        type_search = self._getTypeSearch()
+        if type_search:
+            if type_search == 'search_01':
                 return True
             else:
-                #user Anonimo
                 return False
+        else:
+            return True
+
+    def checkType02(self):
+        type_search = self._getTypeSearch()
+        if type_search:
+            if type_search == 'search_02':
+                return True
+            else:
+                return False
+        else:
+            return False
+
 
     def checkSearchRediret(self):
         conf = self.checkSearch()
