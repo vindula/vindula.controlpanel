@@ -107,6 +107,14 @@ class IVindulaConfigAll(form.Schema):
                 default=True
                 )
 
+    ativa_syncLdap2myvindula = schema.Bool(
+                title=_(u'label_ativa_syncLdap2myvindula', default=u'Ativar a sincronisação dos dados do AD/Ldap com o MyVindula'),
+                description=_(u'help_ativa_syncLdap2myvindula', default=u'Caso selecionado, ao usuario logar na intranet seu perfil do servidor Ldap/AD\
+                                                                          sera sincronizados com os dados do perfil do usuario do MyVindula.'),
+                default=False
+                )
+
+
     modelo_holerite = schema.Choice(
                 title=_(u'label_modelo_holerite', default=u'Selecione o modelo de holerite'),
                 description=_(u'help_modelo_holerite', default=u'Selecione qual o modelo de holerite que sera utilizado pela intranet'),
@@ -255,7 +263,13 @@ class VindulaConfiguration(grok.View):
             return control.ativa_gravatar
         else:
             return True        
-        
+    
+    def check_ativa_syncLdap2myvindula(self):
+        if self.configurador():
+            control = self.configurador()
+            return control.ativa_syncLdap2myvindula
+        else:
+            return False
         
     def check_myvindulaprivate_isanonymous(self):
         member = getSite().portal_membership
