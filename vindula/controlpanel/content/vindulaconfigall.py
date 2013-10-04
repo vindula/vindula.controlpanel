@@ -106,6 +106,12 @@ class IVindulaConfigAll(form.Schema):
                                                                  Esta funcionalidade requer conectividade do Vindula com o site gravatar.com.'),
                 default=True
                 )
+    
+    ativa_joboffer = schema.Bool(
+                title=_(u'label_ativa_joboffer', default=u'Ativar a funcionalidade de Recrutamento Interno'),
+                description=_(u'help_ativa_joboffer', default=u'Caso selecionado, ativa a funcionalidade de Recrutamento Interno no Vindula'),
+                default=False
+                )
 
     modelo_holerite = schema.Choice(
                 title=_(u'label_modelo_holerite', default=u'Selecione o modelo de holerite'),
@@ -264,6 +270,13 @@ class VindulaConfiguration(grok.View):
             #executar redirect ao login
             return True
         return False
+        
+    def check_joboffer(self):
+        if self.configurador():
+            control = self.configurador()
+            return control.ativa_joboffer
+        else:
+            return True
         
     def select_modelo_holerite(self):
         if self.configurador():
