@@ -9,6 +9,7 @@
         </metal:override>
 		
 		<script type="text/javascript" tal:attributes="src string:${context/portal_url|nothing}/++resource++vindula.controlpanel/js/controlpanel_newtemplate.js" />
+        <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/vindula-api/static/js/vindula_theme.js"></script>
 		<link type="text/css" rel="stylesheet" tal:attributes="href string:${context/portal_url|nothing}/++resource++vindula.controlpanel/style/controlpanel_newtemplate.css" />
     </metal:block>
 
