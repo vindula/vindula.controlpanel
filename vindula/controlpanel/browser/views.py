@@ -789,8 +789,8 @@ class ShowAllRolesUsersView(grok.View):
     grok.name('usergroup-userprefs-all')
     
 class EditVindulaColorsView(grok.View):
-    grok.context(Interface)
-    grok.require('zope2.View')
+    grok.context(INavigationRoot)
+    grok.require('cmf.ManagePortal')
     grok.name('edit-vindula-colors')
 
 #Criacao do formulário de adicionar usuários do plone customizada
