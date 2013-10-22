@@ -200,6 +200,16 @@ ThemeConfig_schema =  ATDocumentSchema.copy() + Schema((
         vocabulary = [('no-repeat', 'Centralizar'), ('repeat', 'Repetir na página toda'), ('repeat-x', 'Repetir horizontalmente'), ('repeat-y', 'Repetir verticamente'),],
         default='no-repeat',
         schemata = 'Layout'
+    ),
+    
+    BooleanField(
+        name='desativaBackground',
+        default=False,
+        widget=BooleanWidget(
+            label="Desativa o background do portal",
+            description='Caso selecionado, irá desativar o background do portal prevalencendo assim somente a cor do fundo definida.',
+        ),
+        schemata = 'Layout'
     ),                                                                 
     
 #    StringField(
@@ -488,10 +498,12 @@ class ThemeConfigCssView(grok.View):
         
         
         #-- Background Portal --#
-        if config_padrao.getImageBackground():
-            D['urlBG'] = obj.getImageBackground().absolute_url()
-        else:
-            D['urlBG'] = '/++resource++vindula.themedefault/images/bkgs/bk_body.jpg'
+        D['urlBG'] = ''
+        if not config_padrao.getDesativaBackground():
+            if config_padrao.getImageBackground():
+                D['urlBG'] = obj.getImageBackground().absolute_url()
+            else:
+                D['urlBG'] = '/++resource++vindula.themedefault/images/bkgs/bk_body.jpg'
 
         D['posicaoBG'] = obj.getPosicaoImageBackground() or config_padrao.getPosicaoImageBackground() or 'no-repeat'
 
