@@ -66,6 +66,20 @@ VindulaCategories_schema =  schemata.ATContentTypeSchema.copy() + Schema((
         required=False,
     ),
     
+    LinesField(
+        name='profile_layout',
+        widget=SelectionWidget(
+            label=_(u"Selecione o layout da área de perfil"),
+            description = _(u'Selecione qual layout será mostrado na área de perfil do usuário.'),
+            label_msgid='vindula_controlpanel_label_profile_layout',
+            description_msgid='vindula_controlpanel_profile_layout',
+            i18n_domain='vindula_controlpanel',
+            format='select',
+        ),
+        vocabulary=[('default', 'Layout padrão'),('simple', 'Layout simples')],
+        required=False,
+    ),
+    
     ReferenceField('folder_image',
         multiValued=False,
         allowed_types=('Folder', 'VindulaFolder'),
@@ -193,10 +207,8 @@ class VindulaCategories(base.ATCTContent):
     def listToOrderBy(self):
         tool = getToolByName(self, 'portal_atct')
         listFields = tool.getEnabledFields()
-        fields = [ (str(field), field[1])
-                   for field in listFields
-                   if self.validateAddCriterion(field[0], 'ATSortCriterion') and field[0] not in ['effective', 'sortable_title']]
-        
+        fields = [ (str(field), field[1]) for field in listFields if self.validateAddCriterion(field[0], 'ATSortCriterion') and field[0] not in ['effective', 'sortable_title']]
+
         return fields
     
     def criteriaByIndexId(self, indexId):
