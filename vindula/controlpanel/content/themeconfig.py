@@ -517,12 +517,6 @@ class ThemeConfigCssView(grok.View):
 
         D['posicaoBG'] = obj.getPosicaoImageBackground() or config_padrao.getPosicaoImageBackground() or 'no-repeat'
         
-        #Ocultando a busca do footer
-        D['displaySearchFooter'] = 'none'
-        if config_padrao.getAtiva_busca_footer():
-            D['displaySearchFooter'] = 'block'
-            
-            
         return D
      
     def getConfLayout(self):
@@ -549,14 +543,11 @@ class ThemeConfigCssView(grok.View):
         #CONFIGURACAO DO PORTAL
         params['urlBG']     = config.get('urlBG')
         params['posicaoBG'] = config.get('posicaoBG')
-        params['displaySearchFooter'] = config.get('displaySearchFooter')
         
         css = """
             .%(id)s { background-image: url("%(urlBG)s"); } \n
             .%(id)s { background-repeat: %(posicaoBG)s; }\n
             .%(id)s { background-position: 50%% 0; }\n
-            
-            .%(id)s #footer #portal-searchbox { display: %(displaySearchFooter)s; }\n
         """ % params
  
         
