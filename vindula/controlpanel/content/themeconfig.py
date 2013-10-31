@@ -97,6 +97,15 @@ ThemeConfig_schema =  ATDocumentSchema.copy() + Schema((
             description='A imagem selecionada será exibida no topo do portal.'
         ),
     ),
+    
+    BooleanField(
+        name='ativa_busca_footer',
+        default=True,
+        widget=BooleanWidget(
+            label="Ativar caixa de busca no rodapé",
+            description='Ativa a caixa de busca no rodapé do portal.',
+        ),
+    ),
                                                                    
 #    ReferenceField('logoRodape',
 #        multiValued=0,
@@ -431,6 +440,7 @@ invisivel = {'view':'invisible','edit':'invisible',}
 ThemeConfig_schema['text'].widget.label = 'Texto do Rodapé'
 ThemeConfig_schema['text'].widget.description = 'Texto a ser exibido no rodapé do portal.'
 ThemeConfig_schema.moveField('text', after='logoCabecalho')
+ThemeConfig_schema.moveField('ativa_busca_footer', after='text')
 ThemeConfig_schema['title'].widget.visible = invisivel
 
 # Dates
@@ -506,7 +516,13 @@ class ThemeConfigCssView(grok.View):
                 D['urlBG'] = '/++resource++vindula.themedefault/images/bkgs/bk_body.jpg'
 
         D['posicaoBG'] = obj.getPosicaoImageBackground() or config_padrao.getPosicaoImageBackground() or 'no-repeat'
-
+        
+        #Ocultando a busca do footer
+        D['displaySearchFooter'] = 'none'
+        if config_padrao.getAtiva_busca_footer():
+            D['displaySearchFooter'] = 'block'
+            
+            
         return D
      
     def getConfLayout(self):
@@ -533,12 +549,14 @@ class ThemeConfigCssView(grok.View):
         #CONFIGURACAO DO PORTAL
         params['urlBG']     = config.get('urlBG')
         params['posicaoBG'] = config.get('posicaoBG')
+        params['displaySearchFooter'] = config.get('displaySearchFooter')
         
-
         css = """
             .%(id)s { background-image: url("%(urlBG)s"); } \n
             .%(id)s { background-repeat: %(posicaoBG)s; }\n
             .%(id)s { background-position: 50%% 0; }\n
+            
+            .%(id)s #footer #portal-searchbox { display: %(displaySearchFooter)s; }\n
         """ % params
  
         
