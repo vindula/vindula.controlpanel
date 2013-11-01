@@ -51,6 +51,11 @@
     <link tal:attributes="href string:${context/portal_url|nothing}/++resource++collective.flowplayer.css/flowplayer.css" id="new-theme" media="screen" type="text/css" rel="stylesheet">
     <link tal:attributes="href string:${context/portal_url|nothing}/++resource++collective.flowplayer.css/flowplayer-horizontal.css" id="new-theme" media="screen" type="text/css" rel="stylesheet">
     <link tal:attributes="href string:${context/portal_url|nothing}/++resource++fl-play.css" id="new-theme" media="screen" type="text/css" rel="stylesheet">
+    
+    <link tal:attributes="href string:${context/portal_url|nothing}/solgemafullcalendar.css" id="new-theme" media="screen" type="text/css" rel="stylesheet">
+    <link tal:attributes="href string:${context/portal_url|nothing}/++resource++collective.js.fullcalendar/fullcalendar.css" id="new-theme" media="screen" type="text/css" rel="stylesheet">
+    <link tal:attributes="href string:${context/portal_url|nothing}/++resource++collective.js.fullcalendar/fullcalendar.print.css" id="new-theme" media="print" type="text/css" rel="stylesheet">
+    <link tal:attributes="href string:${context/portal_url|nothing}/collective.js.jqueryui.custom.min.css" id="new-theme" media="screen" type="text/css" rel="stylesheet">
 
     <tal:content tal:define="scss nocall: context/@@load-scss;"
                  content="structure scss/load"></tal:content>
