@@ -114,6 +114,13 @@ class IVindulaConfigAll(form.Schema):
                 default=False
                 )
 
+    ativa_yearBirth = schema.Bool(
+                title=_(u'label_ativa_yearBirth', default=u'Ativa a ocultação do ano de aniversario dos usuarios'),
+                description=_(u'help_ativa_yearBirth', default=u'Caso selecionado, não será exibido o ano de nascimento do usuário nas seguintes áreas:\
+                                                                          Portlet Aniversariantes,Perfil, Listagem dos Aniversariantes.'),
+                default=False
+                )
+
 
     modelo_holerite = schema.Choice(
                 title=_(u'label_modelo_holerite', default=u'Selecione o modelo de holerite'),
@@ -278,6 +285,13 @@ class VindulaConfiguration(grok.View):
             #executar redirect ao login
             return True
         return False
+
+    def check_ativa_yearBirth(self):
+        if self.configurador():
+            control = self.configurador()
+            return control.ativa_yearBirth
+        else:
+            return False        
         
     def select_modelo_holerite(self):
         if self.configurador():
