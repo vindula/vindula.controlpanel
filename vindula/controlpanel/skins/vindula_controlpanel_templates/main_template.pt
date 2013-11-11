@@ -52,6 +52,9 @@
     <link tal:attributes="href string:${context/portal_url|nothing}/++resource++collective.flowplayer.css/flowplayer-horizontal.css" id="new-theme" media="screen" type="text/css" rel="stylesheet">
     <link tal:attributes="href string:${context/portal_url|nothing}/++resource++fl-play.css" id="new-theme" media="screen" type="text/css" rel="stylesheet">
 
+    <link rel="stylesheet" type="text/css" media="screen" id="new-theme"
+          tal:attributes="href string:${context/portal_url|nothing}/++resource++vindula.content/js/galleria/themes/twelve/galleria.twelve.css">      
+
     <tal:content tal:define="scss nocall: context/@@load-scss;"
                  content="structure scss/load"></tal:content>
 
