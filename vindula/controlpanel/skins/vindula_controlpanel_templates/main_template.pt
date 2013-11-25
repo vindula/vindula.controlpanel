@@ -60,6 +60,9 @@
     <link rel="stylesheet" type="text/css" media="screen" id="new-theme"
           tal:attributes="href string:${context/portal_url|nothing}/++resource++vindula.content/js/galleria/themes/twelve/galleria.twelve.css">      
 
+    <link rel="stylesheet" type="text/css" media="screen" id="new-theme"
+          tal:attributes="href string:${context/portal_url|nothing}/++resource++plone.formwidget.contenttree/contenttree.css">
+
     <tal:content tal:define="scss nocall: context/@@load-scss;"
                  content="structure scss/load"></tal:content>
 
