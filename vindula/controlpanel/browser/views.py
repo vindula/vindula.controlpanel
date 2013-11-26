@@ -792,9 +792,13 @@ class EditVindulaColorsView(grok.View):
     grok.context(INavigationRoot)
     grok.require('cmf.ManagePortal')
     grok.name('edit-vindula-colors')
+    
+class WebServiceControlPanelView(grok.View):
+    grok.context(ISiteRoot)
+    grok.require('cmf.ManagePortal')
+    grok.name('ws-control-panel')
 
 #Criacao do formulário de adicionar usuários do plone customizada
-
 class IAddUserSchema(Interface):
     pass
 

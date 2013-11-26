@@ -86,6 +86,7 @@
     <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/vindula-api/static/js/vindula_all.js"></script>
     <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/vindula-api/static/js/vindula_rh.js"></script>
     <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/vindula-api/static/js/vindula_ouvidoria.js"></script>
+    <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/vindula-api/static/js/vindula_custom.js"></script>
     <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/vindula-api/static/js/sockjs.min.js"></script>
     <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/vindula-api/static/js/sockjs_utils.js"></script>
 
@@ -101,8 +102,12 @@
                                 $j('body').ouvidoria(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
                             }catch(err){console.log('Erro tentando incializar o js de Ouvidoria :(')}
                             try{
+                                $j('body').custom(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
+                            }catch(err){console.log('Erro tentando incializar o js do Custom :(')}
+                            try{
                                 $j('body').theme(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
                             }catch(err){console.log('Erro tentando incializar o js de Tema :(')}
+                            
                             window.token = '%(token)s';
                             window.url_notified_notification = '%(portal_url)s/vindula-api/social/manager/%(token)s/notification/';
                             window.url_notified_message = '%(portal_url)s/vindula-api/social/manager/%(token)s/message/';
