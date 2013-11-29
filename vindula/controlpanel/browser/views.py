@@ -874,10 +874,13 @@ class AddUserForm(BaseRegistrationForm):
 
 
     def unicode(self,valor):
-        if type(valor) == unicode:
-            return valor
+        if valor:
+            if type(valor) == unicode:
+                return valor
+            else:
+                return unicode(valor,'utf-8')
         else:
-            return unicode(valor,'utf-8')
+            return u''
 
 class ContentMenu(BrowserView):
     def getMenuItems(self):
