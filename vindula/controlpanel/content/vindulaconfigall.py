@@ -113,6 +113,14 @@ class IVindulaConfigAll(form.Schema):
                 default=False
                 )
 
+    ativa_context_biblioteca = schema.Bool(
+                title=_(u'label_ativa_context_biblioteca', default=u'Ativar a funcionalidade de Contexto na Biblioteca'),
+                description=_(u'help_ativa_context_biblioteca', default=u'Caso selecionado, ativa a funcionalidade de buscar\
+                                                                           itens para a biblioteca somente no contexto'),
+                default=False
+                )
+
+
     modelo_holerite = schema.Choice(
                 title=_(u'label_modelo_holerite', default=u'Selecione o modelo de holerite'),
                 description=_(u'help_modelo_holerite', default=u'Selecione qual o modelo de holerite que sera utilizado pela intranet'),
@@ -277,6 +285,13 @@ class VindulaConfiguration(grok.View):
             return control.ativa_joboffer
         else:
             return True
+
+    def check_context_biblioteca(self):
+        if self.configurador():
+            control = self.configurador()
+            return control.ativa_context_biblioteca
+        else:
+            return False
         
     def select_modelo_holerite(self):
         if self.configurador():
