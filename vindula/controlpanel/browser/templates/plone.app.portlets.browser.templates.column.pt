@@ -1,6 +1,6 @@
 <tal:block repeat="portlet options/portlets">
 
-    <tal:wrapper define="global wrapper_class python: portlet['name']==u'vindula-carrega-tile' and 'tileportletWrapper' or 'portletWrapper'"></tal:wrapper>
+    <tal:wrapper define="global wrapper_class python: u'vindula-carrega-tile' in portlet['name'] and 'tileportletWrapper' or 'portletWrapper'"></tal:wrapper>
 
     <div tal:attributes="id string:portletwrapper-${portlet/hash};
                          class string:${wrapper_class} kssattr-portlethash-${portlet/hash};"
