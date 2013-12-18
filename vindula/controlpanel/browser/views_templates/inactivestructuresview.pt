@@ -1,0 +1,55 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+         xmlns:tal="http://xml.zope.org/namespaces/tal"
+         xmlns:metal="http://xml.zope.org/namespaces/metal"
+         xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+         lang="en"
+         metal:use-macro="context/prefs_main_template/macros/master"
+         i18n:domain="plone">
+
+  <head>
+  </head>
+  <body>
+    <metal:main fill-slot="prefs_configlet_content">
+        <div id="inactive-structures"
+             tal:define="structures view/getInactiveStructures">
+                 
+            <h1>Lista das unidades organizacionais inativas</h1>
+            <h5 class="subheader">Lista as unidades organizacionais que foram removidas pelo Web Service porém ainda estão cadastradas no Vindula.</h5>
+            
+            <tal:cond condition="structures">
+                <table class="listing blue-head" width="100%">
+                    <thead>
+                        <tr>
+                            <th>
+                                Título
+                            </th>
+                            <th>
+                                Sigla
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tal:rep repeat="structure structures">
+                            <tr>
+                                <td>
+                                    <a tal:attributes="href structure/absolute_url|nothing;"
+                                        tal:content="structure/Title"></a>
+                                </td>
+                                <td>
+                                    <a tal:attributes="href structure/absolute_url|nothing;"
+                                        tal:content="structure/getSiglaunidade"></a>
+                                </td>
+                            </tr>
+                        </tal:rep>
+                    </tbody>
+                </table>                
+            </tal:cond>
+            
+            <tal:cond condition="not:structures">
+                <h3>Não existe nenhuma estrutura inativa no Vindula.</h3>
+            </tal:cond>
+
+        </div>
+    </metal:main>
+  </body>
+</html>

@@ -43,6 +43,7 @@ from copy import copy
 from vindula.myvindula.models.dados_funcdetail import ModelsDadosFuncdetails
 # from vindula.myvindula.registration import SchemaFunc
 from vindula.content.content.interfaces import IVindulaNews
+from vindula.content.models.content import ModelsContent
 
 import pkg_resources
 
@@ -797,6 +798,36 @@ class WebServiceControlPanelView(grok.View):
     grok.context(ISiteRoot)
     grok.require('cmf.ManagePortal')
     grok.name('ws-control-panel')
+
+#Visao de unidades INATIVAS, ou seja unidades que existem no Plone porém foi excluida no Django
+class InactiveStructuresView(grok.View):
+    grok.context(ISiteRoot)
+    grok.require('cmf.ManagePortal')
+    grok.name('inactive-structures')
+    
+    def getInactiveStructures(self):
+        data =  ModelsContent.getAllByContentType(type='OrganizationalStructure', deleted=True)
+        p_catalog = getToolByName(self.context, 'portal_catalog')
+        items = []
+        UID_list = []
+
+        for item in data:
+            if item.uid not in UID_list:
+                UID_list.append(item.uid)
+                
+        if UID_list:
+            items = p_catalog(porta_type='OrganizationalStructure',
+                              UID=UID_list, 
+                              sort_on='sortable_title', 
+                              sort_order='ascending')
+            
+            items = [i.getObject() for i in items]
+            
+        items = []
+        
+        return items
+        
+    
 
 #Criacao do formulário de adicionar usuários do plone customizada
 class IAddUserSchema(Interface):
