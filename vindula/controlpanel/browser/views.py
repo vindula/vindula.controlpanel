@@ -821,6 +821,7 @@ class InactiveStructuresView(grok.View):
                               sort_on='sortable_title', 
                               sort_order='ascending')
             
+            #Garantindo que irá retornar somente tipos OrganizationalStructure, pois o catalog pode trazer conteudos dentro de unidades organizacionais
             items = [i.getObject() for i in items if i.getObject().portal_type == 'OrganizationalStructure']
         
         return items
