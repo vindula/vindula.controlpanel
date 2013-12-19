@@ -821,7 +821,7 @@ class InactiveStructuresView(grok.View):
                               sort_on='sortable_title', 
                               sort_order='ascending')
             
-            items = [i.getObject() for i in items]
+            items = [i.getObject() for i in items if i.getObject().portal_type == 'OrganizationalStructure']
         
         return items
 
