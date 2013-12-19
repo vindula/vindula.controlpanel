@@ -822,12 +822,9 @@ class InactiveStructuresView(grok.View):
                               sort_order='ascending')
             
             items = [i.getObject() for i in items]
-            
-        items = []
         
         return items
-        
-    
+
 
 #Criacao do formulário de adicionar usuários do plone customizada
 class IAddUserSchema(Interface):
