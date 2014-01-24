@@ -119,6 +119,13 @@ class IVindulaConfigAll(form.Schema):
                                                                            itens para a biblioteca somente no contexto'),
                 default=False
                 )
+    
+    ativa_cargo_modais = schema.Bool(
+                title=_(u'label_ativa_cargo_modais', default=u'Ativar a funcionalidade de exibir o cargo nos modais'),
+                description=_(u'help_ativa_context_biblioteca', default=u'Caso selecionado, ativa a funcionalidade de exibir\
+                                                                           o cargo do perfil do usuário nos modais.'),
+                default=False
+                )
 
 
     modelo_holerite = schema.Choice(
@@ -290,6 +297,13 @@ class VindulaConfiguration(grok.View):
         if self.configurador():
             control = self.configurador()
             return control.ativa_context_biblioteca
+        else:
+            return False
+        
+    def check_cargo_modais(self):
+        if self.configurador():
+            control = self.configurador()
+            return control.ativa_cargo_modais
         else:
             return False
         
