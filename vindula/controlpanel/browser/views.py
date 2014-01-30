@@ -72,6 +72,11 @@ class ManageContentTagsView(grok.View):
     grok.context(INavigationRoot)
     grok.require('cmf.ManagePortal')
     grok.name('manage-content-tags')
+    
+class ManageTagsView(grok.View):
+    grok.context(INavigationRoot)
+    grok.require('cmf.ManagePortal')
+    grok.name('manage-tags')
 
 class VindulaFinderUploadView(Finder):
     """ Custom Finder class for widget """
