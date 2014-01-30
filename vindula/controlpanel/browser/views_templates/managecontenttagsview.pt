@@ -1,19 +1,26 @@
-<html metal:use-macro="here/prefs_main_template/macros/master">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone">
+<head>
+    <metal:block fill-slot="top_slot"
+                 tal:define="dummy python:request.set('disable_border',1);
+                             disable_column_one python:request.set('disable_plone.leftcolumn',1);
+                             disable_column_two python:request.set('disable_plone.rightcolumn',1);" />
+</head>
 
-    <body>
-        <div metal:fill-slot="prefs_configlet_content"
-             tal:define="session request/SESSION|python:{}">
-
-            <div class="vd_manage_content_tags" >
-                <span id="1defff85f1238d98b8ea783c62ce" class="new_manage_content_tags">
-                    <iframe frameborder="0" scrolling="no" class="manage_content_tags"
-                            tal:attributes="src string:${context/portal_url}/vindula-api/content/manage_content_tags/${session/user_token|nothing}?iframe_id=1defff85f1238d98b8ea783c62ce"
-                            height="0" width="100%" id="1defff85f1238d98b8ea783c62ce">
-                    </iframe>
-                </span>
-            </div>
-
-
+<body>
+    <div metal:fill-slot="body" id="content"tal:define="session request/SESSION|python:{}">
+        <div class="vd_manage_content_tags" >
+            <span id="1defff85f1238d98b8ea783c62ce" class="new_manage_content_tags">
+                <iframe frameborder="0" scrolling="no" class="manage_content_tags"
+                        tal:attributes="src string:${context/portal_url}/vindula-api/content/manage_content_tags/${session/user_token|nothing}?iframe_id=1defff85f1238d98b8ea783c62ce"
+                        height="0" width="100%" id="1defff85f1238d98b8ea783c62ce">
+                </iframe>
+            </span>
         </div>
-    </body>
+    </div>
+</body>
 </html>
