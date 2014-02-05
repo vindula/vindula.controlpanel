@@ -157,7 +157,7 @@
             </metal:portlets>
         </div-->
         <div id="portal-column-one"
-            class="columns large-3"
+            class="columns large-3 medium-3"
             metal:define-slot="column_one_slot"
             tal:condition="sl">
             <metal:portlets define-slot="portlets_one_slot">
@@ -259,14 +259,17 @@
                 <tal:block replace="structure provider:plone.rightcolumn" />
             </metal:portlets>
         </div-->
+        
         <div id="portal-column-two"
             class="columns large-3"
             metal:define-slot="column_two_slot"
-            tal:condition="sr">
+            tal:condition="sr"
+            tal:attributes="class python: 'columns large-3 medium-%s' % (sl and  '12' or '3')">
             <metal:portlets define-slot="portlets_two_slot">
                 <tal:block replace="structure provider:plone.rightcolumn" />
             </metal:portlets>
         </div>
+        
         </tal:notajax>
     </div>
 
