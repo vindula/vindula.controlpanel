@@ -952,7 +952,6 @@ class ContentMenu(BrowserView):
                                      
                                     item['submenu'][index]['submenu'].append(submenu)
                                     item['submenu'].remove(submenu)
-
         return items  
 
 class ReadMoreViewlet(grok.Viewlet): 
