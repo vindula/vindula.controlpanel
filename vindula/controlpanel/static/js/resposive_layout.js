@@ -10,11 +10,10 @@ $j(document).ready(function(){
 	if (width) {
 		var $document = $j(this);
 		
-		//Tamanho,em pixels, usado para tablets
-		if (width >= 634 && width <= 861) {
+		//Tamanho,em pixels, usado para tablets ou smartphones
+		if (width <= 861) {
 
-			//S— vou reordenar as colunas caso houver as 2
-			if (column_one.length && column_two.length) {
+			if (column_one.length) {
 				column_one.insertAfter(column_content);
 			}
 		}
