@@ -241,8 +241,11 @@
                                Don't use it in your custom templates.
                             </metal:sub>
                         </div>
+                        
                     </metal:block>
-                    <metal:text define-slot="below-content">
+                    
+                    <metal:text define-slot="below-content"
+                                tal:condition="python: not request.get('block_below_content', False)">
                         <div id="viewlet-below-content" tal:content="structure provider:plone.belowcontent" tal:condition="not:ajax_load" />
                     </metal:text>
 

@@ -12,7 +12,6 @@ $j(document).ready(function(){
 		
 		//Tamanho,em pixels, usado para tablets ou smartphones
 		if (width <= 861) {
-
 			if (column_one.length) {
 				column_one.insertAfter(column_content);
 			}
@@ -40,7 +39,6 @@ $j(document).ready(function(){
 			//Tamanho,em pixels, usado para smartphones
 			else if (width < 634) {
 				
-				//S— vou reordenar as colunas caso houver as 2
 				if (column_one.length) {
 					column_one.insertAfter(column_content);
 				}
@@ -49,7 +47,6 @@ $j(document).ready(function(){
 			//Tamanho,em pixels, usado para telas maiores
 			else {
 				
-				//S— vou reordenar as colunas caso houver as 2
 				if (column_one.length) {
 					column_one.insertBefore(column_content);
 				}
