@@ -51,14 +51,12 @@
     <link tal:attributes="href string:${context/portal_url|nothing}/++resource++collective.flowplayer.css/flowplayer.css" id="new-theme" media="screen" type="text/css" rel="stylesheet">
     <link tal:attributes="href string:${context/portal_url|nothing}/++resource++collective.flowplayer.css/flowplayer-horizontal.css" id="new-theme" media="screen" type="text/css" rel="stylesheet">
     <link tal:attributes="href string:${context/portal_url|nothing}/++resource++fl-play.css" id="new-theme" media="screen" type="text/css" rel="stylesheet">
-	<link tal:attributes="href string:${context/portal_url}/++resource++vindula.tile/css/tile-edit.css" rel="stylesheet" type="text/css" href="" id="new-theme" />	
-    <link tal:attributes="href string:${context/portal_url}/++resource++vindula.tile/css/tile-sortable.css"  rel="stylesheet" type="text/css" href="" id="new-theme" />
-        
+    
     <link tal:attributes="href string:${context/portal_url|nothing}/solgemafullcalendar.css" id="new-theme" media="screen" type="text/css" rel="stylesheet">
     <link tal:attributes="href string:${context/portal_url|nothing}/++resource++collective.js.fullcalendar/fullcalendar.css" id="new-theme" media="screen" type="text/css" rel="stylesheet">
     <link tal:attributes="href string:${context/portal_url|nothing}/++resource++collective.js.fullcalendar/fullcalendar.print.css" id="new-theme" media="print" type="text/css" rel="stylesheet">
     <link tal:attributes="href string:${context/portal_url|nothing}/collective.js.jqueryui.custom.min.css" id="new-theme" media="screen" type="text/css" rel="stylesheet">
-    
+
     <link rel="stylesheet" type="text/css" media="screen" id="new-theme"
           tal:attributes="href string:${context/portal_url|nothing}/++resource++vindula.content/js/galleria/themes/twelve/galleria.twelve.css">      
 
@@ -183,11 +181,9 @@
                             tal:define="show_border context/@@plone/showEditableBorder; show_border python:show_border and not ajax_load"
                             tal:attributes="class python:show_border and 'documentEditable' or ''">
 
-                            <div class="adm-vision hide">
-                           	  <div id="edit-bar"
+                            <div id="edit-bar"
                                 tal:condition="show_border"
-                                tal:content="structure provider:plone.contentviews"/>
-                              </div>
+                                tal:content="structure provider:plone.contentviews" />
 
                             <div metal:use-macro="context/global_statusmessage/macros/portal_message">
                              Status message
