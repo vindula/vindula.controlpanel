@@ -69,13 +69,13 @@ class ManageContentTypesView(grok.View):
     grok.name('manage-content-types')
 
 class ManageContentTagsView(grok.View):
-    grok.context(INavigationRoot)
-    grok.require('cmf.ManagePortal')
+    grok.context(Interface)
+    grok.require('zope2.View')
     grok.name('manage-content-tags')
     
 class ManageTagsView(grok.View):
-    grok.context(INavigationRoot)
-    grok.require('cmf.ManagePortal')
+    grok.context(Interface)
+    grok.require('zope2.View')
     grok.name('manage-tags')
 
 class VindulaFinderUploadView(Finder):
