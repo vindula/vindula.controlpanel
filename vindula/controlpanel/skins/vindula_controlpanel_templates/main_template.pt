@@ -51,6 +51,8 @@
     <link tal:attributes="href string:${context/portal_url|nothing}/++resource++collective.flowplayer.css/flowplayer.css" id="new-theme" media="screen" type="text/css" rel="stylesheet">
     <link tal:attributes="href string:${context/portal_url|nothing}/++resource++collective.flowplayer.css/flowplayer-horizontal.css" id="new-theme" media="screen" type="text/css" rel="stylesheet">
     <link tal:attributes="href string:${context/portal_url|nothing}/++resource++fl-play.css" id="new-theme" media="screen" type="text/css" rel="stylesheet">
+        <link tal:attributes="href string:${context/portal_url}/++resource++vindula.tile/css/tile-edit.css" rel="stylesheet" type="text/css" href="" id="new-theme" />  
+    <link tal:attributes="href string:${context/portal_url}/++resource++vindula.tile/css/tile-sortable.css"  rel="stylesheet" type="text/css" href="" id="new-theme" />
     
     <link tal:attributes="href string:${context/portal_url|nothing}/solgemafullcalendar.css" id="new-theme" media="screen" type="text/css" rel="stylesheet">
     <link tal:attributes="href string:${context/portal_url|nothing}/++resource++collective.js.fullcalendar/fullcalendar.css" id="new-theme" media="screen" type="text/css" rel="stylesheet">
@@ -196,9 +198,11 @@
                             tal:define="show_border context/@@plone/showEditableBorder; show_border python:show_border and not ajax_load"
                             tal:attributes="class python:show_border and 'documentEditable' or ''">
 
-                            <div id="edit-bar"
+                            <div class="adm-vision hide">
+                              <div id="edit-bar"
                                 tal:condition="show_border"
-                                tal:content="structure provider:plone.contentviews" />
+                                tal:content="structure provider:plone.contentviews"></div>
+                            </div>
 
                             <div metal:use-macro="context/global_statusmessage/macros/portal_message">
                              Status message
