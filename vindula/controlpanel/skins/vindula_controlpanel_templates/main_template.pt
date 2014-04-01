@@ -92,30 +92,45 @@
     
     
     <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/++resource++vindula.controlpanel/js/resposive_layout.js"></script>
-
-    <script type="text/javascript"
-            tal:define="member context/@@plone_portal_state/member;"
-            tal:content="python: '''
-                        $j(document).ready(function(){
-                            $j('body').vindula(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
-                            try{
-                                $j('body').rh(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
-                            }catch(err){console.log('Erro tentando incializar o js de RH :(')}
-                            try{
-                                $j('body').ouvidoria(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
-                            }catch(err){console.log('Erro tentando incializar o js de Ouvidoria :(')}
-                            try{
-                                $j('body').custom(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
-                            }catch(err){console.log('Erro tentando incializar o js do Custom :(')}
-                            try{
-                                $j('body').theme(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
-                            }catch(err){console.log('Erro tentando incializar o js de Tema :(')}
-                            
-                            window.token = '%(token)s';
-                            window.url_notified_notification = '%(portal_url)s/vindula-api/social/manager/%(token)s/notification/';
-                            window.url_notified_message = '%(portal_url)s/vindula-api/social/manager/%(token)s/message/';
-                        });
-                       ''' %{'username': member.getUserName(),'portal_url': context.portal_url(), 'token': session.get('user_token')}" ></script>
+    
+    <tal:def define="is_anonymous context/@@plone_portal_state/anonymous;
+                     dummy_anonymous python: request.set('is_anonymous', is_anonymous);">
+                     
+        <script type="text/javascript"
+                tal:condition="not: is_anonymous"
+                tal:define="member context/@@plone_portal_state/member;"
+                tal:content="python: '''
+                                 $j(document).ready(function(){
+                                     $j('body').vindula(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
+                                     try{
+                                         $j('body').rh(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
+                                     }catch(err){console.log('Erro tentando incializar o js de RH :(')}
+                                     try{
+                                         $j('body').ouvidoria(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
+                                     }catch(err){console.log('Erro tentando incializar o js de Ouvidoria :(')}
+                                     try{
+                                         $j('body').custom(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
+                                     }catch(err){console.log('Erro tentando incializar o js do Custom :(')}
+                                     try{
+                                         $j('body').theme(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
+                                     }catch(err){console.log('Erro tentando incializar o js de Tema :(')}
+                                    
+                                     window.is_anonymous = false;
+                                     window.token = '%(token)s';
+                                     window.url_notified_notification = '%(portal_url)s/vindula-api/social/manager/%(token)s/notification/';
+                                     window.url_notified_message = '%(portal_url)s/vindula-api/social/manager/%(token)s/message/';
+                                });
+                             ''' %{'username': member.getUserName(),'portal_url': context.portal_url(), 'token': session.get('user_token')}" >
+        </script>
+        
+        <script type="text/javascript"
+                tal:condition="is_anonymous">
+             $j(document).ready(function(){
+                 window.is_anonymous = true;
+             });
+        </script>
+        
+    </tal:def>
 
 </head>
 
@@ -148,7 +163,7 @@
 </div>
         </div>
     <div id="portal-columns" class="row">
-
+        
         <tal:notajax tal:condition="not:ajax_load">
             <!--div id="portal-column-one"
                 class="cell width-1:4 position-0"
