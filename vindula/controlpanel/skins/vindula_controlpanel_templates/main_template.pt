@@ -51,14 +51,12 @@
     <link tal:attributes="href string:${context/portal_url|nothing}/++resource++collective.flowplayer.css/flowplayer.css" id="new-theme" media="screen" type="text/css" rel="stylesheet">
     <link tal:attributes="href string:${context/portal_url|nothing}/++resource++collective.flowplayer.css/flowplayer-horizontal.css" id="new-theme" media="screen" type="text/css" rel="stylesheet">
     <link tal:attributes="href string:${context/portal_url|nothing}/++resource++fl-play.css" id="new-theme" media="screen" type="text/css" rel="stylesheet">
-	<link tal:attributes="href string:${context/portal_url}/++resource++vindula.tile/css/tile-edit.css" rel="stylesheet" type="text/css" href="" id="new-theme" />	
-    <link tal:attributes="href string:${context/portal_url}/++resource++vindula.tile/css/tile-sortable.css"  rel="stylesheet" type="text/css" href="" id="new-theme" />
-        
+    
     <link tal:attributes="href string:${context/portal_url|nothing}/solgemafullcalendar.css" id="new-theme" media="screen" type="text/css" rel="stylesheet">
     <link tal:attributes="href string:${context/portal_url|nothing}/++resource++collective.js.fullcalendar/fullcalendar.css" id="new-theme" media="screen" type="text/css" rel="stylesheet">
     <link tal:attributes="href string:${context/portal_url|nothing}/++resource++collective.js.fullcalendar/fullcalendar.print.css" id="new-theme" media="print" type="text/css" rel="stylesheet">
     <link tal:attributes="href string:${context/portal_url|nothing}/collective.js.jqueryui.custom.min.css" id="new-theme" media="screen" type="text/css" rel="stylesheet">
-    
+
     <link rel="stylesheet" type="text/css" media="screen" id="new-theme"
           tal:attributes="href string:${context/portal_url|nothing}/++resource++vindula.content/js/galleria/themes/twelve/galleria.twelve.css">      
 
@@ -94,30 +92,45 @@
     
     
     <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/++resource++vindula.controlpanel/js/resposive_layout.js"></script>
-
-    <script type="text/javascript"
-            tal:define="member context/@@plone_portal_state/member;"
-            tal:content="python: '''
-                        $j(document).ready(function(){
-                            $j('body').vindula(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
-                            try{
-                                $j('body').rh(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
-                            }catch(err){console.log('Erro tentando incializar o js de RH :(')}
-                            try{
-                                $j('body').ouvidoria(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
-                            }catch(err){console.log('Erro tentando incializar o js de Ouvidoria :(')}
-                            try{
-                                $j('body').custom(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
-                            }catch(err){console.log('Erro tentando incializar o js do Custom :(')}
-                            try{
-                                $j('body').theme(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
-                            }catch(err){console.log('Erro tentando incializar o js de Tema :(')}
-                            
-                            window.token = '%(token)s';
-                            window.url_notified_notification = '%(portal_url)s/vindula-api/social/manager/%(token)s/notification/';
-                            window.url_notified_message = '%(portal_url)s/vindula-api/social/manager/%(token)s/message/';
-                        });
-                       ''' %{'username': member.getUserName(),'portal_url': context.portal_url(), 'token': session.get('user_token')}" ></script>
+    
+    <tal:def define="is_anonymous context/@@plone_portal_state/anonymous;
+                     dummy_anonymous python: request.set('is_anonymous', is_anonymous);">
+                     
+        <script type="text/javascript"
+                tal:condition="not: is_anonymous"
+                tal:define="member context/@@plone_portal_state/member;"
+                tal:content="python: '''
+                                 $j(document).ready(function(){
+                                     $j('body').vindula(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
+                                     try{
+                                         $j('body').rh(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
+                                     }catch(err){console.log('Erro tentando incializar o js de RH :(')}
+                                     try{
+                                         $j('body').ouvidoria(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
+                                     }catch(err){console.log('Erro tentando incializar o js de Ouvidoria :(')}
+                                     try{
+                                         $j('body').custom(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
+                                     }catch(err){console.log('Erro tentando incializar o js do Custom :(')}
+                                     try{
+                                         $j('body').theme(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
+                                     }catch(err){console.log('Erro tentando incializar o js de Tema :(')}
+                                    
+                                     window.is_anonymous = false;
+                                     window.token = '%(token)s';
+                                     window.url_notified_notification = '%(portal_url)s/vindula-api/social/manager/%(token)s/notification/';
+                                     window.url_notified_message = '%(portal_url)s/vindula-api/social/manager/%(token)s/message/';
+                                });
+                             ''' %{'username': member.getUserName(),'portal_url': context.portal_url(), 'token': session.get('user_token')}" >
+        </script>
+        
+        <script type="text/javascript"
+                tal:condition="is_anonymous">
+             $j(document).ready(function(){
+                 window.is_anonymous = true;
+             });
+        </script>
+        
+    </tal:def>
 
 </head>
 
@@ -150,7 +163,7 @@
 </div>
         </div>
     <div id="portal-columns" class="row">
-
+        
         <tal:notajax tal:condition="not:ajax_load">
             <!--div id="portal-column-one"
                 class="cell width-1:4 position-0"
@@ -183,11 +196,9 @@
                             tal:define="show_border context/@@plone/showEditableBorder; show_border python:show_border and not ajax_load"
                             tal:attributes="class python:show_border and 'documentEditable' or ''">
 
-                            <div class="adm-vision hide">
-                           	  <div id="edit-bar"
+                            <div id="edit-bar"
                                 tal:condition="show_border"
-                                tal:content="structure provider:plone.contentviews"/>
-                              </div>
+                                tal:content="structure provider:plone.contentviews" />
 
                             <div metal:use-macro="context/global_statusmessage/macros/portal_message">
                              Status message
