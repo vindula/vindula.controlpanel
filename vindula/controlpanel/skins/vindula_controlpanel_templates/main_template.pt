@@ -104,16 +104,16 @@
                                      $j('body').vindula(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
                                      try{
                                          $j('body').rh(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
-                                     }catch(err){console.log('Erro tentando incializar o js de RH :(')}
+                                     }catch(err){if(window.console){ console.log('Erro tentando incializar o js de RH :(')}}
                                      try{
                                          $j('body').ouvidoria(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
-                                     }catch(err){console.log('Erro tentando incializar o js de Ouvidoria :(')}
+                                     }catch(err){if(window.console){ console.log('Erro tentando incializar o js de Ouvidoria :(')}}
                                      try{
                                          $j('body').custom(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
-                                     }catch(err){console.log('Erro tentando incializar o js do Custom :(')}
+                                     }catch(err){if(window.console){ console.log('Erro tentando incializar o js do Custom :(')}}
                                      try{
                                          $j('body').theme(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
-                                     }catch(err){console.log('Erro tentando incializar o js de Tema :(')}
+                                     }catch(err){if(window.console){ console.log('Erro tentando incializar o js de Tema :(')}}
                                     
                                      window.is_anonymous = false;
                                      window.token = '%(token)s';
