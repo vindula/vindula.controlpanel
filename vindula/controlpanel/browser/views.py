@@ -121,7 +121,6 @@ class VindulaFinderUploadView(Finder):
         """
         return query for results depending on some params
         """
-
         request = self.request
         if self.query:
             return self.query
@@ -156,6 +155,9 @@ class VindulaFinderUploadView(Finder):
 
             if self.review_state:
                     query['review_state'] = self.review_state
+                    
+            for key in query.keys():
+                if not query.get(key): query.pop(key)
 
             return query
 
