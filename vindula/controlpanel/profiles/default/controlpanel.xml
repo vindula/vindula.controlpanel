@@ -4,18 +4,27 @@
         xmlns:i18n="http://xml.zope.org/namespaces/i18n"
         i18n:domain="plone">
 
- <configlet title="Vindula Control Panel" 
-            action_id="vindula_control_panel"
-            appId="ConfUser" 
-            category="Products" 
-            condition_expr=""
-            url_expr="string:${portal_url}/vindula-control-panel"
-		 	icon_expr="string:${portal_url}/++resource++vindula.controlpanel/imagens/vindula.png"
-            visible="True" 
-            i18n:attributes="title">
+    <configlet title="Vindula Control Panel" 
+               action_id="vindula_control_panel"
+               appId="ConfUser" 
+               category="Products" 
+               condition_expr=""
+               url_expr="string:${portal_url}/vindula-control-panel"
+    		   icon_expr="string:${portal_url}/++resource++vindula.controlpanel/imagens/vindula.png"
+               visible="True" 
+               i18n:attributes="title">
+        <permission>Site Administrator</permission>
+    </configlet>
  
- <permission>Site Administrator</permission>
- </configlet>
-  
-
- </object>
+    <configlet title="Timezone Vindula Settings"
+               action_id="vindula.controlpanel.settings"
+               appId="timezoneVindula"
+               category="Products"
+               condition_expr=""
+               url_expr="string:${portal_url}/@@timezone-settings"
+               icon_expr="string:${portal_url}/++resource++vindula.controlpanel/imagens/vindula.png"
+               visible="True"
+               i18n:attributes="title">
+        <permission>Site Administrator</permission>
+    </configlet>
+</object>

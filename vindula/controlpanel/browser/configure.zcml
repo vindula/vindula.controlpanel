@@ -35,5 +35,12 @@
         permission="zope2.View"
         allowed_attributes=""
     />
-
+    
+    <browser:page
+        name="timezone-settings"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        permission="cmf.ManagePortal"
+        class="vindula.controlpanel.settings.SettingsEditView"
+    />
+    
  </configure>
