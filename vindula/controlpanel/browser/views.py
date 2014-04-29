@@ -44,8 +44,10 @@ from vindula.myvindula.models.dados_funcdetail import ModelsDadosFuncdetails
 # from vindula.myvindula.registration import SchemaFunc
 from vindula.content.content.interfaces import IVindulaNews
 from vindula.content.models.content import ModelsContent
+from vindula.myvindula.models.required_reading_data import RequiredReadingData
 
 import pkg_resources
+from datetime import datetime
 
 class ControlPanelView(grok.View):
     grok.context(INavigationRoot)
@@ -121,7 +123,6 @@ class VindulaFinderUploadView(Finder):
         """
         return query for results depending on some params
         """
-
         request = self.request
         if self.query:
             return self.query
@@ -156,6 +157,9 @@ class VindulaFinderUploadView(Finder):
 
             if self.review_state:
                     query['review_state'] = self.review_state
+                    
+            for key in query.keys():
+                if not query.get(key): query.pop(key)
 
             return query
 
@@ -1040,3 +1044,98 @@ class StaticBarViewletManager(grok.ViewletManager):
     """
     grok.context(Interface)
     grok.name('vindula.network.staticbarviewletmanager')
+    
+class ContainerBeforeContentViewletManager(grok.ViewletManager):
+    """
+        Viewlets are directly referred in main_template.pt by viewlet name,
+        thus overriding Plone behavior to go through ViewletManager render step.
+    """
+    grok.context(Interface)
+    grok.name('vindula.controlpanel.containerbeforecontent.viewletmanager')
+    
+class RequiredReadingViewlet(grok.Viewlet):
+    grok.context(Interface)
+    grok.name('vindula.controlpanel.requiredreading')
+    grok.require('zope2.View')
+    grok.viewletmanager(ContainerBeforeContentViewletManager)
+    
+    
+    def getMyRequiredDocuments(self):
+        p_catalog = getToolByName(self.context, 'portal_catalog')
+        g_tool = getToolByName(self.context, 'portal_groups')
+        m_tool = getToolByName(self.context, 'portal_membership')
+        
+        brains = p_catalog(requiredReading=True)
+        my_username = m_tool.getAuthenticatedMember().getUserName()
+        my_required_docs = []
+        
+        for brain in brains:
+            obj = brain.getObject()
+            try:
+                if (not obj.getStartDateReqRead() and not obj.getExpirationDateReqRead()) \
+                   or obj.getStartDateReqRead().asdatetime().replace(tzinfo=None) < datetime.now() < obj.getExpirationDateReqRead().asdatetime().replace(tzinfo=None):
+    
+                    if obj.getUsersGroupsReqRead():
+                        for id_user in obj.getUsersGroupsReqRead():
+                            if g_tool.getGroupById(id_user):
+                                if my_username in g_tool.getGroupById(id_user).getGroupMemberIds() \
+                                   and obj not in my_required_docs:
+                                    my_required_docs.append(obj)
+                            else:
+                                if id_user == my_username \
+                                   and obj not in my_required_docs:
+                                    my_required_docs.append(obj)
+                    
+                    #Eh leitura obrigatoria para todo mundo
+                    else:
+                        my_required_docs.append(obj)
+            except:
+                return []
+        
+        return my_required_docs
+    
+class CheckRequiredReadingViewlet(grok.Viewlet):
+    grok.context(Interface)
+    grok.name('vindula.controlpanel.checkrequiredreading')
+    grok.require('zope2.View')
+    grok.viewletmanager(IBelowContentBody)
+    
+    def isRequiredReading(self):
+        self.g_tool = getToolByName(self.context, 'portal_groups')
+        self.m_tool = getToolByName(self.context, 'portal_membership')
+        
+        if getattr(self.context, "requiredReading", False):
+            context = self.context
+            
+            if (not context.getStartDateReqRead() and not context.getExpirationDateReqRead()) \
+               or context.getStartDateReqRead().asdatetime().replace(tzinfo=None) < datetime.now() < context.getExpirationDateReqRead().asdatetime().replace(tzinfo=None):
+    
+                if context.getUsersGroupsReqRead():
+                    for id_user in obj.getUsersGroupsReqRead():
+                        if g_tool.getGroupById(id_user):
+                            if my_username in g_tool.getGroupById(id_user).getGroupMemberIds():
+                               return True
+                        else:
+                            if id_user == my_username:
+                               return True
+                else:
+                    return True
+
+        return False
+    
+    def getDataRead(self):
+        my_username = self.m_tool.getAuthenticatedMember().getUserName()
+        model_content = ModelsContent().getContent_by_uid(self.context.UID())
+        
+        if model_content:
+            return RequiredReadingData.getData(username=my_username, content=model_content)
+            
+            
+    
+    
+    
+    
+    
+    
+    
+    

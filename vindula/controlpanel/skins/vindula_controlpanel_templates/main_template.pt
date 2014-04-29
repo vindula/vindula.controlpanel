@@ -106,16 +106,16 @@
                                      $j('body').vindula(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
                                      try{
                                          $j('body').rh(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
-                                     }catch(err){console.log('Erro tentando incializar o js de RH :(')}
+                                     }catch(err){if(window.console){ console.log('Erro tentando incializar o js de RH :(')}}
                                      try{
                                          $j('body').ouvidoria(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
-                                     }catch(err){console.log('Erro tentando incializar o js de Ouvidoria :(')}
+                                     }catch(err){if(window.console){ console.log('Erro tentando incializar o js de Ouvidoria :(')}}
                                      try{
                                          $j('body').custom(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
-                                     }catch(err){console.log('Erro tentando incializar o js do Custom :(')}
+                                     }catch(err){if(window.console){ console.log('Erro tentando incializar o js do Custom :(')}}
                                      try{
                                          $j('body').theme(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
-                                     }catch(err){console.log('Erro tentando incializar o js de Tema :(')}
+                                     }catch(err){if(window.console){ console.log('Erro tentando incializar o js de Tema :(')}}
                                     
                                      window.is_anonymous = false;
                                      window.token = '%(token)s';
@@ -156,26 +156,21 @@
     <div id="no-diazo" tal:condition="python: ajax_load and ajax_include_head" />
 
 <div id="visual-portal-wrapper">
-        <div id="portal-top"
-            class="row"
-            i18n:domain="plone"
-            tal:condition="not:ajax_load">
-<div class="cell width-full position-0">
-            <div tal:replace="structure provider:plone.portaltop" />
-</div>
+    <div id="portal-top"
+        class="row"
+        i18n:domain="plone"
+        tal:condition="not:ajax_load">
+        <div class="cell width-full position-0">
+                    <div tal:replace="structure provider:plone.portaltop" />
         </div>
+    </div>
+    
     <div id="portal-columns" class="row">
         
+        <div id="viewlet-container-before-content" tal:condition="not:ajax_load"
+             tal:content="structure provider:vindula.controlpanel.containerbeforecontent.viewletmanager" />
+        
         <tal:notajax tal:condition="not:ajax_load">
-            <!--div id="portal-column-one"
-                class="cell width-1:4 position-0"
-                metal:define-slot="column_one_slot"
-                tal:condition="sl"
-                tal:attributes="class python:isRTL and 'cell width-1:4 position-3:4' or 'cell width-1:4 position-0'">
-                <metal:portlets define-slot="portlets_one_slot">
-                    <tal:block replace="structure provider:plone.leftcolumn" />
-                </metal:portlets>
-            </div-->
             <div id="portal-column-one"
                 class="columns large-3 medium-6"
                 metal:define-slot="column_one_slot"
@@ -276,16 +271,6 @@
         </div>
 
         <tal:notajax tal:condition="not:ajax_load">
-            <!--div id="portal-column-two"
-                class="cell width-1:4 position-3:4"
-                metal:define-slot="column_two_slot"
-                tal:condition="sr"
-                tal:attributes="class python:isRTL and 'cell width-1:4 position-0' or 'cell width-1:4 position-3:4'">
-                <metal:portlets define-slot="portlets_two_slot">
-                    <tal:block replace="structure provider:plone.rightcolumn" />
-                </metal:portlets>
-            </div-->
-            
             <div id="portal-column-two"
                 class="columns large-3"
                 metal:define-slot="column_two_slot"
