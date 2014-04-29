@@ -1,0 +1,24 @@
+<tal:cond define="documents viewlet/getMyRequiredDocuments;" 
+     condition="documents">
+    <div class="columns large-12">
+        <div class="panel-dropdown">
+            <p class="title">
+                Você tem <strong tal:content="python:len(documents)">10</strong> leituras obrigatórias
+            </p>
+            
+            <ul class="list-docs" accordion-id="toggle-required">
+                <tal:rep repeat="doc documents">
+                    <li>
+                        <a tal:content="doc/Title|string:Sem título" target="_blank"
+                           tal:attributes="href doc/absolute_url|nothing">
+                           Novo documento
+                        </a>
+                    </li>
+                </tal:rep>
+            </ul>
+            
+            <a href="" accordion-direction="top-bottom" id="toggle-required"
+               class="accordion arrow arrow-bottom arrow-dropdown"></a>
+        </div>
+    </div>
+</tal:cond>
