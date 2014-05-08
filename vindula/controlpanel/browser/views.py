@@ -146,6 +146,7 @@ class VindulaFinderUploadView(Finder):
                 # TODO : use a dynamic form
                 # with different possible searchform fields
                 q = request.get('SearchableText', '')
+                q = q.encode('raw_unicode_escape').decode('utf-8')
                 if q:
                     for char in '?-+*':
                         q = q.replace(char, ' ')
