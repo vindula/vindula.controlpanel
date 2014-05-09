@@ -167,7 +167,7 @@
     
     <div id="portal-columns" class="row">
         
-        <div id="viewlet-container-before-content" tal:condition="not:ajax_load"
+        <div id="viewlet-container-before-content" class="clear" tal:condition="not:ajax_load"
              tal:content="structure provider:vindula.controlpanel.containerbeforecontent.viewletmanager" />
         
         <tal:notajax tal:condition="not:ajax_load">

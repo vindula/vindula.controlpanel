@@ -1,16 +1,17 @@
 <tal:cond define="documents viewlet/getMyRequiredDocuments;" 
      condition="documents">
     <div class="columns large-12">
-        <div class="panel-dropdown">
-            <p class="title">
-                Você tem <strong tal:content="python:len(documents)">10</strong> leituras obrigatórias
+        <div class="panel-dropdown required-read-panel">
+            <p class="title"
+               tal:define="qtd_docs python:len(documents);">
+                <span>Você tem <strong tal:content="qtd_docs" class="qtd-docs">10</strong> <span tal:replace="python:'leitura%s obrigatória%s' % ((qtd_docs == 1) and ('', '') or ('s', 's'))"></span></span>
             </p>
             
             <ul class="list-docs" accordion-id="toggle-required">
                 <tal:rep repeat="doc documents">
-                    <li>
+                    <li tal:attributes="id doc/UID;">
                         <a tal:content="doc/Title|string:Sem título" target="_blank"
-                           tal:attributes="href doc/absolute_url|nothing">
+                           tal:attributes="href doc/absolute_url|nothing;">
                            Novo documento
                         </a>
                     </li>

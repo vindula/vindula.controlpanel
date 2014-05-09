@@ -1,0 +1,31 @@
+<metal:macro define-macro="check-required"
+             tal:define="macro_view nocall:context/@@check-required-reading">
+             
+    <div class="required-reading-container" 
+         tal:condition="macro_view/isRequiredReading">
+         
+        <h6 class="primary-color">Leitura obrigatória</h6>
+        
+        <div id="content-required-reading" class="check-document-read" 
+             tal:define="data_checked macro_view/getDataRead|nothing;">
+            <div tal:condition="data_checked">
+                <span>Conteúdo marcado como lido <strong tal:content="python:data_checked.date_created.strftime('%d/%m/%Y - %H:%M')"></strong></span>
+                
+            </div>
+            
+            <div tal:condition="not:data_checked" 
+                 class="clear">
+                <script type="text/javascript" tal:attributes="src string:${context/portal_url}/++resource++vindula.controlpanel/js/required_reading.js"></script> 
+                
+                <form action="">
+                    <input type="hidden" name="url" id="url" tal:attributes="value macro_view/url;"/>
+                    <label for="agree" class="left">
+                        <input type="checkbox" id="agree" tal:attributes="value context/UID" />
+                        Li e estou ciente das informações deste conteúdo
+                    </label>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+</metal:macro>
