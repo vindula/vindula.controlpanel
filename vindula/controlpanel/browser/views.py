@@ -146,6 +146,7 @@ class VindulaFinderUploadView(Finder):
                 # TODO : use a dynamic form
                 # with different possible searchform fields
                 q = request.get('SearchableText', '')
+                q = q.encode('raw_unicode_escape').decode('utf-8')
                 if q:
                     for char in '?-+*':
                         q = q.replace(char, ' ')
@@ -1100,10 +1101,15 @@ class CheckRequiredReadingViewlet(grok.Viewlet):
     grok.require('zope2.View')
     grok.viewletmanager(IBelowContentBody)
     
-    def isRequiredReading(self):
+    def update(self):
         self.g_tool = getToolByName(self.context, 'portal_groups')
         self.m_tool = getToolByName(self.context, 'portal_membership')
+        self.user_logged = self.m_tool.getAuthenticatedMember().getUserName()
         
+        if self.request.form.get('read'):
+            success = self.checkContentRead()
+    
+    def isRequiredReading(self):
         if getattr(self.context, "requiredReading", False):
             context = self.context
             
@@ -1129,13 +1135,3 @@ class CheckRequiredReadingViewlet(grok.Viewlet):
         
         if model_content:
             return RequiredReadingData.getData(username=my_username, content=model_content)
-            
-            
-    
-    
-    
-    
-    
-    
-    
-    
