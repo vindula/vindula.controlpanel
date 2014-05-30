@@ -1066,7 +1066,8 @@ class RequiredReadingViewlet(grok.Viewlet):
         g_tool = getToolByName(self.context, 'portal_groups')
         m_tool = getToolByName(self.context, 'portal_membership')
         
-        brains = p_catalog(requiredReading=True)
+        brains = p_catalog(requiredReading=True, 
+                           review_state=['published', 'internally_published', 'external'])
         my_username = m_tool.getAuthenticatedMember().getUserName()
         my_required_docs = []
         
@@ -1092,32 +1093,38 @@ class RequiredReadingViewlet(grok.Viewlet):
                         my_required_docs.append(obj)
             except:
                 return []
+            
+        if my_required_docs:
+            aux_list_docs = copy(my_required_docs)
+            m_tool = getToolByName(self.context, 'portal_membership')
+            my_username = m_tool.getAuthenticatedMember().getUserName()
+            
+            for doc in aux_list_docs:
+                model_content = ModelsContent().getContent_by_uid(doc.UID())
+
+                if model_content and \
+                   RequiredReadingData.getData(username=my_username, content=model_content):
+                    my_required_docs.remove(doc)
         
         return my_required_docs
     
-class CheckRequiredReadingViewlet(grok.Viewlet):
+class CheckRequiredReadingView(grok.View):
     grok.context(Interface)
-    grok.name('vindula.controlpanel.checkrequiredreading')
     grok.require('zope2.View')
-    grok.viewletmanager(IBelowContentBody)
-    
-    def update(self):
-        self.g_tool = getToolByName(self.context, 'portal_groups')
-        self.m_tool = getToolByName(self.context, 'portal_membership')
-        self.user_logged = self.m_tool.getAuthenticatedMember().getUserName()
-        
-        if self.request.form.get('read'):
-            success = self.checkContentRead()
+    grok.name('check-required-reading')
     
     def isRequiredReading(self):
+        g_tool = getToolByName(self.context, 'portal_groups')
+        
         if getattr(self.context, "requiredReading", False):
             context = self.context
             
             if (not context.getStartDateReqRead() and not context.getExpirationDateReqRead()) \
                or context.getStartDateReqRead().asdatetime().replace(tzinfo=None) < datetime.now() < context.getExpirationDateReqRead().asdatetime().replace(tzinfo=None):
-    
                 if context.getUsersGroupsReqRead():
-                    for id_user in obj.getUsersGroupsReqRead():
+                    m_tool = getToolByName(self.context, 'portal_membership')
+                    my_username = m_tool.getAuthenticatedMember().getUserName()
+                    for id_user in context.getUsersGroupsReqRead():
                         if g_tool.getGroupById(id_user):
                             if my_username in g_tool.getGroupById(id_user).getGroupMemberIds():
                                return True
@@ -1130,8 +1137,24 @@ class CheckRequiredReadingViewlet(grok.Viewlet):
         return False
     
     def getDataRead(self):
-        my_username = self.m_tool.getAuthenticatedMember().getUserName()
+        m_tool = getToolByName(self.context, 'portal_membership')
+        my_username = m_tool.getAuthenticatedMember().getUserName()
         model_content = ModelsContent().getContent_by_uid(self.context.UID())
+        mark_read = self.request.get('read', False)
         
         if model_content:
-            return RequiredReadingData.getData(username=my_username, content=model_content)
+            data = None
+            if mark_read:
+                return RequiredReadingData().setReadingData(username=my_username, content=model_content, is_read=True)
+            
+            if not data:
+                data = RequiredReadingData.getData(username=my_username, content=model_content)
+                if data:
+                    data = data[0]
+                return data
+    
+class CheckRequiredReadingViewlet(grok.Viewlet):
+    grok.context(Interface)
+    grok.name('vindula.controlpanel.checkrequiredreading')
+    grok.require('zope2.View')
+    grok.viewletmanager(IBelowContentBody)
