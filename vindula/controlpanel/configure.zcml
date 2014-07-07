@@ -35,9 +35,11 @@
         factory=".sharing.EditPortletRole"
         />
   
-  <subscriber
-            for="Products.PluggableAuthService.interfaces.events.IUserLoggedInEvent"
-            handler=".handlers.userLogged"/>
+  <subscriber for="Products.PluggableAuthService.interfaces.events.IUserLoggedInEvent"
+              handler=".handlers.userLogged"/>
+  
+  <subscriber for="Products.PlonePAS.events.UserLoggedOutEvent"
+              handler=".handlers.userLoggedOut"/>
 
   <!-- -*- extra stuff goes here -*- -->
   
