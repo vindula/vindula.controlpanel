@@ -314,7 +314,9 @@
 		
 		                    <iframe name="login-form-iframe"
 		                        id="login-form-iframe"
-		                        tal:attributes="src python:external_login_url+(join_url.find('?')==-1) and '?' or '&amp;'+ztu.make_query(params);"
+		                        tal:define="parameter python:(join_url.find('?')==-1) and '?' or '&amp;'"
+		                        tal:attributes="src python:external_login_url+parameter+ztu.make_query(params);"
+		                        width="100%"
 		                        >
 		
 		                        <input tal:replace="structure python:ztu.make_hidden_input(params)" />
