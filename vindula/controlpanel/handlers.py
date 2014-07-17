@@ -5,6 +5,8 @@ from Products.CMFCore.utils import getToolByName
 from zope.app.component.hooks import getSite
 from Products.CMFCore.interfaces import ISiteRoot
 
+from vindula.myvindula.models.user_session_token import UserSessionToken
+
 import logging
 
 def to_utf8(value):
@@ -13,7 +15,7 @@ def to_utf8(value):
 logger = logging.getLogger('vindula.content')
 
 
-def userLogged(event, isLogin = True):
+def userLogged(event, isLogin=True):
     """ Handler for User Login in Site """
     acl_user = getToolByName(getSite(), 'acl_users')
     groups_tool = getToolByName(getSite(), "portal_groups")
@@ -57,7 +59,26 @@ def userLogged(event, isLogin = True):
         url = getSite().absolute_url()
         request.other["came_from"]=url
         request.response.redirect(url, lock=True)
-                            
+        
+def userLoggedOut(event):
+    """ A user logged out. """
+    portal_object = getSite()
+    membership = getSite().portal_membership
+    
+    if not membership.isAnonymousUser():
+        user_login = membership.getAuthenticatedMember()
+        
+        if user_login:
+            username = user_login.getUserName()
+            if isinstance(username, str):
+                username = username.decode('utf-8')
+            datas = UserSessionToken().store.find(UserSessionToken,
+                                                  UserSessionToken.username==username,
+                                                  UserSessionToken.deleted==False).order_by(UserSessionToken.date_created)
+            
+            for data in datas:
+                data.invalidateToken()
+                                            
 def checaEstado(obj):
         states = ['published','internal']
         pw = getSite().portal_workflow
