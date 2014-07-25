@@ -18,11 +18,17 @@ $j(document).ready(function(){
 		}
 	}
 	
-	$j(window).resize(function(){
+	var resizeWindowId;
+	$(window).resize(function() {
+	    clearTimeout(resizeWindowId);
+	    resizeWindowId = setTimeout(doneWindowResizing, 500);
+	});
+	
+	
+	//TODO: Ajustar problema de performance
+	function doneWindowResizing(){
 		width = $j(window).width();
-		
 		if (width) {
-			
 			//Tamanho,em pixels, usado para tablets
 			if (width >= 634 && width <= 861) {
 				
@@ -52,5 +58,5 @@ $j(document).ready(function(){
 				}
 			}
 		}
-	});
+	}
 });
