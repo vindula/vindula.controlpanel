@@ -92,6 +92,7 @@
     <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/vindula-api/static/js/sockjs.min.js"></script>
     <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/vindula-api/static/js/vindula_theme.js"></script>
     <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/vindula-api/static/contentcore/js/vindula_contentcore.js"></script>
+    <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/vindula-api/static/nfe/js/vindula_nfe.js"></script>
     <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/++resource++vindula.controlpanel/js/resposive_layout.js"></script>
     
     <tal:def define="is_anonymous context/@@plone_portal_state/anonymous;
@@ -118,6 +119,9 @@
                                      try{
                                         $j('body').contentcore(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
                                      }catch(err){if(window.console){ console.log('Erro tentando incializar o js de ContentCore :(')}}
+                                     try{
+                                        $j('body').nfe(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
+                                     }catch(err){if(window.console){ console.log('Erro tentando incializar o js de NFE :(')}}
                                     
                                      window.is_anonymous = false;
                                      window.token = '%(token)s';
@@ -150,11 +154,10 @@
 
     tal:attributes="class python: body_class +' '+ str(view_org.id);
                     dir python:isRTL and 'rtl' or 'ltr'">
-
+  
     <tal:dum tal:condition="key_vindula">
        <tal:def define="dummy key_vindula/update" />
     </tal:dum>
-
     <div id="no-diazo" tal:condition="python: ajax_load and ajax_include_head" />
 
 <div id="visual-portal-wrapper">
