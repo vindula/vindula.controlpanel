@@ -121,6 +121,12 @@ class IVindulaConfigAll(form.Schema):
                 default=False
                 )
 
+    ativa_contentcore = schema.Bool(
+                title=_(u'label_ativa_contentcore', default=u'Ativa a vizualização do modulo de solicitações no perfil dos usuarios'),
+                description=_(u'help_ativa_contentcore', default=u'Caso selecionado, ativa a opção de solicitações para todos os usuários do Vindula'),
+                default=False
+                )
+
 
     modelo_holerite = schema.Choice(
                 title=_(u'label_modelo_holerite', default=u'Selecione o modelo de holerite'),
@@ -292,6 +298,14 @@ class VindulaConfiguration(grok.View):
             return control.ativa_yearBirth
         else:
             return False        
+    
+    def check_contentcore(self):
+        if self.configurador():
+            control = self.configurador()
+            return control.ativa_contentcore
+        else:
+            return False         
+
         
     def select_modelo_holerite(self):
         if self.configurador():
