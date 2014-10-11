@@ -42,5 +42,14 @@
         permission="cmf.ManagePortal"
         class="vindula.controlpanel.settings.SettingsEditView"
     />
+
+    <!-- Custom Viewlet PathBar -->
+    <browser:viewlet
+        name="vindula.plone.path_bar"
+        manager="vindula.controlpanel.browser.views.ContainerBeforeContentViewletManager"
+        class="plone.app.layout.viewlets.common.PathBarViewlet"
+        permission="zope2.View"
+         />
+
     
  </configure>

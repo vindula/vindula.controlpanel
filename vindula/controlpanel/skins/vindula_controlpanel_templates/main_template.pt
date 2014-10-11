@@ -51,14 +51,20 @@
     <link tal:attributes="href string:${context/portal_url|nothing}/++resource++collective.flowplayer.css/flowplayer.css" id="new-theme" media="screen" type="text/css" rel="stylesheet">
     <link tal:attributes="href string:${context/portal_url|nothing}/++resource++collective.flowplayer.css/flowplayer-horizontal.css" id="new-theme" media="screen" type="text/css" rel="stylesheet">
     <link tal:attributes="href string:${context/portal_url|nothing}/++resource++fl-play.css" id="new-theme" media="screen" type="text/css" rel="stylesheet">
-    
+        <link tal:attributes="href string:${context/portal_url}/++resource++vindula.tile/css/tile-edit.css" rel="stylesheet" type="text/css" href="" id="new-theme" />
+    <link tal:attributes="href string:${context/portal_url}/++resource++vindula.tile/css/tile-sortable.css"  rel="stylesheet" type="text/css" href="" id="new-theme" />
+
     <link tal:attributes="href string:${context/portal_url|nothing}/solgemafullcalendar.css" id="new-theme" media="screen" type="text/css" rel="stylesheet">
     <link tal:attributes="href string:${context/portal_url|nothing}/++resource++collective.js.fullcalendar/fullcalendar.css" id="new-theme" media="screen" type="text/css" rel="stylesheet">
     <link tal:attributes="href string:${context/portal_url|nothing}/++resource++collective.js.fullcalendar/fullcalendar.print.css" id="new-theme" media="print" type="text/css" rel="stylesheet">
     <link tal:attributes="href string:${context/portal_url|nothing}/collective.js.jqueryui.custom.min.css" id="new-theme" media="screen" type="text/css" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" media="screen" id="new-theme"
-          tal:attributes="href string:${context/portal_url|nothing}/++resource++vindula.content/js/galleria/themes/twelve/galleria.twelve.css">      
+          tal:attributes="href string:${context/portal_url|nothing}/++resource++vindula.content/js/galleria/themes/twelve/galleria.twelve.css">
+
+    <link rel="stylesheet" type="text/css" media="screen" id="new-theme"
+          tal:attributes="href string:${context/portal_url|nothing}/++resource++ckeditor_for_plone/ckeditor_plone_area.css">
+
 
     <link rel="stylesheet" type="text/css" media="screen" id="new-theme"
           tal:attributes="href string:${context/portal_url|nothing}/++resource++plone.formwidget.contenttree/contenttree.css">
@@ -90,11 +96,12 @@
     <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/vindula-api/static/js/sockjs.min.js"></script>
     <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/vindula-api/static/js/vindula_theme.js"></script>
     <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/vindula-api/static/contentcore/js/vindula_contentcore.js"></script>
+    <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/vindula-api/static/nfe/js/vindula_nfe.js"></script>
     <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/++resource++vindula.controlpanel/js/resposive_layout.js"></script>
-    
+
     <tal:def define="is_anonymous context/@@plone_portal_state/anonymous;
                      dummy_anonymous python: request.set('is_anonymous', is_anonymous);">
-                     
+
         <script type="text/javascript"
                 tal:condition="not: is_anonymous"
                 tal:define="member context/@@plone_portal_state/member;"
@@ -116,7 +123,10 @@
                                      try{
                                         $j('body').contentcore(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
                                      }catch(err){if(window.console){ console.log('Erro tentando incializar o js de ContentCore :(')}}
-                                    
+                                     try{
+                                        $j('body').nfe(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
+                                     }catch(err){if(window.console){ console.log('Erro tentando incializar o js de NFE :(')}}
+
                                      window.is_anonymous = false;
                                      window.token = '%(token)s';
                                      window.url_notified_notification = '%(portal_url)s/vindula-api/social/manager/%(token)s/notification/';
@@ -124,14 +134,14 @@
                                 });
                              ''' %{'username': member.getUserName(),'portal_url': context.portal_url(), 'token': session.get('user_token')}" >
         </script>
-        
+
         <script type="text/javascript"
                 tal:condition="is_anonymous">
              $j(document).ready(function(){
                  window.is_anonymous = true;
              });
         </script>
-        
+
     </tal:def>
 
 </head>
@@ -152,7 +162,6 @@
     <tal:dum tal:condition="key_vindula">
        <tal:def define="dummy key_vindula/update" />
     </tal:dum>
-
     <div id="no-diazo" tal:condition="python: ajax_load and ajax_include_head" />
 
 <div id="visual-portal-wrapper">
@@ -164,12 +173,12 @@
                     <div tal:replace="structure provider:plone.portaltop" />
         </div>
     </div>
-    
+
     <div id="portal-columns" class="row">
-        
+
         <div id="viewlet-container-before-content" class="columns large-12" tal:condition="not:ajax_load"
              tal:content="structure provider:vindula.controlpanel.containerbeforecontent.viewletmanager" />
-        
+
         <tal:notajax tal:condition="not:ajax_load">
             <div id="portal-column-one"
                 class="columns large-3 medium-6"
@@ -193,9 +202,11 @@
                             tal:define="show_border context/@@plone/showEditableBorder; show_border python:show_border and not ajax_load"
                             tal:attributes="class python:show_border and 'documentEditable' or ''">
 
-                            <div id="edit-bar"
+                            <div class="adm-vision hide">
+                              <div id="edit-bar"
                                 tal:condition="show_border"
-                                tal:content="structure provider:plone.contentviews" />
+                                tal:content="structure provider:plone.contentviews"></div>
+                            </div>
 
                             <div metal:use-macro="context/global_statusmessage/macros/portal_message">
                              Status message
@@ -253,9 +264,9 @@
                                Don't use it in your custom templates.
                             </metal:sub>
                         </div>
-                        
+
                     </metal:block>
-                    
+
                     <metal:text define-slot="below-content"
                                 tal:condition="python: not request.get('block_below_content', False)">
                         <div id="viewlet-below-content" tal:content="structure provider:plone.belowcontent" tal:condition="not:ajax_load" />
