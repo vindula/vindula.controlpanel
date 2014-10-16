@@ -6,7 +6,7 @@
 
     <order manager="vindula.controlpanel.containerbeforecontent.viewletmanager" skinname="*">
    		 <viewlet name="vindula.controlpanel.requiredreading" />
-    	<viewlet name="vindula.plone.path_bar" />
+    	<!-- <viewlet name="vindula.plone.path_bar" /> -->
   </order>
 
 </object>
