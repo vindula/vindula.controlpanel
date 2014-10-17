@@ -4,7 +4,7 @@
 	</div>
 	<tal:rep repeat="new read_more">
 		<div class="clear descricao_titulo newSaibaMais">
-			<strong tal:content="python: new.bobobase_modification_time().strftime('%d/%m/%Y ')" class="left">Data de Publicao</strong>
+			<strong tal:content="python: new.created.strftime('%d/%m/%Y ')" class="left">Data de Publicao</strong>
 			<label class="left lineHeight16"><a tal:content="string: - ${new/Title}" tal:attributes="href new/getURL; alt new/Title; title new/Title;"></a></label>
 		</div>
 	</tal:rep>
