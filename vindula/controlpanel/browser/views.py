@@ -1,54 +1,43 @@
 # -*- coding: utf-8 -*-
-from five import grok
-from zope.interface import Interface
-from plone.app.layout.navigation.interfaces import INavigationRoot
-from Products.CMFCore.interfaces import ISiteRoot
-from plone.app.layout.viewlets.interfaces import IBelowContent, IBelowContentBody, IAboveContent
-from zope.app.component.hooks import getSite
-from vindula.myvindula.user import BaseFunc, BaseStore
-
-from Products.CMFCore.Expression import Expression
-from Products.CMFCore.utils import getToolByName
-from Products.CMFCore.permissions import ManagePortal
-from vindula.myvindula.validation import to_utf8, valida_form
-from zope.app.component.hooks import getSite
-
-from plone.registry.interfaces import IRegistry
-from zope.component import queryUtility, getUtility, getAdapters, getMultiAdapter
-from plone.app.discussion.interfaces import IDiscussionSettings
-from Products.statusmessages.interfaces import IStatusMessage
-from vindula.controlpanel import MessageFactory as _
-
-from vindula.controlpanel.browser.models import RegistrationCompanyInformation, ModelsProducts, ModelsCompanyInformation
-
-from Products.GenericSetup.interfaces import ISetupTool
-import pickle, os, string
+import pickle, string
+from copy import copy
+from datetime import datetime
 from random import choice
 
-from Products.Five import BrowserView
-from collective.plonefinder.browser.finder import Finder
-from Acquisition import aq_inner
-
-from zope.browsermenu.interfaces import IBrowserMenu, IMenuItemType
-from zope.browsermenu.interfaces import IBrowserMenuItem, IBrowserSubMenuItem
-from zope.browsermenu.interfaces import IMenuAccessView
-
-#Imports para criar a tela de Criar Usuário do Plone
-from plone.app.users.browser.register import BaseRegistrationForm
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+import pkg_resources
 from AccessControl import getSecurityManager
-from zope.formlib import form
-from copy import copy
-
-from vindula.myvindula.models.dados_funcdetail import ModelsDadosFuncdetails
-# from vindula.myvindula.registration import SchemaFunc
+from Acquisition import aq_inner
+from Products.CMFCore.interfaces import ISiteRoot
+from Products.CMFCore.permissions import ManagePortal
+from Products.CMFCore.utils import getToolByName
+from Products.Five import BrowserView
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from Products.statusmessages.interfaces import IStatusMessage
+from collective.plonefinder.browser.finder import Finder
+from five import grok
+from plone.app.discussion.interfaces import IDiscussionSettings
+from plone.app.layout.navigation.interfaces import INavigationRoot
+from plone.app.layout.viewlets.interfaces import IBelowContentBody, IAboveContent
+from plone.app.users.browser.register import BaseRegistrationForm, CantSendMailWidget
+from plone.registry.interfaces import IRegistry
 from vindula.content.content.interfaces import IVindulaNews
 from vindula.content.models.content import ModelsContent
+from vindula.myvindula.models.dados_funcdetail import ModelsDadosFuncdetails
 from vindula.myvindula.models.required_reading_data import RequiredReadingData
+from vindula.myvindula.user import BaseFunc, BaseStore
+from zope.app.component.hooks import getSite
+from zope.browsermenu.interfaces import IBrowserMenu
+from zope.component import queryUtility, getUtility, getMultiAdapter
+from zope.formlib import form
+from zope.interface import Interface
 
-import pkg_resources
-from datetime import datetime
+from vindula.controlpanel import MessageFactory as _
+from vindula.controlpanel.browser.models import RegistrationCompanyInformation, ModelsProducts, ModelsCompanyInformation
 
+
+#Imports para criar a tela de Criar Usuário do Plone
+
+# from vindula.myvindula.registration import SchemaFunc
 class ControlPanelView(grok.View):
     grok.context(INavigationRoot)
     grok.require('cmf.ManagePortal')
