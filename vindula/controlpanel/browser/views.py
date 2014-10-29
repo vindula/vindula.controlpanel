@@ -63,7 +63,7 @@ class ManageContentTagsView(grok.View):
     grok.context(Interface)
     grok.require('zope2.View')
     grok.name('manage-content-tags')
-    
+
 class ManageTagsView(grok.View):
     grok.context(Interface)
     grok.require('zope2.View')
@@ -147,7 +147,7 @@ class VindulaFinderUploadView(Finder):
 
             if self.review_state:
                     query['review_state'] = self.review_state
-                    
+
             for key in query.keys():
                 if not query.get(key): query.pop(key)
 
@@ -451,7 +451,7 @@ class StatusDataBaseView(grok.View):
 
     def load(self):
         data = self.generate_random_string(13)
-        sql = 'SELECT * FROM vin_myvindula_instance_funcdetails WHERE username = "%s";' %(data)
+        sql = 'SELECT * FROM vinapp_myvindula_userschemadata WHERE username = "%s";' %(data)
         result=[]
         data = BaseStore().store.execute(sql)
         if data.rowcount != 0:
@@ -789,12 +789,12 @@ class ShowAllRolesUsersView(grok.View):
     grok.context(Interface)
     grok.require('zope2.View')
     grok.name('usergroup-userprefs-all')
-    
+
 class EditVindulaColorsView(grok.View):
     grok.context(INavigationRoot)
     grok.require('cmf.ManagePortal')
     grok.name('edit-vindula-colors')
-    
+
 class WebServiceControlPanelView(grok.View):
     grok.context(ISiteRoot)
     grok.require('cmf.ManagePortal')
@@ -805,7 +805,7 @@ class InactiveStructuresView(grok.View):
     grok.context(ISiteRoot)
     grok.require('cmf.ManagePortal')
     grok.name('inactive-structures')
-    
+
     def getInactiveStructures(self):
         data =  ModelsContent.getAllByContentType(type='OrganizationalStructure', deleted=True)
         p_catalog = getToolByName(self.context, 'portal_catalog')
@@ -815,16 +815,16 @@ class InactiveStructuresView(grok.View):
         for item in data:
             if item.uid not in UID_list:
                 UID_list.append(item.uid)
-                
+
         if UID_list:
             items = p_catalog(porta_type='OrganizationalStructure',
-                              UID=UID_list, 
-                              sort_on='sortable_title', 
+                              UID=UID_list,
+                              sort_on='sortable_title',
                               sort_order='ascending')
-            
+
             #Garantindo que irá retornar somente tipos OrganizationalStructure, pois o catalog pode trazer conteudos dentro de unidades organizacionais
             items = [i.getObject() for i in items if i.getObject().portal_type == 'OrganizationalStructure']
-        
+
         return items
 
 
@@ -1034,7 +1034,7 @@ class StaticBarViewletManager(grok.ViewletManager):
     """
     grok.context(Interface)
     grok.name('vindula.network.staticbarviewletmanager')
-    
+
 class ContainerBeforeContentViewletManager(grok.ViewletManager):
     """
         Viewlets are directly referred in main_template.pt by viewlet name,
@@ -1042,30 +1042,30 @@ class ContainerBeforeContentViewletManager(grok.ViewletManager):
     """
     grok.context(Interface)
     grok.name('vindula.controlpanel.containerbeforecontent.viewletmanager')
-    
+
 class RequiredReadingViewlet(grok.Viewlet):
     grok.context(Interface)
     grok.name('vindula.controlpanel.requiredreading')
     grok.require('zope2.View')
     grok.viewletmanager(ContainerBeforeContentViewletManager)
-    
-    
+
+
     def getMyRequiredDocuments(self):
         p_catalog = getToolByName(self.context, 'portal_catalog')
         g_tool = getToolByName(self.context, 'portal_groups')
         m_tool = getToolByName(self.context, 'portal_membership')
-        
-        brains = p_catalog(requiredReading=True, 
+
+        brains = p_catalog(requiredReading=True,
                            review_state=['published', 'internally_published', 'external'])
         my_username = m_tool.getAuthenticatedMember().getUserName()
         my_required_docs = []
-        
+
         for brain in brains:
             obj = brain.getObject()
             try:
                 if (not obj.getStartDateReqRead() and not obj.getExpirationDateReqRead()) \
                    or obj.getStartDateReqRead().asdatetime().replace(tzinfo=None) < datetime.now() < obj.getExpirationDateReqRead().asdatetime().replace(tzinfo=None):
-    
+
                     if obj.getUsersGroupsReqRead():
                         for id_user in obj.getUsersGroupsReqRead():
                             if g_tool.getGroupById(id_user):
@@ -1076,38 +1076,38 @@ class RequiredReadingViewlet(grok.Viewlet):
                                 if id_user == my_username \
                                    and obj not in my_required_docs:
                                     my_required_docs.append(obj)
-                    
+
                     #Eh leitura obrigatoria para todo mundo
                     else:
                         my_required_docs.append(obj)
             except:
                 return []
-            
+
         if my_required_docs:
             aux_list_docs = copy(my_required_docs)
             m_tool = getToolByName(self.context, 'portal_membership')
             my_username = m_tool.getAuthenticatedMember().getUserName()
-            
+
             for doc in aux_list_docs:
                 model_content = ModelsContent().getContent_by_uid(doc.UID())
 
                 if model_content and \
                    RequiredReadingData.getData(username=my_username, content=model_content):
                     my_required_docs.remove(doc)
-        
+
         return my_required_docs
-    
+
 class CheckRequiredReadingView(grok.View):
     grok.context(Interface)
     grok.require('zope2.View')
     grok.name('check-required-reading')
-    
+
     def isRequiredReading(self):
         g_tool = getToolByName(self.context, 'portal_groups')
-        
+
         if getattr(self.context, "requiredReading", False):
             context = self.context
-            
+
             if (not context.getStartDateReqRead() and not context.getExpirationDateReqRead()) \
                or context.getStartDateReqRead().asdatetime().replace(tzinfo=None) < datetime.now() < context.getExpirationDateReqRead().asdatetime().replace(tzinfo=None):
                 if context.getUsersGroupsReqRead():
@@ -1124,24 +1124,24 @@ class CheckRequiredReadingView(grok.View):
                     return True
 
         return False
-    
+
     def getDataRead(self):
         m_tool = getToolByName(self.context, 'portal_membership')
         my_username = m_tool.getAuthenticatedMember().getUserName()
         model_content = ModelsContent().getContent_by_uid(self.context.UID())
         mark_read = self.request.get('read', False)
-        
+
         if model_content:
             data = None
             if mark_read:
                 return RequiredReadingData().setReadingData(username=my_username, content=model_content, is_read=True)
-            
+
             if not data:
                 data = RequiredReadingData.getData(username=my_username, content=model_content)
                 if data:
                     data = data[0]
                 return data
-    
+
 class CheckRequiredReadingViewlet(grok.Viewlet):
     grok.context(Interface)
     grok.name('vindula.controlpanel.checkrequiredreading')
