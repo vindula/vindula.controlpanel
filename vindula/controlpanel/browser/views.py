@@ -962,6 +962,14 @@ class ContentMenu(BrowserView):
 
         return items
 
+
+class ThemeView(grok.View):
+    grok.context(ISiteRoot)
+    grok.require('zope2.View')
+    grok.name('theme-view')
+
+
+
 class ReadMoreViewlet(grok.Viewlet):
     grok.context(IVindulaNews)
     grok.name('vindula.controlpanel.readmore')
