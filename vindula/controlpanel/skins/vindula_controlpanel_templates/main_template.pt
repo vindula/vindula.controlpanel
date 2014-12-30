@@ -86,6 +86,7 @@
     <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/vindula-api/static/js/vindula_all.js"></script>
     <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/vindula-api/static/js/vindula_rh.js"></script>
     <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/vindula-api/static/js/vindula_ouvidoria.js"></script>
+    <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/vindula-api/static/js/vindula_myvindula.js"></script>
     <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/vindula-api/static/js/vindula_custom.js"></script>
     <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/vindula-api/static/js/sockjs.min.js"></script>
     <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/vindula-api/static/js/vindula_theme.js"></script>
@@ -124,7 +125,9 @@
                                      try{
                                         $j('body').gestor_financeiro(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
                                      }catch(err){if(window.console){ console.log('Erro tentando incializar o js de Gestor Financeiro :(')}}
-
+                                     try{
+                                        $j('body').myvindula(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
+                                     }catch(err){if(window.console){ console.log('Erro tentando incializar o js do Myvindula :(')}}
 
                                      window.is_anonymous = false;
                                      window.token = '%(token)s';
