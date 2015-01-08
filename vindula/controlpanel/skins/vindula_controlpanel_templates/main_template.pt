@@ -62,6 +62,8 @@
     <link tal:attributes="href string:${context/portal_url}/++resource++vindula.tile/css/tile-edit.css" rel="stylesheet" type="text/css" href="" id="new-theme" />
     <link tal:attributes="href string:${context/portal_url}/++resource++vindula.tile/css/tile-sortable.css"  rel="stylesheet" type="text/css" href="" id="new-theme" />
     <link tal:attributes="href string:${context/portal_url|nothing}/++resource++vindula.content/js/galleria/themes/twelve/galleria.twelve.css" rel="stylesheet" type="text/css" media="screen" id="new-theme" />
+    <link tal:attributes="href string:${context/portal_url|nothing}/ploneboard.css" rel="stylesheet" type="text/css" media="screen" id="new-theme" />
+
 
     <tal:content tal:define="scss nocall: context/@@load-scss;"
                  content="structure scss/load"></tal:content>
