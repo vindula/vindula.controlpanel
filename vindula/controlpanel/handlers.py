@@ -22,6 +22,9 @@ def userLogged(event, isLogin=True):
     membership = getSite().portal_membership
     check_redirect = getSite().restrictedTraverse('@@myvindula-conf-login').check_redirect()
     
+    set_token = getSite().restrictedTraverse('@@myvindula-user-token')
+    set_token.update()
+    
     try: rules = getSite()['control-panel-objects']['ContentRedirectUser']
     except: relues = None
     request = getSite().REQUEST  
