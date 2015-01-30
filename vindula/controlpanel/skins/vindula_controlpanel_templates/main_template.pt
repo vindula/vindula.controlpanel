@@ -97,6 +97,10 @@
     <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/vindula-api/static/gestor_financeiro/js/vindula_gestor_financeiro.js"></script>
     <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/++resource++vindula.controlpanel/js/resposive_layout.js"></script>
 
+    <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/vindula-api/static/js/sockjs.min.js"></script>
+    <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/vindula-api/static/js/sockjs_utils.js"></script>
+
+
     <tal:def define="is_anonymous context/@@plone_portal_state/anonymous;
                      dummy_anonymous python: request.set('is_anonymous', is_anonymous);">
 
