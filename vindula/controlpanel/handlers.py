@@ -1,13 +1,10 @@
  #-*- coding: utf-8 -*-
-from zope.component import getUtility
-from Products.CMFCore.utils import getToolByName
-
-from zope.app.component.hooks import getSite
-from Products.CMFCore.interfaces import ISiteRoot
-
-from vindula.myvindula.models.user_session_token import UserSessionToken
-
 import logging
+
+from Products.CMFCore.utils import getToolByName
+from vindula.myvindula.models.user_session_token import UserSessionToken
+from zope.app.component.hooks import getSite
+
 
 def to_utf8(value):
     return unicode(value, 'utf-8') 
@@ -17,7 +14,6 @@ logger = logging.getLogger('vindula.content')
 
 def userLogged(event, isLogin=True):
     """ Handler for User Login in Site """
-    acl_user = getToolByName(getSite(), 'acl_users')
     groups_tool = getToolByName(getSite(), "portal_groups")
     membership = getSite().portal_membership
     check_redirect = getSite().restrictedTraverse('@@myvindula-conf-login').check_redirect()
@@ -26,7 +22,7 @@ def userLogged(event, isLogin=True):
     set_token.update()
     
     try: rules = getSite()['control-panel-objects']['ContentRedirectUser']
-    except: relues = None
+    except: rules = None
     request = getSite().REQUEST  
 
     if request.other.get('came_from') not in ('myvindula-first-registre', getSite().portal_url()+'/', '', None):
