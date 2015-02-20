@@ -95,6 +95,8 @@
     <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/vindula-api/static/contentcore/js/vindula_contentcore.js"></script>
     <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/vindula-api/static/nfe/js/vindula_nfe.js"></script>
     <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/vindula-api/static/gestor_financeiro/js/vindula_gestor_financeiro.js"></script>
+    <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/vindula-api/static/ouvidoria_moderada/js/vindula_ouvidoria_moderada.js"></script>
+    
     <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/++resource++vindula.controlpanel/js/resposive_layout.js"></script>
 
     <script type="text/javascript"  tal:attributes="src string:${context/portal_url|nothing}/vindula-api/static/js/sockjs.min.js"></script>
@@ -134,6 +136,9 @@
                                      try{
                                         $j('body').myvindula(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
                                      }catch(err){if(window.console){ console.log('Erro tentando incializar o js do Myvindula :(')}}
+                                     try{
+                                        $j('body').ouvidoria_moderada(null, {username : '%(username)s', dominio: '%(portal_url)s', user_token: '%(token)s'});
+                                     }catch(err){if(window.console){ console.log('Erro tentando incializar o js do Ouvidoria Moderada :(')}}
 
                                      window.is_anonymous = false;
                                      window.token = '%(token)s';
