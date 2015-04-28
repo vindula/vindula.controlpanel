@@ -1,24 +1,17 @@
 # -*- coding: utf-8 -*-
-from five import grok
-from vindula.controlpanel import MessageFactory as _
-from Products.CMFCore.utils import getToolByName
-from zope.app.component.hooks import getSite
- 
 from AccessControl import ClassSecurityInfo
-from zope.interface import Interface
-
-from vindula.controlpanel.content.interfaces import IThemeConfig
-from Products.ATContentTypes.content.document import ATDocumentSchema
-from Products.ATContentTypes.content.document import ATDocumentBase
-from Products.SmartColorWidget.Widget import SmartColorWidget
-
-from zope.interface import implements
-from Products.Archetypes.atapi import *
-from archetypes.referencebrowserwidget.widget import ReferenceBrowserWidget
+from Products.ATContentTypes.content.document import ATDocumentSchema, ATDocumentBase
 from Products.ATContentTypes.content.schemata import finalizeATCTSchema
-from vindula.controlpanel.config import *
+from Products.Archetypes.atapi import *
+from five import grok
+from zope.app.component.hooks import getSite
+from zope.interface import Interface, implements
 
+from vindula.controlpanel import MessageFactory as _
 from vindula.controlpanel.browser.at.widget import VindulaReferenceSelectionWidget
+from vindula.controlpanel.config import *
+from vindula.controlpanel.content.interfaces import IThemeConfig
+
 
 # Interface and schema
 ThemeConfig_schema =  ATDocumentSchema.copy() + Schema((
