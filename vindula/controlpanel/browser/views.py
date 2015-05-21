@@ -1,5 +1,11 @@
 # -*- coding: utf-8 -*-
 import pickle, string
+import json
+import urllib2
+import re
+import unicodedata
+from random import randint
+
 from copy import copy
 from datetime import datetime
 from random import choice
@@ -30,6 +36,7 @@ from zope.browsermenu.interfaces import IBrowserMenu
 from zope.component import queryUtility, getUtility, getMultiAdapter
 from zope.formlib import form
 from zope.interface import Interface
+from plone.i18n.normalizer.interfaces import IIDNormalizer
 
 from vindula.controlpanel import MessageFactory as _
 from vindula.controlpanel.browser.models import RegistrationCompanyInformation, ModelsProducts, ModelsCompanyInformation
@@ -1155,3 +1162,78 @@ class CheckRequiredReadingViewlet(grok.Viewlet):
     grok.name('vindula.controlpanel.checkrequiredreading')
     grok.require('zope2.View')
     grok.viewletmanager(IBelowContentBody)
+
+
+
+
+class CreateNewsFromURLView(grok.View):
+    grok.context(Interface)
+    grok.require('zope2.View')
+    grok.name('create-news-url')
+
+    def generate_id(self, contexto, titulo, random=False):
+        normalizer = getUtility(IIDNormalizer)
+        new_id = normalizer.normalize(titulo)
+        if random:
+            new_id += str(randint(1, 1000))
+
+        if getattr(contexto, new_id, False):
+            return self.generate_id(contexto, titulo, True)
+        else:
+            return new_id
+
+    def load_data(self):
+        url = []
+        Pagina = []
+        if self.request.form:
+            if self.request.form['url_json']:
+                urls = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', self.request.form['url_json'])
+                if urls:
+                    url = self.request.form['url_json']
+
+        if url:
+            try:
+                urlJSON = urllib2.urlopen(url)
+                Read_urlJSON = urlJSON.read()
+                json_dumps = json.dumps(Read_urlJSON)
+                json_load = json.loads(json_dumps)
+                Dict_JSON = json.loads(json_load)
+
+                try:
+                    self.context.invokeFactory( type_name="VindulaFolder",
+                                                id="PaginasImportadas",
+                                                title="Páginas Importadas",
+                                                description="Lista de todas as páginas importadas")
+                except:
+                    pass
+                HTML_reads = []
+                Pagina = []
+                for obj in Dict_JSON:
+                    url_access = obj['urlContent']
+                    # id_pasta = obj['keyCode']
+                    # self.context.PaginasImportadas.invokeFactory(type_name="VindulaFolder", id=id_pasta,
+                    #                                                                         title=obj['edicao'],
+                    #                                                                         description="Pasta de conteúdos")
+                    content_html = urllib2.urlopen(url_access).read()
+                    HTML_dumps = json.dumps(content_html)
+                    HTML_loads = json.loads(HTML_dumps)
+                    HTML_reads.append(json.loads(HTML_loads))
+
+                    for content in HTML_reads:
+                        for HTML_content in content:
+                            HTML_content['titulo'].encode('utf-8')
+                            HTML_content['conteudo'].encode('utf-8')
+                            Pagina.append(HTML_content)
+                for pagina in Pagina:
+                    id_pagina = self.generate_id(self.context.PaginasImportadas, pagina['titulo'])
+                    self.context.PaginasImportadas.invokeFactory(type_name="VindulaNews",id=id_pagina,
+                                                                                        title=pagina['titulo'],
+                                                                                        description=pagina['resumo'],
+                                                                                        text=pagina['conteudo'])
+                data = "Páginas importadas com sucesso"
+            except:
+                data = "URL inválida ou as Páginas contidas no arquivo Json já existem"
+                pass
+        else:
+            data = "Digite uma url válida"
+        return data
