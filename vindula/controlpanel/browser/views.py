@@ -1185,6 +1185,7 @@ class CreateNewsFromURLView(grok.View):
     def load_data(self):
         url = []
         Pagina = []
+        normalizer = getUtility(IIDNormalizer)
         if self.request.form:
             if self.request.form['url_json']:
                 urls = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', self.request.form['url_json'])
@@ -1225,11 +1226,15 @@ class CreateNewsFromURLView(grok.View):
                             HTML_content['conteudo'].encode('utf-8')
                             Pagina.append(HTML_content)
                 for pagina in Pagina:
-                    id_pagina = self.generate_id(self.context.PaginasImportadas, pagina['titulo'])
-                    self.context.PaginasImportadas.invokeFactory(type_name="VindulaNews",id=id_pagina,
-                                                                                        title=pagina['titulo'],
-                                                                                        description=pagina['resumo'],
-                                                                                        text=pagina['conteudo'])
+                    id_titulo = normalizer.normalize(pagina['titulo'])
+                    id_pagina = pagina['keyCode'] + id_titulo
+                    if getattr(self.context.PaginasImportadas, id_pagina, False):
+                        pass
+                    else:
+                        self.context.PaginasImportadas.invokeFactory(type_name="VindulaNews",id=id_pagina,
+                                                                                            title=pagina['titulo'],
+                                                                                            description=pagina['resumo'],
+                                                                                            text=pagina['conteudo'])
                 data = "Páginas importadas com sucesso"
             except:
                 data = "URL inválida ou as Páginas contidas no arquivo Json já existem"
