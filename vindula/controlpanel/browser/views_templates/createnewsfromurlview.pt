@@ -11,12 +11,30 @@
   <body>
     <metal:main fill-slot="prefs_configlet_content">
         <div id="" tal:define="data view/load_data">
-            <h4>Importar Noticias de uma URL:</h4>
-            <form>
+            <h4 tal:condition="not: data/results|nothing">Importar Noticias de uma URL:</h4>
+            <form tal:condition="not: data/results|nothing">
               <input type="text" name="url_json" placeholder="Insira a URL do json"/>
               <input type="submit" name="save" value="Enviar"/>
             </form>
-            <p><span tal:content="string: ${data}"></span></p>
+          <table tal:condition="data/results|nothing">
+            <thead>
+              <tr>
+                <td>
+                  Conte&uacute;dos importados
+                </td>
+              </tr>
+            </thead>
+            <tbody>
+                <tr tal:repeat="item data/results">
+                  <td>
+                    <a href="" tal:attributes="href item/url" title="Clique para acessar a Página">
+                      <span tal:content="item/title"></span>
+                    </a>
+                  </td>
+                </tr>
+            </tbody>
+          </table>
+        <p><span tal:condition="data/error|nothing" tal:content="data/error"></span></p>
         </div>
     </metal:main>
   </body>

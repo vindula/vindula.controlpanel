@@ -1171,20 +1171,11 @@ class CreateNewsFromURLView(grok.View):
     grok.require('zope2.View')
     grok.name('create-news-url')
 
-    def generate_id(self, contexto, titulo, random=False):
-        normalizer = getUtility(IIDNormalizer)
-        new_id = normalizer.normalize(titulo)
-        if random:
-            new_id += str(randint(1, 1000))
-
-        if getattr(contexto, new_id, False):
-            return self.generate_id(contexto, titulo, True)
-        else:
-            return new_id
-
     def load_data(self):
         url = []
         Pagina = []
+        data = {}
+        data['results'] = []
         normalizer = getUtility(IIDNormalizer)
         if self.request.form:
             if self.request.form['url_json']:
@@ -1210,6 +1201,7 @@ class CreateNewsFromURLView(grok.View):
                 HTML_reads = []
                 Pagina = []
                 for obj in Dict_JSON:
+                    data_dict = []
                     url_access = obj['urlContent']
                     # id_pasta = obj['keyCode']
                     # self.context.PaginasImportadas.invokeFactory(type_name="VindulaFolder", id=id_pasta,
@@ -1235,10 +1227,11 @@ class CreateNewsFromURLView(grok.View):
                                                                                             title=pagina['titulo'],
                                                                                             description=pagina['resumo'],
                                                                                             text=pagina['conteudo'])
-                data = "Páginas importadas com sucesso"
+                        data['results'].append({'title': pagina['titulo'], 'url': self.context.PaginasImportadas.absolute_url() + "/" + id_pagina})
+                return data
             except:
-                data = "URL inválida ou as Páginas contidas no arquivo Json já existem"
-                pass
+                data['error'] = "URL inválida, por favor, digite a URL do arquivo Json"
+                return data
         else:
-            data = "Digite uma url válida"
-        return data
+            data['error'] = "Digite uma URL válida"
+            return data
