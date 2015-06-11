@@ -95,7 +95,7 @@
 	                  class="enableAutoFocus"
 	                  method="post"
 	                  id="login_form"
-	                  tal:condition="use_normal">
+	                  tal:condition="python: use_normal or use_external">
 					<div class="loginBox boxBorder">
 		                <div id="login-form">
 		  
@@ -268,7 +268,7 @@
 	
 	            </form>
 	
-	            <form tal:attributes="action external_login_url"
+	            <!--<form tal:attributes="action external_login_url"
 	                  class="enableAutoFocus"
 	                  method="get"
 	                  id="login_form"
@@ -296,7 +296,7 @@
 					
 					<metal:forgotpass use-macro="context/vindula-custom-login/forgotten-password"></metal:forgotpass>
 	
-	            </form>
+	            </form>-->
 	
 		        <tal:use_iframe condition="use_iframe">
 		
