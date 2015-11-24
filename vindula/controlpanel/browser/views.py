@@ -1235,3 +1235,15 @@ class CreateNewsFromURLView(grok.View):
         else:
             data['error'] = "Digite uma URL válida"
             return data
+
+class MyvindulaDeletePerfilUser(grok.View):
+    grok.context(ISiteRoot)
+    grok.require('zope2.View')
+    grok.name('delete-perfil-user')
+
+    url_frame = '%s/vindula-api/myvindula/delete-perfil-user/%s'
+
+    def get_url_frame(self):
+        url = self.context.portal_url()
+        user_token = self.request.SESSION.get('user_token')
+        return self.url_frame %(url,user_token)

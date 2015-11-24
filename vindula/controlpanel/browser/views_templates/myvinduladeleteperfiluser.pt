@@ -1,0 +1,24 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+         xmlns:tal="http://xml.zope.org/namespaces/tal"
+         xmlns:metal="http://xml.zope.org/namespaces/metal"
+         xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+         lang="en"
+         metal:use-macro="context/prefs_main_template/macros/master"
+         i18n:domain="plone">
+
+	<head>
+	</head>
+    <body>
+        <metal:main fill-slot="prefs_configlet_content"> 
+            <div class="" tal:attributes="data_uid context/UID|nothing;
+                                                            data_type context/portal_type|nothing;">
+                <span id="ceebbbfde6c807825bc2777b74c85a09">
+                    <iframe frameborder="0" scrolling="no" class="new_view_ir" src="" style="height: 750px;" width="100%"
+                            id="ceebbbfde6c807825bc2777b74c85a09" tal:attributes="src view/get_url_frame">
+                    </iframe>
+                </span>
+            </div>
+        </metal:main>
+    </body>
+</html>
+
